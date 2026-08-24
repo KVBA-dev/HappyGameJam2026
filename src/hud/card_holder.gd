@@ -4,9 +4,11 @@ const State = CardHudHighlight.State
 
 @onready var cards_container: Node2D = %CardsContainer
 @onready var placer_center: Node2D = %PlacerCenter
+@onready var card_lay_area: HoverableArea = %CardLayArea
 
 var currently_focused: CardHudHighlight = null
 var cards: Array[CardHudHighlight] = []
+var can_be_laid_down: bool = true
 
 func _ready():
 	for card: CardHudHighlight in cards_container.get_children():
@@ -16,21 +18,32 @@ func _ready():
 func _process(_delta: float) -> void:
 	if not _is_currently(State.DRAGGED):
 		var closest := find_closest_hovered()
-		_set_currently_focused(closest)
+		_set_currently_focused(closest, State.PREVIEWED)
 	else:
 		reorder_cards()
 
-	if _is_currently(State.PREVIEWED) and Input.is_action_just_pressed("card_select"):
+	if (Input.is_action_just_pressed("card_select") \
+		or (Input.is_action_just_released("card_select") and can_be_laid_down)) \
+		and _is_currently(State.DRAGGED):
+		if card_lay_area.hover:
+			var idx = find_first_rightside_card_idx(get_global_mouse_position())
+			cards.insert(idx, currently_focused)
+			_set_currently_focused(null, State.IN_HAND)
+
+	if Input.is_action_just_pressed("card_select") and _is_currently(State.PREVIEWED):
 		currently_focused.state = CardHudHighlight.State.DRAGGED
 		cards.erase(currently_focused)
 		reorder_cards()
 
-func _set_currently_focused(node: CardHudHighlight):
+		can_be_laid_down = false
+		get_tree().create_timer(0.1).timeout.connect(func(): can_be_laid_down = true)
+
+func _set_currently_focused(node: CardHudHighlight, state: State):
 	if currently_focused:
 		currently_focused.state = CardHudHighlight.State.IN_HAND
 
 	if node:
-		node.state = CardHudHighlight.State.PREVIEWED
+		node.state = state
 
 	currently_focused = node
 	reorder_cards()
@@ -47,6 +60,14 @@ func find_closest_hovered() -> CardHudHighlight:
 			closest = card
 			best_distance = distance
 	return closest	
+
+func find_first_rightside_card_idx(pos: Vector2) -> int:
+	var first_card_right_idx: int = len(cards)
+	for idx in range(len(cards)):
+		if cards[idx].global_position.x > pos.x:
+			return idx
+
+	return first_card_right_idx
 
 func reorder_cards() -> void:
 	var cards_position_data := get_position_data_for_cards()
@@ -74,7 +95,9 @@ func reorder_cards() -> void:
 			movement_angle += left_spread if idx < first_card_right_idx else right_spread
 
 		cards[idx].position = _calculate_card_position(movement_angle)
-		cards[idx].rotation = cards_position_data[idx].rotation / 4.0
+		if cards[idx].state == State.IN_HAND:
+			cards[idx].z_index = cards[idx].MIN_Z_INDEX + idx
+			cards[idx].rotation = cards_position_data[idx].rotation / 4.0
 
 func _is_currently(state: CardHudHighlight.State):
 	return currently_focused and currently_focused.state == state

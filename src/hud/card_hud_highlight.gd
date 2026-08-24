@@ -2,6 +2,8 @@ class_name CardHudHighlight extends Sprite2D
 
 @onready var shadow_sprite: Sprite2D = %ShadowSprite
 
+const MIN_Z_INDEX = 0
+
 enum State {
 	IN_HAND,
 	PREVIEWED,
@@ -51,7 +53,6 @@ func _on_state_change():
 	match _state:
 		State.IN_HAND: 
 			scale = Vector2.ONE 
-			z_index = 0
 			shadow_sprite.z_index = -10
 		State.PREVIEWED:
 			scale = Vector2.ONE * 1.2
