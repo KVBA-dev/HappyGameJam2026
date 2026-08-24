@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://or2pqn1kfcnc" path="res://src/main/main.gd" id="1_3eh75"]
 [ext_resource type="PackedScene" uid="uid://b25i8onamb21n" path="res://src/utils/tooltips/tooltip_canvas/tooltip_canvas.tscn" id="2_3s6yk"]
 [ext_resource type="Script" uid="uid://b5h7t7yb5olek" path="res://src/camera/camera.gd" id="3_ab7mr"]
-[ext_resource type="Texture2D" uid="uid://baajnp5wacriy" path="res://assets/images/hex-basic.png" id="4_djufw"]
+[ext_resource type="PackedScene" uid="uid://e5ebce6mmo6q" path="res://src/hex_grid/hex_grid.tscn" id="5_jkpqq"]
 
 [node name="Main" type="Node" unique_id=387200153]
 script = ExtResource("1_3eh75")
@@ -11,11 +11,7 @@ script = ExtResource("1_3eh75")
 [node name="TooltipCanvas" parent="." unique_id=107762882 instance=ExtResource("2_3s6yk")]
 unique_name_in_owner = true
 
-[node name="HexGrid" parent="." unique_id=1755103109 instance=ExtResource("3_ab7mr")]
-
 [node name="MainCamera" type="Camera2D" parent="." unique_id=1340098675]
 script = ExtResource("3_ab7mr")
 
-[node name="HexBasic" type="Sprite2D" parent="." unique_id=1379388214]
-position = Vector2(-149, 154)
-texture = ExtResource("4_djufw")
+[node name="HexGrid" parent="." unique_id=1755103109 instance=ExtResource("5_jkpqq")]
