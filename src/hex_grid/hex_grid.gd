@@ -10,7 +10,7 @@ func _ready():
     hex_map[HexVector.ZERO] = root_hex
     
 func get_hex_at(_position: HexVector) -> Hex:
-    return hex_map.get(_position, null)
+	return hex_map.get(_position, null)
 
 func spawn_hex_at(_position: HexVector, hex_type: HexData) -> Hex:
     if hex_map.has(_position):
