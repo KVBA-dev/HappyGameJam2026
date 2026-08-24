@@ -11,21 +11,30 @@ enum State {
 }
 
 var target_pos: Vector2 = self.position
+var target_scale: Vector2 = Vector2.ONE
 var card_data: CardData
 
+var _scale_to_camera: bool = false
+var _insta_scale: bool = false
+
+@onready var _insta_scale_timer: Timer = %InstaScaleTimer
 @onready var card_holder: CardHolder = get_tree().get_first_node_in_group("card_holder")
 var _state: State = State.IN_HAND
 var state: State:
 	get:
 		return _state
 	set(value):
+		var previous = _state
 		_state = value
-		_on_state_change()
+		_on_state_change(previous)
 
 var _hover: bool = false
 var hover: bool:
 	get:
 		return _hover
+
+func _ready() -> void:
+	_insta_scale_timer.timeout.connect(func(): _insta_scale = true)
 
 func _process(delta: float) -> void:
 	match _state:
@@ -54,13 +63,25 @@ func _dragged_process(delta: float):
 		Utils.smooth_exp(global_position.y, get_global_mouse_position().y, FOLLOW_SPEED, delta)
 	)
 
+	if _scale_to_camera:
+		target_scale = get_viewport().get_camera_2d().zoom
+
+		if _insta_scale:
+			scale = target_scale
+
+	const SCALE_SPEED = 10.0
+	scale = Vector2(
+		Utils.smooth_exp(scale.x, target_scale.x, SCALE_SPEED, delta),
+		Utils.smooth_exp(scale.y, target_scale.y, SCALE_SPEED, delta)
+	)
+
 func _on_area_2d_mouse_entered() -> void:
 	_hover = true
 
 func _on_area_2d_mouse_exited() -> void:
 	_hover = false
 
-func _on_state_change():
+func _on_state_change(_previous: State):
 	match _state:
 		State.IN_HAND: 
 			scale = Vector2.ONE 
@@ -74,3 +95,21 @@ func _on_state_change():
 			scale = Vector2.ONE * 1.2
 			z_index = 10
 			shadow_sprite.z_index = 9
+			card_holder.card_lay_area.mouse_exited.connect(_scale_to_camera_sized)
+			card_holder.card_lay_area.mouse_entered.connect(_unscale)
+
+	if _previous == State.DRAGGED:
+		_scale_to_camera = false
+		card_holder.card_lay_area.mouse_exited.disconnect(_scale_to_camera_sized)
+		card_holder.card_lay_area.mouse_entered.disconnect(_unscale)
+
+func _scale_to_camera_sized():
+	_scale_to_camera = true
+	_insta_scale = false
+	_insta_scale_timer.start()
+
+func _unscale():
+	_scale_to_camera = false
+	target_scale = Vector2.ONE
+	_insta_scale = false
+	_insta_scale_timer.stop()

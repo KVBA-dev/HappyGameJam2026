@@ -9,6 +9,7 @@ class_name Hex extends Node2D
 var hex_position: HexVector = HexVector.ZERO
 const SCENE := preload("uid://c35v72ubhgdk6")
 
+static var currently_hovered: Hex
 
 static func new_instance(_hex_position: HexVector, _hex_data: HexData) -> Hex:
 	var new_hex: Hex = SCENE.instantiate()
@@ -44,9 +45,12 @@ func on_item_entered(area: Area2D) -> void:
 func _on_mouse_entered():
 	var tooltip := TextTooltip.new_instance(str(hex_position))
 	GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
+	currently_hovered = self
 
 func _on_mouse_exited():
 	GameManager.main.tooltip_canvas.hide_tooltip(self)
+	if currently_hovered == self:
+		currently_hovered = null
 
 # TODO: Type item class!
 func on_item_input(item):

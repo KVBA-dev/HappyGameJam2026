@@ -12,6 +12,19 @@ var currently_focused: CardHudHighlight = null
 var cards: Array[CardHudHighlight] = []
 var can_be_laid_down: bool = true
 
+func can_place_card() -> bool:
+	return _is_currently(State.DRAGGED)
+
+func take_currently_dragged() -> CardData:
+	if not can_place_card():
+		return null
+
+	var card_data = currently_focused.card_data
+	currently_focused.state = State.IN_HAND
+	currently_focused.queue_free()
+	currently_focused = null
+	return card_data
+
 func add_card(card_data: CardData) -> bool:
 	if len(cards) + 1 > _card_num_limit:
 		return false
@@ -25,6 +38,7 @@ func add_card(card_data: CardData) -> bool:
 	return true
 
 func _ready():
+	GameManager.card_holder = self
 	for child in cards_container.get_children():
 		child.free()
 
