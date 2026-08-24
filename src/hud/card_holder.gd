@@ -1,13 +1,21 @@
 class_name CardHolder extends Control
 
+const State = CardHudHighlight.State 
+
 @onready var cards_container: Node2D = %CardsContainer
 @onready var placer_center: Node2D = %PlacerCenter
 
 var currently_focused: CardHudHighlight = null
 
 func _process(_delta: float) -> void:
-	var closest := find_closest_hovered()
-	_set_currently_focused(closest)
+
+	if not _is_currently(State.DRAGGED):
+		var closest := find_closest_hovered()
+		_set_currently_focused(closest)
+
+	if _is_currently(State.PREVIEWED) and Input.is_action_just_pressed("card_select"):
+		currently_focused.state = CardHudHighlight.State.DRAGGED
+		reorder_cards()
 
 func _set_currently_focused(node: CardHudHighlight):
 	if currently_focused:
@@ -46,6 +54,9 @@ func reorder_cards() -> void:
 		cards[idx].position = cards_position_data[idx].position
 		cards[idx].rotation = cards_position_data[idx].rotation / 2.0
 
+func _is_currently(state: CardHudHighlight.State):
+	return currently_focused and currently_focused.state == state
+
 func get_position_data_for_cards() -> Array[Dictionary]:
 	const up_angle: float = -PI / 2.0
 
@@ -59,12 +70,12 @@ func get_position_data_for_cards() -> Array[Dictionary]:
 	var angle_offset: float = -int(len(cards) / 2) * angle_card_distance
 	if len(cards) % 2 == 0:
 		angle_offset += angle_card_distance / 2.0
-	if currently_focused:
+	if _is_currently(State.PREVIEWED):
 		angle_offset -= angle_hover_distance / 2.0
 
 	var calculated_card_data: Array[Dictionary] = []
 	for card: Node in cards:
-		if card == currently_focused:
+		if card == currently_focused and _is_currently(State.PREVIEWED):
 			angle_offset += angle_hover_distance / 2.0
 
 		var data_dict = {
@@ -72,7 +83,7 @@ func get_position_data_for_cards() -> Array[Dictionary]:
 			rotation = angle_offset / 2.0
 		}
 
-		if card == currently_focused:
+		if card == currently_focused and _is_currently(State.PREVIEWED):
 			angle_offset += angle_hover_distance / 2.0
 
 		calculated_card_data.push_back(data_dict)

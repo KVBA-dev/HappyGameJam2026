@@ -23,14 +23,17 @@ var hover: bool:
 func _process(_delta: float) -> void:
 	match _state:
 		State.IN_HAND: _in_hand_processed()
-		State.DRAGGED: pass
 		State.PREVIEWED: _previewed_process()
+		State.DRAGGED: _dragged_process()
 
 func _in_hand_processed():
 	pass
 
 func _previewed_process():
 	pass
+
+func _dragged_process():
+	global_position = lerp(global_position, get_global_mouse_position(), 0.1)
 
 func _on_area_2d_mouse_entered() -> void:
 	_hover = true
@@ -47,4 +50,6 @@ func _on_state_change():
 			scale = Vector2.ONE * 1.2
 			rotation = 0
 			z_index = 10
-		State.DRAGGED: pass
+		State.DRAGGED: 
+			scale = Vector2.ONE * 1.2
+			z_index = 10
