@@ -27,9 +27,5 @@ position = Vector2(-2.3841858e-07, 16)
 scale = Vector2(1.1, 1.1)
 texture = SubResource("CompressedTexture2D_j2tbl")
 
-[node name="InstaScaleTimer" type="Timer" parent="." unique_id=998568510]
-unique_name_in_owner = true
-wait_time = 0.3
-
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

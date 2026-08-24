@@ -6,5 +6,4 @@ enum Type {
     PLACABLE
 }
 
-@export var texture: Texture2D
 @export var hex_data: HexData

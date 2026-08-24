@@ -17,7 +17,6 @@ var card_data: CardData
 var _scale_to_camera: bool = false
 var _insta_scale: bool = false
 
-@onready var _insta_scale_timer: Timer = %InstaScaleTimer
 @onready var card_holder: CardHolder = get_tree().get_first_node_in_group("card_holder")
 var _state: State = State.IN_HAND
 var state: State:
@@ -32,9 +31,6 @@ var _hover: bool = false
 var hover: bool:
 	get:
 		return _hover
-
-func _ready() -> void:
-	_insta_scale_timer.timeout.connect(func(): _insta_scale = true)
 
 func _process(delta: float) -> void:
 	match _state:
@@ -65,6 +61,9 @@ func _dragged_process(delta: float):
 
 	if _scale_to_camera:
 		target_scale = get_viewport().get_camera_2d().zoom
+
+		if (target_scale - scale).length() <= 0.01:
+			_insta_scale = true
 
 		if _insta_scale:
 			scale = target_scale
@@ -106,10 +105,8 @@ func _on_state_change(_previous: State):
 func _scale_to_camera_sized():
 	_scale_to_camera = true
 	_insta_scale = false
-	_insta_scale_timer.start()
 
 func _unscale():
 	_scale_to_camera = false
 	target_scale = Vector2.ONE
 	_insta_scale = false
-	_insta_scale_timer.stop()

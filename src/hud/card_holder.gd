@@ -13,7 +13,7 @@ var cards: Array[CardHudHighlight] = []
 var can_be_laid_down: bool = true
 
 func can_place_card() -> bool:
-	return _is_currently(State.DRAGGED)
+	return _is_currently(State.DRAGGED) and not card_lay_area.hover
 
 func take_currently_dragged() -> CardData:
 	if not can_place_card():
@@ -30,7 +30,7 @@ func add_card(card_data: CardData) -> bool:
 		return false
 
 	var visual_scene: CardHudHighlight = Scenes.CARD_HUD_SCENE.instantiate()
-	visual_scene.texture = visual_scene.texture
+	visual_scene.texture = card_data.hex_data.texture
 	visual_scene.card_data = card_data
 
 	cards_container.add_child(visual_scene)
