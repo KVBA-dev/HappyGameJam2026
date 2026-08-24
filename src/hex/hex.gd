@@ -1,6 +1,7 @@
 class_name Hex extends Node2D
 
 
+@onready var background_sprite: Sprite2D = %BackgroundSprite
 @onready var on_hex_sprite: Sprite2D = %OnHexSprite
 @onready var item_detection_area: Area2D = %ItemDetectionArea
 @onready var mouse_detection_area: Area2D = %MouseDetectionArea
@@ -18,7 +19,7 @@ static func new_instance(_hex_position: HexVector, _hex_data: HexData) -> Hex:
 
 func _ready():
 	z_index = hex_position.s()
-	on_hex_sprite.texture = hex_data.texture
+	background_sprite.texture = hex_data.texture
 	item_detection_area.area_entered.connect(on_item_entered)
 	mouse_detection_area.mouse_entered.connect(_on_mouse_entered)
 	mouse_detection_area.mouse_exited.connect(_on_mouse_exited)
