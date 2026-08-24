@@ -10,6 +10,8 @@ enum State {
 	DRAGGED
 }
 
+var target_pos: Vector2 = self.position
+
 @onready var card_holder: CardHolder = get_tree().get_first_node_in_group("card_holder")
 var _state: State = State.IN_HAND
 var state: State:
@@ -26,15 +28,23 @@ var hover: bool:
 
 func _process(delta: float) -> void:
 	match _state:
-		State.IN_HAND: _in_hand_processed()
-		State.PREVIEWED: _previewed_process()
+		State.IN_HAND: _in_hand_processed(delta)
+		State.PREVIEWED: _previewed_process(delta)
 		State.DRAGGED: _dragged_process(delta)
 
-func _in_hand_processed():
-	pass
+func _in_hand_processed(delta: float):
+	const MOVE_SPEED = 5.0
+	position = Vector2(
+		Utils.smooth_exp(position.x, target_pos.x, MOVE_SPEED, delta),
+		Utils.smooth_exp(position.y, target_pos.y, MOVE_SPEED, delta)
+	)
 
-func _previewed_process():
-	pass
+func _previewed_process(delta: float):
+	const MOVE_SPEED = 5.0
+	position = Vector2(
+		Utils.smooth_exp(position.x, target_pos.x, MOVE_SPEED, delta),
+		Utils.smooth_exp(position.y, target_pos.y, MOVE_SPEED, delta)
+	)
 
 func _dragged_process(delta: float):
 	const FOLLOW_SPEED = 12.0

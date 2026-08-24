@@ -18,7 +18,7 @@ func _ready():
 func _process(_delta: float) -> void:
 	if not _is_currently(State.DRAGGED):
 		var closest := find_closest_hovered()
-		_set_currently_focused(closest, State.PREVIEWED)
+		_set_currently_focused(closest)
 	else:
 		reorder_cards()
 
@@ -28,7 +28,8 @@ func _process(_delta: float) -> void:
 		if card_lay_area.hover:
 			var idx = find_first_rightside_card_idx(get_global_mouse_position())
 			cards.insert(idx, currently_focused)
-			_set_currently_focused(null, State.IN_HAND)
+			currently_focused = null
+			reorder_cards()
 
 	if Input.is_action_just_pressed("card_select") and _is_currently(State.PREVIEWED):
 		currently_focused.state = CardHudHighlight.State.DRAGGED
@@ -38,12 +39,12 @@ func _process(_delta: float) -> void:
 		can_be_laid_down = false
 		get_tree().create_timer(0.1).timeout.connect(func(): can_be_laid_down = true)
 
-func _set_currently_focused(node: CardHudHighlight, state: State):
+func _set_currently_focused(node: CardHudHighlight):
 	if currently_focused:
 		currently_focused.state = CardHudHighlight.State.IN_HAND
 
 	if node:
-		node.state = state
+		node.state = State.PREVIEWED
 
 	currently_focused = node
 	reorder_cards()
@@ -94,7 +95,7 @@ func reorder_cards() -> void:
 		if first_card_right_idx > 0:
 			movement_angle += left_spread if idx < first_card_right_idx else right_spread
 
-		cards[idx].position = _calculate_card_position(movement_angle)
+		cards[idx].target_pos = _calculate_card_position(movement_angle)
 		if cards[idx].state == State.IN_HAND:
 			cards[idx].z_index = cards[idx].MIN_Z_INDEX + idx
 			cards[idx].rotation = cards_position_data[idx].rotation / 4.0
