@@ -1,15 +1,20 @@
 class_name TooltipCanvas extends CanvasLayer
 
 var tooltip: Control
+var current_owner: Node
 
-func show_tooltip(_tooltip: Tooltip):
+func show_tooltip(tooltip_owner: Node, _tooltip: Tooltip):
+	current_owner = tooltip_owner
+	hide_tooltip(current_owner)
 	tooltip = _tooltip
 	add_child(_tooltip)
 	tooltip.position = _tooltip_pos()
 
-func hide_tooltip():
-	if tooltip:
-		tooltip.queue_free()
+func hide_tooltip(tooltip_owner: Node):
+	if not tooltip or tooltip_owner != current_owner:
+		return
+	tooltip.queue_free()
+	tooltip = null
 
 func _process(_delta: float) -> void:
 	if tooltip:
