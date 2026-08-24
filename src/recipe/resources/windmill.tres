@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://0ud38a1yc6q0"]
 
-[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item.gd" id="1_et357"]
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_et357"]
 [ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="2_ej4q1"]
 [ext_resource type="Resource" uid="uid://c81blbhjqejk1" path="res://src/item/resources/flour.tres" id="2_urcg1"]
 [ext_resource type="Resource" uid="uid://bxrtio7rk1lmt" path="res://src/item/resources/wheat.tres" id="3_ovc7w"]
