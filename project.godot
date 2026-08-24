@@ -22,6 +22,10 @@ SignalBus="*uid://dpxfqk7lpic6e"
 ErrorBus="*uid://7s5rmvfv36td"
 SoundManager="*uid://bpwfprtk1nyop"
 
+[global_group]
+
+card_holder=""
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
