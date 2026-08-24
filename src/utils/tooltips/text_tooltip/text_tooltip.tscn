@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bjwylgmbh648b"]
+
+[ext_resource type="Script" uid="uid://qo8v8h8jwb4x" path="res://src/utils/tooltips/text_tooltip/text_tooltip.gd" id="1_pl73n"]
+
+[node name="TextTooltip" type="PanelContainer" unique_id=93291807]
+script = ExtResource("1_pl73n")
+
+[node name="TextLabel" type="Label" parent="." unique_id=136836544]
+unique_name_in_owner = true
+layout_mode = 2
