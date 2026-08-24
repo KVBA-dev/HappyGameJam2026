@@ -1,0 +1,16 @@
+{
+	"godotTools.editorPath.godot4": "c:\\devel\\Godot\\Godot_v4.6-stable_win64.exe",
+	"files.exclude": {
+		"**/*.uid": true,
+		"**/*.tscn": true,
+		"**/*.import": true,
+	},
+	"search.exclude": {
+		"**/*.tres": true,
+		"**/*.tscn": true,
+		"**/*.svg": true,
+		"**/*.gltf": true,
+		"addons": true
+	},
+	"workbench.experimental.modernUI": false
+}

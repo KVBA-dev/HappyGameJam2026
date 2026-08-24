@@ -1,0 +1,161 @@
+class_name CardHolder extends Control
+
+const State = CardHudHighlight.State 
+
+@onready var cards_container: Node2D = %CardsContainer
+@onready var placer_center: Node2D = %PlacerCenter
+@onready var card_lay_area: HoverableArea = %CardLayArea
+
+var _card_num_limit: int = 5
+
+var currently_focused: CardHudHighlight = null
+var cards: Array[CardHudHighlight] = []
+var can_be_laid_down: bool = true
+
+func add_card(card_data: CardData) -> bool:
+	if len(cards) + 1 > _card_num_limit:
+		return false
+
+	var visual_scene: CardHudHighlight = Scenes.CARD_HUD_SCENE.instantiate()
+	visual_scene.texture = visual_scene.texture
+	visual_scene.card_data = card_data
+
+	cards_container.add_child(visual_scene)
+	cards.push_back(visual_scene)
+	return true
+
+func _ready():
+	for child in cards_container.get_children():
+		child.free()
+
+	_test_init()
+	reorder_cards()
+
+func _test_init():
+	var colors = [Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.PINK]
+	for i in range(5):
+		add_card(load("res://const_data/cards/test_card.tres"))
+		cards.back().modulate = colors[i]
+
+func _process(_delta: float) -> void:
+	if not _is_currently(State.DRAGGED):
+		var closest := find_closest_hovered()
+		_set_currently_focused(closest)
+	else:
+		reorder_cards()
+
+	if (Input.is_action_just_pressed("card_select") \
+		or (Input.is_action_just_released("card_select") and can_be_laid_down)) \
+		and _is_currently(State.DRAGGED):
+		if card_lay_area.hover:
+			var idx = find_first_rightside_card_idx(get_global_mouse_position())
+			cards.insert(idx, currently_focused)
+			currently_focused = null
+			reorder_cards()
+
+	if Input.is_action_just_pressed("card_select") and _is_currently(State.PREVIEWED):
+		currently_focused.state = CardHudHighlight.State.DRAGGED
+		cards.erase(currently_focused)
+		reorder_cards()
+
+		can_be_laid_down = false
+		get_tree().create_timer(0.1).timeout.connect(func(): can_be_laid_down = true)
+
+func _set_currently_focused(node: CardHudHighlight):
+	if currently_focused:
+		currently_focused.state = CardHudHighlight.State.IN_HAND
+
+	if node:
+		node.state = State.PREVIEWED
+
+	currently_focused = node
+	reorder_cards()
+
+func find_closest_hovered() -> CardHudHighlight:
+	var closest: CardHudHighlight = null
+	var best_distance: float = INF
+	for card: CardHudHighlight in cards:
+		if card.hover == false:
+			continue
+
+		var distance: float = card.global_position.distance_to(get_global_mouse_position())
+		if distance < best_distance:
+			closest = card
+			best_distance = distance
+	return closest	
+
+func find_first_rightside_card_idx(pos: Vector2) -> int:
+	var first_card_right_idx: int = len(cards)
+	for idx in range(len(cards)):
+		if cards[idx].global_position.x > pos.x:
+			return idx
+
+	return first_card_right_idx
+
+func reorder_cards() -> void:
+	var cards_position_data := get_position_data_for_cards()
+
+	var left_spread = 0.0
+	var right_spread = 0.0
+	var first_card_right_idx: int = -1
+	if _is_currently(State.DRAGGED):
+		for idx in range(len(cards)):
+			var card_global_calc = cards[idx].get_parent().to_global(cards_position_data[idx].position)
+			var distance_to_dragged = currently_focused.global_position.distance_to(card_global_calc)
+			var weight = clamp(distance_to_dragged / 200.0, 0.0, 1.0)
+
+			var local_spread_distance = (1.0 - weight) * 0.1
+			if cards[idx].global_position.x > currently_focused.global_position.x:
+				right_spread = local_spread_distance
+				first_card_right_idx = idx
+				break
+
+			left_spread = -local_spread_distance
+			
+	for idx in range(len(cards)):
+		var movement_angle = cards_position_data[idx].rotation
+		if first_card_right_idx > 0:
+			movement_angle += left_spread if idx < first_card_right_idx else right_spread
+
+		cards[idx].target_pos = _calculate_card_position(movement_angle)
+		if cards[idx].state == State.IN_HAND:
+			cards[idx].z_index = cards[idx].MIN_Z_INDEX + idx
+			cards[idx].rotation = cards_position_data[idx].rotation / 4.0
+
+func _is_currently(state: CardHudHighlight.State):
+	return currently_focused and currently_focused.state == state
+
+func get_position_data_for_cards() -> Array[Dictionary]:
+	const angle_card_distance = 0.15
+	const angle_hover_distance = 0.3
+
+	@warning_ignore("integer_division")
+	var angle_offset: float = -int(len(cards) / 2) * angle_card_distance
+	if len(cards) % 2 == 0:
+		angle_offset += angle_card_distance / 2.0
+	if _is_currently(State.PREVIEWED):
+		angle_offset -= angle_hover_distance / 2.0
+
+	var calculated_card_data: Array[Dictionary] = []
+	for card: CardHudHighlight in cards:
+		var spread_distance = 0.0
+		if card == currently_focused and _is_currently(State.PREVIEWED):
+			spread_distance = angle_hover_distance / 2.0
+
+		angle_offset += spread_distance
+		var data_dict = {
+			position = _calculate_card_position(angle_offset),
+			rotation = angle_offset
+		}
+		angle_offset += spread_distance
+
+		calculated_card_data.push_back(data_dict)
+		angle_offset += angle_card_distance
+
+	return calculated_card_data
+
+func _calculate_card_position(angle_offset: float) -> Vector2:
+	const up_angle: float = -PI / 2.0
+	var center_distance: float = abs(placer_center.position.y)
+
+	return center_distance * Vector2.from_angle(up_angle + angle_offset)
