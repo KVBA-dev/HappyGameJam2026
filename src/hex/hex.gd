@@ -13,6 +13,7 @@ static func new_instance(_hex_position: HexVector, _hex_data: HexData) -> Hex:
 	var new_hex: Hex = SCENE.instantiate()
 	new_hex.hex_data = _hex_data
 	new_hex.hex_position = _hex_position
+	new_hex.position = _hex_position.to_pixel()
 	return new_hex
 
 func _ready():
@@ -41,10 +42,10 @@ func on_item_entered(area: Area2D) -> void:
 
 func _on_mouse_entered():
 	var tooltip := TextTooltip.new_instance(str(hex_position))
-	GameManager.main.tooltip_canvas.show_tooltip(tooltip)
+	GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
 
 func _on_mouse_exited():
-	GameManager.main.tooltip_canvas.hide_tooltip()
+	GameManager.main.tooltip_canvas.hide_tooltip(self)
 
 # TODO: Type item class!
 func on_item_input(item):

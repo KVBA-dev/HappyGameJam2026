@@ -13,6 +13,9 @@ metadata/_custom_type_script = "uid://dwkm1j5578jxo"
 [node name="HexGrid" type="Node2D" unique_id=1755103109]
 script = ExtResource("1_1oygh")
 
-[node name="RootHex" parent="." unique_id=1567981896 instance=ExtResource("2_j3bb5")]
+[node name="HexesNode" type="Node2D" parent="." unique_id=1188039717]
+unique_name_in_owner = true
+
+[node name="RootHex" parent="HexesNode" unique_id=1567981896 instance=ExtResource("2_j3bb5")]
 unique_name_in_owner = true
 hex_data = SubResource("Resource_qrssx")

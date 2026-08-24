@@ -3,6 +3,9 @@ class_name HexVector extends RefCounted
 var q: int
 var r: int
 
+const HEX_WIDTH := 122.0
+const HEX_HEIGHT := 140.0
+
 func s() -> int:
     return -q - r
 
@@ -55,6 +58,11 @@ func add(other: HexVector) -> HexVector:
 
 func sub(other: HexVector) -> HexVector:
     return HexVector.new(q - other.q, r - other.r)
+
+func to_pixel(hex_width: float = HEX_WIDTH, hex_height: float = HEX_HEIGHT) -> Vector2:
+    var x: float = hex_width * (q + r / 2.0)
+    var y: float = hex_height * 0.75 * r
+    return Vector2(x, y)
 
 func _to_string() -> String:
     return "HexVector(%d, %d)" % [q, r]
