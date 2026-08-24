@@ -1,5 +1,7 @@
 class_name CardHudHighlight extends Sprite2D
 
+@onready var shadow_sprite: Sprite2D = %ShadowSprite
+
 enum State {
 	IN_HAND,
 	PREVIEWED,
@@ -20,11 +22,11 @@ var hover: bool:
 	get:
 		return _hover
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	match _state:
 		State.IN_HAND: _in_hand_processed()
 		State.PREVIEWED: _previewed_process()
-		State.DRAGGED: _dragged_process()
+		State.DRAGGED: _dragged_process(delta)
 
 func _in_hand_processed():
 	pass
@@ -32,8 +34,12 @@ func _in_hand_processed():
 func _previewed_process():
 	pass
 
-func _dragged_process():
-	global_position = lerp(global_position, get_global_mouse_position(), 0.1)
+func _dragged_process(delta: float):
+	const FOLLOW_SPEED = 12.0
+	global_position = Vector2(
+		Utils.smooth_exp(global_position.x, get_global_mouse_position().x, FOLLOW_SPEED, delta),
+		Utils.smooth_exp(global_position.y, get_global_mouse_position().y, FOLLOW_SPEED, delta)
+	)
 
 func _on_area_2d_mouse_entered() -> void:
 	_hover = true
@@ -46,10 +52,13 @@ func _on_state_change():
 		State.IN_HAND: 
 			scale = Vector2.ONE 
 			z_index = 0
+			shadow_sprite.z_index = -10
 		State.PREVIEWED:
 			scale = Vector2.ONE * 1.2
 			rotation = 0
 			z_index = 10
+			shadow_sprite.z_index = -10
 		State.DRAGGED: 
 			scale = Vector2.ONE * 1.2
 			z_index = 10
+			shadow_sprite.z_index = 9

@@ -6,6 +6,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_f8wkc"]
 radius = 70.0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j2tbl"]
+load_path = "res://.godot/imported/hex-basic.png-81369d26e6d6081e4f14276686df0a85.ctex"
+
 [node name="CardHudHighlight" type="Sprite2D" unique_id=197420137]
 texture = ExtResource("1_7o40b")
 script = ExtResource("2_j2tbl")
@@ -14,6 +17,15 @@ script = ExtResource("2_j2tbl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=830611567]
 shape = SubResource("CircleShape2D_f8wkc")
+
+[node name="ShadowSprite" type="Sprite2D" parent="." unique_id=972835771]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.19607843)
+z_index = -10
+z_as_relative = false
+position = Vector2(-2.3841858e-07, 16)
+scale = Vector2(1.1, 1.1)
+texture = SubResource("CompressedTexture2D_j2tbl")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

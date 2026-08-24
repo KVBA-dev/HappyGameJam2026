@@ -6,15 +6,23 @@ const State = CardHudHighlight.State
 @onready var placer_center: Node2D = %PlacerCenter
 
 var currently_focused: CardHudHighlight = null
+var cards: Array[CardHudHighlight] = []
+
+func _ready():
+	for card: CardHudHighlight in cards_container.get_children():
+		cards.push_back(card)
+	reorder_cards()
 
 func _process(_delta: float) -> void:
-
 	if not _is_currently(State.DRAGGED):
 		var closest := find_closest_hovered()
 		_set_currently_focused(closest)
+	else:
+		reorder_cards()
 
 	if _is_currently(State.PREVIEWED) and Input.is_action_just_pressed("card_select"):
 		currently_focused.state = CardHudHighlight.State.DRAGGED
+		cards.erase(currently_focused)
 		reorder_cards()
 
 func _set_currently_focused(node: CardHudHighlight):
@@ -30,7 +38,7 @@ func _set_currently_focused(node: CardHudHighlight):
 func find_closest_hovered() -> CardHudHighlight:
 	var closest: CardHudHighlight = null
 	var best_distance: float = INF
-	for card: CardHudHighlight in get_cards():
+	for card: CardHudHighlight in cards:
 		if card.hover == false:
 			continue
 
@@ -38,31 +46,40 @@ func find_closest_hovered() -> CardHudHighlight:
 		if distance < best_distance:
 			closest = card
 			best_distance = distance
-	return closest
-
-func _ready() -> void:
-	reorder_cards()
-
-func get_cards() -> Array[Node]:
-	return cards_container.get_children()
+	return closest	
 
 func reorder_cards() -> void:
 	var cards_position_data := get_position_data_for_cards()
 
-	var cards: Array = cards_container.get_children()
+	var left_spread = 0.0
+	var right_spread = 0.0
+	var first_card_right_idx: int = -1
+	if _is_currently(State.DRAGGED):
+		for idx in range(len(cards)):
+			var card_global_calc = cards[idx].get_parent().to_global(cards_position_data[idx].position)
+			var distance_to_dragged = currently_focused.global_position.distance_to(card_global_calc)
+			var weight = clamp(distance_to_dragged / 200.0, 0.0, 1.0)
+
+			var local_spread_distance = (1.0 - weight) * 0.1
+			if cards[idx].global_position.x > currently_focused.global_position.x:
+				right_spread = local_spread_distance
+				first_card_right_idx = idx
+				break
+
+			left_spread = -local_spread_distance
+			
 	for idx in range(len(cards)):
-		cards[idx].position = cards_position_data[idx].position
-		cards[idx].rotation = cards_position_data[idx].rotation / 2.0
+		var movement_angle = cards_position_data[idx].rotation
+		if first_card_right_idx > 0:
+			movement_angle += left_spread if idx < first_card_right_idx else right_spread
+
+		cards[idx].position = _calculate_card_position(movement_angle)
+		cards[idx].rotation = cards_position_data[idx].rotation / 4.0
 
 func _is_currently(state: CardHudHighlight.State):
 	return currently_focused and currently_focused.state == state
 
 func get_position_data_for_cards() -> Array[Dictionary]:
-	const up_angle: float = -PI / 2.0
-
-	var cards := get_cards()
-	var center_distance: float = abs(placer_center.position.y)
-
 	const angle_card_distance = 0.15
 	const angle_hover_distance = 0.3
 
@@ -74,19 +91,25 @@ func get_position_data_for_cards() -> Array[Dictionary]:
 		angle_offset -= angle_hover_distance / 2.0
 
 	var calculated_card_data: Array[Dictionary] = []
-	for card: Node in cards:
+	for card: CardHudHighlight in cards:
+		var spread_distance = 0.0
 		if card == currently_focused and _is_currently(State.PREVIEWED):
-			angle_offset += angle_hover_distance / 2.0
+			spread_distance = angle_hover_distance / 2.0
 
+		angle_offset += spread_distance
 		var data_dict = {
-			position = center_distance * Vector2.from_angle(up_angle + angle_offset),
-			rotation = angle_offset / 2.0
+			position = _calculate_card_position(angle_offset),
+			rotation = angle_offset
 		}
-
-		if card == currently_focused and _is_currently(State.PREVIEWED):
-			angle_offset += angle_hover_distance / 2.0
+		angle_offset += spread_distance
 
 		calculated_card_data.push_back(data_dict)
 		angle_offset += angle_card_distance
 
 	return calculated_card_data
+
+func _calculate_card_position(angle_offset: float) -> Vector2:
+	const up_angle: float = -PI / 2.0
+	var center_distance: float = abs(placer_center.position.y)
+
+	return center_distance * Vector2.from_angle(up_angle + angle_offset)

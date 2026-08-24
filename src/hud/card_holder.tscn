@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://4q2bd60huelj" path="res://src/hud/card_holder.gd" id="1_ln0p1"]
 [ext_resource type="PackedScene" uid="uid://dygn2ff7qhjyx" path="res://src/hud/card_hud_highlight.tscn" id="2_ln0p1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln0p1"]
+size = Vector2(1000, 250)
+
 [node name="CardHolder" type="Control" unique_id=1118155161 groups=["card_holder"]]
 layout_mode = 3
 anchors_preset = 15
@@ -29,3 +32,9 @@ unique_name_in_owner = true
 [node name="CardHudHighlight3" parent="PlacerCenter/CardsContainer" unique_id=1119572709 instance=ExtResource("2_ln0p1")]
 
 [node name="CardHudHighlight4" parent="PlacerCenter/CardsContainer" unique_id=1829574161 instance=ExtResource("2_ln0p1")]
+
+[node name="CardHideArea" type="Area2D" parent="." unique_id=193258662]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardHideArea" unique_id=1811122695]
+visible = false
+shape = SubResource("RectangleShape2D_ln0p1")
