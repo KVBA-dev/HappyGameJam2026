@@ -8,9 +8,7 @@ signal hex_changed(hex: Hex)
 func _ready():
     GameManager.hex_grid = self
     hex_map[HexVector.ZERO] = root_hex
-    await get_tree().create_timer(2)
-    spawn_hex_at(HexVector.new(0,1), preload("res://src/hex/data/example_hex_data.tres"))
-
+    
 func get_hex_at(_position: HexVector) -> Hex:
     return hex_map.get(_position, null)
 
