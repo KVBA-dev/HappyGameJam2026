@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://7uhfsn0osoux"]
+
+[ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_xxcuo"]
+
+[resource]
+script = ExtResource("1_xxcuo")
+metadata/_custom_type_script = "uid://dwkm1j5578jxo"
