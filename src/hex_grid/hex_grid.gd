@@ -8,7 +8,7 @@ signal hex_changed(hex: Hex)
 func _ready():
 	GameManager.hex_grid = self
 	hex_map[HexVector.ZERO] = root_hex
-	
+
 func get_hex_at(_position: HexVector) -> Hex:
 	return hex_map.get(_position, null)
 
