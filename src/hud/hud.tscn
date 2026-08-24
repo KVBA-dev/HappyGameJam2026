@@ -21,9 +21,3 @@ offset_top = -100.0
 offset_right = 0.0
 offset_bottom = -100.0
 grow_vertical = 0
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=975534803]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
