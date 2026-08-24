@@ -3,3 +3,7 @@
 extends Node
 
 signal main_loaded
+
+signal game_timer_tick
+signal game_timer_timeout
+signal pause_toggled(is_paused: bool)
