@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b25i8onamb21n" path="res://src/utils/tooltips/tooltip_canvas/tooltip_canvas.tscn" id="2_3s6yk"]
 [ext_resource type="Script" uid="uid://b5h7t7yb5olek" path="res://src/camera/camera.gd" id="3_ab7mr"]
 [ext_resource type="Texture2D" uid="uid://baajnp5wacriy" path="res://assets/images/hex-basic.png" id="4_djufw"]
+[ext_resource type="Script" uid="uid://btrma5hjvjb17" path="res://src/game_timer/game_timer.gd" id="5_jkpqq"]
 
 [node name="Main" type="Node" unique_id=387200153]
 script = ExtResource("1_3eh75")
@@ -16,3 +17,7 @@ script = ExtResource("3_ab7mr")
 [node name="HexBasic" type="Sprite2D" parent="." unique_id=1379388214]
 position = Vector2(-149, 154)
 texture = ExtResource("4_djufw")
+
+[node name="GameTimer" type="Node" parent="." unique_id=1910709566]
+script = ExtResource("5_jkpqq")
+timeout_interval = 10.0
