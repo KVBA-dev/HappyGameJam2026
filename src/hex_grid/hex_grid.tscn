@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://e5ebce6mmo6q"]
+
+[ext_resource type="Script" uid="uid://dn31d13hx7ir" path="res://src/hex_grid/hex_grid.gd" id="1_1oygh"]
+[ext_resource type="PackedScene" uid="uid://c35v72ubhgdk6" path="res://src/hex/hex.tscn" id="2_j3bb5"]
+
+[node name="HexGrid" type="Node2D" unique_id=1755103109]
+script = ExtResource("1_1oygh")
+
+[node name="RootHex" parent="." unique_id=1567981896 instance=ExtResource("2_j3bb5")]
+unique_name_in_owner = true

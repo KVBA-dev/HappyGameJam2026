@@ -2,5 +2,4 @@
 @warning_ignore_start("unused_signal")
 extends Node
 
-var scenes: Scenes = preload("res://const_data/scenes/scenes.tres")
-signal scenes_set(value: Scenes)
+var hex_grid: HexGrid
