@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://hjsugu21v1ey"]
+
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_jbb5o"]
+
+[resource]
+script = ExtResource("1_jbb5o")
+name = "Vanilla Extract"
+metadata/_custom_type_script = "uid://jr6ykdp3ngmm"

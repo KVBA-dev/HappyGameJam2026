@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://cw06yv2aj32q7"]
+
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_e555r"]
+[ext_resource type="Resource" uid="uid://chfwxn8csc437" path="res://src/item/resources/cacao_fruit.tres" id="2_6imw6"]
+[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="6_h3rbj"]
+
+[resource]
+script = ExtResource("6_h3rbj")
+produces = Dictionary[ExtResource("1_e555r"), int]({
+ExtResource("2_6imw6"): 1
+})
+processing_time = 1.0
+metadata/_custom_type_script = "uid://c6oty1ydhdib4"

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bf05jhmwssta8"]
+
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_owckh"]
+
+[resource]
+script = ExtResource("1_owckh")
+name = "Vanilla Stick"
+metadata/_custom_type_script = "uid://jr6ykdp3ngmm"
