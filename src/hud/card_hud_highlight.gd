@@ -11,6 +11,7 @@ enum State {
 }
 
 var target_pos: Vector2 = self.position
+var card_data: CardData
 
 @onready var card_holder: CardHolder = get_tree().get_first_node_in_group("card_holder")
 var _state: State = State.IN_HAND

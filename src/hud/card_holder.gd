@@ -6,14 +6,36 @@ const State = CardHudHighlight.State
 @onready var placer_center: Node2D = %PlacerCenter
 @onready var card_lay_area: HoverableArea = %CardLayArea
 
+var _card_num_limit: int = 5
+
 var currently_focused: CardHudHighlight = null
 var cards: Array[CardHudHighlight] = []
 var can_be_laid_down: bool = true
 
+func add_card(card_data: CardData) -> bool:
+	if len(cards) + 1 > _card_num_limit:
+		return false
+
+	var visual_scene: CardHudHighlight = Scenes.CARD_HUD_SCENE.instantiate()
+	visual_scene.texture = visual_scene.texture
+	visual_scene.card_data = card_data
+
+	cards_container.add_child(visual_scene)
+	cards.push_back(visual_scene)
+	return true
+
 func _ready():
-	for card: CardHudHighlight in cards_container.get_children():
-		cards.push_back(card)
+	for child in cards_container.get_children():
+		child.free()
+
+	_test_init()
 	reorder_cards()
+
+func _test_init():
+	var colors = [Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.PINK]
+	for i in range(5):
+		add_card(load("res://const_data/cards/test_card.tres"))
+		cards.back().modulate = colors[i]
 
 func _process(_delta: float) -> void:
 	if not _is_currently(State.DRAGGED):
