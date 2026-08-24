@@ -2,9 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dn31d13hx7ir" path="res://src/hex_grid/hex_grid.gd" id="1_1oygh"]
 [ext_resource type="PackedScene" uid="uid://c35v72ubhgdk6" path="res://src/hex/hex.tscn" id="2_j3bb5"]
+[ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="3_5boqe"]
+[ext_resource type="Texture2D" uid="uid://cx5knsxgb1crg" path="res://icon.svg" id="4_qrssx"]
+
+[sub_resource type="Resource" id="Resource_qrssx"]
+script = ExtResource("3_5boqe")
+texture = ExtResource("4_qrssx")
+metadata/_custom_type_script = "uid://dwkm1j5578jxo"
 
 [node name="HexGrid" type="Node2D" unique_id=1755103109]
 script = ExtResource("1_1oygh")
 
 [node name="RootHex" parent="." unique_id=1567981896 instance=ExtResource("2_j3bb5")]
 unique_name_in_owner = true
+hex_data = SubResource("Resource_qrssx")

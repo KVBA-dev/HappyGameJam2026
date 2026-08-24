@@ -22,6 +22,12 @@ SignalBus="*uid://dpxfqk7lpic6e"
 ErrorBus="*uid://7s5rmvfv36td"
 SoundManager="*uid://bpwfprtk1nyop"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
