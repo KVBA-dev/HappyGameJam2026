@@ -21,6 +21,8 @@ func _get_axis(pos: String, neg: String, proc: Callable = Input.is_action_presse
 	return axis
 
 func _process(_delta: float) -> void:
+	if GameManager.main.paused:
+		return
 	var axis_horizontal := _get_axis("camera_right", "camera_left")
 	var axis_vertical := _get_axis("camera_down", "camera_up")
 	var axis_zoom := _get_axis("camera_zoom_in", "camera_zoom_out", Input.is_action_just_released)
