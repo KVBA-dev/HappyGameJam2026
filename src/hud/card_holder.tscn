@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://c0lvfgmj38wfm"]
 
 [ext_resource type="Script" uid="uid://4q2bd60huelj" path="res://src/hud/card_holder.gd" id="1_ln0p1"]
-[ext_resource type="PackedScene" uid="uid://dygn2ff7qhjyx" path="res://src/hud/card_hud_highlight.tscn" id="2_ln0p1"]
 [ext_resource type="Script" uid="uid://dfy8e15ewhav" path="res://src/utils/hoverable_area.gd" id="3_ldsxu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ln0p1"]
@@ -25,18 +24,6 @@ position = Vector2(0, 300)
 
 [node name="CardsContainer" type="Node2D" parent="PlacerCenter" unique_id=986296897]
 unique_name_in_owner = true
-
-[node name="CardHudHighlight" parent="PlacerCenter/CardsContainer" unique_id=197420137 instance=ExtResource("2_ln0p1")]
-modulate = Color(1, 1, 0.48235294, 1)
-
-[node name="CardHudHighlight2" parent="PlacerCenter/CardsContainer" unique_id=1564077258 instance=ExtResource("2_ln0p1")]
-modulate = Color(1, 0.7607843, 1, 1)
-
-[node name="CardHudHighlight3" parent="PlacerCenter/CardsContainer" unique_id=1119572709 instance=ExtResource("2_ln0p1")]
-modulate = Color(0.6666667, 1, 1, 1)
-
-[node name="CardHudHighlight4" parent="PlacerCenter/CardsContainer" unique_id=1829574161 instance=ExtResource("2_ln0p1")]
-modulate = Color(0.6431373, 1, 0.70980394, 1)
 
 [node name="CardLayArea" type="Area2D" parent="." unique_id=193258662]
 unique_name_in_owner = true
