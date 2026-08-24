@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dbp4qkqr6r343"]
 
-[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_35gcj"]
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_jvl5w"]
 
 [resource]
-script = ExtResource("1_35gcj")
-name = "Beetroot"
+script = ExtResource("1_jvl5w")
+name = "Sugar Beet"
 metadata/_custom_type_script = "uid://jr6ykdp3ngmm"
