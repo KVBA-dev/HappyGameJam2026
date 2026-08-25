@@ -35,9 +35,9 @@ func clear_hex_at(_position: HexVector):
 	return true
 
 func spawn_hex_at(_position: HexVector, hex_type: HexData) -> Hex:
+	print(_position, hex_type)
 	if hex_map.has(_position):
 		ErrorBus.hex_already_exist_on_position.emit(_position)
-		print("overlap")
 		return
 	var new_hex := instantiate_hex(_position, hex_type)
 	hexes_node.add_child(new_hex)
@@ -52,8 +52,10 @@ func instantiate_hex(_position: HexVector, hex_type: HexData) -> Hex:
 			print("flow card used")
 			return FlowHex.new_instance(_position, hex_type)
 		HexData.Type.FACTORY:
+			print("factory card used")
 			return FactoryHex.new_instance(_position, hex_type)
 		HexData.Type.BLANK:
+			print("blank card used")
 			return Hex.new_instance(_position, hex_type)
 		_:
 			push_error("Instantiation of a hex not implemented")

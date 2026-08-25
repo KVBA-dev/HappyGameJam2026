@@ -3,5 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://c35v72ubhgdk6" path="res://src/hex/hex.tscn" id="1_bbl2x"]
 [ext_resource type="Script" uid="uid://x2jfijyg8rd0" path="res://src/hex/flox_hex/flow_hex.gd" id="2_ajktn"]
 
-[node name="Hex" unique_id=1567981896 instance=ExtResource("1_bbl2x")]
+[node name="FlowHex" unique_id=1567981896 instance=ExtResource("1_bbl2x")]
 script = ExtResource("2_ajktn")

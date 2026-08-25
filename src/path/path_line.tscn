@@ -7,3 +7,7 @@
 [node name="PathLine" type="Path2D" unique_id=1456947259]
 curve = SubResource("Curve2D_orn0d")
 script = ExtResource("1_orn0d")
+
+[node name="VisualLine" type="Line2D" parent="." unique_id=1926653061]
+unique_name_in_owner = true
+z_index = 999

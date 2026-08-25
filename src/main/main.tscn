@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://btrma5hjvjb17" path="res://src/game_timer/game_timer.gd" id="5_jkpqq"]
 [ext_resource type="PackedScene" uid="uid://e5ebce6mmo6q" path="res://src/hex_grid/hex_grid.tscn" id="6_hfdnt"]
 [ext_resource type="PackedScene" uid="uid://2ytil7ae8hwe" path="res://src/hud/hud.tscn" id="6_jqarl"]
+[ext_resource type="PackedScene" uid="uid://05l4c8xjsey5" path="res://src/path/paths.tscn" id="7_30cu5"]
 
 [node name="Main" type="Node" unique_id=387200153]
 script = ExtResource("1_3eh75")
@@ -23,3 +24,5 @@ script = ExtResource("5_jkpqq")
 timeout_interval = 10.0
 
 [node name="HexGrid" parent="." unique_id=1755103109 instance=ExtResource("6_hfdnt")]
+
+[node name="Paths" parent="." unique_id=1137068060 instance=ExtResource("7_30cu5")]
