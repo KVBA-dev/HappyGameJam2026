@@ -25,12 +25,17 @@ func _input(event: InputEvent) -> void:
 		and Hex.currently_hovered \
 		and Hex.currently_hovered.hex_data.type == HexData.Type.BLANK:
 
+		Hex.currently_hovered.hex_data.type = HexData.Type.BLANK_UNPLACABLE
+
 		var card := GameManager.card_holder.take_currently_dragged(self)
 		var grid_pos = Hex.currently_hovered.hex_position
 
 		var screen_pos = GameManager.card_holder.cards_container.to_global(card.position)
 		card.position = get_viewport().get_canvas_transform().affine_inverse() * screen_pos
 		card.scale = Vector2.ONE
+
+		# Infinite cards for fun
+		GameManager.card_holder.add_card(load("res://const_data/cards/test_card.tres"))
 
 		var tween = get_tree().create_tween()
 		tween.set_trans(Tween.TRANS_CUBIC)

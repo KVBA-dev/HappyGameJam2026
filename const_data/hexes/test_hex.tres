@@ -7,4 +7,5 @@
 script = ExtResource("1_q7ch8")
 hex_name = "Tester"
 texture = ExtResource("2_ccp1a")
+type = 1
 metadata/_custom_type_script = "uid://dwkm1j5578jxo"

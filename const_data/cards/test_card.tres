@@ -2,10 +2,8 @@
 
 [ext_resource type="Resource" uid="uid://drdctsney1hcn" path="res://const_data/hexes/test_hex.tres" id="1_4nbu6"]
 [ext_resource type="Script" uid="uid://woit68wbxbch" path="res://src/card/data/card_data.gd" id="1_wb5am"]
-[ext_resource type="Texture2D" uid="uid://baajnp5wacriy" path="res://assets/images/hex-basic.png" id="2_mcbxc"]
 
 [resource]
 script = ExtResource("1_wb5am")
-texture = ExtResource("2_mcbxc")
 hex_data = ExtResource("1_4nbu6")
 metadata/_custom_type_script = "uid://woit68wbxbch"

@@ -1,7 +1,17 @@
 class_name HexVector extends RefCounted
 
-var q: int
-var r: int
+var vec: Vector2i
+
+var q: int:
+	get:
+		return vec.x
+	set(val):
+		vec.x = val
+var r: int:
+	get:
+		return vec.y
+	set(val):
+		vec.y = val
 
 func s() -> int:
 	return -q - r
@@ -14,6 +24,7 @@ enum Direction {
 	DOWN_RIGHT,
 	DOWN_LEFT
 }
+
 static var DIRECTION_MAP: Dictionary[Direction, HexVector] = {
 	Direction.UP_RIGHT: HexVector.new(1, -1),
 	Direction.DOWN_LEFT: HexVector.new(-1, 1),
@@ -71,13 +82,13 @@ func rotated(n: int) -> HexVector:
 	return null	
 
 func add(other: HexVector) -> HexVector:
-	return HexVector.new(q + other.q, r + other.r)
+	return (HexVector.new(q + other.q, r + other.r))
 
 func sub(other: HexVector) -> HexVector:
 	return HexVector.new(q - other.q, r - other.r)
 
 func comp(other: HexVector) -> bool:
-	return q == other.q and r == other.r
+	return vec == other.vec
 
 func mult(val: int) -> HexVector:
 	return HexVector.new(q * val, r * val)
