@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="HexData" format=3 uid="uid://cqrheki0nydwv"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_qk0t1"]
-[ext_resource type="Texture2D" uid="uid://dlxv6tbf2pc1a" path="res://assets/images/grass_hex.png" id="2_44eym"]
+[ext_resource type="Texture2D" uid="uid://gr8o0cbr05pq" path="res://assets/images/hexoutline.png" id="2_44eym"]
 
 [resource]
 script = ExtResource("1_qk0t1")
