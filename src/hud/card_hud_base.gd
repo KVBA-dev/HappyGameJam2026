@@ -1,4 +1,4 @@
-class_name CardHudHighlight extends Node2D
+class_name CardHudBase extends Node2D
 
 @onready var shadow_sprite: Sprite2D = %ShadowSprite
 
@@ -17,8 +17,6 @@ var card_data: CardData
 
 var _scale_to_camera: bool = false
 var _insta_scale: bool = false
-
-signal card_used
 
 @onready var card_sprite: Sprite2D = %CardSprite
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -117,12 +115,14 @@ func _unscale():
 	target_scale = Vector2.ONE
 	_insta_scale = false
 
-func place():
-	animation_player.play("place")
-	animation_player.animation_finished.connect(_on_place_finished)
-
-func _on_place_finished(anim_name: String):
-	if anim_name != "place":
-		return
-	card_used.emit()
+# Virtual
+func start_use_animation():
+	push_warning("Base card hud highlight shouldn't be used")
 	queue_free()
+
+func _reparent_node_for_animation() -> void:
+	var screen_pos = card_holder.cards_container.to_global(position)
+	reparent(GameManager.hex_grid.hexes_node)
+
+	position = GameManager.hex_grid.get_viewport().get_canvas_transform().affine_inverse() * screen_pos
+	scale = Vector2.ONE

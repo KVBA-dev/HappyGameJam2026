@@ -1,6 +1,6 @@
 class_name CardHolder extends Control
 
-const State = CardHudHighlight.State 
+const State = CardHudBase.State 
 
 @onready var cards_container: Node2D = %CardsContainer
 @onready var placer_center: Node2D = %PlacerCenter
@@ -8,20 +8,35 @@ const State = CardHudHighlight.State
 
 var _card_num_limit: int = 5
 
-var currently_focused: CardHudHighlight = null
-var cards: Array[CardHudHighlight] = []
+var currently_focused: CardHudBase = null
+var cards: Array[CardHudBase] = []
 var can_be_laid_down: bool = true
 
-func can_place_card() -> bool:
-	return _is_currently(State.DRAGGED) and not card_lay_area.hover
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("card_select") and can_use_card():
+		var card := take_currently_dragged()
+		card.start_use_animation()
 
-func take_currently_dragged(new_parent: Node) -> CardHudHighlight:
-	if not can_place_card():
-		return null
+func can_use_card() -> bool:
+	if not _is_currently(State.DRAGGED):
+		return false
 
+	match currently_focused.card_data.type:
+		CardData.Type.PLACABLE: return _can_use_placable()
+		CardData.Type.USABLE: return _can_use_usable()
+		_: return false
+
+func _can_use_placable() -> bool:
+	return  Hex.currently_hovered \
+		and Hex.currently_hovered.hex_data.type == HexData.Type.BLANK
+
+func _can_use_usable() -> bool:
+	# TODO: Implement usable cards
+	return false
+
+func take_currently_dragged() -> CardHudBase:
 	var card = currently_focused
 	currently_focused.state = State.PLACED
-	currently_focused.reparent(new_parent, false)
 	currently_focused = null
 	return card
 
@@ -29,7 +44,7 @@ func add_card(card_data: CardData) -> bool:
 	if len(cards) + 1 > _card_num_limit:
 		return false
 
-	var visual_scene: CardHudHighlight = Scenes.CARD_HUD_SCENE.instantiate()
+	var visual_scene: CardHudBase = preload("res://src/hud/hud_cards/card_hud_placable.tscn").instantiate()
 	cards_container.add_child(visual_scene)
 	visual_scene.card_sprite.texture = card_data.hex_data.texture
 	visual_scene.card_data = card_data
@@ -66,16 +81,16 @@ func _process(_delta: float) -> void:
 			reorder_cards()
 
 	if Input.is_action_just_pressed("card_select") and _is_currently(State.PREVIEWED):
-		currently_focused.state = CardHudHighlight.State.DRAGGED
+		currently_focused.state = CardHudBase.State.DRAGGED
 		cards.erase(currently_focused)
 		reorder_cards()
 
 		can_be_laid_down = false
 		get_tree().create_timer(0.1).timeout.connect(func(): can_be_laid_down = true)
 
-func _set_currently_focused(node: CardHudHighlight):
+func _set_currently_focused(node: CardHudBase):
 	if currently_focused:
-		currently_focused.state = CardHudHighlight.State.IN_HAND
+		currently_focused.state = CardHudBase.State.IN_HAND
 
 	if node:
 		node.state = State.PREVIEWED
@@ -83,10 +98,10 @@ func _set_currently_focused(node: CardHudHighlight):
 	currently_focused = node
 	reorder_cards()
 
-func find_closest_hovered() -> CardHudHighlight:
-	var closest: CardHudHighlight = null
+func find_closest_hovered() -> CardHudBase:
+	var closest: CardHudBase = null
 	var best_distance: float = INF
-	for card: CardHudHighlight in cards:
+	for card: CardHudBase in cards:
 		if card.hover == false:
 			continue
 
@@ -134,7 +149,7 @@ func reorder_cards() -> void:
 			cards[idx].z_index = cards[idx].MIN_Z_INDEX + idx
 			cards[idx].rotation = cards_position_data[idx].rotation / 4.0
 
-func _is_currently(state: CardHudHighlight.State):
+func _is_currently(state: CardHudBase.State):
 	return currently_focused and currently_focused.state == state
 
 func get_position_data_for_cards() -> Array[Dictionary]:
@@ -149,7 +164,7 @@ func get_position_data_for_cards() -> Array[Dictionary]:
 		angle_offset -= angle_hover_distance / 2.0
 
 	var calculated_card_data: Array[Dictionary] = []
-	for card: CardHudHighlight in cards:
+	for card: CardHudBase in cards:
 		var spread_distance = 0.0
 		if card == currently_focused and _is_currently(State.PREVIEWED):
 			spread_distance = angle_hover_distance / 2.0

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://iqggdr0ewk2r"]
+
+[ext_resource type="PackedScene" uid="uid://dygn2ff7qhjyx" path="res://src/hud/card_hud_base.tscn" id="1_j5vmc"]
+[ext_resource type="Script" uid="uid://boubiq3mp27qx" path="res://src/hud/hud_cards/card_hud_usable.gd" id="2_5a3gf"]
+
+[node name="CardHudHighlightUsable" unique_id=1981452838 instance=ExtResource("1_j5vmc")]
+script = ExtResource("2_5a3gf")

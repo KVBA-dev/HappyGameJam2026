@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dygn2ff7qhjyx"]
 
-[ext_resource type="Texture2D" uid="uid://ddqf1iti463fn" path="res://assets/images/tiles/kafelki_001.png" id="1_j2tbl"]
-[ext_resource type="Script" uid="uid://de3d5kujb6pum" path="res://src/hud/card_hud_highlight.gd" id="2_j2tbl"]
+[ext_resource type="Script" uid="uid://de3d5kujb6pum" path="res://src/hud/card_hud_base.gd" id="1_awcme"]
+[ext_resource type="Texture2D" uid="uid://ddqf1iti463fn" path="res://assets/images/tiles/kafelki_001.png" id="2_ftfg4"]
 
 [sub_resource type="Animation" id="Animation_f8wkc"]
 length = 0.001
@@ -65,7 +65,7 @@ _data = {
 }
 
 [node name="CardHudHighlight" type="Node2D" unique_id=1981452838]
-script = ExtResource("2_j2tbl")
+script = ExtResource("1_awcme")
 
 [node name="Displacement" type="Node2D" parent="." unique_id=123048379]
 
@@ -75,11 +75,11 @@ modulate = Color(0, 0, 0, 0.19607843)
 z_index = -10
 position = Vector2(0, 43)
 scale = Vector2(1.1, 1.1)
-texture = ExtResource("1_j2tbl")
+texture = ExtResource("2_ftfg4")
 
 [node name="CardSprite" type="Sprite2D" parent="Displacement" unique_id=1658629063]
 unique_name_in_owner = true
-texture = ExtResource("1_j2tbl")
+texture = ExtResource("2_ftfg4")
 
 [node name="Area2D" type="Area2D" parent="Displacement" unique_id=1435104358]
 
