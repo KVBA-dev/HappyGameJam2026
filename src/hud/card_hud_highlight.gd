@@ -7,7 +7,8 @@ const MIN_Z_INDEX = 0
 enum State {
 	IN_HAND,
 	PREVIEWED,
-	DRAGGED
+	DRAGGED,
+	PLACED
 }
 
 var target_pos: Vector2 = self.position
@@ -98,7 +99,8 @@ func _on_state_change(_previous: State):
 			card_holder.card_lay_area.mouse_entered.connect(_unscale)
 
 	if _previous == State.DRAGGED:
-		_scale_to_camera = false
+		if _state != State.PLACED: 
+			_scale_to_camera = false
 		card_holder.card_lay_area.mouse_exited.disconnect(_scale_to_camera_sized)
 		card_holder.card_lay_area.mouse_entered.disconnect(_unscale)
 

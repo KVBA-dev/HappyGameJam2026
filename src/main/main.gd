@@ -19,13 +19,35 @@ func _input(event: InputEvent) -> void:
 		paused = not paused
 		SignalBus.pause_toggled.emit(paused)
 
+	# TODO: Split into functions
 	if event.is_action_pressed("card_select") \
 		and GameManager.card_holder.can_place_card() \
 		and Hex.currently_hovered \
 		and Hex.currently_hovered.hex_data.type == HexData.Type.BLANK:
 
-		var card: CardData = GameManager.card_holder.take_currently_dragged()
-		var pos = Hex.currently_hovered.hex_position
+		var card := GameManager.card_holder.take_currently_dragged(self)
+		var grid_pos = Hex.currently_hovered.hex_position
 
-		GameManager.hex_grid.clear_hex_at(pos)
-		GameManager.hex_grid.spawn_hex_at(pos, card.hex_data)
+		var screen_pos = GameManager.card_holder.cards_container.to_global(card.position)
+		card.position = get_viewport().get_canvas_transform().affine_inverse() * screen_pos
+		card.scale = Vector2.ONE
+
+		var tween = get_tree().create_tween()
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.tween_method(func(vec: Vector2): card.position = vec,
+			card.position,
+			grid_pos.to_pixel() + Vector2.UP*40,
+			0.3
+		)
+		tween.set_trans(Tween.TRANS_LINEAR)
+		tween.tween_method(func(vec: Vector2): card.position = vec,
+			grid_pos.to_pixel() + Vector2.UP*40,
+			grid_pos.to_pixel(),
+			0.2
+		)
+
+		tween.finished.connect(func():
+			GameManager.hex_grid.clear_hex_at(grid_pos)
+			GameManager.hex_grid.spawn_hex_at(grid_pos, card.card_data.hex_data)
+			card.queue_free()
+		)

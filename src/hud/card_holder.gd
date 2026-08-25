@@ -15,15 +15,15 @@ var can_be_laid_down: bool = true
 func can_place_card() -> bool:
 	return _is_currently(State.DRAGGED) and not card_lay_area.hover
 
-func take_currently_dragged() -> CardData:
+func take_currently_dragged(new_parent: Node) -> CardHudHighlight:
 	if not can_place_card():
 		return null
 
-	var card_data = currently_focused.card_data
-	currently_focused.state = State.IN_HAND
-	currently_focused.queue_free()
+	var card = currently_focused
+	currently_focused.state = State.PLACED
+	currently_focused.reparent(new_parent, false)
 	currently_focused = null
-	return card_data
+	return card
 
 func add_card(card_data: CardData) -> bool:
 	if len(cards) + 1 > _card_num_limit:

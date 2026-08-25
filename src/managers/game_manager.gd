@@ -5,5 +5,3 @@ extends Node
 var hex_grid: HexGrid
 var card_holder: CardHolder
 var main: Main
-
-
