@@ -35,6 +35,26 @@ static func CENTER_LEFT() -> HexVector: return direction_vector(Direction.CENTER
 static func DOWN_RIGHT() -> HexVector: return direction_vector(Direction.DOWN_RIGHT)
 static func DOWN_LEFT() -> HexVector: return direction_vector(Direction.DOWN_LEFT)
 
+
+static func angle_to_dir(angle: float) -> Direction:
+	var normalized_angle := fposmod(angle, TAU)
+	var sector := int(floor((normalized_angle + PI / 6.0) / (PI / 3.0))) % 6
+	match sector:
+		0:
+			return Direction.CENTER_RIGHT
+		1:
+			return Direction.DOWN_RIGHT
+		2:
+			return Direction.DOWN_LEFT
+		3:
+			return Direction.CENTER_LEFT
+		4:
+			return Direction.UP_LEFT
+		5:
+			return Direction.UP_RIGHT
+	return Direction.CENTER_RIGHT
+
+
 static var ZERO: HexVector:
 	get():
 		return HexVector.new_instance(0, 0)

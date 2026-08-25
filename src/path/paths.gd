@@ -3,20 +3,20 @@ class_name Paths extends Node
 var paths: Array[PathData]
 var PATH_LINE_MAP: Dictionary[PathData, PathLine]
 var start_hex: FactoryHex
+var start_dir: HexVector.Direction
 
 func _ready() -> void:
 	GameManager.paths = self
 	GameManager.hex_grid.hex_changed.connect(_on_hex_changed)
 	SignalBus.selected_hex.connect(_on_selected_hex)
 
-func _on_selected_hex(hex: Hex):
+func _on_selected_hex(hex: Hex, dir: HexVector.Direction):
 	if not hex is FactoryHex:
 		return
 	if start_hex:
 		var waypoints: Array[Hex] = []
-		var created_path := create_path(start_hex, HexVector.Direction.DOWN_RIGHT, hex, HexVector.Direction.UP_LEFT)
+		var created_path := create_path(start_hex, start_dir, hex, dir)
 		if created_path.is_empty():
-			print("unreachable")
 			start_hex = null
 			return
 		for waypoint: FlowHex in created_path:
@@ -29,6 +29,7 @@ func _on_selected_hex(hex: Hex):
 		start_hex = null
 	else:
 		start_hex = hex
+		start_dir = dir
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("cancel"):

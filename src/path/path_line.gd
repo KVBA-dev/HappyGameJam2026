@@ -17,3 +17,10 @@ func _ready() -> void:
 	visual_line.points = PackedVector2Array(waypoints_positions)
 	for point: Vector2 in waypoints_positions:
 		curve.add_point(point)
+
+
+func show_line():
+	visual_line.show()
+
+func hide_line():
+	visual_line.hide()

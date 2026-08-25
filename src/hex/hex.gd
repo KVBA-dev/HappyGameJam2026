@@ -5,6 +5,7 @@ class_name Hex extends Node2D
 @onready var on_hex_sprite: Sprite2D = %OnHexSprite
 @onready var item_detection_area: Area2D = %ItemDetectionArea
 @onready var mouse_detection_area: Area2D = %MouseDetectionArea
+@onready var mouse_detection_shape: CollisionPolygon2D = $MouseDetectionArea/CollisionShape2D
 @export var hex_data: HexData
 var is_mouse_inside: bool = false
 var hex_position: HexVector = HexVector.ZERO
@@ -48,7 +49,14 @@ func on_item_entered(area: Area2D) -> void:
 
 func _input(_event: InputEvent) -> void:
     if is_mouse_inside and Input.is_action_just_pressed("select_hex"):
-        SignalBus.selected_hex.emit(self)
+        var polygon_center := Vector2.ZERO
+        for point: Vector2 in mouse_detection_shape.polygon:
+            polygon_center += point
+        polygon_center /= mouse_detection_shape.polygon.size()
+
+        var mouse_position := mouse_detection_shape.to_local(get_global_mouse_position())
+        var dir := HexVector.angle_to_dir((mouse_position - polygon_center).angle())
+        SignalBus.selected_hex.emit(self, dir)
 
 func _on_mouse_entered():
     is_mouse_inside = true
