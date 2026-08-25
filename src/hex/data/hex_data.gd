@@ -10,6 +10,7 @@ enum Type {
 
 @export var hex_name: String
 @export var texture: Texture2D
+@export var on_surface_texture: Texture2D
 @export var type: Type
 
 @export var recipe: Recipe
