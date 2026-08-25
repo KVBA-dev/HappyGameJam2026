@@ -1,4 +1,4 @@
-class_name CardHudHighlight extends Sprite2D
+class_name CardHudBase extends Node2D
 
 @onready var shadow_sprite: Sprite2D = %ShadowSprite
 
@@ -18,6 +18,8 @@ var card_data: CardData
 var _scale_to_camera: bool = false
 var _insta_scale: bool = false
 
+@onready var card_sprite: Sprite2D = %CardSprite
+@onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var card_holder: CardHolder = get_tree().get_first_node_in_group("card_holder")
 var _state: State = State.IN_HAND
 var state: State:
@@ -85,18 +87,18 @@ func _on_state_change(_previous: State):
 	match _state:
 		State.IN_HAND: 
 			scale = Vector2.ONE 
-			shadow_sprite.z_index = -10
 		State.PREVIEWED:
 			scale = Vector2.ONE * 1.2
 			rotation = 0
 			z_index = 10
-			shadow_sprite.z_index = -10
 		State.DRAGGED: 
 			scale = Vector2.ONE * 1.2
-			z_index = 10
-			shadow_sprite.z_index = 9
+			z_index = 100
 			card_holder.card_lay_area.mouse_exited.connect(_scale_to_camera_sized)
 			card_holder.card_lay_area.mouse_entered.connect(_unscale)
+		State.PLACED: 
+			card_sprite.z_index = 1
+			shadow_sprite.z_index = 0
 
 	if _previous == State.DRAGGED:
 		if _state != State.PLACED: 
@@ -112,3 +114,15 @@ func _unscale():
 	_scale_to_camera = false
 	target_scale = Vector2.ONE
 	_insta_scale = false
+
+# Virtual
+func start_use_animation():
+	push_warning("Base card hud highlight shouldn't be used")
+	queue_free()
+
+func _reparent_node_for_animation() -> void:
+	var screen_pos = card_holder.cards_container.to_global(position)
+	reparent(GameManager.hex_grid.hexes_node)
+
+	position = GameManager.hex_grid.get_viewport().get_canvas_transform().affine_inverse() * screen_pos
+	scale = Vector2.ONE
