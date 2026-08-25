@@ -24,10 +24,6 @@ func start_use_animation():
 	)
 
 	tween.finished.connect(func(): 
-		z_index = grid_pos.r*2
-		animation_player.play("place")
-		animation_player.animation_finished.connect(func(_anim_name):
-			SignalBus.card_used.emit(card_data, grid_pos)
-			queue_free()
-		)
+		SignalBus.card_used.emit(card_data, grid_pos)
+		queue_free()
 	)
