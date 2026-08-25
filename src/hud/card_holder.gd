@@ -71,8 +71,10 @@ func _ready():
 	reorder_cards()
 
 func _test_init():
-	for i in range(5):
-		add_card(load("res://const_data/cards/test_card.tres").duplicate())
+	for i in range(2):
+		add_card(load("res://const_data/cards/factory_card.tres"))
+	for i in range(2):
+		add_card(load("res://const_data/cards/flow_card.tres"))
 
 func _process(_delta: float) -> void:
 	if not _is_currently(State.DRAGGED):

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c35v72ubhgdk6" path="res://src/hex/hex.tscn" id="1_hab8q"]
 [ext_resource type="Script" uid="uid://cnm4v2dyyt4mh" path="res://src/hex/factory_hex/factory_hex.gd" id="2_odha3"]
 
-[node name="Hex" unique_id=1567981896 instance=ExtResource("1_hab8q")]
+[node name="FactoryHex" unique_id=1567981896 instance=ExtResource("1_hab8q")]
 script = ExtResource("2_odha3")
 
 [node name="ProductionTimer" type="Timer" parent="." index="4" unique_id=353845177]

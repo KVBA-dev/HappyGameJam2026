@@ -50,14 +50,30 @@ func clear_hex_at(_position: HexVector):
 func spawn_hex_at(_position: HexVector, hex_type: HexData, appear_style: Hex.AppearStyle = Hex.AppearStyle.Instant) -> Hex:
 	if hex_map.has(_position.vec):
 		ErrorBus.hex_already_exist_on_position.emit(_position)
-		print("overlap")
 		return
 
-	var new_hex := Hex.new_instance(_position, hex_type, appear_style)
+	var new_hex := instantiate_hex(_position, hex_type, appear_style)
 	hexes_node.add_child(new_hex)
 	hex_map[_position.vec] = new_hex
 	hex_changed.emit(new_hex)
 	return new_hex
+
+
+func instantiate_hex(
+	_position: HexVector,
+	hex_type: HexData,
+	appear_style: Hex.AppearStyle = Hex.AppearStyle.Instant,
+) -> Hex:
+	match hex_type.type:
+		HexData.Type.FLOW:
+			return FlowHex.new_instance(_position, hex_type, appear_style)
+		HexData.Type.FACTORY:
+			return FactoryHex.new_instance(_position, hex_type, appear_style)
+		HexData.Type.BLANK:
+			return Hex.new_instance(_position, hex_type, appear_style)
+		_:
+			push_error("Instantiation of a hex not implemented")
+			return
 
 func handle_card_placed(data: CardData, pos: HexVector):
 	clear_hex_at(pos)
