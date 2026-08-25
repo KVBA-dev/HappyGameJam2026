@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://c0lvfgmj38wfm"]
+
+[ext_resource type="Script" uid="uid://4q2bd60huelj" path="res://src/hud/card_holder.gd" id="1_ln0p1"]
+[ext_resource type="Script" uid="uid://dfy8e15ewhav" path="res://src/utils/hoverable_area.gd" id="3_ldsxu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ln0p1"]
+size = Vector2(1000, 250)
+
+[node name="CardHolder" type="Control" unique_id=1118155161 groups=["card_holder"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_ln0p1")
+
+[node name="PlacerCenter" type="Node2D" parent="." unique_id=2107766212]
+unique_name_in_owner = true
+position = Vector2(0, 300)
+
+[node name="CardsContainer" type="Node2D" parent="PlacerCenter" unique_id=986296897]
+unique_name_in_owner = true
+
+[node name="CardLayArea" type="Area2D" parent="." unique_id=193258662]
+unique_name_in_owner = true
+script = ExtResource("3_ldsxu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardLayArea" unique_id=1811122695]
+visible = false
+shape = SubResource("RectangleShape2D_ln0p1")

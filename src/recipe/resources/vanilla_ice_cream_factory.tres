@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://b4njuakwd1u1j"]
+
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_emc0w"]
+[ext_resource type="Resource" uid="uid://74dboj4fkeyx" path="res://src/item/resources/vanilla_ice_cream.tres" id="2_0rpd1"]
+[ext_resource type="Resource" uid="uid://61sx5rnqob3w" path="res://src/item/resources/ice_cream_base.tres" id="2_pyq0k"]
+[ext_resource type="Resource" uid="uid://hjsugu21v1ey" path="res://src/item/resources/vanilla_extract.tres" id="4_emc0w"]
+[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="6_vbq78"]
+
+[resource]
+script = ExtResource("6_vbq78")
+requirements = Dictionary[ExtResource("1_emc0w"), int]({
+ExtResource("2_pyq0k"): 1,
+ExtResource("4_emc0w"): 1
+})
+produces = Dictionary[ExtResource("1_emc0w"), int]({
+ExtResource("2_0rpd1"): 1
+})
+processing_time = 1.0
+metadata/_custom_type_script = "uid://c6oty1ydhdib4"

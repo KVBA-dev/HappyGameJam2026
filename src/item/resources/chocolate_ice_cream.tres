@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://byc5kqhjo07rw"]
+
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_1tm5a"]
+
+[resource]
+script = ExtResource("1_1tm5a")
+name = "Chocolate Ice Cream"
+metadata/_custom_type_script = "uid://jr6ykdp3ngmm"

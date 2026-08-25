@@ -2,27 +2,43 @@ class_name HexGrid extends Node2D
 
 @onready var hexes_node: Node2D = %HexesNode
 @onready var root_hex: Hex = %RootHex
-var hex_map: Dictionary[HexVector, Hex] = {}
+var hex_map: Dictionary[Vector2i, Hex] = {}
 signal hex_changed(hex: Hex)
 
 func _ready():
 	GameManager.hex_grid = self
-	hex_map[HexVector.ZERO] = root_hex
-	await get_tree().create_timer(2)
-	spawn_hex_at(HexVector.new_instance(1,0), preload("res://src/hex/data/example_hex_data.tres"))
-	spawn_hex_at(HexVector.new_instance(1,0), preload("res://src/hex/data/example_hex_data.tres"))
+	hex_map[HexVector.ZERO.vec] = root_hex
+
+func surround_with_hexes(radius: int):
+	var blank = preload("res://const_data/hexes/blank_hex.tres")
+
+	for direction: HexVector in HexVector.DIRECTION_MAP.values():
+		for i in range(radius):
+			var hex_vec = direction.mult(i+1)
+			spawn_hex_at(hex_vec, blank.duplicate())
+
+			for j in range(radius-i-1):
+				var final = hex_vec.add(direction.rotated(1).mult(j+1))
+				spawn_hex_at(final, blank.duplicate())
 
 func get_hex_at(_position: HexVector) -> Hex:
 	return hex_map.get(_position, null)
 
+func clear_hex_at(_position: HexVector):
+	if not hex_map.has(_position.vec):
+		return false
+
+	hex_map[_position.vec].queue_free()
+	hex_map.erase(_position.vec)
+	return true
+
 func spawn_hex_at(_position: HexVector, hex_type: HexData) -> Hex:
-	print(_position)
-	if hex_map.has(_position):
+	if hex_map.has(_position.vec):
 		ErrorBus.hex_already_exist_on_position.emit(_position)
 		return
 	
 	var new_hex := Hex.new_instance(_position, hex_type)
 	hexes_node.add_child(new_hex)
-	hex_map[_position] = new_hex
+	hex_map[_position.vec] = new_hex
 	hex_changed.emit(new_hex)
 	return new_hex

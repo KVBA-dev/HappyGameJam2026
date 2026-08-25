@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://dvb8i6w67lkob"]
+
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_yd7hd"]
+[ext_resource type="Resource" uid="uid://dka7c73gj5pjq" path="res://src/item/resources/strawberry_juice.tres" id="2_rdnwp"]
+[ext_resource type="Resource" uid="uid://cx62qmogmgrdu" path="res://src/item/resources/strawberry.tres" id="3_5dcf4"]
+[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="3_jtcye"]
+
+[resource]
+script = ExtResource("3_jtcye")
+requirements = Dictionary[ExtResource("1_yd7hd"), int]({
+ExtResource("3_5dcf4"): 1
+})
+produces = Dictionary[ExtResource("1_yd7hd"), int]({
+ExtResource("2_rdnwp"): 1
+})
+processing_time = 1.0
+metadata/_custom_type_script = "uid://c6oty1ydhdib4"
