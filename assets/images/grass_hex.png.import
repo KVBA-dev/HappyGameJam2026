@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxwbs3b8lfghj"
-path="res://.godot/imported/hex-path-straight-left.png-a5e9a3b5b1b9ef0d33a76126d9c2ee60.ctex"
+uid="uid://dlxv6tbf2pc1a"
+path="res://.godot/imported/grass_hex.png-92079b236bf87416f9fb74b5ebb98d51.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-path-straight-left.png"
-dest_files=["res://.godot/imported/hex-path-straight-left.png-a5e9a3b5b1b9ef0d33a76126d9c2ee60.ctex"]
+source_file="res://assets/images/grass_hex.png"
+dest_files=["res://.godot/imported/grass_hex.png-92079b236bf87416f9fb74b5ebb98d51.ctex"]
 
 [params]
 

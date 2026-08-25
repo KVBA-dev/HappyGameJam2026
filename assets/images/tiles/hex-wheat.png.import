@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd8u84y8wk83v"
-path="res://.godot/imported/hex-factory.png-1a9748a698857454fb6c73c4d29fe470.ctex"
+uid="uid://cyiq83r81enn4"
+path="res://.godot/imported/hex-wheat.png-3b65858db89c346e66341a38502f4076.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-factory.png"
-dest_files=["res://.godot/imported/hex-factory.png-1a9748a698857454fb6c73c4d29fe470.ctex"]
+source_file="res://assets/images/tiles/hex-wheat.png"
+dest_files=["res://.godot/imported/hex-wheat.png-3b65858db89c346e66341a38502f4076.ctex"]
 
 [params]
 

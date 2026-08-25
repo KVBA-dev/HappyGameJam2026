@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hpmqaxd4llyd"
-path="res://.godot/imported/hex-path-sharp-left.png-2e844cb9334453490ab66ed1964a937e.ctex"
+uid="uid://bsj5cqykjv5ay"
+path="res://.godot/imported/hex-factory2.png-23d514443cbd5d27a31c84367e8c931f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-path-sharp-left.png"
-dest_files=["res://.godot/imported/hex-path-sharp-left.png-2e844cb9334453490ab66ed1964a937e.ctex"]
+source_file="res://assets/images/tiles/hex-factory2.png"
+dest_files=["res://.godot/imported/hex-factory2.png-23d514443cbd5d27a31c84367e8c931f.ctex"]
 
 [params]
 

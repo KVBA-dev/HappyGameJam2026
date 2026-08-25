@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu57o3ckthfus"
-path="res://.godot/imported/hex-oil.png-5a59664327cc1de3ceb8968f2dc64e8b.ctex"
+uid="uid://bsol6hkvx68hd"
+path="res://.godot/imported/hex-path-right.png-1e0f7bd015be373b15fce8a87eda0ead.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-oil.png"
-dest_files=["res://.godot/imported/hex-oil.png-5a59664327cc1de3ceb8968f2dc64e8b.ctex"]
+source_file="res://assets/images/tiles/hex-path-right.png"
+dest_files=["res://.godot/imported/hex-path-right.png-1e0f7bd015be373b15fce8a87eda0ead.ctex"]
 
 [params]
 

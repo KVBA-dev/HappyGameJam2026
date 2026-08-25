@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5ok7ybh0jfrr"
-path="res://.godot/imported/hex-path-left.png-6b682c054f473cf51be0cd460ced06fd.ctex"
+uid="uid://6nbxfr33yp5l"
+path="res://.godot/imported/hex-beetroot.png-57a1ece77801967d6ccfdc973d895b15.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-path-left.png"
-dest_files=["res://.godot/imported/hex-path-left.png-6b682c054f473cf51be0cd460ced06fd.ctex"]
+source_file="res://assets/images/tiles/hex-beetroot.png"
+dest_files=["res://.godot/imported/hex-beetroot.png-57a1ece77801967d6ccfdc973d895b15.ctex"]
 
 [params]
 

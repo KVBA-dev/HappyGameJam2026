@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhagnu2lev1gy"
-path="res://.godot/imported/hex-path-from-straight-right.png-868fb655849e88a3603f895230473271.ctex"
+uid="uid://shuvkrr2cguv"
+path="res://.godot/imported/hex-path-left-right-outward.png-55e25845e7811abd3d33930b8b08ebf1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-path-from-straight-right.png"
-dest_files=["res://.godot/imported/hex-path-from-straight-right.png-868fb655849e88a3603f895230473271.ctex"]
+source_file="res://assets/images/tiles/hex-path-left-right-outward.png"
+dest_files=["res://.godot/imported/hex-path-left-right-outward.png-55e25845e7811abd3d33930b8b08ebf1.ctex"]
 
 [params]
 

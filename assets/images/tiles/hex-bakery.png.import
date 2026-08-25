@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diytbw75goos"
-path="res://.godot/imported/hex-cow.png-03eeaf0b15db2e2f1bb3f92fa9a9b921.ctex"
+uid="uid://cy8vg1rastmt2"
+path="res://.godot/imported/hex-bakery.png-d8c7ec135521e1195285154a43d0c973.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-cow.png"
-dest_files=["res://.godot/imported/hex-cow.png-03eeaf0b15db2e2f1bb3f92fa9a9b921.ctex"]
+source_file="res://assets/images/tiles/hex-bakery.png"
+dest_files=["res://.godot/imported/hex-bakery.png-d8c7ec135521e1195285154a43d0c973.ctex"]
 
 [params]
 

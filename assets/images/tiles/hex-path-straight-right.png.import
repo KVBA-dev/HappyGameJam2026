@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm23c00g3oeko"
-path="res://.godot/imported/hex-woods.png-64d51697ec0709f3b2de27d40b831447.ctex"
+uid="uid://b85ag8h1cvt6a"
+path="res://.godot/imported/hex-path-straight-right.png-b09e0b0ec49be0b89a44e5cec0af1de7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-woods.png"
-dest_files=["res://.godot/imported/hex-woods.png-64d51697ec0709f3b2de27d40b831447.ctex"]
+source_file="res://assets/images/tiles/hex-path-straight-right.png"
+dest_files=["res://.godot/imported/hex-path-straight-right.png-b09e0b0ec49be0b89a44e5cec0af1de7.ctex"]
 
 [params]
 
