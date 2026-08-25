@@ -6,5 +6,10 @@
 script = ExtResource("1_52tc4")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1088612347]
+volume_db = -3.0
+
+[node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=1895670563]
+volume_db = -3.0
 
 [node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1272808899]
+volume_db = -3.0
