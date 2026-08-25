@@ -14,6 +14,8 @@ func _on_selected_hex(hex: Hex, dir: HexVector.Direction):
 	if not hex is FactoryHex:
 		return
 	if start_hex:
+		if not dir in hex.hex_data.item_flow.outputs:
+			return
 		var waypoints: Array[Hex] = []
 		var created_path := create_path(start_hex, start_dir, hex, dir)
 		if created_path.is_empty():
@@ -28,6 +30,8 @@ func _on_selected_hex(hex: Hex, dir: HexVector.Direction):
 		add_child(path_line)
 		start_hex = null
 	else:
+		if not dir in hex.hex_data.item_flow.inputs:
+			return
 		start_hex = hex
 		start_dir = dir
 
