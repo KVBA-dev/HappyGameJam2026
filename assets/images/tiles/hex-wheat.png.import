@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drmov2t17icah"
-path="res://.godot/imported/hex-windmill.png-f1aed377af6e3a595f32b46038bdd890.ctex"
+uid="uid://cyiq83r81enn4"
+path="res://.godot/imported/hex-wheat.png-3b65858db89c346e66341a38502f4076.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-windmill.png"
-dest_files=["res://.godot/imported/hex-windmill.png-f1aed377af6e3a595f32b46038bdd890.ctex"]
+source_file="res://assets/images/tiles/hex-wheat.png"
+dest_files=["res://.godot/imported/hex-wheat.png-3b65858db89c346e66341a38502f4076.ctex"]
 
 [params]
 

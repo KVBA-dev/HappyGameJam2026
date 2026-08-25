@@ -12,7 +12,7 @@ static func new_instance() -> Main:
 func _ready() -> void:
 	SignalBus.main_loaded.emit()
 	GameManager.main = self
-	GameManager.hex_grid.surround_with_hexes(5)
+	GameManager.hex_grid.surround_with_hexes(3)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pg7e1l2388xc"
-path="res://.godot/imported/hex-path-from-back-left.png-ba64685b6ed52d0a4c6f8237fc9c7944.ctex"
+uid="uid://drmov2t17icah"
+path="res://.godot/imported/hex-windmill.png-c3f3457f803c8f7ff3a8fd3920208934.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-path-from-back-left.png"
-dest_files=["res://.godot/imported/hex-path-from-back-left.png-ba64685b6ed52d0a4c6f8237fc9c7944.ctex"]
+source_file="res://assets/images/tiles/hex-windmill.png"
+dest_files=["res://.godot/imported/hex-windmill.png-c3f3457f803c8f7ff3a8fd3920208934.ctex"]
 
 [params]
 

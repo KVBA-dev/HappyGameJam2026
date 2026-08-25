@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://shuvkrr2cguv"
-path="res://.godot/imported/hex-path-left-right-outward.png-438d10ac781626af8e3844b8b72d4351.ctex"
+uid="uid://db0543ovmm335"
+path="res://.godot/imported/hex-stone-quarry.png-e8deb1341fc61744655e33a4a9dd5b42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-path-left-right-outward.png"
-dest_files=["res://.godot/imported/hex-path-left-right-outward.png-438d10ac781626af8e3844b8b72d4351.ctex"]
+source_file="res://assets/images/tiles/hex-stone-quarry.png"
+dest_files=["res://.godot/imported/hex-stone-quarry.png-e8deb1341fc61744655e33a4a9dd5b42.ctex"]
 
 [params]
 

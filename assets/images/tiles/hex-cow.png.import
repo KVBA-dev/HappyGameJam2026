@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm23c00g3oeko"
-path="res://.godot/imported/hex-woods.png-64d51697ec0709f3b2de27d40b831447.ctex"
+uid="uid://diytbw75goos"
+path="res://.godot/imported/hex-cow.png-48e523dd9c5019ce30aa39e3dcf5d438.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/hex-woods.png"
-dest_files=["res://.godot/imported/hex-woods.png-64d51697ec0709f3b2de27d40b831447.ctex"]
+source_file="res://assets/images/tiles/hex-cow.png"
+dest_files=["res://.godot/imported/hex-cow.png-48e523dd9c5019ce30aa39e3dcf5d438.ctex"]
 
 [params]
 

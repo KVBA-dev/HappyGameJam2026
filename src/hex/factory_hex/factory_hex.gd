@@ -5,12 +5,17 @@ var in_production := false
 var storage: Dictionary[ItemData, int]
 var recipe: Recipe
 
-static func new_instance(_hex_position: HexVector, _hex_data: HexData) -> Hex:
+static func new_instance(
+    _hex_position: HexVector,
+    _hex_data: HexData,
+    appear_style: Hex.AppearStyle = Hex.AppearStyle.Above,
+) -> Hex:
     const SCENE := preload("uid://bfcndkssg7rys")
     var new_hex: Hex = SCENE.instantiate()
     new_hex.hex_data = _hex_data
     new_hex.hex_position = _hex_position
     new_hex.position = _hex_position.to_pixel()
+    new_hex._appear_style = appear_style
     return new_hex
 
 

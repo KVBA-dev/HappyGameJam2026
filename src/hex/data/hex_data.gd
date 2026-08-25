@@ -8,9 +8,13 @@ enum Type {
     FACTORY
 }
 
+func should_surround_by_blanks() -> bool:
+    return type != Type.BLANK and type != Type.BLANK_UNPLACABLE
+
 @export var hex_name: String
 @export var texture: Texture2D
 @export var on_surface_texture: Texture2D
+@export var below_texture: Texture2D
 @export var type: Type
 
 @export var recipe: Recipe

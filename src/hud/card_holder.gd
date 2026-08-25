@@ -27,8 +27,18 @@ func can_use_card() -> bool:
 		_: return false
 
 func _can_use_placable() -> bool:
-	return  Hex.currently_hovered \
-		and Hex.currently_hovered.hex_data.type == HexData.Type.BLANK
+	if not Hex.currently_hovered \
+	   or Hex.currently_hovered.hex_data.type != HexData.Type.BLANK:
+		return false
+
+	var is_any_neighbour_non_blank := false
+
+	var current := Hex.currently_hovered
+	for neighbour: Hex in GameManager.hex_grid.get_hex_neighbours(current.hex_position):
+		if neighbour.hex_data.type != HexData.Type.BLANK:
+			is_any_neighbour_non_blank = true
+
+	return is_any_neighbour_non_blank
 
 func _can_use_usable() -> bool:
 	# TODO: Implement usable cards
@@ -46,7 +56,7 @@ func add_card(card_data: CardData) -> bool:
 
 	var visual_scene: CardHudBase = preload("res://src/hud/hud_cards/card_hud_placable.tscn").instantiate()
 	cards_container.add_child(visual_scene)
-	visual_scene.card_sprite.texture = card_data.hex_data.texture
+	visual_scene.hex_sprite.init(card_data.hex_data)
 	visual_scene.card_data = card_data
 
 	cards.push_front(visual_scene)
