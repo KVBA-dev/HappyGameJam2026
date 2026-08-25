@@ -19,7 +19,7 @@ static func new_instance(_hex_position: HexVector, _hex_data: HexData) -> Hex:
 	return new_hex
 
 func _ready():
-	z_index = hex_position.r
+	z_index = 2*hex_position.r # So we have some space in between to z-order things
 	background_sprite.texture = hex_data.texture
 	on_hex_sprite.texture = hex_data.on_surface_texture
 	item_detection_area.area_entered.connect(on_item_entered)

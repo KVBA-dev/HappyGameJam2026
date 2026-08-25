@@ -44,14 +44,11 @@ func _input(event: InputEvent) -> void:
 			grid_pos.to_pixel() + Vector2.UP*40,
 			0.3
 		)
-		tween.set_trans(Tween.TRANS_LINEAR)
-		tween.tween_method(func(vec: Vector2): card.position = vec,
-			grid_pos.to_pixel() + Vector2.UP*40,
-			grid_pos.to_pixel(),
-			0.2
+		tween.finished.connect(func(): 
+			card.z_index = grid_pos.r*2
+			card.place()
 		)
-
-		tween.finished.connect(func():
+		card.card_used.connect(func():
 			GameManager.hex_grid.clear_hex_at(grid_pos)
 			GameManager.hex_grid.spawn_hex_at(grid_pos, card.card_data.hex_data)
 			card.queue_free()

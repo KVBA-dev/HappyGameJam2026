@@ -30,10 +30,10 @@ func add_card(card_data: CardData) -> bool:
 		return false
 
 	var visual_scene: CardHudHighlight = Scenes.CARD_HUD_SCENE.instantiate()
-	visual_scene.texture = card_data.hex_data.texture
+	cards_container.add_child(visual_scene)
+	visual_scene.card_sprite.texture = card_data.hex_data.texture
 	visual_scene.card_data = card_data
 
-	cards_container.add_child(visual_scene)
 	cards.push_front(visual_scene)
 	return true
 
@@ -46,10 +46,8 @@ func _ready():
 	reorder_cards()
 
 func _test_init():
-	var colors = [Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.PINK]
 	for i in range(5):
 		add_card(load("res://const_data/cards/test_card.tres"))
-		cards.front().modulate = colors[i]
 
 func _process(_delta: float) -> void:
 	if not _is_currently(State.DRAGGED):
