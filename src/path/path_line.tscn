@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://ckylfobiilnk6"]
+
+[ext_resource type="Script" uid="uid://dfrnjahnuju14" path="res://src/path/path_line.gd" id="1_orn0d"]
+
+[sub_resource type="Curve2D" id="Curve2D_orn0d"]
+
+[node name="PathLine" type="Path2D" unique_id=1456947259]
+curve = SubResource("Curve2D_orn0d")
+script = ExtResource("1_orn0d")
