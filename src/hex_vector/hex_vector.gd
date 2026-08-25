@@ -48,8 +48,19 @@ static var ZERO: HexVector:
 	get():
 		return HexVector.new(0, 0)
 
+static func direction_rotate(direction: Direction, n_60degree: int) -> Direction:
+	var dir_vec := direction_vector(direction)
+	dir_vec = dir_vec.rotated(n_60degree)
+	return vector_direction(dir_vec)
+
 static func direction_vector(direction: Direction) -> HexVector:
 	return DIRECTION_MAP[direction] 
+
+static func vector_direction(vector: HexVector) -> Direction:
+	for direction in DIRECTION_MAP:
+		if DIRECTION_MAP[direction].comp(vector):
+			return direction
+	return Direction.UP_RIGHT
 
 func neighbor(direction: Direction) -> HexVector:
 	var d := direction_vector(direction)

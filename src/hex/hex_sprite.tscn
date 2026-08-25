@@ -2,11 +2,278 @@
 
 [ext_resource type="Script" uid="uid://bhseyc873xca1" path="res://src/hex/hex_sprite.gd" id="1_w04v4"]
 [ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="2_4pg3w"]
+[ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="3_w04v4"]
+
+[sub_resource type="Animation" id="Animation_72ifu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BgDisplacement:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BgDisplacement/BackgroundSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BelowDisplacement:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BelowDisplacement/BelowSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BelowDisplacement:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_t4x5y"]
+resource_name = "rotate_left"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BgDisplacement:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(2.219139, 0.31864035, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -30), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BgDisplacement/BackgroundSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.25),
+"transitions": PackedFloat32Array(1, 0, 1),
+"update": 0,
+"values": [0.0, -1.0471975511965976, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BelowDisplacement:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1.4142135, 0.31864035, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -80), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BelowDisplacement:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2r5be"]
+resource_name = "rotate_left_continue"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BgDisplacement:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(2.219139, 0.31864035, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -30), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BgDisplacement/BackgroundSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.25),
+"transitions": PackedFloat32Array(1, 0, 1),
+"update": 0,
+"values": [0.0, -1.0471975511965976, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BelowDisplacement:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_w04v4"]
+resource_name = "rotate_right"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BgDisplacement:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(2.219139, 0.31864035, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -30), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BgDisplacement/BackgroundSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.25),
+"transitions": PackedFloat32Array(1, 0, 1),
+"update": 0,
+"values": [0.0, 1.0471975511965976, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BelowDisplacement:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1.4142135, 0.31864035, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -80), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BelowDisplacement:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_sk1rf"]
+resource_name = "rotate_right_continue"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BgDisplacement:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(2.219139, 0.31864035, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -30), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BgDisplacement/BackgroundSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.24, 0.25),
+"transitions": PackedFloat32Array(1, 0, 1),
+"update": 0,
+"values": [0.0, 1.0471975511965976, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BelowDisplacement:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_72ifu"]
+_data = {
+&"RESET": SubResource("Animation_72ifu"),
+&"rotate_left": SubResource("Animation_t4x5y"),
+&"rotate_left_continue": SubResource("Animation_2r5be"),
+&"rotate_right": SubResource("Animation_w04v4"),
+&"rotate_right_continue": SubResource("Animation_sk1rf")
+}
 
 [node name="HexSprite" type="Node2D" unique_id=956441382]
 script = ExtResource("1_w04v4")
 
-[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=439762020]
+[node name="BelowDisplacement" type="Node2D" parent="." unique_id=864170972]
+unique_name_in_owner = true
+
+[node name="BelowSprite" type="Sprite2D" parent="BelowDisplacement" unique_id=260944473]
+unique_name_in_owner = true
+position = Vector2(0, 10)
+texture = ExtResource("3_w04v4")
+
+[node name="BgDisplacement" type="Node2D" parent="." unique_id=144048622]
+
+[node name="BackgroundSprite" type="Sprite2D" parent="BgDisplacement" unique_id=439762020]
 unique_name_in_owner = true
 texture = ExtResource("2_4pg3w")
 
@@ -15,6 +282,13 @@ unique_name_in_owner = true
 position = Vector2(0, -14)
 scale = Vector2(0.7, 0.7)
 
-[node name="BelowSprite" type="Sprite2D" parent="." unique_id=260944473]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1981581343]
 unique_name_in_owner = true
-position = Vector2(0, 75)
+libraries/ = SubResource("AnimationLibrary_72ifu")
+
+[node name="RotateTimer" type="Timer" parent="." unique_id=705470068]
+unique_name_in_owner = true
+wait_time = 0.25
+
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_started"]
+[connection signal="timeout" from="RotateTimer" to="." method="_on_rotate_timer_timeout"]

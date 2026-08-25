@@ -77,6 +77,13 @@ func _dragged_process(delta: float):
 		Utils.smooth_exp(scale.y, target_scale.y, SCALE_SPEED, delta)
 	)
 
+func _get_rotated_ready_data() -> CardData:
+	var n_rotations: int = card_data.n_60degree_rotations
+	if n_rotations != 0:
+		card_data.hex_data = card_data.hex_data.rotated(n_rotations)
+
+	return card_data
+
 func _on_area_2d_mouse_entered() -> void:
 	_hover = true
 
@@ -126,3 +133,9 @@ func _reparent_node_for_animation() -> void:
 
 	position = GameManager.hex_grid.get_viewport().get_canvas_transform().affine_inverse() * screen_pos
 	scale = Vector2.ONE
+
+func rotate_left():
+	hex_sprite.rotate_left()
+
+func rotate_right():
+	hex_sprite.rotate_right()

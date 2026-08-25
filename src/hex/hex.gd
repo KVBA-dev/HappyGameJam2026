@@ -63,7 +63,7 @@ func on_item_entered(area: Area2D) -> void:
 
 
 func _on_mouse_entered():
-	var tooltip := TextTooltip.new_instance(str(hex_position))
+	var tooltip := TextTooltip.new_instance(str(hex_data.item_flow))
 	GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
 	currently_hovered = self
 

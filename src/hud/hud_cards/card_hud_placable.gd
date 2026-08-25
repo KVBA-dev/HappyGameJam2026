@@ -24,6 +24,6 @@ func start_use_animation():
 	)
 
 	tween.finished.connect(func(): 
-		SignalBus.card_used.emit(card_data, grid_pos)
+		SignalBus.card_used.emit(_get_rotated_ready_data(), grid_pos)
 		queue_free()
 	)

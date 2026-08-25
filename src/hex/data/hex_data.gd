@@ -2,14 +2,20 @@
 class_name HexData extends Resource
 
 enum Type {
-    BLANK,
-    BLANK_UNPLACABLE,
-    ROAD,
-    FACTORY
+	BLANK,
+	BLANK_UNPLACABLE,
+	ROAD,
+	FACTORY
 }
 
 func should_surround_by_blanks() -> bool:
-    return type != Type.BLANK and type != Type.BLANK_UNPLACABLE
+	return type != Type.BLANK and type != Type.BLANK_UNPLACABLE
+
+# Be sure to make every instance unique
+func rotated(n_60degree: int) -> HexData:
+	var copy: HexData = duplicate_deep()
+	if copy.item_flow: copy.item_flow.rotate(n_60degree)
+	return copy
 
 @export var hex_name: String
 @export var texture: Texture2D
