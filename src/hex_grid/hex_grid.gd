@@ -8,7 +8,8 @@ signal hex_changed(hex: Hex)
 func _ready():
 	GameManager.hex_grid = self
 	hex_map[HexVector.ZERO] = root_hex
-	
+
+	SignalBus.card_used.connect(handle_card_placed)
 
 func surround_with_hexes(radius: int):
 	var blank = preload("res://const_data/hexes/blank_hex.tres")
@@ -44,3 +45,7 @@ func spawn_hex_at(_position: HexVector, hex_type: HexData) -> Hex:
 	hex_map[_position] = new_hex
 	hex_changed.emit(new_hex)
 	return new_hex
+
+func handle_card_placed(data: CardData, pos: HexVector):
+	clear_hex_at(pos)
+	spawn_hex_at(pos, data.hex_data)
