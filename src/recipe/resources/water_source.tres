@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://b6wh1ubk6s805"]
 
-[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_r70u4"]
-[ext_resource type="Resource" uid="uid://cfsn1oqm36cja" path="res://src/item/resources/water.tres" id="2_is0ar"]
-[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="4_3qejq"]
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_item_data"]
+[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="2_recipe"]
+[ext_resource type="Resource" uid="uid://cfsn1oqm36cja" path="res://src/item/resources/water.tres" id="3_item"]
 
 [resource]
-script = ExtResource("4_3qejq")
-produces = Dictionary[ExtResource("1_r70u4"), int]({
-ExtResource("2_is0ar"): 1
-})
+script = ExtResource("2_recipe")
+requirements = Dictionary[ExtResource("1_item_data"), int]({})
+produces = ExtResource("3_item")
+production_capacity = 1
 processing_time = 1.0
 metadata/_custom_type_script = "uid://c6oty1ydhdib4"

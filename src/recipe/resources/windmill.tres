@@ -1,17 +1,16 @@
 [gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://0ud38a1yc6q0"]
 
-[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_et357"]
-[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="2_ej4q1"]
-[ext_resource type="Resource" uid="uid://c81blbhjqejk1" path="res://src/item/resources/flour.tres" id="2_urcg1"]
-[ext_resource type="Resource" uid="uid://bxrtio7rk1lmt" path="res://src/item/resources/wheat.tres" id="3_ovc7w"]
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_item_data"]
+[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="2_recipe"]
+[ext_resource type="Resource" uid="uid://bxrtio7rk1lmt" path="res://src/item/resources/wheat.tres" id="3_item"]
+[ext_resource type="Resource" uid="uid://c81blbhjqejk1" path="res://src/item/resources/flour.tres" id="4_item"]
 
 [resource]
-script = ExtResource("2_ej4q1")
-requirements = Dictionary[ExtResource("1_et357"), int]({
-ExtResource("3_ovc7w"): 1
+script = ExtResource("2_recipe")
+requirements = Dictionary[ExtResource("1_item_data"), int]({
+ExtResource("3_item"): 1
 })
-produces = Dictionary[ExtResource("1_et357"), int]({
-ExtResource("2_urcg1"): 1
-})
+produces = ExtResource("4_item")
+production_capacity = 1
 processing_time = 1.0
 metadata/_custom_type_script = "uid://c6oty1ydhdib4"
