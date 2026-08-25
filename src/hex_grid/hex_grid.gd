@@ -26,6 +26,16 @@ func surround_with_hexes(radius: int):
 func get_hex_at(_position: HexVector) -> Hex:
 	return hex_map.get(_position, null)
 
+func get_hex_neighbours(_position: HexVector) -> Array[Hex]:
+	var ret: Array[Hex] = []
+	for neighbour_pos: HexVector in _position.get_all_neighbors():
+		var neighbour := get_hex_at(neighbour_pos)
+		print(neighbour_pos)
+		if neighbour:
+			ret.push_back(neighbour)
+	print("\n\n")
+	return ret
+
 func clear_hex_at(_position: HexVector):
 	if not hex_map.has(_position):
 		return false

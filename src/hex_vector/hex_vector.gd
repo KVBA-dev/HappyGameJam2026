@@ -18,14 +18,14 @@ enum Direction {
 
 static var vectors: Array[HexVector] = []
 static var DIRECTION_MAP: Dictionary[Direction, HexVector] = {
-	Direction.UP_RIGHT: HexVector.new(1, -1),
-	Direction.DOWN_LEFT: HexVector.new(-1, 1),
+	Direction.UP_RIGHT: HexVector.new_instance(1, -1),
+	Direction.DOWN_LEFT: HexVector.new_instance(-1, 1),
 
-	Direction.CENTER_RIGHT: HexVector.new(1, 0),
-	Direction.CENTER_LEFT: HexVector.new(-1, 0),
+	Direction.CENTER_RIGHT: HexVector.new_instance(1, 0),
+	Direction.CENTER_LEFT: HexVector.new_instance(-1, 0),
 
-	Direction.UP_LEFT: HexVector.new(0, -1),
-	Direction.DOWN_RIGHT: HexVector.new(0, 1),
+	Direction.UP_LEFT: HexVector.new_instance(0, -1),
+	Direction.DOWN_RIGHT: HexVector.new_instance(0, 1),
 }
 
 static func UP_RIGHT() -> HexVector: return direction_vector(Direction.UP_RIGHT)
@@ -44,7 +44,7 @@ static func direction_vector(direction: Direction) -> HexVector:
 
 func neighbor(direction: Direction) -> HexVector:
 	var d := direction_vector(direction)
-	return HexVector.new_instance(q + int(d.x), r + int(d.y))
+	return HexVector.new_instance(q + int(d.q), r + int(d.r))
 
 func get_all_neighbors() -> Array[HexVector]:
 	var result: Array[HexVector] = []
@@ -78,12 +78,12 @@ func distance_to(other: HexVector) -> int:
 func rotated(n: int) -> HexVector:
 	n = posmod(n, 6)
 	match n:
-		0: return HexVector.new(q, r)
-		1: return HexVector.new(-r, -s())
-		2: return HexVector.new(-q-r, q)
-		3: return HexVector.new(-q, -r)
-		4: return HexVector.new(r, -q-r)
-		5: return HexVector.new(q+r, -q)
+		0: return HexVector.new_instance(q, r)
+		1: return HexVector.new_instance(-r, -s())
+		2: return HexVector.new_instance(-q-r, q)
+		3: return HexVector.new_instance(-q, -r)
+		4: return HexVector.new_instance(r, -q-r)
+		5: return HexVector.new_instance(q+r, -q)
 	return null	
 
 func add(other: HexVector) -> HexVector:
@@ -96,7 +96,7 @@ func comp(other: HexVector) -> bool:
 	return self == other # There can be only single instance with specified coords
 
 func mult(val: int) -> HexVector:
-	return HexVector.new(q * val, r * val)
+	return HexVector.new_instance(q * val, r * val)
 
 func to_pixel(hex_width: float = Consts.HEX_WIDTH, hex_height: float = Consts.HEX_HEIGHT) -> Vector2:
 	var x: float = hex_width * (q + r / 2.0)
