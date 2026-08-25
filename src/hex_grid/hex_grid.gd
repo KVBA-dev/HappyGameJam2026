@@ -2,12 +2,13 @@ class_name HexGrid extends Node2D
 
 @onready var hexes_node: Node2D = %HexesNode
 @onready var root_hex: Hex = %RootHex
-var hex_map: Dictionary[Vector2i, Hex] = {}
+var hex_map: Dictionary[HexVector, Hex] = {}
 signal hex_changed(hex: Hex)
 
 func _ready():
 	GameManager.hex_grid = self
-	hex_map[HexVector.ZERO.vec] = root_hex
+	hex_map[HexVector.ZERO] = root_hex
+	
 
 func surround_with_hexes(radius: int):
 	var blank = preload("res://const_data/hexes/blank_hex.tres")
@@ -25,20 +26,21 @@ func get_hex_at(_position: HexVector) -> Hex:
 	return hex_map.get(_position, null)
 
 func clear_hex_at(_position: HexVector):
-	if not hex_map.has(_position.vec):
+	if not hex_map.has(_position):
 		return false
 
-	hex_map[_position.vec].queue_free()
-	hex_map.erase(_position.vec)
+	hex_map[_position].queue_free()
+	hex_map.erase(_position)
 	return true
 
 func spawn_hex_at(_position: HexVector, hex_type: HexData) -> Hex:
-	if hex_map.has(_position.vec):
+	if hex_map.has(_position):
 		ErrorBus.hex_already_exist_on_position.emit(_position)
+		print("overlap")
 		return
 	
 	var new_hex := Hex.new_instance(_position, hex_type)
 	hexes_node.add_child(new_hex)
-	hex_map[_position.vec] = new_hex
+	hex_map[_position] = new_hex
 	hex_changed.emit(new_hex)
 	return new_hex

@@ -1,5 +1,5 @@
 {
-	"godotTools.editorPath.godot4": "c:\\devel\\Godot\\Godot_v4.6-stable_win64.exe",
+	"godotTools.editorPath.godot4": "/usr/bin/godot",
 	"files.exclude": {
 		"**/*.uid": true,
 		"**/*.tscn": true,

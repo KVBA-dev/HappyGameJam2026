@@ -1,19 +1,8 @@
 class_name HexVector extends RefCounted
 
-var vec: Vector2i
 
-const HEX_WIDTH := 210.0
-const HEX_HEIGHT := 182.0
-var q: int:
-	get:
-		return vec.x
-	set(val):
-		vec.x = val
-var r: int:
-	get:
-		return vec.y
-	set(val):
-		vec.y = val
+var q: int
+var r: int
 
 func s() -> int:
 	return -q - r
@@ -104,7 +93,7 @@ func sub(other: HexVector) -> HexVector:
 	return HexVector.new_instance(q - other.q, r - other.r)
 
 func comp(other: HexVector) -> bool:
-	return vec == other.vec
+	return self == other # There can be only single instance with specified coords
 
 func mult(val: int) -> HexVector:
 	return HexVector.new(q * val, r * val)
