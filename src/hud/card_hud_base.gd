@@ -18,7 +18,7 @@ var card_data: CardData
 var _scale_to_camera: bool = false
 var _insta_scale: bool = false
 
-@onready var card_sprite: Sprite2D = %CardSprite
+@onready var hex_sprite: HexSprite = %HexSprite
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var card_holder: CardHolder = get_tree().get_first_node_in_group("card_holder")
 var _state: State = State.IN_HAND
@@ -97,7 +97,7 @@ func _on_state_change(_previous: State):
 			card_holder.card_lay_area.mouse_exited.connect(_scale_to_camera_sized)
 			card_holder.card_lay_area.mouse_entered.connect(_unscale)
 		State.PLACED: 
-			card_sprite.z_index = 1
+			hex_sprite.z_index = 1
 			shadow_sprite.z_index = 0
 
 	if _previous == State.DRAGGED:

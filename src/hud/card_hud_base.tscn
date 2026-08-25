@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://de3d5kujb6pum" path="res://src/hud/card_hud_base.gd" id="1_awcme"]
 [ext_resource type="Texture2D" uid="uid://dlxv6tbf2pc1a" path="res://assets/images/grass_hex.png" id="2_awcme"]
+[ext_resource type="PackedScene" uid="uid://cdilrnqed1pcs" path="res://src/hex/hex_sprite.tscn" id="3_ftfg4"]
 
 [sub_resource type="Animation" id="Animation_f8wkc"]
 length = 0.001
@@ -77,13 +78,13 @@ position = Vector2(0, 43)
 scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_awcme")
 
-[node name="CardSprite" type="Sprite2D" parent="Displacement" unique_id=1658629063]
+[node name="HexSprite" parent="Displacement" unique_id=956441382 instance=ExtResource("3_ftfg4")]
 unique_name_in_owner = true
-texture = ExtResource("2_awcme")
 
 [node name="Area2D" type="Area2D" parent="Displacement" unique_id=1435104358]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Displacement/Area2D" unique_id=646041063]
+visible = false
 polygon = PackedVector2Array(80, -58, 80, 31, 0, 76, -79, 31, -80, -58, 0, -105)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=313570768]

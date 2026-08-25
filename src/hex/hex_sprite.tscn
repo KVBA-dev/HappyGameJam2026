@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cdilrnqed1pcs"]
+
+[ext_resource type="Script" uid="uid://bhseyc873xca1" path="res://src/hex/hex_sprite.gd" id="1_w04v4"]
+[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="2_4pg3w"]
+
+[node name="HexSprite" type="Node2D" unique_id=956441382]
+script = ExtResource("1_w04v4")
+
+[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=439762020]
+unique_name_in_owner = true
+texture = ExtResource("2_4pg3w")
+
+[node name="OnHexSprite" type="Sprite2D" parent="." unique_id=548650446]
+unique_name_in_owner = true
+position = Vector2(0, -14)
+scale = Vector2(0.7, 0.7)
+
+[node name="BelowSprite" type="Sprite2D" parent="." unique_id=260944473]
+unique_name_in_owner = true
+position = Vector2(0, 75)

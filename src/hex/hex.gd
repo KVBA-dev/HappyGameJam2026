@@ -1,8 +1,6 @@
 class_name Hex extends Node2D
 
-
-@onready var background_sprite: Sprite2D = %BackgroundSprite
-@onready var on_hex_sprite: Sprite2D = %OnHexSprite
+@onready var hex_sprite: HexSprite = %HexSprite
 @onready var item_detection_area: Area2D = %ItemDetectionArea
 @onready var mouse_detection_area: Area2D = %MouseDetectionArea
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
@@ -33,8 +31,7 @@ static func new_instance(
 
 func _ready():
 	z_index = 2*hex_position.r # So we have some space in between to z-order things
-	background_sprite.texture = hex_data.texture
-	on_hex_sprite.texture = hex_data.on_surface_texture
+	hex_sprite.init(hex_data)
 	item_detection_area.area_entered.connect(on_item_entered)
 	mouse_detection_area.mouse_entered.connect(_on_mouse_entered)
 	mouse_detection_area.mouse_exited.connect(_on_mouse_exited)

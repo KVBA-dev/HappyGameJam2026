@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c35v72ubhgdk6"]
 
 [ext_resource type="Script" uid="uid://s24x28yrcefo" path="res://src/hex/hex.gd" id="1_6ot4j"]
-[ext_resource type="Texture2D" uid="uid://dlxv6tbf2pc1a" path="res://assets/images/grass_hex.png" id="2_l8m4e"]
+[ext_resource type="PackedScene" uid="uid://cdilrnqed1pcs" path="res://src/hex/hex_sprite.tscn" id="2_l8m4e"]
 
 [sub_resource type="Animation" id="Animation_l8m4e"]
 length = 0.001
@@ -140,14 +140,8 @@ script = ExtResource("1_6ot4j")
 [node name="Displacement" type="Node2D" parent="." unique_id=214523488]
 unique_name_in_owner = true
 
-[node name="BackgroundSprite" type="Sprite2D" parent="Displacement" unique_id=1700633582]
+[node name="HexSprite" parent="Displacement" unique_id=956441382 instance=ExtResource("2_l8m4e")]
 unique_name_in_owner = true
-texture = ExtResource("2_l8m4e")
-
-[node name="OnHexSprite" type="Sprite2D" parent="Displacement" unique_id=1168967990]
-unique_name_in_owner = true
-position = Vector2(0, -14)
-scale = Vector2(0.7, 0.7)
 
 [node name="ItemDetectionArea" type="Area2D" parent="Displacement" unique_id=1733114518]
 unique_name_in_owner = true

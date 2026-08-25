@@ -56,7 +56,7 @@ func add_card(card_data: CardData) -> bool:
 
 	var visual_scene: CardHudBase = preload("res://src/hud/hud_cards/card_hud_placable.tscn").instantiate()
 	cards_container.add_child(visual_scene)
-	visual_scene.card_sprite.texture = card_data.hex_data.texture
+	visual_scene.hex_sprite.init(card_data.hex_data)
 	visual_scene.card_data = card_data
 
 	cards.push_front(visual_scene)
