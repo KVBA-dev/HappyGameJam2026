@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://c35v72ubhgdk6"]
 
 [ext_resource type="Script" uid="uid://s24x28yrcefo" path="res://src/hex/hex.gd" id="1_6ot4j"]
-[ext_resource type="Texture2D" uid="uid://baajnp5wacriy" path="res://assets/images/hex-basic.png" id="2_l8m4e"]
+[ext_resource type="Texture2D" uid="uid://ddqf1iti463fn" path="res://assets/images/tiles/kafelki_001.png" id="2_l8m4e"]
 
 [node name="Hex" type="Node2D" unique_id=1567981896]
 script = ExtResource("1_6ot4j")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=1700633582]
 unique_name_in_owner = true
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_l8m4e")
 
 [node name="OnHexSprite" type="Sprite2D" parent="." unique_id=1168967990]
@@ -17,11 +18,11 @@ scale = Vector2(0.7, 0.7)
 [node name="ItemDetectionArea" type="Area2D" parent="." unique_id=1733114518]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="ItemDetectionArea" unique_id=1576926357]
-polygon = PackedVector2Array(61, -35, 62, 35, 0, 70, -61, 35, -61, -35, 0, -70)
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="ItemDetectionArea" unique_id=1186782119]
+polygon = PackedVector2Array(105, -64, 105, 36, 0, 77, -105, 36, -105, -64, 0, -105)
 
 [node name="MouseDetectionArea" type="Area2D" parent="." unique_id=1134900119]
 unique_name_in_owner = true
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="MouseDetectionArea" unique_id=1506441988]
-polygon = PackedVector2Array(61, -35, 62, 35, 0, 70, -61, 35, -61, -35, 0, -70)
+polygon = PackedVector2Array(105, -64, 105, 36, 0, 77, -105, 36, -105, -64, 0, -105)

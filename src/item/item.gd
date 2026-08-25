@@ -1,10 +1,8 @@
 class_name Item
-extends Node2D
+extends Area2D
 
 @export var item_data: ItemData
+const SCENE := preload("res://src/item/item.tscn")
 
-func _ready() -> void:
-	pass
-
-func _process(_delta: float) -> void:
-	pass
+static func new_instance() -> Item:
+    return SCENE.instantiate()

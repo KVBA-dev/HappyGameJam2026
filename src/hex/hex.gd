@@ -17,7 +17,7 @@ static func new_instance(_hex_position: HexVector, _hex_data: HexData) -> Hex:
 	return new_hex
 
 func _ready():
-	z_index = hex_position.s()
+	z_index = hex_position.r
 	on_hex_sprite.texture = hex_data.texture
 	item_detection_area.area_entered.connect(on_item_entered)
 	mouse_detection_area.mouse_entered.connect(_on_mouse_entered)
@@ -37,7 +37,8 @@ func get_neighbors() -> Array[Hex]:
 	return neighbors.values().filter(func(neighbor): return neighbor != null)
 
 func on_item_entered(area: Area2D) -> void:
-	on_item_input(area.get_parent())
+	if area is Item:
+		on_item_input(area)
 
 
 func _on_mouse_entered():
@@ -47,6 +48,6 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	GameManager.main.tooltip_canvas.hide_tooltip(self)
 
-# TODO: Type item class!
-func on_item_input(item):
+# To be implmented in inherited classes
+func on_item_input(item: Item):
 	pass

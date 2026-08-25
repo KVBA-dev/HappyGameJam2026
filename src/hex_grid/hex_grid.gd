@@ -8,11 +8,15 @@ signal hex_changed(hex: Hex)
 func _ready():
 	GameManager.hex_grid = self
 	hex_map[HexVector.ZERO] = root_hex
-	
+	await get_tree().create_timer(2)
+	spawn_hex_at(HexVector.new_instance(1,0), preload("res://src/hex/data/example_hex_data.tres"))
+	spawn_hex_at(HexVector.new_instance(1,0), preload("res://src/hex/data/example_hex_data.tres"))
+
 func get_hex_at(_position: HexVector) -> Hex:
 	return hex_map.get(_position, null)
 
 func spawn_hex_at(_position: HexVector, hex_type: HexData) -> Hex:
+	print(_position)
 	if hex_map.has(_position):
 		ErrorBus.hex_already_exist_on_position.emit(_position)
 		return
