@@ -12,5 +12,5 @@ enum Type {
 @export var texture: Texture2D
 @export var type: Type
 
-# TODO: Add Recipe Info
+@export var recipe: Recipe
 @export var item_flow: Flow

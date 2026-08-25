@@ -1,17 +1,8 @@
 class_name HexVector extends RefCounted
 
-var vec: Vector2i
 
-var q: int:
-	get:
-		return vec.x
-	set(val):
-		vec.x = val
-var r: int:
-	get:
-		return vec.y
-	set(val):
-		vec.y = val
+var q: int
+var r: int
 
 func s() -> int:
 	return -q - r
@@ -25,6 +16,7 @@ enum Direction {
 	DOWN_LEFT
 }
 
+static var vectors: Array[HexVector] = []
 static var DIRECTION_MAP: Dictionary[Direction, HexVector] = {
 	Direction.UP_RIGHT: HexVector.new(1, -1),
 	Direction.DOWN_LEFT: HexVector.new(-1, 1),
@@ -45,14 +37,14 @@ static func DOWN_LEFT() -> HexVector: return direction_vector(Direction.DOWN_LEF
 
 static var ZERO: HexVector:
 	get():
-		return HexVector.new(0, 0)
+		return HexVector.new_instance(0, 0)
 
 static func direction_vector(direction: Direction) -> HexVector:
 	return DIRECTION_MAP[direction] 
 
 func neighbor(direction: Direction) -> HexVector:
 	var d := direction_vector(direction)
-	return HexVector.new(q + int(d.x), r + int(d.y))
+	return HexVector.new_instance(q + int(d.x), r + int(d.y))
 
 func get_all_neighbors() -> Array[HexVector]:
 	var result: Array[HexVector] = []
@@ -60,7 +52,20 @@ func get_all_neighbors() -> Array[HexVector]:
 		result.append(neighbor(direction))
 	return result
 
-func _init(_q: int, _r: int) -> void:
+static func new_instance(q: int, r: int) -> HexVector:
+	var vector: HexVector
+	for v: HexVector in vectors:
+		if v.q == q and v.r == r:
+			vector = v
+			break
+	if vector:
+		return vector
+	vector = HexVector.new(q, r)
+	vectors.append(vector)
+	return vector
+
+
+func _init(_q: int, _r: int):
 	q = _q
 	r = _r
 
@@ -82,13 +87,13 @@ func rotated(n: int) -> HexVector:
 	return null	
 
 func add(other: HexVector) -> HexVector:
-	return (HexVector.new(q + other.q, r + other.r))
+	return HexVector.new_instance(q + other.q, r + other.r)
 
 func sub(other: HexVector) -> HexVector:
-	return HexVector.new(q - other.q, r - other.r)
+	return HexVector.new_instance(q - other.q, r - other.r)
 
 func comp(other: HexVector) -> bool:
-	return vec == other.vec
+	return self == other # There can be only single instance with specified coords
 
 func mult(val: int) -> HexVector:
 	return HexVector.new(q * val, r * val)

@@ -1,6 +1,17 @@
 [gd_scene format=3 uid="uid://cs75taelvlw1j"]
 
 [ext_resource type="Script" uid="uid://dexvqtud4jl2p" path="res://src/item/item.gd" id="1_bdr1m"]
+[ext_resource type="Texture2D" uid="uid://cx5knsxgb1crg" path="res://icon.svg" id="2_4dm6s"]
 
-[node name="Item" type="Node2D" unique_id=979368408]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bdr1m"]
+radius = 26.0
+
+[node name="Item" type="Area2D" unique_id=51364114]
 script = ExtResource("1_bdr1m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1470081021]
+shape = SubResource("CircleShape2D_bdr1m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1644777645]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_4dm6s")
