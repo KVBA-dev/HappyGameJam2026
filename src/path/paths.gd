@@ -4,6 +4,10 @@ var paths: Array[PathData]
 
 func _ready() -> void:
     GameManager.paths = self
+    GameManager.hex_grid.hex_changed.connect(_on_hex_changed)
+
+func _on_hex_changed(_hex: Hex):
+    pass
 
 func create_path(start: FactoryHex, start_dir: HexVector.Direction, end: FactoryHex, end_dir: HexVector.Direction) -> bool:
     for path: PathData in paths:
