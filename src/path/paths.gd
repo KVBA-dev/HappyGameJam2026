@@ -2,6 +2,9 @@ class_name Paths extends RefCounted
 
 var paths: Array[PathData]
 
+func _ready() -> void:
+    GameManager.paths = self
+
 func create_path(start: FactoryHex, start_dir: HexVector.Direction, end: FactoryHex, end_dir: HexVector.Direction) -> bool:
     for path: PathData in paths:
         var start_already_exists := path.start == start and path.start_output_dir == start_dir
