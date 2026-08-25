@@ -12,12 +12,25 @@ var currently_focused: CardHudHighlight = null
 var cards: Array[CardHudHighlight] = []
 var can_be_laid_down: bool = true
 
+func can_place_card() -> bool:
+	return _is_currently(State.DRAGGED) and not card_lay_area.hover
+
+func take_currently_dragged(new_parent: Node) -> CardHudHighlight:
+	if not can_place_card():
+		return null
+
+	var card = currently_focused
+	currently_focused.state = State.PLACED
+	currently_focused.reparent(new_parent, false)
+	currently_focused = null
+	return card
+
 func add_card(card_data: CardData) -> bool:
 	if len(cards) + 1 > _card_num_limit:
 		return false
 
 	var visual_scene: CardHudHighlight = Scenes.CARD_HUD_SCENE.instantiate()
-	visual_scene.texture = visual_scene.texture
+	visual_scene.texture = card_data.hex_data.texture
 	visual_scene.card_data = card_data
 
 	cards_container.add_child(visual_scene)
@@ -25,6 +38,7 @@ func add_card(card_data: CardData) -> bool:
 	return true
 
 func _ready():
+	GameManager.card_holder = self
 	for child in cards_container.get_children():
 		child.free()
 

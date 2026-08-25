@@ -1,6 +1,7 @@
 class_name Hex extends Node2D
 
 
+@onready var background_sprite: Sprite2D = %BackgroundSprite
 @onready var on_hex_sprite: Sprite2D = %OnHexSprite
 @onready var item_detection_area: Area2D = %ItemDetectionArea
 @onready var mouse_detection_area: Area2D = %MouseDetectionArea
@@ -8,6 +9,7 @@ class_name Hex extends Node2D
 var hex_position: HexVector = HexVector.ZERO
 const SCENE := preload("uid://c35v72ubhgdk6")
 
+static var currently_hovered: Hex
 
 static func new_instance(_hex_position: HexVector, _hex_data: HexData) -> Hex:
 	var new_hex: Hex = SCENE.instantiate()
@@ -18,7 +20,7 @@ static func new_instance(_hex_position: HexVector, _hex_data: HexData) -> Hex:
 
 func _ready():
 	z_index = hex_position.s()
-	on_hex_sprite.texture = hex_data.texture
+	background_sprite.texture = hex_data.texture
 	item_detection_area.area_entered.connect(on_item_entered)
 	mouse_detection_area.mouse_entered.connect(_on_mouse_entered)
 	mouse_detection_area.mouse_exited.connect(_on_mouse_exited)
@@ -43,9 +45,12 @@ func on_item_entered(area: Area2D) -> void:
 func _on_mouse_entered():
 	var tooltip := TextTooltip.new_instance(str(hex_position))
 	GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
+	currently_hovered = self
 
 func _on_mouse_exited():
 	GameManager.main.tooltip_canvas.hide_tooltip(self)
+	if currently_hovered == self:
+		currently_hovered = null
 
 # TODO: Type item class!
 func on_item_input(item):

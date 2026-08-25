@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://cqrheki0nydwv"]
+
+[ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_qk0t1"]
+[ext_resource type="Texture2D" uid="uid://mcbk31ddal0o" path="res://assets/images/hex-blank.png" id="2_44eym"]
+
+[resource]
+script = ExtResource("1_qk0t1")
+hex_name = "Blank"
+texture = ExtResource("2_44eym")
+metadata/_custom_type_script = "uid://dwkm1j5578jxo"

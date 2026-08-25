@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://c0lvfgmj38wfm" path="res://src/hud/card_holder.tscn" id="1_t0re6"]
 
-[node name="Hud" type="Control" unique_id=1465972823]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=170203212]
+
+[node name="Hud" type="Control" parent="." unique_id=1465972823]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
-[node name="CardHolder" parent="." unique_id=1118155161 instance=ExtResource("1_t0re6")]
+[node name="CardHolder" parent="Hud" unique_id=1118155161 instance=ExtResource("1_t0re6")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
