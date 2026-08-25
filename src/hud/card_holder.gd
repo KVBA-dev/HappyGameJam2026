@@ -27,8 +27,18 @@ func can_use_card() -> bool:
 		_: return false
 
 func _can_use_placable() -> bool:
-	return  Hex.currently_hovered \
-		and Hex.currently_hovered.hex_data.type == HexData.Type.BLANK
+	if not Hex.currently_hovered \
+	   or Hex.currently_hovered.hex_data.type != HexData.Type.BLANK:
+		return false
+
+	var is_any_neighbour_non_blank := false
+
+	var current := Hex.currently_hovered
+	for neighbour: Hex in GameManager.hex_grid.get_hex_neighbours(current.hex_position):
+		if neighbour.hex_data.type != HexData.Type.BLANK:
+			is_any_neighbour_non_blank = true
+
+	return is_any_neighbour_non_blank
 
 func _can_use_usable() -> bool:
 	# TODO: Implement usable cards
@@ -62,7 +72,7 @@ func _ready():
 
 func _test_init():
 	for i in range(5):
-		add_card(load("res://const_data/cards/test_card.tres"))
+		add_card(load("res://const_data/cards/test_card.tres").duplicate())
 
 func _process(_delta: float) -> void:
 	if not _is_currently(State.DRAGGED):

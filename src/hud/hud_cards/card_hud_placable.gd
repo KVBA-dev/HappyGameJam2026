@@ -13,7 +13,7 @@ func start_use_animation():
 	_reparent_node_for_animation()
 
 	# Infinite cards for fun
-	GameManager.card_holder.add_card(load("res://const_data/cards/test_card.tres"))
+	GameManager.card_holder.add_card(load("res://const_data/cards/test_card.tres").duplicate())
 
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
@@ -24,10 +24,6 @@ func start_use_animation():
 	)
 
 	tween.finished.connect(func(): 
-		z_index = grid_pos.r*2
-		animation_player.play("place")
-		animation_player.animation_finished.connect(func(_anim_name):
-			SignalBus.card_used.emit(card_data, grid_pos)
-			queue_free()
-		)
+		SignalBus.card_used.emit(card_data, grid_pos)
+		queue_free()
 	)
