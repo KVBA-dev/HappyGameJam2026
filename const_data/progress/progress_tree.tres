@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ProgressTree" format=3 uid="uid://hsbd0ei3t2cc"]
+
+[ext_resource type="Script" uid="uid://bl8x7boiy8kgt" path="res://src/progress/progress_tree.gd" id="1_tree_script"]
+[ext_resource type="Resource" path="res://const_data/progress/batches/ice_cream_batch.tres" id="2_goal"]
+
+[resource]
+script = ExtResource("1_tree_script")
+goal = ExtResource("2_goal")
+metadata/_custom_type_script = "uid://bl8x7boiy8kgt"
