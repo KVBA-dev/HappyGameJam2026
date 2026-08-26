@@ -1,3 +1,4 @@
+@warning_ignore_start("unused_signal")
 extends Node
 
 # Used when player wants to spawn hex on position where hex already exists.
