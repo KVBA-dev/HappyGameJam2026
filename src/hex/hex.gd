@@ -80,7 +80,7 @@ func _input(_event: InputEvent) -> void:
 
 func _on_mouse_entered():
 	is_mouse_inside = true
-	var tooltip := TextTooltip.new_instance(str(hex_data.item_flow))
+	var tooltip := TextTooltip.new_instance(str(item_flow))
 	GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
 	currently_hovered = self
 

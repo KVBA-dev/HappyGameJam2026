@@ -86,10 +86,8 @@ func _process(_delta: float) -> void:
 	if _is_currently(State.DRAGGED) and not currently_focused.hex_sprite._is_rotating:
 		if Input.is_action_pressed("card_rotate_left"):
 			currently_focused.rotate_left()
-			currently_focused.card_data.n_60degree_rotations -= 1
 		if Input.is_action_pressed("card_rotate_right"):
 			currently_focused.rotate_right()
-			currently_focused.card_data.n_60degree_rotations += 1
 
 	if (Input.is_action_just_pressed("card_select") \
 		or (Input.is_action_just_released("card_select") and can_be_laid_down)) \

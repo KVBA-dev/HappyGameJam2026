@@ -16,5 +16,5 @@ static func new_instance(
 
 func _ready() -> void:
 	super._ready()
-	if not hex_data.item_flow:
+	if not item_flow:
 		push_error("Flow has to be set for flow hex")
