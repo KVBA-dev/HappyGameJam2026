@@ -7,10 +7,7 @@ static func new_instance(
 ) -> Hex:
 	const SCENE := preload("uid://3rxyinjdp8bm")
 	var new_hex: Hex = SCENE.instantiate()
-	new_hex.hex_data = _hex_data
-	new_hex.hex_position = _hex_position
-	new_hex.position = _hex_position.to_pixel()
-	new_hex._appear_style = appear_style
+	new_hex.init_data(_hex_position, _hex_data, appear_style)
 	return new_hex
 
 

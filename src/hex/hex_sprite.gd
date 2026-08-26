@@ -10,9 +10,6 @@ func init(hex_data: HexData):
 	on_hex_sprite.texture = hex_data.on_surface_texture
 	below_sprite.texture = hex_data.below_texture
 
-	print(below_sprite.position)
-
-
 
 @onready var _rotate_timer: Timer = %RotateTimer
 @onready var _below_displacement: Node2D = %BelowDisplacement
@@ -23,6 +20,10 @@ var _rotation_tween: Tween
 var _n_60degree_rotations: int = 0
 var n_60degree_rotations: int:
 	get: return _n_60degree_rotations
+
+func insta_rotate(n_60degree: int) -> void:
+	_n_60degree_rotations += n_60degree
+	_bg_displacement.rotation = _n_60degree_rotations * PI / 3.0
 
 func rotate_left() -> void:
 	_n_60degree_rotations -= 1

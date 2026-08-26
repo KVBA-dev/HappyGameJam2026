@@ -62,6 +62,24 @@ func spawn_hex_at(_position: HexVector, hex_type: HexData, appear_style: Hex.App
 	spawned_hex.emit(new_hex)
 	return new_hex
 
+func spawn_hex_from_card(
+		_position: HexVector, 
+		card: CardHudBase, 
+		appear_style: Hex.AppearStyle = Hex.AppearStyle.Instant
+	) -> Hex:
+	if hex_map.has(_position.vec):
+		ErrorBus.hex_already_exist_on_position.emit(_position)
+		return
+
+	var new_hex := instantiate_hex(_position, card.card_data.hex_data, appear_style)
+
+	hexes_node.add_child(new_hex)
+	new_hex.rotate_hex(card.n_60degree_rotations)
+	hex_map[_position.vec] = new_hex
+	spawned_hex.emit(new_hex)
+	return new_hex
+
+
 
 func instantiate_hex(
 	_position: HexVector,
@@ -81,7 +99,7 @@ func instantiate_hex(
 
 func handle_card_placed(data: CardHudBase, pos: HexVector):
 	clear_hex_at(pos)
-	spawn_hex_at(pos, data.card_data.hex_data, Hex.AppearStyle.Above)
+	spawn_hex_from_card(pos, data, Hex.AppearStyle.Above)
 
 func _on_hex_spawned(hex: Hex):
 	var data := hex.hex_data

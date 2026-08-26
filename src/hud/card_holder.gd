@@ -72,9 +72,9 @@ func _ready():
 
 func _test_init():
 	for i in range(2):
-		add_card(load("res://const_data/cards/factory_card.tres"))
+		add_card(load("uid://yxk70qxb4srl"))
 	for i in range(2):
-		add_card(load("res://const_data/cards/flow_card.tres"))
+		add_card(load("uid://bidussd5m7x7w"))
 
 func _process(_delta: float) -> void:
 	if not _is_currently(State.DRAGGED):

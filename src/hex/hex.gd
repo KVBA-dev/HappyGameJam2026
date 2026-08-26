@@ -30,14 +30,20 @@ static func new_instance(
 		appear_style: AppearStyle = AppearStyle.Above) -> Hex:
 	const SCENE := preload("uid://c35v72ubhgdk6")
 	var new_hex: Hex = SCENE.instantiate()
-	new_hex.hex_data = _hex_data
-	new_hex.hex_position = _hex_position
-	new_hex.position = _hex_position.to_pixel()
-	new_hex._appear_style = appear_style
-
-	new_hex.item_flow = _hex_data.item_flow
-	new_hex.type = _hex_data.type
+	new_hex.init_data(_hex_position, _hex_data, appear_style)
 	return new_hex
+
+func init_data(
+		_hex_position: HexVector, 
+		_hex_data: HexData,
+		appear_style: AppearStyle) -> void:
+	hex_data = _hex_data
+	hex_position = _hex_position
+	position = _hex_position.to_pixel()
+	_appear_style = appear_style
+
+	item_flow = _hex_data.item_flow.duplicate_deep() if _hex_data.item_flow else null
+	type = _hex_data.type
 
 func _ready():
 	z_index = 2*hex_position.r # So we have some space in between to z-order things
@@ -57,6 +63,10 @@ func _ready():
 
 func distance_to(other: HexData) -> int:
 	return hex_position.distance_to(other.hex_position)
+
+func rotate_hex(n_60degree_rotations: int) -> void:
+	item_flow.rotate(n_60degree_rotations)
+	hex_sprite.insta_rotate(n_60degree_rotations)
 
 func get_neighbor(direction: HexVector.Direction) -> Hex:
 	return GameManager.hex_grid.get_hex_at(hex_position.add(HexVector.direction_vector(direction)))
