@@ -10,8 +10,10 @@ class_name Hex extends Node2D
 var is_mouse_inside: bool = false
 var hex_position: HexVector = HexVector.ZERO
 
+# DATA FOR EACH HEX
 var item_flow: Flow
 var type: HexData.Type
+# DATA FOR EACH HEX
 
 static var currently_hovered: Hex
 
@@ -32,6 +34,9 @@ static func new_instance(
 	new_hex.hex_position = _hex_position
 	new_hex.position = _hex_position.to_pixel()
 	new_hex._appear_style = appear_style
+
+	new_hex.item_flow = _hex_data.item_flow
+	new_hex.type = _hex_data.type
 	return new_hex
 
 func _ready():
