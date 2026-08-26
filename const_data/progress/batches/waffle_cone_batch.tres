@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="ProgressBatch" format=3]
+[gd_resource type="Resource" script_class="ProgressBatch" format=3 uid="uid://dmctj784h7nsa"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data_script"]
 [ext_resource type="Script" uid="uid://vsamxaqmwrp" path="res://src/progress/progress_batch.gd" id="2_batch_script"]
-[ext_resource type="Resource" path="res://const_data/hexes/waffle_cone_hex.tres" id="3_hex"]
-[ext_resource type="Resource" path="res://const_data/progress/batches/flour_batch.tres" id="4_prerequisite"]
-[ext_resource type="Resource" path="res://const_data/progress/batches/sugar_batch.tres" id="5_prerequisite"]
-[ext_resource type="Resource" path="res://const_data/progress/batches/milk_batch.tres" id="6_prerequisite"]
+[ext_resource type="Resource" uid="uid://cp3qw836cs327" path="res://const_data/hexes/factory/waffle_cone_hex.tres" id="3_hex"]
+[ext_resource type="Resource" uid="uid://q0j3iigyl5q4" path="res://const_data/progress/batches/flour_batch.tres" id="4_prerequisite"]
+[ext_resource type="Resource" uid="uid://cubawj408vhvr" path="res://const_data/progress/batches/sugar_batch.tres" id="5_prerequisite"]
+[ext_resource type="Resource" uid="uid://14qemdyvp8nv" path="res://const_data/progress/batches/milk_batch.tres" id="6_prerequisite"]
 
 [resource]
 script = ExtResource("2_batch_script")

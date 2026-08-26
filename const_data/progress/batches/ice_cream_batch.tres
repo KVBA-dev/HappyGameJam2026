@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data_script"]
 [ext_resource type="Script" uid="uid://vsamxaqmwrp" path="res://src/progress/progress_batch.gd" id="2_batch_script"]
-[ext_resource type="Resource" uid="uid://ny6qhtc02bc1" path="res://const_data/hexes/ice_cream_hex.tres" id="3_hex"]
+[ext_resource type="Resource" uid="uid://ny6qhtc02bc1" path="res://const_data/hexes/factory/ice_cream_hex.tres" id="3_hex"]
 [ext_resource type="Resource" uid="uid://dyxktaw8kvs0e" path="res://const_data/progress/batches/vanilla_ice_cream_batch.tres" id="4_prerequisite"]
-[ext_resource type="Resource" path="res://const_data/progress/batches/chocolate_ice_cream_batch.tres" id="5_prerequisite"]
-[ext_resource type="Resource" path="res://const_data/progress/batches/strawberry_ice_cream_batch.tres" id="6_prerequisite"]
-[ext_resource type="Resource" path="res://const_data/progress/batches/waffle_cone_batch.tres" id="7_prerequisite"]
+[ext_resource type="Resource" uid="uid://k5h0ufa2d3pf" path="res://const_data/progress/batches/chocolate_ice_cream_batch.tres" id="5_prerequisite"]
+[ext_resource type="Resource" uid="uid://b6v80e283j4x6" path="res://const_data/progress/batches/strawberry_ice_cream_batch.tres" id="6_prerequisite"]
+[ext_resource type="Resource" uid="uid://dmctj784h7nsa" path="res://const_data/progress/batches/waffle_cone_batch.tres" id="7_prerequisite"]
 
 [resource]
 script = ExtResource("2_batch_script")
