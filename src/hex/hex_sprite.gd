@@ -11,13 +11,22 @@ func init(hex_data: HexData):
 	below_sprite.texture = hex_data.below_texture
 
 
-
 @onready var _rotate_timer: Timer = %RotateTimer
 @onready var _below_displacement: Node2D = %BelowDisplacement
+@onready var _bg_displacement: Node2D = %BgDisplacement
 var _is_rotating: bool = false
 var _displace_tween: Tween
+var _rotation_tween: Tween
+var _n_60degree_rotations: int = 0
+var n_60degree_rotations: int:
+	get: return _n_60degree_rotations
+
+func insta_rotate(n_60degree: int) -> void:
+	_n_60degree_rotations += n_60degree
+	_bg_displacement.rotation = _n_60degree_rotations * PI / 3.0
 
 func rotate_left() -> void:
+	_n_60degree_rotations -= 1
 	if animation_player.is_playing():
 		_rotate_timer.stop()
 		animation_player.stop()
@@ -26,6 +35,7 @@ func rotate_left() -> void:
 		animation_player.play("rotate_left")
 
 func rotate_right() -> void:
+	_n_60degree_rotations += 1
 	if animation_player.is_playing():
 		_rotate_timer.stop()
 		animation_player.stop()
@@ -37,6 +47,18 @@ func _on_animation_started(_anim_name: String) -> void:
 	if _anim_name.contains("rotate"):
 		_is_rotating = true
 		_rotate_timer.start()
+
+		if _rotation_tween:
+			_rotation_tween.kill()
+
+		var saved_rot = _bg_displacement.rotation
+		_rotation_tween = get_tree().create_tween()
+		_rotation_tween.tween_method(func(weight: float):
+			_bg_displacement.rotation = lerp_angle(
+				saved_rot, 
+				_n_60degree_rotations * PI/3, weight),
+			0.0, 1.0, 0.24
+		)
 
 func _on_rotate_timer_timeout() -> void:
 	_is_rotating = false
