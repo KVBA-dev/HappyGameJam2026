@@ -2,8 +2,11 @@
 class_name CardData extends Resource
 
 enum Type {
-    USABLE,
-    PLACABLE
+    PLACABLE,
+    USABLE
 }
 
+@export var type: Type
 @export var hex_data: HexData
+
+var n_60degree_rotations = 0

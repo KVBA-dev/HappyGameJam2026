@@ -1,8 +1,17 @@
 class_name HexVector extends RefCounted
 
 
-var q: int
-var r: int
+var vec: Vector2i
+var q: int:
+	get:
+		return vec.x
+	set(val):
+		vec.x = val
+var r: int:
+	get:
+		return vec.y
+	set(val):
+		vec.y = val
 
 func s() -> int:
 	return -q - r
@@ -35,35 +44,53 @@ static func CENTER_LEFT() -> HexVector: return direction_vector(Direction.CENTER
 static func DOWN_RIGHT() -> HexVector: return direction_vector(Direction.DOWN_RIGHT)
 static func DOWN_LEFT() -> HexVector: return direction_vector(Direction.DOWN_LEFT)
 
+
+static func angle_to_dir(angle: float) -> Direction:
+	var normalized_angle := fposmod(angle, TAU)
+	var sector := int(floor((normalized_angle + PI / 6.0) / (PI / 3.0))) % 6
+	match sector:
+		0:
+			return Direction.CENTER_RIGHT
+		1:
+			return Direction.DOWN_RIGHT
+		2:
+			return Direction.DOWN_LEFT
+		3:
+			return Direction.CENTER_LEFT
+		4:
+			return Direction.UP_LEFT
+		5:
+			return Direction.UP_RIGHT
+	return Direction.CENTER_RIGHT
+
+
 static var ZERO: HexVector:
 	get():
-		return HexVector.new_instance(0, 0)
+		return HexVector.new(0, 0)
+
+static func direction_rotate(direction: Direction, n_60degree: int) -> Direction:
+	var dir_vec := direction_vector(direction)
+	dir_vec = dir_vec.rotated(n_60degree)
+	return vector_direction(dir_vec)
 
 static func direction_vector(direction: Direction) -> HexVector:
 	return DIRECTION_MAP[direction] 
 
+static func vector_direction(vector: HexVector) -> Direction:
+	for direction in DIRECTION_MAP:
+		if DIRECTION_MAP[direction].comp(vector):
+			return direction
+	return Direction.UP_RIGHT
+
 func neighbor(direction: Direction) -> HexVector:
 	var d := direction_vector(direction)
-	return HexVector.new_instance(q + int(d.x), r + int(d.y))
+	return HexVector.new(q + int(d.q), r + int(d.r))
 
 func get_all_neighbors() -> Array[HexVector]:
 	var result: Array[HexVector] = []
 	for direction in Direction.values():
 		result.append(neighbor(direction))
 	return result
-
-static func new_instance(q: int, r: int) -> HexVector:
-	var vector: HexVector
-	for v: HexVector in vectors:
-		if v.q == q and v.r == r:
-			vector = v
-			break
-	if vector:
-		return vector
-	vector = HexVector.new(q, r)
-	vectors.append(vector)
-	return vector
-
 
 func _init(_q: int, _r: int):
 	q = _q
@@ -87,13 +114,16 @@ func rotated(n: int) -> HexVector:
 	return null	
 
 func add(other: HexVector) -> HexVector:
-	return HexVector.new_instance(q + other.q, r + other.r)
+	return HexVector.new(q + other.q, r + other.r)
 
 func sub(other: HexVector) -> HexVector:
-	return HexVector.new_instance(q - other.q, r - other.r)
+	return HexVector.new(q - other.q, r - other.r)
 
 func comp(other: HexVector) -> bool:
-	return self == other # There can be only single instance with specified coords
+	return vec == other.vec
+
+func eq(other: HexVector) -> bool:
+	return self.comp(other)
 
 func mult(val: int) -> HexVector:
 	return HexVector.new(q * val, r * val)

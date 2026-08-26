@@ -1,26 +1,162 @@
 [gd_scene format=3 uid="uid://c35v72ubhgdk6"]
 
 [ext_resource type="Script" uid="uid://s24x28yrcefo" path="res://src/hex/hex.gd" id="1_6ot4j"]
+[ext_resource type="PackedScene" uid="uid://cdilrnqed1pcs" path="res://src/hex/hex_sprite.tscn" id="2_l8m4e"]
+
+[sub_resource type="Animation" id="Animation_l8m4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Displacement:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Displacement:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_kabdv"]
+resource_name = "disappear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Displacement:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t53up"]
+resource_name = "spawn_above"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Displacement:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -40), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ak6w3"]
+resource_name = "spawn_below"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Displacement:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3.2490087, 1),
+"update": 0,
+"values": [Vector2(0, 100), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Displacement:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t53up"]
+_data = {
+&"RESET": SubResource("Animation_l8m4e"),
+&"disappear": SubResource("Animation_kabdv"),
+&"spawn_above": SubResource("Animation_t53up"),
+&"spawn_below": SubResource("Animation_ak6w3")
+}
 
 [node name="Hex" type="Node2D" unique_id=1567981896]
 script = ExtResource("1_6ot4j")
 
-[node name="BackgroundSprite" type="Sprite2D" parent="." unique_id=1700633582]
+[node name="Displacement" type="Node2D" parent="." unique_id=214523488]
 unique_name_in_owner = true
 
-[node name="OnHexSprite" type="Sprite2D" parent="." unique_id=1168967990]
-unique_name_in_owner = true
-position = Vector2(0, -14)
-scale = Vector2(0.7, 0.7)
-
-[node name="ItemDetectionArea" type="Area2D" parent="." unique_id=1733114518]
+[node name="HexSprite" parent="Displacement" unique_id=956441382 instance=ExtResource("2_l8m4e")]
 unique_name_in_owner = true
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="ItemDetectionArea" unique_id=1186782119]
-polygon = PackedVector2Array(105, -64, 105, 36, 0, 77, -105, 36, -105, -64, 0, -105)
-
-[node name="MouseDetectionArea" type="Area2D" parent="." unique_id=1134900119]
+[node name="ItemDetectionArea" type="Area2D" parent="Displacement" unique_id=1733114518]
 unique_name_in_owner = true
+position = Vector2(0, 14)
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="MouseDetectionArea" unique_id=1506441988]
-polygon = PackedVector2Array(105, -64, 105, 36, 0, 77, -105, 36, -105, -64, 0, -105)
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Displacement/ItemDetectionArea" unique_id=1329292269]
+polygon = PackedVector2Array(80, -58, 80, 31, 0, 76, -79, 31, -80, -58, 0, -105)
+
+[node name="MouseDetectionArea" type="Area2D" parent="Displacement" unique_id=1134900119]
+unique_name_in_owner = true
+position = Vector2(0, 14)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Displacement/MouseDetectionArea" unique_id=588525081]
+polygon = PackedVector2Array(80, -58, 80, 31, 0, 76, -79, 31, -80, -58, 0, -105)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1438449983]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_t53up")

@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dygn2ff7qhjyx"]
+
+[ext_resource type="Script" uid="uid://de3d5kujb6pum" path="res://src/hud/card_hud_base.gd" id="1_awcme"]
+[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="2_awcme"]
+[ext_resource type="PackedScene" uid="uid://cdilrnqed1pcs" path="res://src/hex/hex_sprite.tscn" id="3_ftfg4"]
+
+[sub_resource type="Animation" id="Animation_f8wkc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Displacement/ShadowSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 1.1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Displacement:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j2tbl"]
+resource_name = "place"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Displacement/ShadowSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Displacement:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f8wkc"]
+_data = {
+&"RESET": SubResource("Animation_f8wkc"),
+&"place": SubResource("Animation_j2tbl")
+}
+
+[node name="CardHudHighlight" type="Node2D" unique_id=1981452838]
+script = ExtResource("1_awcme")
+
+[node name="Displacement" type="Node2D" parent="." unique_id=123048379]
+
+[node name="ShadowSprite" type="Sprite2D" parent="Displacement" unique_id=972835771]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 0.19607843)
+z_index = -10
+position = Vector2(0, 43)
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_awcme")
+
+[node name="HexSprite" parent="Displacement" unique_id=956441382 instance=ExtResource("3_ftfg4")]
+unique_name_in_owner = true
+
+[node name="Area2D" type="Area2D" parent="Displacement" unique_id=1435104358]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Displacement/Area2D" unique_id=646041063]
+visible = false
+polygon = PackedVector2Array(80, -58, 80, 31, 0, 76, -79, 31, -80, -58, 0, -105)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=313570768]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_f8wkc")
+
+[connection signal="mouse_entered" from="Displacement/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Displacement/Area2D" to="." method="_on_area_2d_mouse_exited"]
