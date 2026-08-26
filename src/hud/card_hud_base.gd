@@ -11,7 +11,9 @@ enum State {
 	PLACED = 3
 }
 
-var n_60degree_rotations = 0
+var n_60degree_rotations: int:
+	get:
+		return hex_sprite.n_60degree_rotations
 
 var target_pos: Vector2 = self.position
 var target_scale: Vector2 = Vector2.ONE
