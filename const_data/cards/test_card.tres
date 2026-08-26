@@ -1,19 +1,21 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bgl41e62q68sf"]
 
-[ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="1_h3cav"]
+[ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="1_380l8"]
 [ext_resource type="Script" uid="uid://woit68wbxbch" path="res://src/card/data/card_data.gd" id="1_wb5am"]
-[ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="2_380l8"]
-[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="3_vem48"]
+[ext_resource type="Resource" uid="uid://bdb4iw75q6fnj" path="res://const_data/flows/3-2_flow.tres" id="2_vem48"]
+[ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="3_pm2o4"]
+[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="4_xwiy3"]
 
-[sub_resource type="Resource" id="Resource_pm2o4"]
-script = ExtResource("2_380l8")
+[sub_resource type="Resource" id="Resource_febad"]
+script = ExtResource("3_pm2o4")
 hex_name = "Tester"
-texture = ExtResource("3_vem48")
-below_texture = ExtResource("1_h3cav")
-type = 2
+texture = ExtResource("4_xwiy3")
+below_texture = ExtResource("1_380l8")
+type = 1
+item_flow = ExtResource("2_vem48")
 metadata/_custom_type_script = "uid://dwkm1j5578jxo"
 
 [resource]
 script = ExtResource("1_wb5am")
-hex_data = SubResource("Resource_pm2o4")
+hex_data = SubResource("Resource_febad")
 metadata/_custom_type_script = "uid://woit68wbxbch"

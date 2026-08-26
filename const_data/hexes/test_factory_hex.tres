@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://b0odpgrw2u2ea"]
+
+[ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="1_qerls"]
+[ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_tpfdk"]
+[ext_resource type="Texture2D" uid="uid://cx5knsxgb1crg" path="res://icon.svg" id="2_6jr35"]
+[ext_resource type="Resource" uid="uid://bdb4iw75q6fnj" path="res://const_data/flows/3-2_flow.tres" id="2_qerls"]
+[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="2_skq2f"]
+[ext_resource type="Resource" uid="uid://0ud38a1yc6q0" path="res://src/recipe/resources/windmill.tres" id="3_0a4k7"]
+
+[resource]
+script = ExtResource("1_tpfdk")
+hex_name = "Factory [T]"
+texture = ExtResource("2_skq2f")
+on_surface_texture = ExtResource("2_6jr35")
+below_texture = ExtResource("1_qerls")
+type = 2
+recipe = ExtResource("3_0a4k7")
+item_flow = ExtResource("2_qerls")
+metadata/_custom_type_script = "uid://dwkm1j5578jxo"
