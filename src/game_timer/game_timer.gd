@@ -8,6 +8,10 @@ var _curr_tick: float
 var _curr_timeout: float
 var _timed_out: bool
 
+var remaining_time: float:
+	get():
+		return _curr_timeout
+
 func _ready() -> void:
 	reset(tick_interval, timeout_interval)
 

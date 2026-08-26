@@ -23,7 +23,7 @@ script = ExtResource("3_ab7mr")
 
 [node name="GameTimer" type="Node" parent="." unique_id=1910709566]
 script = ExtResource("5_jkpqq")
-timeout_interval = 10.0
+timeout_interval = 181.0
 
 [node name="HexGrid" parent="." unique_id=1755103109 instance=ExtResource("6_hfdnt")]
 
@@ -31,4 +31,5 @@ timeout_interval = 10.0
 
 [node name="AudioSystem" parent="." unique_id=96883651 instance=ExtResource("8_gyu3h")]
 
-[node name="StatusHud" parent="." unique_id=1515205727 instance=ExtResource("9_2nke2")]
+[node name="StatusHud" parent="." unique_id=1515205727 node_paths=PackedStringArray("game_timer") instance=ExtResource("9_2nke2")]
+game_timer = NodePath("../GameTimer")

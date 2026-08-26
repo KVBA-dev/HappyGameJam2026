@@ -4,6 +4,7 @@ class_name Main extends Node
 @onready var tooltip_canvas: TooltipCanvas = %TooltipCanvas
 
 var paused: bool = false
+var paths_visible: bool = true
 
 static func new_instance() -> Main:
 	var main: Main = GameManager.scenes.MAIN_SCENE.instantiate()

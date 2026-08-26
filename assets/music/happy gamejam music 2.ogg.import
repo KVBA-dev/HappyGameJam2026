@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://lflnpmsoroi1"
+path="res://.godot/imported/happy gamejam music 2.ogg-d4da66e436b72d0dbef581ed3491731d.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/happy gamejam music 2.ogg"
+dest_files=["res://.godot/imported/happy gamejam music 2.ogg-d4da66e436b72d0dbef581ed3491731d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
