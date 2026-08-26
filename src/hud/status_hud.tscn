@@ -26,3 +26,9 @@ offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "00:00"
+
+[node name="HidePathsBtn" type="Button" parent="." unique_id=1886612193]
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 32
+text = "Hide paths"

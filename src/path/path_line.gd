@@ -17,10 +17,15 @@ func _ready() -> void:
 	visual_line.points = PackedVector2Array(waypoints_positions)
 	for point: Vector2 in waypoints_positions:
 		curve.add_point(point)
-
+	SignalBus.path_visibility_toggled.connect(on_path_visibility_toggled)
+	on_path_visibility_toggled(GameManager.main.paths_visible)
 
 func show_line():
 	visual_line.show()
 
 func hide_line():
 	visual_line.hide()
+
+func on_path_visibility_toggled(paths_visible: bool) -> void:
+	if paths_visible: show_line()
+	else: hide_line()

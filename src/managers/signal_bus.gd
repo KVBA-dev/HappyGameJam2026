@@ -12,3 +12,4 @@ signal card_used(data: CardHudBase, pos: HexVector)
 signal selected_hex(hex: FactoryHex, dir: HexVector.Direction)
 signal card_hovered(data: CardData)
 
+signal path_visibility_toggled(visible: bool)
