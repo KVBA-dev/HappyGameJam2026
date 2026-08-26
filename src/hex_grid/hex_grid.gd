@@ -133,3 +133,12 @@ func _on_hex_spawned(hex: Hex):
 		return
 
 	surround_with_hexes(3, hex.hex_position)
+
+func can_place_card(pos: HexVector):
+	var is_any_neighbour_non_blank := false
+
+	for neighbour: Hex in get_hex_neighbours(pos):
+		if neighbour.hex_data.type != HexData.Type.BLANK:
+			is_any_neighbour_non_blank = true
+
+	return is_any_neighbour_non_blank

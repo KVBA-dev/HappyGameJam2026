@@ -31,14 +31,8 @@ func _can_use_placable() -> bool:
 	   or Hex.currently_hovered.hex_data.type != HexData.Type.BLANK:
 		return false
 
-	var is_any_neighbour_non_blank := false
-
 	var current := Hex.currently_hovered
-	for neighbour: Hex in GameManager.hex_grid.get_hex_neighbours(current.hex_position):
-		if neighbour.hex_data.type != HexData.Type.BLANK:
-			is_any_neighbour_non_blank = true
-
-	return is_any_neighbour_non_blank
+	return GameManager.hex_grid.can_place_card(current.hex_position)
 
 func _can_use_usable() -> bool:
 	# TODO: Implement usable cards
