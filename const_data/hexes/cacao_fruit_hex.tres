@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://3xsdte3dw70l"]
+[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://dudbni02t3d65"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
 [ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
