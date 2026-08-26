@@ -1,17 +1,22 @@
 [gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://d0cpqrnp63lu4"]
 
-[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_j2tlm"]
-[ext_resource type="Resource" uid="uid://c81blbhjqejk1" path="res://src/item/resources/flour.tres" id="2_cyaos"]
-[ext_resource type="Resource" uid="uid://bxrtio7rk1lmt" path="res://src/item/resources/wheat.tres" id="3_3vyme"]
-[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="4_pyj2d"]
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_item_data"]
+[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="2_recipe"]
+[ext_resource type="Resource" uid="uid://cs7uyq02puv65" path="res://src/item/resources/strawberry_ice_cream.tres" id="3_item"]
+[ext_resource type="Resource" uid="uid://byc5kqhjo07rw" path="res://src/item/resources/chocolate_ice_cream.tres" id="4_item"]
+[ext_resource type="Resource" uid="uid://74dboj4fkeyx" path="res://src/item/resources/vanilla_ice_cream.tres" id="5_item"]
+[ext_resource type="Resource" uid="uid://b6ptowr2ap04c" path="res://src/item/resources/waffle_cone.tres" id="6_item"]
+[ext_resource type="Resource" uid="uid://ojq45gxj6rs1" path="res://src/item/resources/ice_cream.tres" id="7_item"]
 
 [resource]
-script = ExtResource("4_pyj2d")
-requirements = Dictionary[ExtResource("1_j2tlm"), int]({
-ExtResource("3_3vyme"): 1
+script = ExtResource("2_recipe")
+requirements = Dictionary[ExtResource("1_item_data"), int]({
+ExtResource("3_item"): 1,
+ExtResource("4_item"): 1,
+ExtResource("5_item"): 1,
+ExtResource("6_item"): 1
 })
-produces = Dictionary[ExtResource("1_j2tlm"), int]({
-ExtResource("2_cyaos"): 1
-})
+produces = ExtResource("7_item")
+production_capacity = 1
 processing_time = 1.0
 metadata/_custom_type_script = "uid://c6oty1ydhdib4"

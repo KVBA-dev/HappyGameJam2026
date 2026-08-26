@@ -1,21 +1,20 @@
 [gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://cnvy6gt8ikllh"]
 
-[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_uug4q"]
-[ext_resource type="Resource" uid="uid://b5x1x7nwcoi88" path="res://src/item/resources/sugar.tres" id="2_kakfs"]
-[ext_resource type="Resource" uid="uid://vp2tx11g2r0y" path="res://src/item/resources/chocolate.tres" id="2_l6qoj"]
-[ext_resource type="Resource" uid="uid://s6fawh2rpu2f" path="res://src/item/resources/cocoa.tres" id="4_746cx"]
-[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="4_qlmjw"]
-[ext_resource type="Resource" uid="uid://cuxo0ca2kjwlb" path="res://src/item/resources/milk.tres" id="5_spbej"]
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_item_data"]
+[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="2_recipe"]
+[ext_resource type="Resource" uid="uid://s6fawh2rpu2f" path="res://src/item/resources/cocoa.tres" id="3_item"]
+[ext_resource type="Resource" uid="uid://cuxo0ca2kjwlb" path="res://src/item/resources/milk.tres" id="4_item"]
+[ext_resource type="Resource" uid="uid://b5x1x7nwcoi88" path="res://src/item/resources/sugar.tres" id="5_item"]
+[ext_resource type="Resource" uid="uid://vp2tx11g2r0y" path="res://src/item/resources/chocolate.tres" id="6_item"]
 
 [resource]
-script = ExtResource("4_qlmjw")
-requirements = Dictionary[ExtResource("1_uug4q"), int]({
-ExtResource("2_kakfs"): 1,
-ExtResource("4_746cx"): 2,
-ExtResource("5_spbej"): 1
+script = ExtResource("2_recipe")
+requirements = Dictionary[ExtResource("1_item_data"), int]({
+ExtResource("3_item"): 2,
+ExtResource("4_item"): 1,
+ExtResource("5_item"): 1
 })
-produces = Dictionary[ExtResource("1_uug4q"), int]({
-ExtResource("2_l6qoj"): 1
-})
+produces = ExtResource("6_item")
+production_capacity = 1
 processing_time = 1.0
 metadata/_custom_type_script = "uid://c6oty1ydhdib4"

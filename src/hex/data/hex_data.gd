@@ -4,7 +4,7 @@ class_name HexData extends Resource
 enum Type {
 	BLANK,
 	BLANK_UNPLACABLE,
-	ROAD,
+	FLOW,
 	FACTORY
 }
 

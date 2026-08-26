@@ -3,14 +3,16 @@ class_name HexGrid extends Node2D
 @onready var hexes_node: Node2D = %HexesNode
 @onready var root_hex: Hex = %RootHex
 var hex_map: Dictionary[Vector2i, Hex] = {}
-signal hex_changed(hex: Hex)
+signal spawned_hex(hex: Hex)
+signal deleted_hex(position: HexVector)
+signal changed_hex(old_hex: Hex, new_hex: Hex)
 
 func _ready():
 	GameManager.hex_grid = self
 	hex_map[HexVector.ZERO.vec] = root_hex
 
 	SignalBus.card_used.connect(handle_card_placed)
-	hex_changed.connect(_on_hex_changed)
+	spawned_hex.connect(_on_hex_spawned)
 
 func surround_with_hexes(radius: int, center: HexVector = HexVector.ZERO):
 	var blank = preload("res://const_data/hexes/blank_hex.tres")
@@ -40,6 +42,7 @@ func get_hex_neighbours(_position: HexVector) -> Array[Hex]:
 	return ret
 
 func clear_hex_at(_position: HexVector):
+	deleted_hex.emit(_position)
 	if not hex_map.has(_position.vec):
 		return false
 
@@ -50,20 +53,36 @@ func clear_hex_at(_position: HexVector):
 func spawn_hex_at(_position: HexVector, hex_type: HexData, appear_style: Hex.AppearStyle = Hex.AppearStyle.Instant) -> Hex:
 	if hex_map.has(_position.vec):
 		ErrorBus.hex_already_exist_on_position.emit(_position)
-		print("overlap")
 		return
 
-	var new_hex := Hex.new_instance(_position, hex_type, appear_style)
+	var new_hex := instantiate_hex(_position, hex_type, appear_style)
 	hexes_node.add_child(new_hex)
 	hex_map[_position.vec] = new_hex
-	hex_changed.emit(new_hex)
+	spawned_hex.emit(new_hex)
 	return new_hex
+
+
+func instantiate_hex(
+	_position: HexVector,
+	hex_type: HexData,
+	appear_style: Hex.AppearStyle = Hex.AppearStyle.Instant,
+) -> Hex:
+	match hex_type.type:
+		HexData.Type.FLOW:
+			return FlowHex.new_instance(_position, hex_type, appear_style)
+		HexData.Type.FACTORY:
+			return FactoryHex.new_instance(_position, hex_type, appear_style)
+		HexData.Type.BLANK:
+			return Hex.new_instance(_position, hex_type, appear_style)
+		_:
+			push_error("Instantiation of a hex not implemented")
+			return
 
 func handle_card_placed(data: CardData, pos: HexVector):
 	clear_hex_at(pos)
 	spawn_hex_at(pos, data.hex_data, Hex.AppearStyle.Above)
 
-func _on_hex_changed(hex: Hex):
+func _on_hex_spawned(hex: Hex):
 	var data := hex.hex_data
 	if not data.should_surround_by_blanks():
 		return
