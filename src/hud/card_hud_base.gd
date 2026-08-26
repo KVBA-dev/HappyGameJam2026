@@ -5,11 +5,13 @@ class_name CardHudBase extends Node2D
 const MIN_Z_INDEX = 0
 
 enum State {
-	IN_HAND,
-	PREVIEWED,
-	DRAGGED,
-	PLACED
+	IN_HAND = 0,
+	PREVIEWED = 1,
+	DRAGGED = 2,
+	PLACED = 3
 }
+
+var n_60degree_rotations = 0
 
 var target_pos: Vector2 = self.position
 var target_scale: Vector2 = Vector2.ONE
@@ -76,13 +78,6 @@ func _dragged_process(delta: float):
 		Utils.smooth_exp(scale.x, target_scale.x, SCALE_SPEED, delta),
 		Utils.smooth_exp(scale.y, target_scale.y, SCALE_SPEED, delta)
 	)
-
-func _get_rotated_ready_data() -> CardData:
-	var n_rotations: int = card_data.n_60degree_rotations
-	if n_rotations != 0:
-		card_data.hex_data = card_data.hex_data.rotated(n_rotations)
-
-	return card_data
 
 func _on_area_2d_mouse_entered() -> void:
 	_hover = true

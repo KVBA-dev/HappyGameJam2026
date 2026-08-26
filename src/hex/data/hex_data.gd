@@ -2,14 +2,13 @@
 class_name HexData extends Resource
 
 enum Type {
-	BLANK,
-	BLANK_UNPLACABLE,
-	FLOW,
-	FACTORY
+	BLANK = 0,
+	FLOW = 1,
+	FACTORY = 2
 }
 
 func should_surround_by_blanks() -> bool:
-	return type != Type.BLANK and type != Type.BLANK_UNPLACABLE
+	return type != Type.BLANK
 
 # Be sure to make every instance unique
 func rotated(n_60degree: int) -> HexData:

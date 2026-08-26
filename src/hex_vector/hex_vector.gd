@@ -17,12 +17,12 @@ func s() -> int:
 	return -q - r
 
 enum Direction {
-	UP_RIGHT,
-	UP_LEFT,
-	CENTER_RIGHT,
-	CENTER_LEFT,
-	DOWN_RIGHT,
-	DOWN_LEFT
+	UP_RIGHT = 0,
+	UP_LEFT = 1,
+	CENTER_RIGHT = 2,
+	CENTER_LEFT = 3,
+	DOWN_RIGHT = 4,
+	DOWN_LEFT = 5
 }
 
 static var vectors: Array[HexVector] = []

@@ -10,19 +10,21 @@ class_name Hex extends Node2D
 var is_mouse_inside: bool = false
 var hex_position: HexVector = HexVector.ZERO
 
+var item_flow: Flow
+var type: HexData.Type
 
 static var currently_hovered: Hex
 
 enum AppearStyle {
-	Below,
-	Above,
-	Instant
+	Below = 0,
+	Above = 1,
+	Instant = 2
 }
 var _appear_style: AppearStyle = AppearStyle.Instant
 
 static func new_instance(
 		_hex_position: HexVector, 
-		_hex_data: HexData, 
+		_hex_data: HexData,
 		appear_style: AppearStyle = AppearStyle.Above) -> Hex:
 	const SCENE := preload("uid://c35v72ubhgdk6")
 	var new_hex: Hex = SCENE.instantiate()

@@ -6,8 +6,7 @@ func get_screen_position() -> Vector2:
 # Override
 func start_use_animation():
 	var target := Hex.currently_hovered
-	target.hex_data.type = HexData.Type.BLANK_UNPLACABLE
-
+	# TODO-r: Make it so hexes can't be placed on same tile during animation
 	var grid_pos := target.hex_position
 
 	_reparent_node_for_animation()
@@ -24,6 +23,6 @@ func start_use_animation():
 	)
 
 	tween.finished.connect(func(): 
-		SignalBus.card_used.emit(_get_rotated_ready_data(), grid_pos)
+		SignalBus.card_used.emit(self, grid_pos)
 		queue_free()
 	)
