@@ -35,7 +35,10 @@ func _can_use_placable() -> bool:
 		return false
 
 	var current := Hex.currently_hovered
-	return GameManager.hex_grid.can_place_card(current.hex_position)
+	var can_place = GameManager.hex_grid.can_place_card(current.hex_position)
+	if not can_place:
+		ErrorBus.hex_too_far_from_existing.emit(current)
+	return can_place
 
 func _can_use_usable() -> bool:
 	# TODO: Implement usable cards

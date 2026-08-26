@@ -7,9 +7,13 @@ var hud_message_scene: PackedScene = preload("uid://c8tblcve0no6e")
 
 func _ready() -> void:
 	ErrorBus.hex_already_exist_on_position.connect(_handle_hex_already_exist_error)
+	ErrorBus.hex_too_far_from_existing.connect(_handle_hex_too_far_error)
 
 func _handle_hex_already_exist_error(_hex: Hex):
-	spawn_cursor_message("Can't place hex; hex already exists here")
+	spawn_cursor_message("Can't place a hex on an already existing place")
+
+func _handle_hex_too_far_error(_hex: Hex):
+	spawn_cursor_message("Can't place a hex without a non-blank neighbour")
 
 func spawn_cursor_message(text: String):
 	if current_on_screen >= MAX_ON_SCREEN:
