@@ -1,19 +1,16 @@
 [gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://bjny2g351hq0h"]
 
-[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_vem3i"]
-[ext_resource type="Resource" uid="uid://hjsugu21v1ey" path="res://src/item/resources/vanilla_extract.tres" id="2_1ijk7"]
-[ext_resource type="Resource" uid="uid://cmj62dmmklm6" path="res://src/item/resources/vanilla_stick.tres" id="3_nxqcu"]
-[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="4_4d12f"]
-[ext_resource type="Resource" uid="uid://bf05jhmwssta8" path="res://src/item/resources/ethanol.tres" id="4_hqds7"]
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_item_data"]
+[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="2_recipe"]
+[ext_resource type="Resource" uid="uid://dbp4qkqr6r343" path="res://src/item/resources/sugar_beet.tres" id="3_item"]
+[ext_resource type="Resource" uid="uid://b5x1x7nwcoi88" path="res://src/item/resources/sugar.tres" id="4_item"]
 
 [resource]
-script = ExtResource("4_4d12f")
-requirements = Dictionary[ExtResource("1_vem3i"), int]({
-ExtResource("3_nxqcu"): 1,
-ExtResource("4_hqds7"): 1
+script = ExtResource("2_recipe")
+requirements = Dictionary[ExtResource("1_item_data"), int]({
+ExtResource("3_item"): 1
 })
-produces = Dictionary[ExtResource("1_vem3i"), int]({
-ExtResource("2_1ijk7"): 1
-})
+produces = ExtResource("4_item")
+production_capacity = 2
 processing_time = 1.0
 metadata/_custom_type_script = "uid://c6oty1ydhdib4"

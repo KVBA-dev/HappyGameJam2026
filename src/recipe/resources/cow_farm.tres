@@ -1,21 +1,13 @@
 [gd_resource type="Resource" script_class="Recipe" format=3 uid="uid://dmo6dwooods6f"]
 
-[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_8e88p"]
-[ext_resource type="Resource" uid="uid://c81blbhjqejk1" path="res://src/item/resources/flour.tres" id="2_ebgue"]
-[ext_resource type="Resource" uid="uid://b6ptowr2ap04c" path="res://src/item/resources/waffle_cone.tres" id="2_m8itt"]
-[ext_resource type="Resource" uid="uid://cuxo0ca2kjwlb" path="res://src/item/resources/milk.tres" id="2_s6gt1"]
-[ext_resource type="Resource" uid="uid://b5x1x7nwcoi88" path="res://src/item/resources/sugar.tres" id="4_bq7vw"]
-[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="4_oor5r"]
+[ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_item_data"]
+[ext_resource type="Script" uid="uid://c6oty1ydhdib4" path="res://src/recipe/recipe.gd" id="2_recipe"]
+[ext_resource type="Resource" uid="uid://cuxo0ca2kjwlb" path="res://src/item/resources/milk.tres" id="3_item"]
 
 [resource]
-script = ExtResource("4_oor5r")
-requirements = Dictionary[ExtResource("1_8e88p"), int]({
-ExtResource("2_ebgue"): 1,
-ExtResource("4_bq7vw"): 1,
-ExtResource("2_s6gt1"): 1
-})
-produces = Dictionary[ExtResource("1_8e88p"), int]({
-ExtResource("2_m8itt"): 1
-})
+script = ExtResource("2_recipe")
+requirements = Dictionary[ExtResource("1_item_data"), int]({})
+produces = ExtResource("3_item")
+production_capacity = 1
 processing_time = 1.0
 metadata/_custom_type_script = "uid://c6oty1ydhdib4"
