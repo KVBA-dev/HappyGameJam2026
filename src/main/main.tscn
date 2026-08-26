@@ -37,6 +37,7 @@ timeout_interval = 10.0
 [node name="StatusHud" parent="." unique_id=1515205727 instance=ExtResource("9_2nke2")]
 
 [node name="CursorHoverHex" parent="." unique_id=963481670 instance=ExtResource("10_km7bn")]
+z_index = 100
 
 [node name="MessageSpawner" parent="." unique_id=511295811 instance=ExtResource("11_erw1m")]
 follow_viewport_enabled = true

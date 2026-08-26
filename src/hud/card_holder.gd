@@ -41,6 +41,9 @@ func _can_use_usable() -> bool:
 	# TODO: Implement usable cards
 	return false
 
+func is_dragging_card_type(type: CardData.Type) -> bool:
+	return _is_currently(State.DRAGGED) and currently_focused.card_data.type == type
+
 func take_currently_dragged() -> CardHudBase:
 	var card = currently_focused
 	currently_focused.state = State.PLACED
