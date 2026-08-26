@@ -1,3 +1,5 @@
 class_name ProgressBatch extends Resource
 
-@export var buildings: Array[CardData]
+@export var buildings: Array[Factory]
+@export var prequisites: Array[ProgressBatch]
+var following: Array[ProgressBatch] = [] # Set on runtime what's next
