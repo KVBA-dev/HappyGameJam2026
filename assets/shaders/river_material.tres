@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://8neoayb01l4"]
+
+[ext_resource type="Shader" uid="uid://ca1ryrnofwi56" path="res://assets/shaders/river.gdshader" id="1_4qq48"]
+
+[resource]
+shader = ExtResource("1_4qq48")
+shader_parameter/edge_color = Color(0.23100002, 0.5885, 0.66, 1)
+shader_parameter/water_color = Color(0, 0.741, 0.78, 1)
+shader_parameter/wave_color = Color(0.59000003, 0.99316674, 1, 1)

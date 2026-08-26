@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://os0dp4imlkiq"]
+
+[ext_resource type="Script" uid="uid://b04jjlosbhtjf" path="res://src/main/status_hud.gd" id="1_dbguq"]
+
+[node name="StatusHud" type="CanvasLayer" unique_id=1515205727]
+script = ExtResource("1_dbguq")
+
+[node name="PausedLabel" type="Label" parent="." unique_id=1146052822]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -57.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "Paused"

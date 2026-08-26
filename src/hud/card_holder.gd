@@ -72,9 +72,9 @@ func _ready():
 
 func _test_init():
 	for i in range(2):
-		add_card(load("res://const_data/cards/factory_card.tres"))
+		add_card(load("uid://yxk70qxb4srl"))
 	for i in range(2):
-		add_card(load("res://const_data/cards/flow_card.tres"))
+		add_card(load("uid://bidussd5m7x7w"))
 
 func _process(_delta: float) -> void:
 	if not _is_currently(State.DRAGGED):
@@ -86,10 +86,8 @@ func _process(_delta: float) -> void:
 	if _is_currently(State.DRAGGED) and not currently_focused.hex_sprite._is_rotating:
 		if Input.is_action_pressed("card_rotate_left"):
 			currently_focused.rotate_left()
-			currently_focused.card_data.n_60degree_rotations -= 1
 		if Input.is_action_pressed("card_rotate_right"):
 			currently_focused.rotate_right()
-			currently_focused.card_data.n_60degree_rotations += 1
 
 	if (Input.is_action_just_pressed("card_select") \
 		or (Input.is_action_just_released("card_select") and can_be_laid_down)) \
@@ -114,6 +112,8 @@ func _set_currently_focused(node: CardHudBase):
 
 	if node:
 		node.state = State.PREVIEWED
+		if node != currently_focused: 
+			SignalBus.card_hovered.emit(node.card_data)
 
 	currently_focused = node
 	reorder_cards()

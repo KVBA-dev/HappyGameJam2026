@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://d0p6p3u8melo"]
+
+[ext_resource type="Script" uid="uid://x308tbidnymc" path="res://src/audio/audio_system.gd" id="1_52tc4"]
+[ext_resource type="AudioStream" uid="uid://dtp60par2tap2" path="res://assets/sfx/hover.wav" id="2_j7tyn"]
+[ext_resource type="AudioStream" uid="uid://bpapmnngmnef6" path="res://assets/sfx/click.wav" id="3_2mxqt"]
+[ext_resource type="AudioStream" uid="uid://755rhp411d4d" path="res://assets/sfx/cancel.wav" id="4_nei7e"]
+[ext_resource type="AudioStream" uid="uid://dt1sy2juqphpj" path="res://assets/sfx/build.wav" id="5_amhg0"]
+[ext_resource type="AudioStream" uid="uid://corctacxmvpsl" path="res://assets/music/happy game jam music 1.ogg" id="6_2mxqt"]
+
+[node name="AudioSystem" type="Node" unique_id=96883651]
+script = ExtResource("1_52tc4")
+sfx_sounds = Dictionary[int, AudioStream]({
+0: ExtResource("2_j7tyn"),
+1: ExtResource("3_2mxqt"),
+2: ExtResource("4_nei7e"),
+3: ExtResource("5_amhg0")
+})
+music_streams = Array[AudioStream]([ExtResource("6_2mxqt")])
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1088612347]
+volume_db = -3.0
+
+[node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=1895670563]
+volume_db = -3.0
+
+[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1272808899]
