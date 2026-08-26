@@ -10,3 +10,5 @@ signal pause_toggled(is_paused: bool)
 
 signal card_used(data: CardHudBase, pos: HexVector)
 signal selected_hex(hex: FactoryHex, dir: HexVector.Direction)
+signal card_hovered(data: CardData)
+
