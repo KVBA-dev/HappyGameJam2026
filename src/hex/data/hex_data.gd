@@ -18,3 +18,7 @@ func should_surround_by_blanks() -> bool:
 
 @export var recipe: Recipe
 @export var item_flow: Flow
+
+
+func _to_string() -> String:
+	return hex_name

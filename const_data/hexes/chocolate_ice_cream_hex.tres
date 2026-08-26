@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://d1mf33g7yp00o"]
+
+[ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
+[ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
+[ext_resource type="Resource" uid="uid://sf7rbevgli76" path="res://src/recipe/resources/chocolate_ice_cream_factory.tres" id="3_recipe"]
+[ext_resource type="Texture2D" uid="uid://dixnh7ix62b17" path="res://assets/images/tiles/kafelki_003.png" id="4_texture"]
+[ext_resource type="Texture2D" uid="uid://3rfk01o1ofca" path="res://assets/images/tiles/blank_hex.png" id="5_surface"]
+[ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="6_below"]
+
+[sub_resource type="Resource" id="Flow_chocolate_ice_cream"]
+script = ExtResource("2_flow")
+inputs = Array[int]([1, 5])
+outputs = Array[int]([2])
+metadata/_custom_type_script = "uid://c5sy2n01dfxna"
+
+[resource]
+script = ExtResource("1_hex_data")
+hex_name = "Chocolate Ice Cream Hex"
+texture = ExtResource("4_texture")
+on_surface_texture = ExtResource("5_surface")
+below_texture = ExtResource("6_below")
+type = 3
+recipe = ExtResource("3_recipe")
+item_flow = SubResource("Flow_chocolate_ice_cream")
+metadata/_custom_type_script = "uid://dwkm1j5578jxo"

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Factory" format=3 uid="uid://dkfnr54us3jvh"]
+
+[ext_resource type="Script" uid="uid://jk0ok581b2rq" path="res://src/progress/factory.gd" id="1_cevmf"]
+
+[resource]
+script = ExtResource("1_cevmf")
+metadata/_custom_type_script = "uid://jk0ok581b2rq"

@@ -6,3 +6,4 @@ var hex_grid: HexGrid
 var card_holder: CardHolder
 var main: Main
 var paths: Paths
+var progress_tree: ProgressTree = preload("res://const_data/progress/progress_tree.tres")

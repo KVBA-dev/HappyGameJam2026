@@ -34,6 +34,32 @@ func surround_with_hexes(radius: int, center: HexVector = HexVector.ZERO):
 func get_hex_at(_position: HexVector) -> Hex:
 	return hex_map.get(_position.vec, null)
 
+func get_random_blank_hex_in_spawn_range() -> Hex:
+	var non_blank_hexes: Array[Hex] = []
+	var candidates: Array[Hex] = []
+
+	for hex: Hex in hex_map.values():
+		if hex.hex_data.type != HexData.Type.BLANK:
+			non_blank_hexes.append(hex)
+
+	for hex: Hex in hex_map.values():
+		if hex.hex_data.type != HexData.Type.BLANK:
+			continue
+
+		var closest_distance: int = 1_000_000
+		for non_blank_hex: Hex in non_blank_hexes:
+			closest_distance = min(
+				closest_distance,
+				hex.hex_position.distance_to(non_blank_hex.hex_position),
+			)
+
+		if closest_distance >= 2 and closest_distance <= 3:
+			candidates.append(hex)
+
+	if candidates.is_empty():
+		return null
+	return candidates.pick_random()
+
 func get_hex_neighbours(_position: HexVector) -> Array[Hex]:
 	var ret: Array[Hex] = []
 	for neighbour_pos: HexVector in _position.get_all_neighbors():
@@ -52,7 +78,7 @@ func clear_hex_at(_position: HexVector):
 	return true
 
 func spawn_hex_at(_position: HexVector, hex_type: HexData, appear_style: Hex.AppearStyle = Hex.AppearStyle.Instant) -> Hex:
-	if hex_map.has(_position.vec):
+	if hex_map.has(_position.vec) and hex_map[_position.vec].hex_data.type != HexData.Type.BLANK:
 		ErrorBus.hex_already_exist_on_position.emit(_position)
 		return
 
