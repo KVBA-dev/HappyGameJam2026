@@ -77,9 +77,15 @@ func clear_hex_at(_position: HexVector):
 	hex_map.erase(_position.vec)
 	return true
 
+func _can_place_at(_position: HexVector) -> bool:
+	var existing_hex := get_hex_at(_position)
+	if existing_hex and existing_hex.type != HexData.Type.BLANK:
+		return false
+
+	return true
+
 func spawn_hex_at(_position: HexVector, hex_type: HexData, appear_style: Hex.AppearStyle = Hex.AppearStyle.Instant) -> Hex:
-	if hex_map.has(_position.vec) and hex_map[_position.vec].hex_data.type != HexData.Type.BLANK:
-		ErrorBus.hex_already_exist_on_position.emit(_position)
+	if not _can_place_at(_position):
 		return
 
 	var new_hex := instantiate_hex(_position, hex_type, appear_style)
@@ -93,8 +99,7 @@ func spawn_hex_from_card(
 		card: CardHudBase, 
 		appear_style: Hex.AppearStyle = Hex.AppearStyle.Instant
 	) -> Hex:
-	if hex_map.has(_position.vec):
-		ErrorBus.hex_already_exist_on_position.emit(_position)
+	if not _can_place_at(_position):
 		return
 
 	var new_hex := instantiate_hex(_position, card.card_data.hex_data, appear_style)

@@ -13,11 +13,11 @@ var cards: Array[CardHudBase] = []
 var can_be_laid_down: bool = true
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("card_select") and can_use_card():
+	if event.is_action_pressed("card_select") and _can_use_card():
 		var card := take_currently_dragged()
 		card.start_use_animation()
 
-func can_use_card() -> bool:
+func _can_use_card() -> bool:
 	if not _is_currently(State.DRAGGED):
 		return false
 
@@ -27,8 +27,11 @@ func can_use_card() -> bool:
 		_: return false
 
 func _can_use_placable() -> bool:
-	if not Hex.currently_hovered \
-	   or Hex.currently_hovered.hex_data.type != HexData.Type.BLANK:
+	if not Hex.currently_hovered:
+		return false
+
+	if Hex.currently_hovered.hex_data.type != HexData.Type.BLANK:
+		ErrorBus.hex_already_exist_on_position.emit(Hex.currently_hovered)
 		return false
 
 	var current := Hex.currently_hovered
@@ -77,12 +80,18 @@ func _process(_delta: float) -> void:
 	else:
 		reorder_cards()
 
+	_input_handle_rotations()
+	_input_handle_card_laydown()
+	_input_handle_card_pickup()
+
+func _input_handle_rotations():
 	if _is_currently(State.DRAGGED) and not currently_focused.hex_sprite._is_rotating:
 		if Input.is_action_pressed("card_rotate_left"):
 			currently_focused.rotate_left()
 		if Input.is_action_pressed("card_rotate_right"):
 			currently_focused.rotate_right()
 
+func _input_handle_card_laydown():
 	if (Input.is_action_just_pressed("card_select") \
 		or (Input.is_action_just_released("card_select") and can_be_laid_down)) \
 		and _is_currently(State.DRAGGED):
@@ -92,6 +101,7 @@ func _process(_delta: float) -> void:
 			currently_focused = null
 			reorder_cards()
 
+func _input_handle_card_pickup():
 	if Input.is_action_just_pressed("card_select") and _is_currently(State.PREVIEWED):
 		currently_focused.state = CardHudBase.State.DRAGGED
 		cards.erase(currently_focused)

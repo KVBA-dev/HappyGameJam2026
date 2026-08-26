@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://c8tblcve0no6e"]
+
+[ext_resource type="Theme" uid="uid://cyc4r8tglx12t" path="res://assets/error_theme.tres" id="1_86b5q"]
+[ext_resource type="Texture2D" uid="uid://bwq4b4y2h2uci" path="res://assets/images/icons/cross.png" id="2_c0mel"]
+[ext_resource type="Script" uid="uid://dwjmrks1jaqhq" path="res://src/hud/hud_message.gd" id="2_pkt1m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_80eke"]
+font_size = 22
+
+[node name="HudMessage" type="Node2D" unique_id=949905308]
+script = ExtResource("2_pkt1m")
+
+[node name="ClipContainer" type="MarginContainer" parent="." unique_id=65559560]
+unique_name_in_owner = true
+clip_contents = true
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 427.0
+offset_bottom = 55.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="ClipContainer" unique_id=1728157389]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+theme = ExtResource("1_86b5q")
+
+[node name="Content" type="MarginContainer" parent="ClipContainer/Panel" unique_id=666440850]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 392.0
+offset_bottom = 41.0
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="MainContent" type="HBoxContainer" parent="ClipContainer/Panel/Content" unique_id=8912616]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ClipContainer/Panel/Content/MainContent" unique_id=1362781493]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="TextureRect" type="TextureRect" parent="ClipContainer/Panel/Content/MainContent/MarginContainer" unique_id=1596182000]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_c0mel")
+expand_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="ClipContainer/Panel/Content/MainContent" unique_id=894398437]
+layout_mode = 2
+theme_override_constants/margin_right = 8
+
+[node name="Label" type="Label" parent="ClipContainer/Panel/Content/MainContent/MarginContainer2" unique_id=657309450]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Can't place a hex at this location"
+label_settings = SubResource("LabelSettings_80eke")
+vertical_alignment = 1
+
+[node name="Container" type="PanelContainer" parent="." unique_id=1540627965]
+unique_name_in_owner = true
+visible = false
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 396.0
+offset_bottom = 45.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_86b5q")

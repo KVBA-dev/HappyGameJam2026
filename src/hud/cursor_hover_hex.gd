@@ -28,7 +28,6 @@ func _on_hovered(hex: Hex):
 		show()
 
 func _modulate_accordingly(hovered: Hex):
-	print(hovered.type)
 	if GameManager.hex_grid.can_place_card(hovered.hex_position) \
 		or hovered.type != HexData.Type.BLANK:
 		sprite.modulate = MODULATE_GOOD

@@ -10,11 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://d0p6p3u8melo" path="res://src/audio/audio_system.tscn" id="8_gyu3h"]
 [ext_resource type="PackedScene" uid="uid://os0dp4imlkiq" path="res://src/hud/status_hud.tscn" id="9_2nke2"]
 [ext_resource type="PackedScene" uid="uid://c3kylm6wthi6k" path="res://src/hud/cursor_hover_hex.tscn" id="10_km7bn"]
+[ext_resource type="Script" uid="uid://c8qwvwbg3hk5k" path="res://src/main/message_spawner.gd" id="11_erw1m"]
 
 [node name="Main" type="Node" unique_id=387200153]
 script = ExtResource("1_3eh75")
 
 [node name="Hud" parent="." unique_id=1465972823 instance=ExtResource("6_jqarl")]
+unique_name_in_owner = true
 
 [node name="TooltipCanvas" parent="." unique_id=107762882 instance=ExtResource("2_3s6yk")]
 unique_name_in_owner = true
@@ -35,3 +37,9 @@ timeout_interval = 10.0
 [node name="StatusHud" parent="." unique_id=1515205727 instance=ExtResource("9_2nke2")]
 
 [node name="CursorHoverHex" parent="." unique_id=963481670 instance=ExtResource("10_km7bn")]
+
+[node name="MessageSpawner" type="Node2D" parent="." unique_id=1655565544]
+top_level = true
+z_index = 4096
+z_as_relative = false
+script = ExtResource("11_erw1m")
