@@ -6,6 +6,7 @@ var hex_map: Dictionary[Vector2i, Hex] = {}
 signal spawned_hex(hex: Hex)
 signal deleted_hex(position: HexVector)
 signal changed_hex(old_hex: Hex, new_hex: Hex)
+signal rotated_hex(hex: Hex, new_rotation: HexVector.Direction)
 
 func _ready():
 	GameManager.hex_grid = self
