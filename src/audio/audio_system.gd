@@ -26,6 +26,12 @@ func _ready() -> void:
 		music_index = (music_index + 1) % len(music_streams)
 		load_and_play_music()
 	)
+	SignalBus.card_used.connect(func(..._a): play_sfx(SFXType.BUILD))
+	SignalBus.selected_hex.connect(func(..._a): 
+		play_sfx(SFXType.CLICK)
+		print("selected_hex", _a)
+	)
+	SignalBus.card_hovered.connect(func(..._a): play_sfx(SFXType.HOVER))
 	load_and_play_music()
 
 func load_and_play_music() -> void:

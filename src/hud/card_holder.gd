@@ -114,6 +114,8 @@ func _set_currently_focused(node: CardHudBase):
 
 	if node:
 		node.state = State.PREVIEWED
+		if node != currently_focused: 
+			SignalBus.card_hovered.emit(node.card_data)
 
 	currently_focused = node
 	reorder_cards()

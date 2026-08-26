@@ -24,4 +24,3 @@ volume_db = -3.0
 volume_db = -3.0
 
 [node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1272808899]
-volume_db = -3.0
