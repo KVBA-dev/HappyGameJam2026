@@ -25,3 +25,7 @@ func rotated(n_60degree: int) -> HexData:
 
 @export var recipe: Recipe
 @export var item_flow: Flow
+
+
+func _to_string() -> String:
+	return hex_name
