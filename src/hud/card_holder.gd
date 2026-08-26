@@ -77,6 +77,8 @@ func _test_init():
 		add_card(load("res://const_data/cards/flow_card.tres"))
 
 func _process(_delta: float) -> void:
+	if GameManager.main.paused:
+		return
 	if not _is_currently(State.DRAGGED):
 		var closest := find_closest_hovered()
 		_set_currently_focused(closest)

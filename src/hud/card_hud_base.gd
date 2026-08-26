@@ -36,6 +36,8 @@ var hover: bool:
 		return _hover
 
 func _process(delta: float) -> void:
+	if GameManager.main.paused:
+		return
 	match _state:
 		State.IN_HAND: _in_hand_processed(delta)
 		State.PREVIEWED: _previewed_process(delta)
