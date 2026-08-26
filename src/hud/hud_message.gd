@@ -14,6 +14,9 @@ var currently_showing: bool:
 func _ready() -> void:
 	hide()
 
+func _process(_delta: float) -> void:
+	scale = Vector2.ONE / get_viewport().get_camera_2d().zoom
+
 func show_text(text: String):
 	label.text = text
 	slide_in()

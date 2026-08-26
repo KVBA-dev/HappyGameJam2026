@@ -2,7 +2,8 @@ extends Node2D
 
 @onready var sprite: Sprite2D = %HexSprite.background_sprite
 
-var MODULATE_GOOD = Color.hex(0x00ffff32)
+var MODULATE_NEUTRAL = Color.hex(0x00ffff32)
+var MODULATE_GOOD = Color.hex(0x00f51d32)
 var MODULATE_BAD = Color.hex(0xf4000232)
 
 func _ready() -> void:

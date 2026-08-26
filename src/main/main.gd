@@ -14,7 +14,6 @@ func _ready() -> void:
 	GameManager.main = self
 	GameManager.hex_grid.surround_with_hexes(3)
 
-	ErrorBus.hex_already_exist_on_position.connect(_display_hex_exists_error)
 #	var batches: Array[ProgressBatch] = GameManager.progress_tree.get_batch()
 #
 #	for batch: ProgressBatch in batches:
@@ -32,7 +31,3 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		paused = not paused
 		SignalBus.pause_toggled.emit(paused)
-
-func _display_hex_exists_error(hex: Hex):
-	pass
-	# hud.show_message_at_cursor("Hex already exists on %s" % hex.hex_position)

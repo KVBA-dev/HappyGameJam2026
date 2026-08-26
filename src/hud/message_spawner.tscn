@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dfn8kds0gr7tk"]
+
+[ext_resource type="Script" uid="uid://c8qwvwbg3hk5k" path="res://src/main/message_spawner.gd" id="1_yde1g"]
+
+[node name="MessageSpawner" type="CanvasLayer" unique_id=511295811]
+script = ExtResource("1_yde1g")
