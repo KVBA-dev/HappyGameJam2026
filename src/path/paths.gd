@@ -52,14 +52,11 @@ func _clear_path(path_data: PathData):
 	paths.erase(path_data)
 
 func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: FactoryHex, end_dir: HexVector.Direction) -> Array[FlowHex]:
-	print("Creating path from %s to %s" % [start.hex_position, end.hex_position])
-	print("Start dir: %s, End dir: %s" % [HexVector.dir_to_str(_start_dir), HexVector.dir_to_str(end_dir)])
 	for path: PathData in paths:
 		var start_already_exists := path.start == start and path.start_output_dir == start_dir
 		var end_already_exists := path.end == end and path.end_input_dir == end_dir
 		if start_already_exists or end_already_exists:
 			return []
-
 	var flow_start := start.get_neighbor(_start_dir)
 	var flow_end := end.get_neighbor(end_dir)
 	if not (flow_start is FlowHex and flow_end is FlowHex):

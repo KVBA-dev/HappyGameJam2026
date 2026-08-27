@@ -12,5 +12,6 @@ unique_name_in_owner = true
 
 [node name="DirectionIndicator" type="Sprite2D" parent="." index="5" unique_id=1867573259]
 unique_name_in_owner = true
+modulate = Color(1, 0, 0, 0.4)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_70sl0")
