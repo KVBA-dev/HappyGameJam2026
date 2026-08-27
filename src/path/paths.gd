@@ -57,14 +57,22 @@ func _clear_path(path_data: PathData):
 
 func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: FactoryHex, end_dir: HexVector.Direction) -> Array[FlowHex]:
 	for path: PathData in paths:
-		var start_already_exists := path.start == start and path.start_output_dir == start_dir
+		var start_already_exists := path.start == start and path.start_output_dir == _start_dir
 		var end_already_exists := path.end == end and path.end_input_dir == end_dir
 		if start_already_exists or end_already_exists:
 			return []
 	var flow_start := start.get_neighbor(_start_dir)
 	var flow_end := end.get_neighbor(end_dir)
 	if not (flow_start is FlowHex and flow_end is FlowHex):
-		return[]
+		return []
+
+	var flow_start_input := HexVector.direction_rotate(_start_dir, 3)
+	var flow_end_output := HexVector.direction_rotate(end_dir, 3)
+	if not flow_start_input in flow_start.item_flow.inputs:
+		return []
+	if not flow_end_output in flow_end.item_flow.outputs:
+		return []
+
 	var waypoints := _find_shortest_waypoints(
 		flow_start,
 		flow_end,
@@ -101,7 +109,11 @@ func _flow_neighbors(hex: FlowHex) -> Array[FlowHex]:
 	for direction: HexVector.Direction in hex.item_flow.outputs:
 		var position := hex.hex_position.add(HexVector.direction_vector(direction))
 		var neighbor: Hex = GameManager.hex_grid.get_hex_at(position)
-		if neighbor is FlowHex:
+		if not neighbor is FlowHex:
+			continue
+
+		var neighbor_input := HexVector.direction_rotate(direction, 3)
+		if neighbor_input in neighbor.item_flow.inputs:
 			neighbors.append(neighbor)
 	return neighbors
 

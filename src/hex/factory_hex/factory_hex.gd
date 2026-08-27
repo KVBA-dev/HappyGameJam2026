@@ -54,8 +54,9 @@ func show_indicator(dir: HexVector.Direction):
 
 
 func _on_path_created(path_data: PathData):
-	paths.append(path_data)
-	_start_production()
+	if path_data.start == self:
+		paths.append(path_data)
+		_start_production()
 	
 
 func _on_path_deleted(path_data: PathData):

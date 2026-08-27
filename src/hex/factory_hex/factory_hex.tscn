@@ -9,6 +9,7 @@ script = ExtResource("2_odha3")
 
 [node name="ProductionTimer" type="Timer" parent="." index="2" unique_id=353845177]
 unique_name_in_owner = true
+one_shot = true
 
 [node name="DirectionIndicator" type="Sprite2D" parent="." index="5" unique_id=1867573259]
 unique_name_in_owner = true
