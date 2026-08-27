@@ -8,6 +8,7 @@
 size = Vector2(50, 40)
 
 [node name="FlowIndicator" type="Sprite2D" unique_id=1165981500]
+modulate = Color(0.9751565, 0.9147855, 0.6793495, 1)
 z_index = 200
 texture = ExtResource("1_mrle3")
 script = ExtResource("2_6xoms")
@@ -17,5 +18,6 @@ unique_name_in_owner = true
 script = ExtResource("3_k3abo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea" unique_id=245132033]
+visible = false
 position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_5l75f")

@@ -19,3 +19,4 @@ texture = ExtResource("3_70sl0")
 
 [node name="IndicatorContainer" type="Node2D" parent="." index="5" unique_id=562494991]
 unique_name_in_owner = true
+visible = false

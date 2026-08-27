@@ -27,6 +27,8 @@ func _ready() -> void:
 	if not hex_data.item_flow:
 		push_error("Flow has to be set for factory hex")
 
+	_generate_indicators()
+
 	recipe = hex_data.recipe
 	for item: ItemData in recipe.requirements.keys():
 		storage[item] = 0
@@ -34,6 +36,14 @@ func _ready() -> void:
 	production_timer.timeout.connect(produce)
 	GameManager.paths.path_created.connect(_on_path_created)
 	GameManager.paths.path_deleted.connect(_on_path_deleted)
+
+func _process(_delta: float) -> void:
+	if CursorSelect.selected == self:
+		indicator_container.show()
+	elif GameManager.paths.start_hex == self:
+		indicator_container.show()
+	else:
+		indicator_container.hide()
 
 # TODO: Do dodania stany - jak nie jest wybrany start_hex to wskazujemy poprawne outputy - strzałka wychodząca.
 # Jeżeli start_hex wybrany i mamy najechany inny niż start_hex hex to wskazujemy inputy jako poprawne - strzałka wchodząca.
@@ -89,10 +99,6 @@ func _spawn_product():
 	
 	GameManager.paths.spawn_item_on_path(recipe.produces, paths.pick_random())
 
-func _remove_indicators():
-	for child in indicator_container.get_children():
-		child.queue_free()
-
 func _generate_indicators():
 	for direction: HexVector.Direction in item_flow.inputs:
 		var indi := FlowIndicator.new_instance(self, direction, true)
@@ -101,3 +107,7 @@ func _generate_indicators():
 	for direction: HexVector.Direction in item_flow.outputs:
 		var indi := FlowIndicator.new_instance(self, direction, false)
 		indicator_container.add_child(indi)
+
+# Override
+func select():
+	indicator_container.show()

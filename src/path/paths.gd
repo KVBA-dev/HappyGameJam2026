@@ -11,12 +11,29 @@ signal path_deleted(path: PathData)
 func _ready() -> void:
 	GameManager.paths = self
 	GameManager.hex_grid.deleted_hex.connect(_on_hex_deleted)
-	SignalBus.hex_factory_clicked.connect(_on_selected_hex)
+	SignalBus.hex_factory_clicked.connect(_on_hex_factory_clicked)
+	SignalBus.hex_deselected.connect(_on_hex_deselected)
 
-func _on_selected_hex(hex: Hex, dir: HexVector.Direction):
+func _deselect():
+	start_hex = null
+
+func _on_hex_deselected(hex: Hex):
+	if hex == start_hex:
+		_deselect()
+
+func _on_hex_factory_clicked(hex: Hex, dir: HexVector.Direction):
 	if not hex is FactoryHex:
 		return
-	if start_hex:
+
+	if hex == start_hex and dir == start_dir:
+		_deselect()
+		return
+
+	if dir in hex.item_flow.outputs:
+			start_hex = hex
+			start_dir = dir
+
+	elif start_hex:
 		if not dir in hex.item_flow.inputs:
 			return
 		var waypoints: Array[Hex] = []
@@ -32,11 +49,7 @@ func _on_selected_hex(hex: Hex, dir: HexVector.Direction):
 		PATH_LINE_MAP[paths.back()] = path_line
 		add_child(path_line)
 		start_hex = null
-	else:
-		if not dir in hex.item_flow.outputs:
-			return
-		start_hex = hex
-		start_dir = dir
+		
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("cancel"):
@@ -101,6 +114,7 @@ func _find_shortest_waypoints(start: FlowHex, end: FlowHex) -> Array[FlowHex]:
 				continue
 			came_from[neighbor] = current
 			frontier.append(neighbor)
+			print(neighbor.hex_position)
 
 	return []
 
