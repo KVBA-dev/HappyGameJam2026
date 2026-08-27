@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dcttyake8ubcx"]
+
+[ext_resource type="Resource" path="res://const_data/hexes/flow3-1_3-4_hex.tres" id="1_8pspc"]
+[ext_resource type="Script" uid="uid://woit68wbxbch" path="res://src/card/data/card_data.gd" id="2_sy1td"]
+
+[resource]
+script = ExtResource("2_sy1td")
+hex_data = ExtResource("1_8pspc")
+metadata/_custom_type_script = "uid://woit68wbxbch"

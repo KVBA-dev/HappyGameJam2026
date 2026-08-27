@@ -6,6 +6,7 @@ class_name FactoryHex extends Hex
 var in_production := false
 var storage: Dictionary[ItemData, int]
 var recipe: Recipe
+var paths: Array[PathData] = []
 
 static func new_instance(
 	_hex_position: HexVector,
@@ -30,6 +31,8 @@ func _ready() -> void:
 		storage[item] = 0
 	production_timer.wait_time = recipe.processing_time
 	production_timer.timeout.connect(produce)
+	GameManager.paths.path_created.connect(_on_path_created)
+	GameManager.paths.path_deleted.connect(_on_path_deleted)
 
 func _process(_delta: float) -> void:
 	if GameManager.paths.start_hex == self:
@@ -50,19 +53,24 @@ func show_indicator(dir: HexVector.Direction):
 	direction_indicator.show()
 
 
+func _on_path_created(path_data: PathData):
+	if path_data.start == self:
+		paths.append(path_data)
+		_start_production()
+	
+
+func _on_path_deleted(path_data: PathData):
+	paths.erase(path_data)
+
 func on_item_input(item: Item):
 	if item.item_data in recipe.requirements:
 		consume(item.item_data)
+		item.get_consumed()
 
 func consume(item: ItemData):
 	storage[item] += 1
-
-	if in_production or not _is_enough_in_storage():
-		return
-
-	# If enough in storage
 	_start_production()
-    
+	
 func _is_enough_in_storage() -> bool:
 	for requirement: ItemData in recipe.requirements.keys():
 		if storage[requirement] < recipe.requirements[requirement]:
@@ -70,9 +78,8 @@ func _is_enough_in_storage() -> bool:
 	return true
 
 func _start_production():
-	for requirement: ItemData in recipe.requirements.keys():
-		storage[requirement] -= recipe.requirements[requirement]
-
+	if in_production or not _is_enough_in_storage():
+		return
 	in_production = true
 	production_timer.start()
 
@@ -85,5 +92,7 @@ func produce():
 		_start_production()
 
 func _spawn_product():
-	## TODO: Implement spawning product
-	pass
+	for requirement: ItemData in recipe.requirements.keys():
+		storage[requirement] -= recipe.requirements[requirement]
+	
+	GameManager.paths.spawn_item_on_path(recipe.produces, paths.pick_random())
