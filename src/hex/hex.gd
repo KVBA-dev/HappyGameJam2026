@@ -63,6 +63,7 @@ func _ready():
 
 	_handle_mouse_hovering_on_spawn()
 
+
 func _handle_mouse_hovering_on_spawn():
 	var mouse_pos := mouse_detection_shape.to_local(get_global_mouse_position())
 	if Geometry2D.is_point_in_polygon(mouse_pos, mouse_detection_shape.polygon):
@@ -92,14 +93,17 @@ func on_item_entered(area: Area2D) -> void:
 func _input(_event: InputEvent) -> void:
 	# TODO: It can fire on two hexes at once, watch out
 	if is_mouse_inside and Input.is_action_just_pressed("select_hex"):
-		var polygon_center := Vector2.ZERO
-		for point: Vector2 in mouse_detection_shape.polygon:
-			polygon_center += point
-		polygon_center /= mouse_detection_shape.polygon.size()
-
-		var mouse_position := mouse_detection_shape.to_local(get_global_mouse_position())
-		var dir := HexVector.angle_to_dir((mouse_position - polygon_center).angle())
+		var dir := _mouse_dir()
 		SignalBus.selected_hex.emit(self, dir)
+
+func _mouse_dir() -> HexVector.Direction:
+	var polygon_center := Vector2.ZERO
+	for point: Vector2 in mouse_detection_shape.polygon:
+		polygon_center += point
+	polygon_center /= mouse_detection_shape.polygon.size()
+
+	var mouse_position := mouse_detection_shape.to_local(get_global_mouse_position())
+	return HexVector.angle_to_dir((mouse_position - polygon_center).angle())
 
 func _on_mouse_entered():
 	is_mouse_inside = true
