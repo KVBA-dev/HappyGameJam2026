@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://b6n1olwmbs2xo"]
+
+[ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="1_below"]
+[ext_resource type="Texture2D" uid="uid://ctn8khhvtgqes" path="res://assets/images/tiles/hex-path-left-right-inward.png" id="3_2upp6"]
+[ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="3_hex_data"]
+[ext_resource type="Resource" uid="uid://cboee8g6obkl" path="res://const_data/flows/3-0_3-4_flow.tres" id="4_flow"]
+[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="5_texture"]
+
+[resource]
+script = ExtResource("3_hex_data")
+hex_name = "1/5-2 Flow"
+texture = ExtResource("5_texture")
+on_surface_texture = ExtResource("3_2upp6")
+below_texture = ExtResource("1_below")
+type = 1
+item_flow = ExtResource("4_flow")

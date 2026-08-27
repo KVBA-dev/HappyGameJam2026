@@ -7,3 +7,6 @@ var card_holder: CardHolder
 var main: Main
 var paths: Paths
 var progress_tree: ProgressTree = preload("res://const_data/progress/progress_tree.tres")
+
+
+const cards: Cards = preload("res://const_data/cards/flow_cards.tres")

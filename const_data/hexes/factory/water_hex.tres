@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
 [ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
 [ext_resource type="Resource" uid="uid://b6wh1ubk6s805" path="res://src/recipe/resources/water_source.tres" id="3_recipe"]
-[ext_resource type="Texture2D" uid="uid://dixnh7ix62b17" path="res://assets/images/tiles/kafelki_003.png" id="4_texture"]
-[ext_resource type="Texture2D" uid="uid://3rfk01o1ofca" path="res://assets/images/tiles/blank_hex.png" id="5_surface"]
+[ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="4_texture"]
+[ext_resource type="Texture2D" uid="uid://wle6yvl76ibk" path="res://assets/images/tiles_factories/Krówka.png" id="5_surface"]
 [ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="6_below"]
 
 [sub_resource type="Resource" id="Flow_water"]

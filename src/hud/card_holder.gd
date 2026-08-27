@@ -2,6 +2,7 @@ class_name CardHolder extends Control
 
 const State = CardHudBase.State 
 
+
 @onready var cards_container: Node2D = %CardsContainer
 @onready var placer_center: Node2D = %PlacerCenter
 @onready var card_lay_area: HoverableArea = %CardLayArea
@@ -78,10 +79,9 @@ func _ready():
 	reorder_cards()
 
 func _test_init():
-	for i in range(2):
-		add_card(load("uid://yxk70qxb4srl"))
-	for i in range(2):
-		add_card(load("uid://bidussd5m7x7w"))
+	for i in range(5):
+		var card_data: CardData = GameManager.cards.pick_random()
+		add_card(card_data)
 
 func _process(_delta: float) -> void:
 	if not _is_currently(State.DRAGGED):
