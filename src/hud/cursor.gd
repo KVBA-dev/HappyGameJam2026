@@ -21,7 +21,7 @@ var block_selection: bool = false
 
 @onready var sprite: Sprite2D = %HexSprite.background_sprite
 @onready var cursor_hover: Node2D = %CursorHoverHex
-@onready var cursor_select: Node2D = %CursorSelect
+@onready var cursor_select: CursorSelect = %CursorSelect
 
 var MODULATE_NEUTRAL = Color.hex(0x00ffff32)
 var MODULATE_GOOD = Color.hex(0x00f51d32)
@@ -37,8 +37,6 @@ func _ready() -> void:
 			CardData.Type.PLACABLE: mode = Mode.CARD_PLACE_HINT
 	)
 
-	# SignalBus.hex_selected.connect(func(_a): print(_a))
-
 	cursor_hover.hide()
 
 static var hover_hex: Hex = null
@@ -48,7 +46,7 @@ func _input(event: InputEvent) -> void:
 		and mode == Mode.HOVER \
 		and not block_selection \
 		and not GameManager.card_holder.is_interacted_with():
-		cursor_select.on_select(hover_hex)
+		cursor_select.try_to_select(hover_hex)
 
 func _process(_delta: float) -> void:
 	scale = get_viewport().get_camera_2d().scale

@@ -36,6 +36,10 @@ func _on_hex_factory_clicked(hex: Hex, dir: HexVector.Direction):
 	elif start_hex:
 		if not dir in hex.item_flow.inputs:
 			return
+
+		# TODO: Make it make sense
+		GameManager.main.cursor.cursor_select.deselect()
+
 		var waypoints: Array[Hex] = []
 		var created_path := create_path(start_hex, start_dir, hex, dir)
 		if created_path.is_empty():
