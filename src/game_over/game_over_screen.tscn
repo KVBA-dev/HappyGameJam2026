@@ -2,28 +2,55 @@
 
 [ext_resource type="Script" uid="uid://tiangdmkve25" path="res://src/game_over/game_over_screen.gd" id="1_dev16"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dev16"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6np1m"]
+bg_color = Color(0, 0, 0, 0.3254902)
+corner_radius_top_left = 74
+corner_radius_top_right = 74
+corner_radius_bottom_right = 74
+corner_radius_bottom_left = 74
+
 [node name="GameOverScreen" type="CanvasLayer" unique_id=1497554013]
+layer = 10
 script = ExtResource("1_dev16")
 
-[node name="Layout" type="VBoxContainer" parent="." unique_id=93762785]
+[node name="Panel" type="Panel" parent="." unique_id=829980382]
+material = SubResource("CanvasItemMaterial_dev16")
+custom_minimum_size = Vector2(0.82, 0.71)
+anchors_preset = -1
+anchor_left = 0.035
+anchor_top = 0.061000004
+anchor_right = 0.961
+anchor_bottom = 0.93500006
+offset_left = -0.19999695
+offset_top = -0.8800049
+offset_right = 0.8800049
+offset_bottom = 0.19995117
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6np1m")
+
+[node name="Layout" type="VBoxContainer" parent="Panel" unique_id=93762785]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -145.0
+offset_top = -69.0
+offset_right = 141.0
+offset_bottom = 57.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="Layout" unique_id=431518263]
+[node name="Label" type="Label" parent="Panel/Layout" unique_id=431518263]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "GAME OVER"
 
-[node name="RetryButton" type="Button" parent="Layout" unique_id=2142031547]
+[node name="RetryButton" type="Button" parent="Panel/Layout" unique_id=2142031547]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Retry"
