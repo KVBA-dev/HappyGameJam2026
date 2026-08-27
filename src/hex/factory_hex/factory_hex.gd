@@ -101,11 +101,3 @@ func _generate_indicators():
 	for direction: HexVector.Direction in item_flow.outputs:
 		var indi := FlowIndicator.new_instance(self, direction, false)
 		indicator_container.add_child(indi)
-
-# Override
-func select():
-	_generate_indicators()
-
-# Override
-func deselect():
-	_remove_indicators()

@@ -89,14 +89,6 @@ func on_item_entered(area: Area2D) -> void:
 #	var mouse_position := mouse_detection_shape.to_local(get_global_mouse_position())
 #	return HexVector.angle_to_dir((mouse_position - polygon_center).angle())
 
-# Virtual
-func select():
-	pass
-
-# Virtual
-func deselect():
-	pass
-
 func animated_kill():
 	item_detection_area.area_entered.disconnect(on_item_entered)
 

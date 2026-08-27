@@ -49,8 +49,11 @@ func _can_use_usable() -> bool:
 	# TODO: Implement usable cards
 	return false
 
-func is_not_interacted_with() -> bool:
-	return currently_focused == null or currently_focused.state == State.IN_HAND
+func is_interacted_with() -> bool:
+	if currently_focused == null:
+		return false
+
+	return currently_focused.state != State.IN_HAND
 
 func take_currently_dragged() -> CardHudBase:
 	var card = currently_focused

@@ -7,6 +7,8 @@
 [node name="CursorSelect" type="Node2D" unique_id=1973028755]
 script = ExtResource("1_4m2bd")
 
+[node name="PathConnectionManager" type="Node2D" parent="." unique_id=92646619]
+
 [node name="HexSprite" parent="." unique_id=956441382 instance=ExtResource("1_b3itf")]
 unique_name_in_owner = true
 

@@ -44,7 +44,10 @@ func _ready() -> void:
 static var hover_hex: Hex = null
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("select_hex") and mode == Mode.HOVER and not block_selection:
+	if event.is_action_pressed("select_hex") \
+		and mode == Mode.HOVER \
+		and not block_selection \
+		and not GameManager.card_holder.is_interacted_with():
 		cursor_select.on_select(hover_hex)
 
 func _process(_delta: float) -> void:
