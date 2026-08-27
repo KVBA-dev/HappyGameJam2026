@@ -10,10 +10,19 @@ signal rotated_hex(hex: Hex, new_rotation: HexVector.Direction)
 
 func _ready():
 	GameManager.hex_grid = self
-	hex_map[HexVector.ZERO.vec] = root_hex
 
 	SignalBus.card_used.connect(handle_card_placed)
 	spawned_hex.connect(_on_hex_spawned)
+	
+	reset_grid()
+
+func reset_grid() -> void:
+	for hex: Hex in hex_map.values():
+		if hex == root_hex:
+			continue
+		hex.queue_free()
+	hex_map.clear()
+	hex_map[HexVector.ZERO.vec] = root_hex
 
 func surround_with_hexes(radius: int, center: HexVector = HexVector.ZERO):
 	var blank = load("res://const_data/hexes/blank_hex.tres")

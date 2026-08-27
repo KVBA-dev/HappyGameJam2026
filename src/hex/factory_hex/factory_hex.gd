@@ -102,3 +102,4 @@ func _spawn_product():
 		storage[requirement] -= recipe.requirements[requirement]
 	
 	GameManager.paths.spawn_item_on_path(recipe.produces, paths.pick_random())
+	SignalBus.item_produced.emit(recipe.produces)

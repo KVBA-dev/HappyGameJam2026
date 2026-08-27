@@ -17,3 +17,6 @@ signal card_hovered(data: CardData)
 signal path_visibility_toggled(visible: bool)
 signal hex_hovered(hex: Hex) # hex can be equal to null
 signal hex_selected(hex: Hex)
+signal item_produced(item: ItemData)
+
+signal game_reset

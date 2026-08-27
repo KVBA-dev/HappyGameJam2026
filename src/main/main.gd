@@ -6,6 +6,8 @@ class_name Main extends Node
 
 var paused: bool = false
 var paths_visible: bool = true
+# NOTE: treat it as a set
+var items_produced: Dictionary[ItemData, bool]
 
 static func new_instance() -> Main:
 	var main: Main = GameManager.scenes.MAIN_SCENE.instantiate()
@@ -13,6 +15,8 @@ static func new_instance() -> Main:
 
 func _ready() -> void:
 	SignalBus.main_loaded.emit()
+	SignalBus.item_produced.connect(_on_item_produced)
+	SignalBus.game_reset.connect(on_game_reset)
 	GameManager.main = self
 	GameManager.hex_grid.surround_with_hexes(3)
 
@@ -21,7 +25,25 @@ func _ready() -> void:
 		GameManager.card_holder.add_card(GameManager.cards.pick_random())
 	)
 
+	spawn_available_factory_hexes()
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("pause"):
+		paused = not paused
+		SignalBus.pause_toggled.emit(paused)
+
+func _on_item_produced(item: ItemData) -> void:
+	if item not in items_produced:
+		# TODO: advance with factory hexes
+		print("Made for first time: %s" % item)
+	items_produced[item] = true
+
+func on_game_reset() -> void:
+	GameManager.hex_grid.reset_grid()
+	GameManager.hex_grid.surround_with_hexes(3)
+	spawn_available_factory_hexes()
+
+func spawn_available_factory_hexes() -> void:
 	var batches: Array[ProgressBatch] = GameManager.progress_tree.get_batch()
 
 	for batch: ProgressBatch in batches:
@@ -34,8 +56,3 @@ func _ready() -> void:
 			var hex_position := blank_hex.hex_position
 			GameManager.hex_grid.clear_hex_at(hex_position)
 			GameManager.hex_grid.spawn_hex_at(hex_position, hex_data)
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
-		paused = not paused
-		SignalBus.pause_toggled.emit(paused)
