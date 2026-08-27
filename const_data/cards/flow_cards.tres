@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Cards" format=3 uid="uid://bx6p5m6e45my"]
+
+[ext_resource type="Script" uid="uid://woit68wbxbch" path="res://src/card/data/card_data.gd" id="1_1sjqp"]
+[ext_resource type="Resource" uid="uid://bsi8gob65x50v" path="res://const_data/cards/flow_cards/flow_card_3-0_3-4.tres" id="2_pi2bg"]
+[ext_resource type="Script" uid="uid://hllrb13vm8ls" path="res://src/card/data/cards.gd" id="2_trfca"]
+[ext_resource type="Resource" uid="uid://b76kfa7ce51em" path="res://const_data/cards/flow_cards/flow_card_3-1.tres" id="3_chgm1"]
+[ext_resource type="Resource" uid="uid://dcttyake8ubcx" path="res://const_data/cards/flow_cards/flow_card_3-1_3-4.tres" id="4_xmmqk"]
+[ext_resource type="Resource" uid="uid://51g11woh8al8" path="res://const_data/cards/flow_cards/flow_card_1-0_1-4_5-0_5-4.tres" id="5_6ywhf"]
+
+[resource]
+script = ExtResource("2_trfca")
+list = Array[ExtResource("1_1sjqp")]([ExtResource("2_pi2bg"), ExtResource("3_chgm1"), ExtResource("4_xmmqk"), ExtResource("5_6ywhf")])
+metadata/_custom_type_script = "uid://hllrb13vm8ls"

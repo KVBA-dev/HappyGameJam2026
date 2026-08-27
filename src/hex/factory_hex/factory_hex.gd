@@ -64,6 +64,7 @@ func _on_path_deleted(path_data: PathData):
 func on_item_input(item: Item):
 	if item.item_data in recipe.requirements:
 		consume(item.item_data)
+		item.get_consumed()
 
 func consume(item: ItemData):
 	storage[item] += 1

@@ -13,3 +13,7 @@ static func new_instance(_item_data: ItemData, _path_follow: PathFollow2D) -> It
 
 func _process(delta: float) -> void:
 	path_follow.progress += delta * 100
+
+func get_consumed():
+	path_follow.queue_free()
+	print("got consumed")
