@@ -9,7 +9,11 @@ func init(hex_data: HexData):
 	background_sprite.texture = hex_data.texture
 	on_hex_sprite.texture = hex_data.on_surface_texture
 	below_sprite.texture = hex_data.below_texture
-
+	if hex_data.type == HexData.Type.FLOW:
+		on_hex_sprite.material = HexData.river_material
+		on_hex_sprite.scale = Vector2(0.561, 0.561)
+	else:
+		on_hex_sprite.material = null
 
 @onready var _rotate_timer: Timer = %RotateTimer
 @onready var _below_displacement: Node2D = %BelowDisplacement
