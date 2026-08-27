@@ -27,7 +27,7 @@ func _ready() -> void:
 		load_and_play_music()
 	)
 	SignalBus.card_used.connect(func(..._a): play_sfx(SFXType.BUILD))
-	SignalBus.selected_hex.connect(func(..._a): play_sfx(SFXType.CLICK))
+	SignalBus.hex_factory_clicked.connect(func(..._a): play_sfx(SFXType.CLICK))
 	SignalBus.card_hovered.connect(func(..._a): play_sfx(SFXType.HOVER))
 	load_and_play_music()
 
