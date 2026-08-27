@@ -12,6 +12,10 @@ var currently_focused: CardHudBase = null
 var cards: Array[CardHudBase] = []
 var can_be_laid_down: bool = true
 
+# signal card_destroyed(card: CardHudBase)
+signal card_returned_to_hand(card: CardHudBase)
+signal card_dragged(card: CardHudBase)
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("card_select") and _can_use_card():
 		var card := take_currently_dragged()
@@ -104,12 +108,15 @@ func _input_handle_card_laydown():
 		if card_lay_area.hover:
 			var idx = find_first_rightside_card_idx(get_global_mouse_position())
 			cards.insert(idx, currently_focused)
+			card_returned_to_hand.emit(currently_focused)
 			currently_focused = null
 			reorder_cards()
 
 func _input_handle_card_pickup():
 	if Input.is_action_just_pressed("card_select") and _is_currently(State.PREVIEWED):
 		currently_focused.state = CardHudBase.State.DRAGGED
+		card_dragged.emit(currently_focused)		
+
 		cards.erase(currently_focused)
 		reorder_cards()
 
