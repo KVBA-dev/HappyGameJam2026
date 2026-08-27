@@ -4,12 +4,13 @@ class_name FlowIndicator extends Sprite2D
 @onready var mouse_area = %MouseArea
 
 var direction: HexVector.Direction
+var hex: Hex
 
 func _ready() -> void:
 	mouse_area.mouse_entered.connect(_block_selection)
 	mouse_area.mouse_exited.connect(_unblock_selection)
 
-static func new_instance(dir: HexVector.Direction, is_input: bool) -> FlowIndicator:
+static func new_instance(hex_: Hex, dir: HexVector.Direction, is_input: bool) -> FlowIndicator:
 	const SCENE = preload("uid://dai4s6gx18ivu")
 	var scene: Sprite2D = SCENE.instantiate()
 
@@ -19,11 +20,14 @@ static func new_instance(dir: HexVector.Direction, is_input: bool) -> FlowIndica
 	scene.position = pos
 	scene.rotation = pos.angle()
 	if is_input: scene.rotation += PI
+
+	scene.direction = dir
+	scene.hex = hex_
 	return scene
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("select_hex") and mouse_area.hover:
-		print("JEJ")
+		SignalBus.hex_factory_clicked.emit(hex, direction)
 
 func _block_selection():
 	GameManager.main.cursor.block_selection = true

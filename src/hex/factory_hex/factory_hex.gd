@@ -95,14 +95,12 @@ func _remove_indicators():
 
 func _generate_indicators():
 	for direction: HexVector.Direction in item_flow.inputs:
-		_generate_single_indicator(direction, true)
+		var indi := FlowIndicator.new_instance(self, direction, true)
+		indicator_container.add_child(indi)
 
 	for direction: HexVector.Direction in item_flow.outputs:
-		_generate_single_indicator(direction, false)
-
-func _generate_single_indicator(dir: HexVector.Direction, is_input: bool) -> void:
-	var scene := FlowIndicator.new_instance(dir, is_input)
-	indicator_container.add_child(scene)
+		var indi := FlowIndicator.new_instance(self, direction, false)
+		indicator_container.add_child(indi)
 
 # Override
 func select():

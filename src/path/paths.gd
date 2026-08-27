@@ -11,7 +11,7 @@ signal path_deleted(path: PathData)
 func _ready() -> void:
 	GameManager.paths = self
 	GameManager.hex_grid.deleted_hex.connect(_on_hex_deleted)
-	SignalBus.selected_hex.connect(_on_selected_hex)
+	SignalBus.hex_factory_clicked.connect(_on_selected_hex)
 
 func _on_selected_hex(hex: Hex, dir: HexVector.Direction):
 	if not hex is FactoryHex:

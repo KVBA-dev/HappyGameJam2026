@@ -78,7 +78,7 @@ func on_item_entered(area: Area2D) -> void:
 #	# TODO: It can fire on two hexes at once, watch out
 #	if is_mouse_inside and Input.is_action_just_pressed("select_hex"):
 #		var dir := _mouse_dir()
-#		SignalBus.selected_hex.emit(self, dir)
+#		SignalBus.hex_factory_clicked.emit(self, dir)
 #
 #func _mouse_dir() -> HexVector.Direction:
 #	var polygon_center := Vector2.ZERO
