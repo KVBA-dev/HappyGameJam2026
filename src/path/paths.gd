@@ -5,6 +5,9 @@ var PATH_LINE_MAP: Dictionary[PathData, PathLine]
 var start_hex: FactoryHex
 var start_dir: HexVector.Direction
 
+signal path_created(path: PathData)
+signal path_deleted(path: PathData)
+
 func _ready() -> void:
 	GameManager.paths = self
 	GameManager.hex_grid.deleted_hex.connect(_on_hex_deleted)
@@ -50,6 +53,7 @@ func _clear_path(path_data: PathData):
 	PATH_LINE_MAP.erase(path_data)
 	path_line.queue_free()
 	paths.erase(path_data)
+	path_deleted.emit(path_data)
 
 func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: FactoryHex, end_dir: HexVector.Direction) -> Array[FlowHex]:
 	for path: PathData in paths:
@@ -67,8 +71,9 @@ func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: Factor
 	)
 	if waypoints.is_empty():
 		return []
-
-	paths.append(PathData.new(start, _start_dir, end, end_dir, waypoints))
+	var path := PathData.new(start, _start_dir, end, end_dir, waypoints)
+	paths.append(path)
+	path_created.emit(path)
 	return waypoints
 
 func _find_shortest_waypoints(start: FlowHex, end: FlowHex) -> Array[FlowHex]:
@@ -112,3 +117,15 @@ func _build_waypoints(
 		current = came_from[current]
 
 	return waypoints
+
+func spawn_item_on_path(item_data: ItemData, path_data: PathData) -> Item:
+	if not PATH_LINE_MAP.has(path_data):
+		push_error("Cannot spawn item: path has no PathLine")
+		return null
+
+	var path_line := PATH_LINE_MAP[path_data]
+	var path_follow: PathFollow2D = PathFollow2D.new()
+	path_line.add_child(path_follow)
+	var item := Item.new_instance(item_data, path_follow)
+	path_follow.add_child(item)
+	return item
