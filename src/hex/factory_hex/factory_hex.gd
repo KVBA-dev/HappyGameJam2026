@@ -22,7 +22,7 @@ func _ready() -> void:
 	super._ready()
 	if not hex_data.recipe:
 		push_error("Recipe has to be set for factory hex")
-	if not hex_data.item_flow:
+	if not item_flow:
 		push_error("Flow has to be set for factory hex")
 	GameManager.main.factories.append(self)
 	_generate_indicators()
@@ -43,6 +43,7 @@ func _process(_delta: float) -> void:
 func _on_path_created(path_data: PathData):
 	if path_data.start == self:
 		paths.append(path_data)
+
 	_update_connected()
 
 func _on_path_deleted(path_data: PathData):
@@ -51,17 +52,18 @@ func _on_path_deleted(path_data: PathData):
 
 func _update_connected() -> void:
 	var requirements := recipe.requirements.keys()
-	if requirements.is_empty():
-		connected.value = true
-		SignalBus.factory_connected.emit(self)
+
 	for path_data: PathData in GameManager.paths.paths:
 		if path_data.end == self:
 			requirements.erase(path_data.start.recipe.produces)
-		if requirements.is_empty():
-			connected.value = true
-			SignalBus.factory_connected.emit(self)
-			return
-	connected.value = false
+
+	var is_connected := not paths.is_empty() and requirements.is_empty()
+	if connected.value == is_connected:
+		return
+
+	connected.value = is_connected
+	if is_connected:
+		SignalBus.factory_connected.emit(self)
 
 func on_item_input(item: Item):
 	if item.item_data in recipe.requirements:
@@ -83,6 +85,10 @@ func produce():
 	_spawn_product()
 
 func _spawn_product():
+	if paths.is_empty():
+		connected.value = false
+		return
+
 	GameManager.paths.spawn_item_on_path(recipe.produces, paths.pick_random())
 	SignalBus.item_produced.emit(recipe.produces)
 
