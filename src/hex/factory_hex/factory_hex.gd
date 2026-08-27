@@ -1,6 +1,5 @@
 class_name FactoryHex extends Hex
 
-@onready var direction_indicator: Sprite2D = %DirectionIndicator
 @onready var indicator_container: Node2D = %IndicatorContainer
 
 var in_production := false
@@ -44,16 +43,6 @@ func _process(_delta: float) -> void:
 		indicator_container.show()
 	else:
 		indicator_container.hide()
-
-# TODO: Do dodania stany - jak nie jest wybrany start_hex to wskazujemy poprawne outputy - strzałka wychodząca.
-# Jeżeli start_hex wybrany i mamy najechany inny niż start_hex hex to wskazujemy inputy jako poprawne - strzałka wchodząca.
-func show_indicator(dir: HexVector.Direction):
-	if dir in hex_data.item_flow.outputs:
-		direction_indicator.modulate = Color(0xffffffff)
-	else:
-		direction_indicator.modulate = Color(0xff000066)
-	direction_indicator.position = Vector2(64,0).rotated(HexVector.dir_to_angle(dir))
-	direction_indicator.show()
 
 func _on_path_created(path_data: PathData):
 	if path_data.start == self:

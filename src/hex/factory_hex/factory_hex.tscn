@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://c35v72ubhgdk6" path="res://src/hex/hex.tscn" id="1_hab8q"]
 [ext_resource type="Script" uid="uid://cnm4v2dyyt4mh" path="res://src/hex/factory_hex/factory_hex.gd" id="2_odha3"]
-[ext_resource type="Texture2D" uid="uid://cx5knsxgb1crg" path="res://icon.svg" id="3_70sl0"]
 
 [node name="FactoryHex" unique_id=1567981896 instance=ExtResource("1_hab8q")]
 script = ExtResource("2_odha3")
@@ -11,12 +10,6 @@ script = ExtResource("2_odha3")
 unique_name_in_owner = true
 one_shot = true
 
-[node name="DirectionIndicator" type="Sprite2D" parent="." index="4" unique_id=1867573259]
-unique_name_in_owner = true
-modulate = Color(1, 0, 0, 0.4)
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_70sl0")
-
-[node name="IndicatorContainer" type="Node2D" parent="." index="5" unique_id=562494991]
+[node name="IndicatorContainer" type="Node2D" parent="." index="4" unique_id=562494991]
 unique_name_in_owner = true
 visible = false
