@@ -22,7 +22,6 @@ var mode: Mode:
 var MODULATE_NEUTRAL = Color.hex(0x00ffff32)
 var MODULATE_GOOD = Color.hex(0x00f51d32)
 var MODULATE_BAD = Color.hex(0xf4000232)
-var MODULATE_SELECT = Color.hex(0xf4ff0032)
 
 func _ready() -> void:
 	SignalBus.hex_hovered.connect(_on_hovered)
@@ -41,8 +40,8 @@ func _ready() -> void:
 static var selected: Hex = null
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("select_hex"):
-		return
+	if event.is_action_pressed("select_hex") and mode == Mode.HOVER:
+		SignalBus.hex_selected.emit(selected)
 
 func _process(_delta: float) -> void:
 	scale = get_viewport().get_camera_2d().scale

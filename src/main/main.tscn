@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://os0dp4imlkiq" path="res://src/hud/status_hud.tscn" id="9_2nke2"]
 [ext_resource type="PackedScene" uid="uid://c3kylm6wthi6k" path="res://src/hud/cursor_hover_hex.tscn" id="10_km7bn"]
 [ext_resource type="PackedScene" uid="uid://dfn8kds0gr7tk" path="res://src/hud/message_spawner.tscn" id="11_erw1m"]
+[ext_resource type="PackedScene" uid="uid://cx2ytivs2ufkn" path="res://src/hud/cursor_select.tscn" id="12_w0wra"]
 
 [node name="Main" type="Node" unique_id=387200153]
 script = ExtResource("1_3eh75")
@@ -37,9 +38,14 @@ timeout_interval = 181.0
 [node name="StatusHud" parent="." unique_id=1515205727 node_paths=PackedStringArray("game_timer") instance=ExtResource("9_2nke2")]
 game_timer = NodePath("../GameTimer")
 
-[node name="CursorHoverHex" parent="." unique_id=963481670 instance=ExtResource("10_km7bn")]
-unique_name_in_owner = true
-z_index = 100
-
 [node name="MessageSpawner" parent="." unique_id=511295811 instance=ExtResource("11_erw1m")]
 follow_viewport_enabled = true
+
+[node name="Cursors" type="Node2D" parent="." unique_id=1102581701]
+
+[node name="CursorHoverHex" parent="Cursors" unique_id=963481670 instance=ExtResource("10_km7bn")]
+unique_name_in_owner = true
+z_index = 1000
+
+[node name="CursorSelect" parent="Cursors" unique_id=1973028755 instance=ExtResource("12_w0wra")]
+z_index = 1000
