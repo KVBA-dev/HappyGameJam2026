@@ -15,6 +15,7 @@ func _deselect():
 
 func on_select(hex: Hex):
 	if not hex or hex == selected:
+		SignalBus.hex_selected.emit(selected)
 		_deselect()
 		return
 	_deselect()

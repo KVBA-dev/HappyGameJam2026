@@ -42,7 +42,8 @@ func _modulate():
 
 func _process(_delta: float) -> void:
 	_modulate()
-	if Input.is_action_just_pressed("select_hex") and mouse_area.hover:
+	if Input.is_action_just_pressed("select_hex") \
+		and mouse_area.hover:
 		SignalBus.hex_factory_clicked.emit(hex, direction)
 
 func _block_selection():

@@ -12,12 +12,12 @@ func _ready() -> void:
 	GameManager.paths = self
 	GameManager.hex_grid.deleted_hex.connect(_on_hex_deleted)
 	SignalBus.hex_factory_clicked.connect(_on_hex_factory_clicked)
-	SignalBus.hex_deselected.connect(_on_hex_deselected)
+	SignalBus.hex_selected.connect(_on_hex_selected)
 
 func _deselect():
 	start_hex = null
 
-func _on_hex_deselected(hex: Hex):
+func _on_hex_selected(hex: Hex):
 	if hex == start_hex:
 		_deselect()
 
