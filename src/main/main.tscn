@@ -26,6 +26,7 @@ script = ExtResource("3_ab7mr")
 
 [node name="GameTimer" type="Node" parent="." unique_id=1910709566]
 script = ExtResource("5_jkpqq")
+tick_interval = 0.1
 timeout_interval = 181.0
 
 [node name="HexGrid" parent="." unique_id=1755103109 instance=ExtResource("6_hfdnt")]

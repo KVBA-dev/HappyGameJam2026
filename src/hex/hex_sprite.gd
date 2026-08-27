@@ -14,6 +14,7 @@ func init(hex_data: HexData):
 		on_hex_sprite.scale = Vector2(0.561, 0.561)
 	else:
 		on_hex_sprite.material = null
+		on_hex_sprite.scale = Vector2(0.366, 0.366)
 
 @onready var _rotate_timer: Timer = %RotateTimer
 @onready var _below_displacement: Node2D = %BelowDisplacement
