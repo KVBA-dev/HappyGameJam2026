@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://2ytil7ae8hwe"]
 
 [ext_resource type="PackedScene" uid="uid://c0lvfgmj38wfm" path="res://src/hud/card_holder.tscn" id="1_t0re6"]
+[ext_resource type="PackedScene" uid="uid://bxskiasaoc27g" path="res://src/hud/hex_info_card.tscn" id="2_3phq6"]
 
 [node name="Hud" type="CanvasLayer" unique_id=170203212]
 
@@ -23,3 +24,5 @@ offset_top = -130.0
 offset_right = 0.0
 offset_bottom = -130.0
 grow_vertical = 0
+
+[node name="HexInfoCard" parent="." unique_id=1800096999 instance=ExtResource("2_3phq6")]

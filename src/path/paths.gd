@@ -40,18 +40,10 @@ func _on_hex_factory_clicked(hex: Hex, dir: HexVector.Direction):
 		# TODO: Make it make sense
 		GameManager.main.cursor.cursor_select.deselect()
 
-		var waypoints: Array[Hex] = []
 		var created_path := create_path(start_hex, start_dir, hex, dir)
 		if created_path.is_empty():
 			start_hex = null
 			return
-		for waypoint: FlowHex in created_path:
-			waypoints.append(waypoint)
-		waypoints.push_front(start_hex)
-		waypoints.push_back(hex)
-		var path_line := PathLine.new_instance(waypoints)
-		PATH_LINE_MAP[paths.back()] = path_line
-		add_child(path_line)
 		start_hex = null
 		
 
@@ -110,6 +102,17 @@ func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: Factor
 		return []
 	var path := PathData.new(start, _start_dir, end, end_dir, waypoints)
 	paths.append(path)
+
+	var line_waypoints: Array[Hex] = []
+	for waypoint: FlowHex in waypoints:
+		line_waypoints.append(waypoint)
+	line_waypoints.push_front(start)
+	line_waypoints.push_back(end)
+
+	var path_line := PathLine.new_instance(line_waypoints)
+	PATH_LINE_MAP[path] = path_line
+	add_child(path_line)
+
 	path_created.emit(path)
 	print("[Paths] Path created with %d waypoints" % waypoints.size())
 	return waypoints
@@ -162,6 +165,7 @@ func _build_waypoints(
 	return waypoints
 
 func spawn_item_on_path(item_data: ItemData, path_data: PathData) -> Item:
+	print(path_data)
 	if not PATH_LINE_MAP.has(path_data):
 		push_error("Cannot spawn item: path has no PathLine")
 		return null
