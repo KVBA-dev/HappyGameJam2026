@@ -2,7 +2,6 @@ class_name CursorHoverHex extends Node2D
 
 enum Mode {
 	HOVER = 0,
-	SELECTED = 1,
 	CARD_PLACE_HINT = 2,
 	CARD_USE_HINT = 3
 }
@@ -13,7 +12,8 @@ var _mode: Mode = Mode.HOVER
 var mode: Mode:
 	get: return _mode
 	set(nmode):
-		if nmode != _mode: mode_changed.emit(nmode, _mode)
+		if nmode == _mode: return 
+		mode_changed.emit(nmode, _mode)
 		_mode = nmode
 		_on_mode_changed()
 
@@ -34,7 +34,7 @@ func _ready() -> void:
 			CardData.Type.PLACABLE: mode = Mode.CARD_PLACE_HINT
 	)
 
-	SignalBus.hex_selected.connect(func(_a): print(_a))
+	# SignalBus.hex_selected.connect(func(_a): print(_a))
 
 	hide()
 
@@ -42,24 +42,21 @@ static var selected: Hex = null
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("select_hex"):
-		if mode == Mode.SELECTED:
-			mode = Mode.HOVER
-		elif mode == Mode.HOVER and selected and GameManager.card_holder.is_not_interacted_with():
-			mode = Mode.SELECTED
-			SignalBus.hex_selected.emit(selected)
+		return
 
 func _process(_delta: float) -> void:
 	scale = get_viewport().get_camera_2d().scale
 	match mode:
-		Mode.HOVER: 			_find_hex()
-		Mode.SELECTED: 			pass
-		Mode.CARD_PLACE_HINT: 	_find_hex()
-		Mode.CARD_USE_HINT:		_find_hex()
+		Mode.HOVER: 			_hover_process()
+		Mode.CARD_PLACE_HINT: 	_hover_process()
+		Mode.CARD_USE_HINT:		_hover_process()
 
-func _find_hex():
+func _find_hex() -> Hex:
 	var selected_hex_position := HexVector.position_to_hex(get_global_mouse_position())
-	var selected_hex := GameManager.hex_grid.get_hex_at(selected_hex_position)
+	return GameManager.hex_grid.get_hex_at(selected_hex_position)
 
+func _hover_process():
+	var selected_hex := _find_hex()
 	_change_selected(selected_hex)
 
 func _change_selected(hex: Hex):
@@ -91,8 +88,6 @@ func _modulate_accordingly(hovered: Hex):
 	match mode:
 		Mode.HOVER:
 			sprite.modulate = MODULATE_NEUTRAL
-		Mode.SELECTED:
-			sprite.modulate = MODULATE_SELECT
 		Mode.CARD_PLACE_HINT:
 			if GameManager.hex_grid.can_place_card(hovered.hex_position) \
 				and hovered.type == HexData.Type.BLANK:

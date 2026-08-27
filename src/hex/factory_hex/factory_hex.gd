@@ -1,7 +1,10 @@
 class_name FactoryHex extends Hex
 
+const FLOW_INDICATOR_SCENE = preload("uid://dai4s6gx18ivu")
+
 @onready var production_timer: Timer = %ProductionTimer
 @onready var direction_indicator: Sprite2D = %DirectionIndicator
+@onready var indicator_container: Node2D = %IndicatorContainer
 
 var in_production := false
 var storage: Dictionary[ItemData, int]
@@ -52,7 +55,6 @@ func show_indicator(dir: HexVector.Direction):
 	direction_indicator.position = Vector2(64,0).rotated(HexVector.dir_to_angle(dir))
 	direction_indicator.show()
 
-
 func _on_path_created(path_data: PathData):
 	if path_data.start == self:
 		paths.append(path_data)
@@ -96,3 +98,23 @@ func _spawn_product():
 		storage[requirement] -= recipe.requirements[requirement]
 	
 	GameManager.paths.spawn_item_on_path(recipe.produces, paths.pick_random())
+
+func _generate_indicators():
+	for direction: HexVector.Direction in item_flow.inputs:
+		_generate_single_indicator(direction, true)
+
+	for direction: HexVector.Direction in item_flow.outputs:
+		_generate_single_indicator(direction, false)
+
+func _generate_single_indicator(dir: HexVector.Direction, is_input: bool) -> void:
+	var vec = HexVector.direction_vector(dir)
+	var scene: Sprite2D = FLOW_INDICATOR_SCENE.instantiate()
+	var offset = vec.to_pixel().normalized() * 100
+
+	scene.position = offset
+	scene.rotation = offset.angle()
+	if is_input: scene.rotation += PI
+	indicator_container.add_child(scene)
+
+func on_selection():
+	_generate_indicators()

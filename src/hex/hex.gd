@@ -114,6 +114,10 @@ func _on_mouse_exited():
 	if GameManager.main:
 		GameManager.main.tooltip_canvas.hide_tooltip(self)
 
+# Virtual
+func on_selection():
+	pass
+
 func animated_kill():
 	item_detection_area.area_entered.disconnect(on_item_entered)
 	mouse_detection_area.mouse_entered.disconnect(_on_mouse_entered)

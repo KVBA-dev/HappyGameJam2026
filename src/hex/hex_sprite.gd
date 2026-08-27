@@ -10,6 +10,9 @@ func init(hex_data: HexData):
 	on_hex_sprite.texture = hex_data.on_surface_texture
 	below_sprite.texture = hex_data.below_texture
 
+	match hex_data.type:
+		HexData.Type.FACTORY: on_hex_sprite.scale = Vector2.ONE * 0.25
+
 
 @onready var _rotate_timer: Timer = %RotateTimer
 @onready var _below_displacement: Node2D = %BelowDisplacement

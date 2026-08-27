@@ -221,7 +221,6 @@ texture = ExtResource("2_4pg3w")
 
 [node name="OnHexSprite" type="Sprite2D" parent="BgDisplacement" unique_id=548650446]
 unique_name_in_owner = true
-scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_72ifu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1981581343]
