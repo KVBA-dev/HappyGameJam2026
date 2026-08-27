@@ -32,25 +32,28 @@ func _can_use_card() -> bool:
 		_: return false
 
 func _can_use_placable() -> bool:
-	if not CursorHoverHex.selected:
+	var hovered = Cursor.hover_hex
+	if not hovered:
 		return false
 
-	if CursorHoverHex.selected.hex_data.type != HexData.Type.BLANK:
-		ErrorBus.hex_already_exist_on_position.emit(CursorHoverHex.selected)
+	if hovered.hex_data.type != HexData.Type.BLANK:
+		ErrorBus.hex_already_exist_on_position.emit(hovered)
 		return false
 
-	var current := CursorHoverHex.selected
-	var can_place = GameManager.hex_grid.can_place_card(current.hex_position)
+	var can_place = GameManager.hex_grid.can_place_card(hovered.hex_position)
 	if not can_place:
-		ErrorBus.hex_too_far_from_existing.emit(current)
+		ErrorBus.hex_too_far_from_existing.emit(hovered)
 	return can_place
 
 func _can_use_usable() -> bool:
 	# TODO: Implement usable cards
 	return false
 
-func is_not_interacted_with() -> bool:
-	return currently_focused == null or currently_focused.state == State.IN_HAND
+func is_interacted_with() -> bool:
+	if currently_focused == null:
+		return false
+
+	return currently_focused.state != State.IN_HAND
 
 func take_currently_dragged() -> CardHudBase:
 	var card = currently_focused
@@ -191,7 +194,7 @@ func _is_currently(state: CardHudBase.State):
 
 func get_position_data_for_cards() -> Array[Dictionary]:
 	const angle_card_distance = 0.15
-	const angle_hover_distance = 0.3
+	const angle_hover_distance = 0.1
 
 	@warning_ignore("integer_division")
 	var angle_offset: float = -int(len(cards) / 2) * angle_card_distance

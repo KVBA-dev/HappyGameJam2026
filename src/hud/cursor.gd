@@ -1,8 +1,7 @@
-class_name CursorHoverHex extends Node2D
+class_name Cursor extends Node2D
 
 enum Mode {
 	HOVER = 0,
-	SELECTED = 1,
 	CARD_PLACE_HINT = 2,
 	CARD_USE_HINT = 3
 }
@@ -13,16 +12,20 @@ var _mode: Mode = Mode.HOVER
 var mode: Mode:
 	get: return _mode
 	set(nmode):
-		if nmode != _mode: mode_changed.emit(nmode, _mode)
+		if nmode == _mode: return 
+		mode_changed.emit(nmode, _mode)
 		_mode = nmode
 		_on_mode_changed()
 
+var block_selection: bool = false
+
 @onready var sprite: Sprite2D = %HexSprite.background_sprite
+@onready var cursor_hover: Node2D = %CursorHoverHex
+@onready var cursor_select: CursorSelect = %CursorSelect
 
 var MODULATE_NEUTRAL = Color.hex(0x00ffff32)
 var MODULATE_GOOD = Color.hex(0x00f51d32)
 var MODULATE_BAD = Color.hex(0xf4000232)
-var MODULATE_SELECT = Color.hex(0xf4ff0032)
 
 func _ready() -> void:
 	SignalBus.hex_hovered.connect(_on_hovered)
@@ -34,65 +37,63 @@ func _ready() -> void:
 			CardData.Type.PLACABLE: mode = Mode.CARD_PLACE_HINT
 	)
 
-	SignalBus.hex_selected.connect(func(_a): print(_a))
+	cursor_hover.hide()
 
-	hide()
-
-static var selected: Hex = null
+static var hover_hex: Hex = null
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("select_hex"):
-		if mode == Mode.SELECTED:
-			mode = Mode.HOVER
-		elif mode == Mode.HOVER and selected and GameManager.card_holder.is_not_interacted_with():
-			mode = Mode.SELECTED
-			SignalBus.hex_selected.emit(selected)
+	if event.is_action_pressed("select_hex") \
+		and mode == Mode.HOVER \
+		and not block_selection \
+		and not GameManager.card_holder.is_interacted_with():
+		cursor_select.try_to_select(hover_hex)
 
 func _process(_delta: float) -> void:
 	scale = get_viewport().get_camera_2d().scale
 	match mode:
-		Mode.HOVER: 			_find_hex()
-		Mode.SELECTED: 			pass
-		Mode.CARD_PLACE_HINT: 	_find_hex()
-		Mode.CARD_USE_HINT:		_find_hex()
+		Mode.HOVER: 			_hover_process()
+		Mode.CARD_PLACE_HINT: 	_hover_process()
+		Mode.CARD_USE_HINT:		_hover_process()
 
-func _find_hex():
+func _find_hex() -> Hex:
 	var selected_hex_position := HexVector.position_to_hex(get_global_mouse_position())
-	var selected_hex := GameManager.hex_grid.get_hex_at(selected_hex_position)
+	return GameManager.hex_grid.get_hex_at(selected_hex_position)
 
+func _hover_process():
+	var selected_hex := _find_hex()
 	_change_selected(selected_hex)
 
 func _change_selected(hex: Hex):
-	if selected == hex: return
-	selected = hex
+	if hover_hex == hex: return
+	hover_hex = hex
 
 	if hex != null:
-		SignalBus.hex_hovered.emit(selected)
+		SignalBus.hex_hovered.emit(hover_hex)
+		show_tooltip()
 	else:
-		hide()
+		cursor_hover.hide()
+		hide_tooltip()
 
 func _on_hovered(hex: Hex):
 	if hex == null:
 		return
 
 	_modulate_accordingly(hex)
-	global_position = hex.global_position
+	cursor_hover.global_position = hex.global_position
 	_show(hex)
 
 func _show(hex: Hex):
 	var player: AnimationPlayer = hex.animation_player
 	if player.is_playing() and player.current_animation != "spawn_above":
-		hide()
-		player.animation_finished.connect(func(_anim): show(), CONNECT_ONE_SHOT)
+		cursor_hover.hide()
+		player.animation_finished.connect(func(_anim): cursor_hover.show(), CONNECT_ONE_SHOT)
 	else:
-		show()
+		cursor_hover.show()
 
 func _modulate_accordingly(hovered: Hex):
 	match mode:
 		Mode.HOVER:
 			sprite.modulate = MODULATE_NEUTRAL
-		Mode.SELECTED:
-			sprite.modulate = MODULATE_SELECT
 		Mode.CARD_PLACE_HINT:
 			if GameManager.hex_grid.can_place_card(hovered.hex_position) \
 				and hovered.type == HexData.Type.BLANK:
@@ -103,5 +104,14 @@ func _modulate_accordingly(hovered: Hex):
 			sprite.modulate = MODULATE_NEUTRAL
 
 func _on_mode_changed():
-	if selected != null:
-		_modulate_accordingly(selected)
+	if hover_hex != null:
+		_modulate_accordingly(hover_hex)
+
+func show_tooltip():
+	if GameManager.main:
+		var tooltip := TextTooltip.new_instance(str(hover_hex.item_flow) + " " + str(hover_hex.hex_position))
+		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
+
+func hide_tooltip():
+	if GameManager.main:
+		GameManager.main.tooltip_canvas.hide_tooltip(self)

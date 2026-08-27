@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b03wiuom5mmte"]
+
+[ext_resource type="Script" uid="uid://bsdwcbbup2go8" path="res://src/hud/cursor.gd" id="1_jo326"]
+[ext_resource type="PackedScene" uid="uid://cdilrnqed1pcs" path="res://src/hex/hex_sprite.tscn" id="2_iew8k"]
+[ext_resource type="Texture2D" uid="uid://km877nju3tii" path="res://assets/images/hex_bland.png" id="3_0hges"]
+[ext_resource type="PackedScene" uid="uid://cx2ytivs2ufkn" path="res://src/hud/cursor_select.tscn" id="4_8e1gn"]
+
+[node name="Cursor" type="Node2D" unique_id=1201830017]
+script = ExtResource("1_jo326")
+
+[node name="CursorHoverHex" type="Node2D" parent="." unique_id=648798318]
+unique_name_in_owner = true
+z_index = 1000
+
+[node name="HexSprite" parent="CursorHoverHex" unique_id=956441382 instance=ExtResource("2_iew8k")]
+unique_name_in_owner = true
+
+[node name="BelowSprite" parent="CursorHoverHex/HexSprite/BelowDisplacement" parent_id_path=PackedInt32Array(956441382, 864170972) index="0" unique_id=260944473]
+texture = null
+
+[node name="BackgroundSprite" parent="CursorHoverHex/HexSprite/BgDisplacement" parent_id_path=PackedInt32Array(956441382, 144048622) index="0" unique_id=439762020]
+modulate = Color(0.95598, 0, 0.008262702, 0.19607843)
+texture = ExtResource("3_0hges")
+
+[node name="OnHexSprite" parent="CursorHoverHex/HexSprite/BgDisplacement" parent_id_path=PackedInt32Array(956441382, 144048622) index="1" unique_id=548650446]
+texture = null
+
+[node name="CursorSelect" parent="." unique_id=1973028755 instance=ExtResource("4_8e1gn")]
+unique_name_in_owner = true
+z_index = 1000
+
+[editable path="CursorHoverHex/HexSprite"]

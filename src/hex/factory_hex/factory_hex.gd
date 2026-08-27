@@ -1,6 +1,6 @@
 class_name FactoryHex extends Hex
 
-@onready var direction_indicator: Sprite2D = %DirectionIndicator
+@onready var indicator_container: Node2D = %IndicatorContainer
 
 var in_production := false
 var storage: Dictionary[ItemData, int]
@@ -26,6 +26,8 @@ func _ready() -> void:
 	if not hex_data.item_flow:
 		push_error("Flow has to be set for factory hex")
 
+	_generate_indicators()
+
 	recipe = hex_data.recipe
 	ticks = recipe.processing_time_ticks
 	for item: ItemData in recipe.requirements.keys():
@@ -35,23 +37,12 @@ func _ready() -> void:
 	GameManager.paths.path_deleted.connect(_on_path_deleted)
 
 func _process(_delta: float) -> void:
-	if GameManager.paths.start_hex == self:
-		show_indicator(GameManager.paths.start_dir)
-	elif is_mouse_inside:
-		show_indicator(_mouse_dir())
+	if CursorSelect.selected == self:
+		indicator_container.show()
+	elif GameManager.paths.start_hex == self:
+		indicator_container.show()
 	else:
-		direction_indicator.hide()
-
-# TODO: Do dodania stany - jak nie jest wybrany start_hex to wskazujemy poprawne outputy - strzałka wychodząca.
-# Jeżeli start_hex wybrany i mamy najechany inny niż start_hex hex to wskazujemy inputy jako poprawne - strzałka wchodząca.
-func show_indicator(dir: HexVector.Direction):
-	if dir in hex_data.item_flow.outputs:
-		direction_indicator.modulate = Color(0xffffffff)
-	else:
-		direction_indicator.modulate = Color(0xff000066)
-	direction_indicator.position = Vector2(64,0).rotated(HexVector.dir_to_angle(dir))
-	direction_indicator.show()
-
+		indicator_container.hide()
 
 func _on_path_created(path_data: PathData):
 	if path_data.start == self:
@@ -103,3 +94,16 @@ func _spawn_product():
 	
 	GameManager.paths.spawn_item_on_path(recipe.produces, paths.pick_random())
 	SignalBus.item_produced.emit(recipe.produces)
+
+func _generate_indicators():
+	for direction: HexVector.Direction in item_flow.inputs:
+		var indi := FlowIndicator.new_instance(self, direction, true)
+		indicator_container.add_child(indi)
+
+	for direction: HexVector.Direction in item_flow.outputs:
+		var indi := FlowIndicator.new_instance(self, direction, false)
+		indicator_container.add_child(indi)
+
+# Override
+func select():
+	indicator_container.show()
