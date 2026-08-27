@@ -172,6 +172,12 @@ func comp(other: HexVector) -> bool:
 func eq(other: HexVector) -> bool:
 	return self.comp(other)
 
+func in_arr(vec_arr: Array[HexVector]) -> bool:
+	for v in vec_arr:
+		if eq(v):
+			return true
+	return false
+
 func mult(val: int) -> HexVector:
 	return HexVector.new(q * val, r * val)
 

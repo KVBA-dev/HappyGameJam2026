@@ -62,6 +62,7 @@ func _find_hex() -> Hex:
 func _hover_process():
 	var selected_hex := _find_hex()
 	_change_selected(selected_hex)
+	_modulate_accordingly(selected_hex)
 
 func _change_selected(hex: Hex):
 	if hover_hex == hex: return
@@ -95,7 +96,7 @@ func _modulate_accordingly(hovered: Hex):
 		Mode.HOVER:
 			sprite.modulate = MODULATE_NEUTRAL
 		Mode.CARD_PLACE_HINT:
-			if GameManager.hex_grid.can_place_card(hovered.hex_position) \
+			if GameManager.card_holder._can_use_placable(false) \
 				and hovered.type == HexData.Type.BLANK:
 				sprite.modulate = MODULATE_GOOD
 			else:

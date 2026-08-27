@@ -148,11 +148,37 @@ func _on_hex_spawned(hex: Hex):
 
 	surround_with_hexes(3, hex.hex_position)
 
-func can_place_card(pos: HexVector):
+func can_place_card(card: CardHudBase, pos: HexVector, log_errors: bool = true) -> bool:
 	var is_any_neighbour_non_blank := false
-
 	for neighbour: Hex in get_hex_neighbours(pos):
 		if neighbour.hex_data.type != HexData.Type.BLANK:
 			is_any_neighbour_non_blank = true
+			break
 
-	return is_any_neighbour_non_blank
+	if not is_any_neighbour_non_blank:
+		if log_errors: ErrorBus.hex_too_far_from_existing.emit(pos)
+		return false
+
+	var makes_valid_path := false
+	var flow: Flow = card.card_data.hex_data.item_flow.duplicate_deep()
+	flow.rotate(card.n_60degree_rotations)
+
+	for vec: HexVector in flow.get_input_tiles(pos):
+		var hex := get_hex_at(vec)
+		if not hex or not hex.item_flow: continue
+		if pos.in_arr(hex.item_flow.get_output_tiles(hex.hex_position)):
+			makes_valid_path = true
+			break
+
+	for vec: HexVector in flow.get_output_tiles(pos):
+		var hex := get_hex_at(vec)
+		if not hex or not hex.item_flow: continue
+		if pos.in_arr(hex.item_flow.get_input_tiles(hex.hex_position)):
+			makes_valid_path = true
+			break
+
+	if not makes_valid_path:
+		if log_errors: ErrorBus.hex_misses_valid_path.emit(pos)
+		return false
+
+	return makes_valid_path

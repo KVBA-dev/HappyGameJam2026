@@ -31,18 +31,16 @@ func _can_use_card() -> bool:
 		CardData.Type.USABLE: return _can_use_usable()
 		_: return false
 
-func _can_use_placable() -> bool:
+func _can_use_placable(log_errors: bool = true) -> bool:
 	var hovered = Cursor.hover_hex
 	if not hovered:
 		return false
 
 	if hovered.hex_data.type != HexData.Type.BLANK:
-		ErrorBus.hex_already_exist_on_position.emit(hovered)
+		if log_errors: ErrorBus.hex_already_exist_on_position.emit(hovered.hex_position)
 		return false
 
-	var can_place = GameManager.hex_grid.can_place_card(hovered.hex_position)
-	if not can_place:
-		ErrorBus.hex_too_far_from_existing.emit(hovered)
+	var can_place = GameManager.hex_grid.can_place_card(currently_focused, hovered.hex_position, log_errors)
 	return can_place
 
 func _can_use_usable() -> bool:

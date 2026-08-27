@@ -19,3 +19,17 @@ func _to_string() -> String:
 	for output_dir in outputs:
 		outputs_str += HexVector.dir_to_str(output_dir) + " "
 	return "Inputs(%s), Outputs(%s)" % [inputs_str, outputs_str]
+
+func get_input_tiles(pos: HexVector) -> Array[HexVector]:
+	var tiles: Array[HexVector] = []
+	for dir in inputs:
+		var vec = pos.add(HexVector.direction_vector(dir))
+		tiles.push_back(vec)
+	return tiles
+
+func get_output_tiles(pos: HexVector) -> Array[HexVector]:
+	var tiles: Array[HexVector] = []
+	for dir in outputs:
+		var vec = pos.add(HexVector.direction_vector(dir))
+		tiles.push_back(vec)
+	return tiles
