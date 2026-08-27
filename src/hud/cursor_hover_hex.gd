@@ -64,8 +64,10 @@ func _change_selected(hex: Hex):
 
 	if hex != null:
 		SignalBus.hex_hovered.emit(selected)
+		show_tooltip()
 	else:
 		hide()
+		hide_tooltip()
 
 func _on_hovered(hex: Hex):
 	if hex == null:
@@ -99,3 +101,12 @@ func _modulate_accordingly(hovered: Hex):
 func _on_mode_changed():
 	if selected != null:
 		_modulate_accordingly(selected)
+
+func show_tooltip():
+	if GameManager.main:
+		var tooltip := TextTooltip.new_instance(str(selected.item_flow))
+		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
+
+func hide_tooltip():
+	if GameManager.main:
+		GameManager.main.tooltip_canvas.hide_tooltip(self)
