@@ -2,6 +2,7 @@
 class_name Main extends Node
 
 @onready var tooltip_canvas: TooltipCanvas = %TooltipCanvas
+@onready var cursor: CursorHoverHex = %CursorHoverHex
 
 var paused: bool = false
 var paths_visible: bool = true

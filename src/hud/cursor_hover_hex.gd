@@ -34,13 +34,19 @@ func _ready() -> void:
 			CardData.Type.PLACABLE: mode = Mode.CARD_PLACE_HINT
 	)
 
+	SignalBus.hex_selected.connect(func(_a): print(_a))
+
 	hide()
 
 static var selected: Hex = null
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("select_hex") and mode in [ Mode.SELECTED, Mode.HOVER ]:
-		mode = Mode.SELECTED if mode != Mode.SELECTED else Mode.HOVER
+	if event.is_action_pressed("select_hex"):
+		if mode == Mode.SELECTED:
+			mode = Mode.HOVER
+		elif mode == Mode.HOVER and selected and GameManager.card_holder.is_not_interacted_with():
+			mode = Mode.SELECTED
+			SignalBus.hex_selected.emit(selected)
 
 func _process(_delta: float) -> void:
 	scale = get_viewport().get_camera_2d().scale
