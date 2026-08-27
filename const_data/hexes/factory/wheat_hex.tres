@@ -1,24 +1,21 @@
 [gd_resource type="Resource" script_class="HexData" format=3 uid="uid://dppd23vr5vieg"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
-[ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
+[ext_resource type="Resource" uid="uid://cf4mprg4trfes" path="res://const_data/flows/out_2_flow.tres" id="3_5g05w"]
 [ext_resource type="Resource" uid="uid://bkn1urxu03fr7" path="res://src/recipe/resources/wheat_field.tres" id="3_recipe"]
+[ext_resource type="Texture2D" uid="uid://u3cnfwmukb6g" path="res://assets/images/river_uvs/river-only-right.png" id="4_3nvt0"]
 [ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="4_texture"]
 [ext_resource type="Texture2D" uid="uid://wle6yvl76ibk" path="res://assets/images/tiles_factories/Krówka.png" id="5_surface"]
 [ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="6_below"]
-
-[sub_resource type="Resource" id="Flow_wheat"]
-script = ExtResource("2_flow")
-outputs = Array[int]([2])
-metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 
 [resource]
 script = ExtResource("1_hex_data")
 hex_name = "Wheat Hex"
 texture = ExtResource("4_texture")
-on_surface_texture = ExtResource("5_surface")
+on_surface_texture = ExtResource("4_3nvt0")
+factory_icon_texture = ExtResource("5_surface")
 below_texture = ExtResource("6_below")
 type = 2
 recipe = ExtResource("3_recipe")
-item_flow = SubResource("Flow_wheat")
+item_flow = ExtResource("3_5g05w")
 metadata/_custom_type_script = "uid://dwkm1j5578jxo"

@@ -1,25 +1,21 @@
 [gd_resource type="Resource" script_class="HexData" format=3 uid="uid://dyo5wi8e78fue"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
-[ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
+[ext_resource type="Resource" uid="uid://de52japgyjgto" path="res://const_data/flows/1-2_3-2_5-2_flow.tres" id="3_pbsqr"]
 [ext_resource type="Resource" uid="uid://cnvy6gt8ikllh" path="res://src/recipe/resources/chocolate_factory.tres" id="3_recipe"]
 [ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="4_texture"]
+[ext_resource type="Texture2D" uid="uid://y44ib651bk31" path="res://assets/images/river_uvs/river-from-all-left.png" id="4_uopv4"]
 [ext_resource type="Texture2D" uid="uid://wle6yvl76ibk" path="res://assets/images/tiles_factories/Krówka.png" id="5_surface"]
 [ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="6_below"]
-
-[sub_resource type="Resource" id="Flow_chocolate"]
-script = ExtResource("2_flow")
-inputs = Array[int]([1, 3, 5])
-outputs = Array[int]([2])
-metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 
 [resource]
 script = ExtResource("1_hex_data")
 hex_name = "Chocolate Hex"
 texture = ExtResource("4_texture")
-on_surface_texture = ExtResource("5_surface")
+on_surface_texture = ExtResource("4_uopv4")
+factory_icon_texture = ExtResource("5_surface")
 below_texture = ExtResource("6_below")
 type = 2
 recipe = ExtResource("3_recipe")
-item_flow = SubResource("Flow_chocolate")
+item_flow = ExtResource("3_pbsqr")
 metadata/_custom_type_script = "uid://dwkm1j5578jxo"

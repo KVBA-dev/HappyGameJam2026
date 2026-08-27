@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
 [ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
 [ext_resource type="Resource" uid="uid://cw1o6llah2qtp" path="res://src/recipe/resources/milk_processor.tres" id="3_recipe"]
+[ext_resource type="Texture2D" uid="uid://csfoao5q01xhw" path="res://assets/images/river_uvs/river-straight.png" id="4_1ld7w"]
 [ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="4_texture"]
 [ext_resource type="Texture2D" uid="uid://d2hwikmaipxcr" path="res://assets/images/tiles_factories/Mleczarnia.png" id="5_surface"]
 [ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="6_below"]
@@ -17,7 +18,8 @@ metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 script = ExtResource("1_hex_data")
 hex_name = "Cream Hex"
 texture = ExtResource("4_texture")
-on_surface_texture = ExtResource("5_surface")
+on_surface_texture = ExtResource("4_1ld7w")
+factory_icon_texture = ExtResource("5_surface")
 below_texture = ExtResource("6_below")
 type = 2
 recipe = ExtResource("3_recipe")

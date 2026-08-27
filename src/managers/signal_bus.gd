@@ -20,6 +20,9 @@ signal hex_selected(hex: Hex)
 signal hex_deselected(hex: Hex)
 signal hex_factory_clicked(hex: FactoryHex, dir: HexVector.Direction)
 
-signal item_produced(item: ItemData)
+signal item_produced(item: ItemData) # emitted every time an item is produced
+signal item_achieved(item: ItemData) # emitted when an item is produced for the first time
+signal progress_group_unlocked(group: ProgressGroup)
 
 signal game_reset
+signal game_win
