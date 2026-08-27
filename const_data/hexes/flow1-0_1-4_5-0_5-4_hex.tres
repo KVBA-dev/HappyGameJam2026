@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("3_hex_data")
-hex_name = "1/5-0/4 Flow"
+hex_name = "5-1/2 Flow"
 texture = ExtResource("5_texture")
 on_surface_texture = ExtResource("3_ns30h")
 below_texture = ExtResource("1_below")
