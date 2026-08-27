@@ -1,7 +1,5 @@
 class_name FactoryHex extends Hex
 
-const FLOW_INDICATOR_SCENE = preload("uid://dai4s6gx18ivu")
-
 @onready var production_timer: Timer = %ProductionTimer
 @onready var direction_indicator: Sprite2D = %DirectionIndicator
 @onready var indicator_container: Node2D = %IndicatorContainer
@@ -36,14 +34,6 @@ func _ready() -> void:
 	production_timer.timeout.connect(produce)
 	GameManager.paths.path_created.connect(_on_path_created)
 	GameManager.paths.path_deleted.connect(_on_path_deleted)
-
-func _process(_delta: float) -> void:
-	if GameManager.paths.start_hex == self:
-		show_indicator(GameManager.paths.start_dir)
-	elif is_mouse_inside:
-		show_indicator(_mouse_dir())
-	else:
-		direction_indicator.hide()
 
 # TODO: Do dodania stany - jak nie jest wybrany start_hex to wskazujemy poprawne outputy - strzałka wychodząca.
 # Jeżeli start_hex wybrany i mamy najechany inny niż start_hex hex to wskazujemy inputy jako poprawne - strzałka wchodząca.
@@ -99,6 +89,10 @@ func _spawn_product():
 	
 	GameManager.paths.spawn_item_on_path(recipe.produces, paths.pick_random())
 
+func _remove_indicators():
+	for child in indicator_container.get_children():
+		child.queue_free()
+
 func _generate_indicators():
 	for direction: HexVector.Direction in item_flow.inputs:
 		_generate_single_indicator(direction, true)
@@ -107,14 +101,13 @@ func _generate_indicators():
 		_generate_single_indicator(direction, false)
 
 func _generate_single_indicator(dir: HexVector.Direction, is_input: bool) -> void:
-	var vec = HexVector.direction_vector(dir)
-	var scene: Sprite2D = FLOW_INDICATOR_SCENE.instantiate()
-	var offset = vec.to_pixel().normalized() * 100
-
-	scene.position = offset
-	scene.rotation = offset.angle()
-	if is_input: scene.rotation += PI
+	var scene := FlowIndicator.new_instance(dir, is_input)
 	indicator_container.add_child(scene)
 
-func on_selection():
+# Override
+func select():
 	_generate_indicators()
+
+# Override
+func deselect():
+	_remove_indicators()

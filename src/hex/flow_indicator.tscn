@@ -1,7 +1,21 @@
 [gd_scene format=3 uid="uid://dai4s6gx18ivu"]
 
 [ext_resource type="Texture2D" uid="uid://ccr08jwa2hpck" path="res://assets/arrow.png" id="1_mrle3"]
+[ext_resource type="Script" uid="uid://cos4q8yt0012h" path="res://src/hex/flow_indicator.gd" id="2_6xoms"]
+[ext_resource type="Script" uid="uid://dfy8e15ewhav" path="res://src/utils/hoverable_area.gd" id="3_k3abo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5l75f"]
+size = Vector2(50, 40)
 
 [node name="FlowIndicator" type="Sprite2D" unique_id=1165981500]
 z_index = 200
 texture = ExtResource("1_mrle3")
+script = ExtResource("2_6xoms")
+
+[node name="MouseArea" type="Area2D" parent="." unique_id=1918084814]
+unique_name_in_owner = true
+script = ExtResource("3_k3abo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseArea" unique_id=245132033]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_5l75f")
