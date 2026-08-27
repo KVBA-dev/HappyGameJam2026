@@ -11,11 +11,11 @@ script = ExtResource("2_odha3")
 unique_name_in_owner = true
 one_shot = true
 
-[node name="DirectionIndicator" type="Sprite2D" parent="." index="5" unique_id=1867573259]
+[node name="DirectionIndicator" type="Sprite2D" parent="." index="4" unique_id=1867573259]
 unique_name_in_owner = true
 modulate = Color(1, 0, 0, 0.4)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_70sl0")
 
-[node name="IndicatorContainer" type="Node2D" parent="." index="6" unique_id=562494991]
+[node name="IndicatorContainer" type="Node2D" parent="." index="5" unique_id=562494991]
 unique_name_in_owner = true

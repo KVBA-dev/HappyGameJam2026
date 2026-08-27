@@ -17,6 +17,8 @@ var mode: Mode:
 		_mode = nmode
 		_on_mode_changed()
 
+var block_selection: bool = false
+
 @onready var sprite: Sprite2D = %HexSprite.background_sprite
 @onready var cursor_hover: Node2D = %CursorHoverHex
 @onready var cursor_select: Node2D = %CursorSelect
@@ -42,7 +44,7 @@ func _ready() -> void:
 static var cursor_hex: Hex = null
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("select_hex") and mode == Mode.HOVER:
+	if event.is_action_pressed("select_hex") and mode == Mode.HOVER and not block_selection:
 		cursor_select.on_select(cursor_hex)
 
 func _process(_delta: float) -> void:
