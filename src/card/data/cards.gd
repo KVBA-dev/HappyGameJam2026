@@ -4,4 +4,4 @@ class_name Cards extends Resource
 
 
 func pick_random() -> CardData:
-    return list.pick_random()
+	return list.pick_random()

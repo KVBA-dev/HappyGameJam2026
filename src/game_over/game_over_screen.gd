@@ -1,7 +1,7 @@
 class_name GameOverScreen
 extends CanvasLayer
 
-@onready var reset_button: Button = $Layout/RetryButton
+@onready var reset_button: Button = $Panel/Layout/RetryButton
 
 func _ready() -> void:
 	SignalBus.game_timer_timeout.connect(on_game_timer_timeout)

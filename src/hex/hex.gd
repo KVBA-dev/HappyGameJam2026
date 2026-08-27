@@ -106,7 +106,7 @@ func _mouse_dir() -> HexVector.Direction:
 func _on_mouse_entered():
 	is_mouse_inside = true
 	if GameManager.main:
-		var tooltip := TextTooltip.new_instance(str(item_flow))
+		var tooltip := TextTooltip.new_instance("%s\n%s" % [hex_data.hex_name, str(item_flow)])
 		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
 
 func _on_mouse_exited():
