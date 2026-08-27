@@ -48,7 +48,7 @@ func spawn_available_factory_hexes() -> void:
 
 	for batch: ProgressBatch in batches:
 		for hex_data: HexData in batch.buildings:
-			var blank_hex := GameManager.hex_grid.get_random_blank_hex_in_spawn_range()
+			var blank_hex: Hex = GameManager.hex_grid.get_random_blank_hex_in_spawn_range()
 			if blank_hex == null:
 				push_error("No blank hex is within spawn range")
 				return
