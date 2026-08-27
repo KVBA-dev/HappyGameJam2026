@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Flow" format=3 uid="uid://de52japgyjgto"]
+
+[ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="1_t1mq1"]
+
+[resource]
+script = ExtResource("1_t1mq1")
+inputs = Array[int]([3, 5, 1])
+outputs = Array[int]([2])
+metadata/_custom_type_script = "uid://c5sy2n01dfxna"
