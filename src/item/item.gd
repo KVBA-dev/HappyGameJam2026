@@ -5,4 +5,4 @@ extends Area2D
 const SCENE := preload("res://src/item/item.tscn")
 
 static func new_instance() -> Item:
-    return SCENE.instantiate()
+	return SCENE.instantiate()

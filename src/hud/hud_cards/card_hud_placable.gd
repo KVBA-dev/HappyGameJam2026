@@ -11,9 +11,6 @@ func start_use_animation():
 
 	_reparent_node_for_animation()
 
-	# Infinite cards for fun
-	GameManager.card_holder.add_card(load("res://const_data/cards/test_card.tres"))
-
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_method(func(vec: Vector2): position = vec,

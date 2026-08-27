@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="ProgressBatch" format=3]
+[gd_resource type="Resource" script_class="ProgressBatch" format=3 uid="uid://cb3h27ary3gxk"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data_script"]
 [ext_resource type="Script" uid="uid://vsamxaqmwrp" path="res://src/progress/progress_batch.gd" id="2_batch_script"]
-[ext_resource type="Resource" path="res://const_data/hexes/vanilla_stick_hex.tres" id="3_hex"]
+[ext_resource type="Resource" uid="uid://b42vohh4o4k7x" path="res://const_data/hexes/factory/vanilla_stick_hex.tres" id="3_hex"]
 
 [resource]
 script = ExtResource("2_batch_script")
 buildings = Array[ExtResource("1_hex_data_script")]([ExtResource("3_hex")])
-prequisites = Array[ExtResource("2_batch_script")]([])
 metadata/_custom_type_script = "uid://vsamxaqmwrp"

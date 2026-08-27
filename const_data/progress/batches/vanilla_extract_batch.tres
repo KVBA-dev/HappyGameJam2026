@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="ProgressBatch" format=3]
+[gd_resource type="Resource" script_class="ProgressBatch" format=3 uid="uid://grt8cxor7nhb"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data_script"]
 [ext_resource type="Script" uid="uid://vsamxaqmwrp" path="res://src/progress/progress_batch.gd" id="2_batch_script"]
-[ext_resource type="Resource" path="res://const_data/hexes/vanilla_extract_hex.tres" id="3_hex"]
-[ext_resource type="Resource" path="res://const_data/progress/batches/vanilla_stick_batch.tres" id="4_prerequisite"]
-[ext_resource type="Resource" path="res://const_data/progress/batches/ethanol_batch.tres" id="5_prerequisite"]
+[ext_resource type="Resource" uid="uid://7unb2s2pv15c" path="res://const_data/hexes/factory/vanilla_extract_hex.tres" id="3_hex"]
+[ext_resource type="Resource" uid="uid://cb3h27ary3gxk" path="res://const_data/progress/batches/vanilla_stick_batch.tres" id="4_prerequisite"]
+[ext_resource type="Resource" uid="uid://ch4ympg0n1wb7" path="res://const_data/progress/batches/ethanol_batch.tres" id="5_prerequisite"]
 
 [resource]
 script = ExtResource("2_batch_script")

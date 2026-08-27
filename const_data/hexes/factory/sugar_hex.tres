@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://c04evuf5bat77"]
+[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://ek3tuvk1wvcd"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
 [ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
-[ext_resource type="Resource" uid="uid://dvb8i6w67lkob" path="res://src/recipe/resources/fruit_press.tres" id="3_recipe"]
+[ext_resource type="Resource" uid="uid://bjny2g351hq0h" path="res://src/recipe/resources/sugar_processor.tres" id="3_recipe"]
 [ext_resource type="Texture2D" uid="uid://dixnh7ix62b17" path="res://assets/images/tiles/kafelki_003.png" id="4_texture"]
 [ext_resource type="Texture2D" uid="uid://3rfk01o1ofca" path="res://assets/images/tiles/blank_hex.png" id="5_surface"]
 [ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="6_below"]
 
-[sub_resource type="Resource" id="Flow_strawberry_juice"]
+[sub_resource type="Resource" id="Flow_sugar"]
 script = ExtResource("2_flow")
 inputs = Array[int]([3])
 outputs = Array[int]([2])
@@ -15,11 +15,11 @@ metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Strawberry Juice Hex"
+hex_name = "Sugar Hex"
 texture = ExtResource("4_texture")
 on_surface_texture = ExtResource("5_surface")
 below_texture = ExtResource("6_below")
-type = 3
+type = 2
 recipe = ExtResource("3_recipe")
-item_flow = SubResource("Flow_strawberry_juice")
+item_flow = SubResource("Flow_sugar")
 metadata/_custom_type_script = "uid://dwkm1j5578jxo"

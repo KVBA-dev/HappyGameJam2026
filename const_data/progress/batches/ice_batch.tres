@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="ProgressBatch" format=3]
+[gd_resource type="Resource" script_class="ProgressBatch" format=3 uid="uid://dcyx5vae8gp7y"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data_script"]
 [ext_resource type="Script" uid="uid://vsamxaqmwrp" path="res://src/progress/progress_batch.gd" id="2_batch_script"]
-[ext_resource type="Resource" path="res://const_data/hexes/ice_hex.tres" id="3_hex"]
-[ext_resource type="Resource" path="res://const_data/progress/batches/water_batch.tres" id="4_prerequisite"]
+[ext_resource type="Resource" uid="uid://dy7i146g83jyx" path="res://const_data/hexes/factory/ice_hex.tres" id="3_hex"]
+[ext_resource type="Resource" uid="uid://b15gvejr3t40a" path="res://const_data/progress/batches/water_batch.tres" id="4_prerequisite"]
 
 [resource]
 script = ExtResource("2_batch_script")
