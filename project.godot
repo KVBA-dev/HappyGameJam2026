@@ -34,6 +34,10 @@ window/stretch/mode="canvas_items"
 
 card_holder=""
 
+[gui]
+
+theme/custom_font="uid://dvtik66y4bxum"
+
 [input]
 
 card_select={

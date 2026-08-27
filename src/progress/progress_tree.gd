@@ -7,6 +7,7 @@ class_name ProgressTree extends Resource
 
 var currently_available_batches: Array[ProgressBatch] = []
 var spawned_batches: Array[ProgressBatch] = []
+var fulfilled_batches: Array[ProgressBatch]
 
 func rebuild() -> void:
 	currently_available_batches.clear()

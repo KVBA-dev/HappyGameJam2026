@@ -40,18 +40,10 @@ func _on_hex_factory_clicked(hex: Hex, dir: HexVector.Direction):
 		# TODO: Make it make sense
 		GameManager.main.cursor.cursor_select.deselect()
 
-		var waypoints: Array[Hex] = []
 		var created_path := create_path(start_hex, start_dir, hex, dir)
 		if created_path.is_empty():
 			start_hex = null
 			return
-		for waypoint: FlowHex in created_path:
-			waypoints.append(waypoint)
-		waypoints.push_front(start_hex)
-		waypoints.push_back(hex)
-		var path_line := PathLine.new_instance(waypoints)
-		PATH_LINE_MAP[paths.back()] = path_line
-		add_child(path_line)
 		start_hex = null
 		
 
@@ -73,21 +65,32 @@ func _clear_path(path_data: PathData):
 	path_deleted.emit(path_data)
 
 func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: FactoryHex, end_dir: HexVector.Direction) -> Array[FlowHex]:
+	print("[Paths] Creating path from %s (%s) to %s (%s)" % [
+		start.hex_position,
+		_start_dir,
+		end.hex_position,
+		end_dir,
+	])
+
 	for path: PathData in paths:
 		var start_already_exists := path.start == start and path.start_output_dir == _start_dir
 		var end_already_exists := path.end == end and path.end_input_dir == end_dir
 		if start_already_exists or end_already_exists:
+			print("[Paths] Path creation failed: start output or end input is already in use")
 			return []
 	var flow_start := start.get_neighbor(_start_dir)
 	var flow_end := end.get_neighbor(end_dir)
 	if not (flow_start is FlowHex and flow_end is FlowHex):
+		print("[Paths] Path creation failed: start or end is not connected to a flow hex")
 		return []
 
 	var flow_start_input := HexVector.direction_rotate(_start_dir, 3)
 	var flow_end_output := HexVector.direction_rotate(end_dir, 3)
 	if not flow_start_input in flow_start.item_flow.inputs:
+		print("[Paths] Path creation failed: start flow hex has no matching input")
 		return []
 	if not flow_end_output in flow_end.item_flow.outputs:
+		print("[Paths] Path creation failed: end flow hex has no matching output")
 		return []
 
 	var waypoints := _find_shortest_waypoints(
@@ -95,10 +98,23 @@ func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: Factor
 		flow_end,
 	)
 	if waypoints.is_empty():
+		print("[Paths] Path creation failed: no route found between flow hexes")
 		return []
 	var path := PathData.new(start, _start_dir, end, end_dir, waypoints)
 	paths.append(path)
+
+	var line_waypoints: Array[Hex] = []
+	for waypoint: FlowHex in waypoints:
+		line_waypoints.append(waypoint)
+	line_waypoints.push_front(start)
+	line_waypoints.push_back(end)
+
+	var path_line := PathLine.new_instance(line_waypoints)
+	PATH_LINE_MAP[path] = path_line
+	add_child(path_line)
+
 	path_created.emit(path)
+	print("[Paths] Path created with %d waypoints" % waypoints.size())
 	return waypoints
 
 func _find_shortest_waypoints(start: FlowHex, end: FlowHex) -> Array[FlowHex]:
@@ -149,6 +165,7 @@ func _build_waypoints(
 	return waypoints
 
 func spawn_item_on_path(item_data: ItemData, path_data: PathData) -> Item:
+	print(path_data)
 	if not PATH_LINE_MAP.has(path_data):
 		push_error("Cannot spawn item: path has no PathLine")
 		return null

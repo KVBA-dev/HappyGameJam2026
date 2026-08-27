@@ -8,6 +8,7 @@ var paused: bool = false
 var paths_visible: bool = true
 # NOTE: treat it as a set
 var items_produced: Dictionary[ItemData, bool]
+var factories: Array[FactoryHex]
 
 static func new_instance() -> Main:
 	var main: Main = GameManager.scenes.MAIN_SCENE.instantiate()
@@ -24,7 +25,13 @@ func _ready() -> void:
 	SignalBus.card_used.connect(func(_a, _b):
 		GameManager.card_holder.add_card(GameManager.cards.pick_random())
 	)
+	SignalBus.factory_connected.connect(_on_factory_connected)
+	spawn_available_factory_hexes()
 
+func _on_factory_connected(_factory: FactoryHex):
+	for factory: FactoryHex in factories:
+		if not factory.connected.value:
+			return
 	spawn_available_factory_hexes()
 
 func _input(event: InputEvent) -> void:

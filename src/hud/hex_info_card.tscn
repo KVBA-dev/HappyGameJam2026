@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bxskiasaoc27g"]
+
+[ext_resource type="Texture2D" uid="uid://c6dtcjdc7ohsp" path="res://assets/images/items/wheat.png" id="1_7uf86"]
+[ext_resource type="FontFile" uid="uid://baq332w5v6eiy" path="res://assets/fonts/Gorditas-Bold.ttf" id="2_d4yo7"]
+[ext_resource type="Texture2D" uid="uid://bojak4wadsf3m" path="res://assets/images/items/cocoa_fruit.png" id="3_d7v0l"]
+[ext_resource type="Texture2D" uid="uid://b1xhuuyviw7h" path="res://assets/images/items/flour.png" id="4_sd3s4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs14m"]
+bg_color = Color(0.55718637, 0.7847594, 0.8813282, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="PanelContainer" type="PanelContainer" unique_id=1800096999]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_cs14m")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1758444798]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1732631766]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PanelContainer" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=466724995]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_7uf86")
+expand_mode = 1
+
+[node name="HexTitle" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1907564842]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_d4yo7")
+theme_override_font_sizes/font_size = 40
+text = "Pole Pszenicy"
+horizontal_alignment = 1
+
+[node name="Needs" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1539643870]
+layout_mode = 2
+text = "Needs"
+horizontal_alignment = 1
+
+[node name="NeededRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1162314505]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NeededIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/NeededRow" unique_id=1197871321]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_d7v0l")
+expand_mode = 1
+
+[node name="NeededIcon2" type="TextureRect" parent="MarginContainer/VBoxContainer/NeededRow" unique_id=1657436893]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_d7v0l")
+expand_mode = 1
+
+[node name="NeededIcon3" type="TextureRect" parent="MarginContainer/VBoxContainer/NeededRow" unique_id=1502558383]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_d7v0l")
+expand_mode = 1
+
+[node name="Produces" type="Label" parent="MarginContainer/VBoxContainer" unique_id=354208487]
+layout_mode = 2
+text = "Produces"
+horizontal_alignment = 1
+
+[node name="ProducesIcon" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=198148170]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_sd3s4")
+expand_mode = 1
