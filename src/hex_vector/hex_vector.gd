@@ -132,9 +132,20 @@ func distance_to(other: HexVector) -> int:
 static func position_to_hex(pos: Vector2) -> HexVector:
 	var q_frac: float = (sqrt(3.0) / 3.0 * pos.x - 1.0 / 3.0 * pos.y) / Consts.HEX_RADIUS
 	var r_frac: float = (2.0 / 3.0 * pos.y) / Consts.HEX_RADIUS
+	var s_frac: float = -q_frac - r_frac
 
 	var q_round: float = round(q_frac)
 	var r_round: float = round(r_frac)
+	var s_round: float = round(s_frac)
+
+	var q_diff: float = abs(q_round - q_frac)
+	var r_diff: float = abs(r_round - r_frac)
+	var s_diff: float = abs(s_round - s_frac)
+
+	if q_diff > r_diff and q_diff > s_diff:
+		q_round = -r_round - s_round
+	elif r_diff > s_diff:
+		r_round = -q_round - s_round
 
 	return HexVector.new(int(q_round), int(r_round))
 

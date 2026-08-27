@@ -15,8 +15,6 @@ var item_flow: Flow
 var type: HexData.Type
 # DATA FOR EACH HEX
 
-static var currently_hovered: Hex
-
 enum AppearStyle {
 	Below = 0,
 	Above = 1,
@@ -110,15 +108,11 @@ func _on_mouse_entered():
 	if GameManager.main:
 		var tooltip := TextTooltip.new_instance(str(item_flow))
 		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
-		currently_hovered = self
-	SignalBus.hex_hovered.emit(self)
 
 func _on_mouse_exited():
 	is_mouse_inside = false
 	if GameManager.main:
 		GameManager.main.tooltip_canvas.hide_tooltip(self)
-	if currently_hovered == self:
-		currently_hovered = null
 
 func animated_kill():
 	item_detection_area.area_entered.disconnect(on_item_entered)

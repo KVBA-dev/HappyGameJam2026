@@ -13,6 +13,10 @@ var currently_focused: CardHudBase = null
 var cards: Array[CardHudBase] = []
 var can_be_laid_down: bool = true
 
+# signal card_destroyed(card: CardHudBase)
+signal card_returned_to_hand(card: CardHudBase)
+signal card_dragged(card: CardHudBase)
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("card_select") and _can_use_card():
 		var card := take_currently_dragged()
@@ -28,14 +32,14 @@ func _can_use_card() -> bool:
 		_: return false
 
 func _can_use_placable() -> bool:
-	if not Hex.currently_hovered:
+	if not CursorHoverHex.selected:
 		return false
 
-	if Hex.currently_hovered.hex_data.type != HexData.Type.BLANK:
-		ErrorBus.hex_already_exist_on_position.emit(Hex.currently_hovered)
+	if CursorHoverHex.selected.hex_data.type != HexData.Type.BLANK:
+		ErrorBus.hex_already_exist_on_position.emit(CursorHoverHex.selected)
 		return false
 
-	var current := Hex.currently_hovered
+	var current := CursorHoverHex.selected
 	var can_place = GameManager.hex_grid.can_place_card(current.hex_position)
 	if not can_place:
 		ErrorBus.hex_too_far_from_existing.emit(current)
@@ -45,8 +49,8 @@ func _can_use_usable() -> bool:
 	# TODO: Implement usable cards
 	return false
 
-func is_dragging_card_type(type: CardData.Type) -> bool:
-	return _is_currently(State.DRAGGED) and currently_focused.card_data.type == type
+func is_not_interacted_with() -> bool:
+	return currently_focused == null or currently_focused.state == State.IN_HAND
 
 func take_currently_dragged() -> CardHudBase:
 	var card = currently_focused
@@ -104,12 +108,15 @@ func _input_handle_card_laydown():
 		if card_lay_area.hover:
 			var idx = find_first_rightside_card_idx(get_global_mouse_position())
 			cards.insert(idx, currently_focused)
+			card_returned_to_hand.emit(currently_focused)
 			currently_focused = null
 			reorder_cards()
 
 func _input_handle_card_pickup():
 	if Input.is_action_just_pressed("card_select") and _is_currently(State.PREVIEWED):
 		currently_focused.state = CardHudBase.State.DRAGGED
+		card_dragged.emit(currently_focused)		
+
 		cards.erase(currently_focused)
 		reorder_cards()
 

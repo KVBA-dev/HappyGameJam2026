@@ -5,10 +5,11 @@ func get_screen_position() -> Vector2:
 
 # Override
 func start_use_animation():
-	var target := Hex.currently_hovered
+	var target := CursorHoverHex.selected
 	# TODO-r: Make it so hexes can't be placed on same tile during animation
 	var grid_pos := target.hex_position
 
+	SignalBus.card_used_animation_started.emit(self)
 	_reparent_node_for_animation()
 
 	var tween = get_tree().create_tween()
