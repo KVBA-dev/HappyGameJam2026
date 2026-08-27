@@ -7,6 +7,7 @@ var storage: Dictionary[ItemData, int]
 var recipe: Recipe
 var paths: Array[PathData] = []
 var ticks: int
+var connected := BoolSF.new()
 
 static func new_instance(
 	_hex_position: HexVector,
@@ -25,7 +26,7 @@ func _ready() -> void:
 		push_error("Recipe has to be set for factory hex")
 	if not hex_data.item_flow:
 		push_error("Flow has to be set for factory hex")
-
+	GameManager.main.factories.append(self)
 	_generate_indicators()
 
 	recipe = hex_data.recipe
@@ -48,10 +49,28 @@ func _on_path_created(path_data: PathData):
 	if path_data.start == self:
 		paths.append(path_data)
 		_start_production()
-	
+
+	_update_connected()
 
 func _on_path_deleted(path_data: PathData):
 	paths.erase(path_data)
+	_update_connected()
+
+func _update_connected() -> void:
+	var requirements := recipe.requirements.keys()
+	if requirements.is_empty():
+		connected.value = true
+		SignalBus.factory_connected.emit(self)
+	for path_data: PathData in GameManager.paths.paths:
+		if path_data.end == self:
+			requirements.erase(path_data.start.recipe.produces)
+		if requirements.is_empty():
+			connected.value = true
+			SignalBus.factory_connected.emit(self)
+			return
+	connected.value = false
+
+	
 
 func on_item_input(item: Item):
 	if item.item_data in recipe.requirements:

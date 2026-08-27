@@ -23,3 +23,5 @@ signal hex_factory_clicked(hex: FactoryHex, dir: HexVector.Direction)
 signal item_produced(item: ItemData)
 
 signal game_reset
+
+signal factory_connected(factory: FactoryHex)
