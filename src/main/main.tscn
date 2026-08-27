@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://c3kylm6wthi6k" path="res://src/hud/cursor_hover_hex.tscn" id="10_km7bn"]
 [ext_resource type="PackedScene" uid="uid://dfn8kds0gr7tk" path="res://src/hud/message_spawner.tscn" id="11_erw1m"]
 [ext_resource type="PackedScene" uid="uid://b26vloi0qd0dt" path="res://src/game_over/game_over_screen.tscn" id="12_w0wra"]
+[ext_resource type="PackedScene" uid="uid://bjw6c0hq500ip" path="res://src/main/background.tscn" id="13_ibsor"]
 
 [node name="Main" type="Node" unique_id=387200153]
 script = ExtResource("1_3eh75")
@@ -47,3 +48,5 @@ z_index = 100
 follow_viewport_enabled = true
 
 [node name="GameOverScreen" parent="." unique_id=1497554013 instance=ExtResource("12_w0wra")]
+
+[node name="Background" parent="." unique_id=1168253911 instance=ExtResource("13_ibsor")]
