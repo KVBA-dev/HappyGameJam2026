@@ -18,7 +18,7 @@ func _input(event: InputEvent) -> void:
 		card.start_use_animation()
 
 func _can_use_card() -> bool:
-	if not _is_currently(State.DRAGGED):
+	if not _is_currently(State.DRAGGED) or card_lay_area.hover:
 		return false
 
 	match currently_focused.card_data.type:
