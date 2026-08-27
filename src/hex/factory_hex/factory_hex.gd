@@ -1,6 +1,8 @@
 class_name FactoryHex extends Hex
 
 @onready var production_timer: Timer = %ProductionTimer
+@onready var direction_indicator: Sprite2D = %DirectionIndicator
+
 var in_production := false
 var storage: Dictionary[ItemData, int]
 var recipe: Recipe
@@ -28,6 +30,25 @@ func _ready() -> void:
 		storage[item] = 0
 	production_timer.wait_time = recipe.processing_time
 	production_timer.timeout.connect(produce)
+
+func _process(_delta: float) -> void:
+	if GameManager.paths.start_hex == self:
+		show_indicator(GameManager.paths.start_dir)
+	elif is_mouse_inside:
+		show_indicator(_mouse_dir())
+	else:
+		direction_indicator.hide()
+
+# TODO: Do dodania stany - jak nie jest wybrany start_hex to wskazujemy poprawne outputy - strzałka wychodząca.
+# Jeżeli start_hex wybrany i mamy najechany inny niż start_hex hex to wskazujemy inputy jako poprawne - strzałka wchodząca.
+func show_indicator(dir: HexVector.Direction):
+	if dir in hex_data.item_flow.outputs:
+		direction_indicator.modulate = Color(0xffffffff)
+	else:
+		direction_indicator.modulate = Color(0xff000066)
+	direction_indicator.position = Vector2(64,0).rotated(HexVector.dir_to_angle(dir))
+	direction_indicator.show()
+
 
 func on_item_input(item: Item):
 	if item.item_data in recipe.requirements:

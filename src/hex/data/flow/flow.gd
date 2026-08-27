@@ -12,4 +12,10 @@ func rotate(n_60degree: int) -> void:
 		outputs[idx] = HexVector.direction_rotate(outputs[idx], n_60degree)
 
 func _to_string() -> String:
-	return "Inputs(%s), Outputs(%s)" % [inputs, outputs]
+	var inputs_str: String = " "
+	var outputs_str: String = " "
+	for input_dir in inputs:
+		inputs_str += HexVector.dir_to_str(input_dir) + " "
+	for output_dir in outputs:
+		outputs_str += HexVector.dir_to_str(output_dir) + " "
+	return "Inputs(%s), Outputs(%s)" % [inputs_str, outputs_str]

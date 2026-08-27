@@ -25,6 +25,33 @@ enum Direction {
 	DOWN_LEFT = 5
 }
 
+const DIRECTION_TO_STR_MAP: Dictionary[Direction, String] = {
+	Direction.UP_RIGHT: "UP_RIGHT",
+	Direction.UP_LEFT: "UP_LEFT",
+	Direction.CENTER_RIGHT: "CENTER_RIGHT",
+	Direction.CENTER_LEFT: "CENTER_LEFT",
+	Direction.DOWN_RIGHT: "DOWN_RIGHT",
+	Direction.DOWN_LEFT: "DOWN_LEFT",
+}
+static func dir_to_str(direction: Direction) -> String:
+	return DIRECTION_TO_STR_MAP.get(direction, "UNKNOWN")
+
+static func dir_to_angle(direction: Direction) -> float:
+	match direction:
+		Direction.CENTER_RIGHT:
+			return 0.0
+		Direction.DOWN_RIGHT:
+			return TAU / 6.0
+		Direction.DOWN_LEFT:
+			return 2.0 * TAU / 6.0
+		Direction.CENTER_LEFT:
+			return 3.0 * TAU / 6.0
+		Direction.UP_LEFT:
+			return -2.0 * TAU / 6.0
+		Direction.UP_RIGHT:
+			return -TAU / 6.0
+	return 0.0
+
 static var vectors: Array[HexVector] = []
 static var DIRECTION_MAP: Dictionary[Direction, HexVector] = {
 	Direction.UP_RIGHT: HexVector.new(1, -1),
