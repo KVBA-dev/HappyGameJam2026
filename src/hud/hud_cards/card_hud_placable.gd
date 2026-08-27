@@ -5,7 +5,7 @@ func get_screen_position() -> Vector2:
 
 # Override
 func start_use_animation():
-	var target := CursorHoverHex.cursor_hex
+	var target := Cursor.hover_hex
 	# TODO-r: Make it so hexes can't be placed on same tile during animation
 	var grid_pos := target.hex_position
 

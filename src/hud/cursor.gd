@@ -1,4 +1,4 @@
-class_name CursorHoverHex extends Node2D
+class_name Cursor extends Node2D
 
 enum Mode {
 	HOVER = 0,
@@ -41,11 +41,11 @@ func _ready() -> void:
 
 	cursor_hover.hide()
 
-static var cursor_hex: Hex = null
+static var hover_hex: Hex = null
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("select_hex") and mode == Mode.HOVER and not block_selection:
-		cursor_select.on_select(cursor_hex)
+		cursor_select.on_select(hover_hex)
 
 func _process(_delta: float) -> void:
 	scale = get_viewport().get_camera_2d().scale
@@ -63,11 +63,11 @@ func _hover_process():
 	_change_selected(selected_hex)
 
 func _change_selected(hex: Hex):
-	if cursor_hex == hex: return
-	cursor_hex = hex
+	if hover_hex == hex: return
+	hover_hex = hex
 
 	if hex != null:
-		SignalBus.hex_hovered.emit(cursor_hex)
+		SignalBus.hex_hovered.emit(hover_hex)
 		show_tooltip()
 	else:
 		cursor_hover.hide()
@@ -103,12 +103,12 @@ func _modulate_accordingly(hovered: Hex):
 			sprite.modulate = MODULATE_NEUTRAL
 
 func _on_mode_changed():
-	if cursor_hex != null:
-		_modulate_accordingly(cursor_hex)
+	if hover_hex != null:
+		_modulate_accordingly(hover_hex)
 
 func show_tooltip():
 	if GameManager.main:
-		var tooltip := TextTooltip.new_instance(str(cursor_hex.item_flow))
+		var tooltip := TextTooltip.new_instance(str(hover_hex.item_flow))
 		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
 
 func hide_tooltip():

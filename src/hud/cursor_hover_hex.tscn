@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c3kylm6wthi6k"]
 
-[ext_resource type="Script" uid="uid://bsdwcbbup2go8" path="res://src/hud/cursor_hover_hex.gd" id="1_6vjpu"]
+[ext_resource type="Script" uid="uid://bsdwcbbup2go8" path="res://src/hud/cursor.gd" id="1_6vjpu"]
 [ext_resource type="PackedScene" uid="uid://cdilrnqed1pcs" path="res://src/hex/hex_sprite.tscn" id="1_spced"]
 [ext_resource type="Texture2D" uid="uid://km877nju3tii" path="res://assets/images/hex_bland.png" id="2_c5sg6"]
 
