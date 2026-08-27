@@ -194,7 +194,7 @@ func _is_currently(state: CardHudBase.State):
 
 func get_position_data_for_cards() -> Array[Dictionary]:
 	const angle_card_distance = 0.15
-	const angle_hover_distance = 0.3
+	const angle_hover_distance = 0.1
 
 	@warning_ignore("integer_division")
 	var angle_offset: float = -int(len(cards) / 2) * angle_card_distance

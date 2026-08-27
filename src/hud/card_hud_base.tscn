@@ -66,6 +66,7 @@ _data = {
 }
 
 [node name="CardHudHighlight" type="Node2D" unique_id=1981452838]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_awcme")
 
 [node name="Displacement" type="Node2D" parent="." unique_id=123048379]

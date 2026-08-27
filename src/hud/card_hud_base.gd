@@ -3,6 +3,7 @@ class_name CardHudBase extends Node2D
 @onready var shadow_sprite: Sprite2D = %ShadowSprite
 
 const MIN_Z_INDEX = 0
+const BASE_SCALE = 1.5 * Vector2.ONE
 
 enum State {
 	IN_HAND = 0,
@@ -90,13 +91,13 @@ func _on_area_2d_mouse_exited() -> void:
 func _on_state_change(_previous: State):
 	match _state:
 		State.IN_HAND: 
-			scale = Vector2.ONE 
+			scale = BASE_SCALE 
 		State.PREVIEWED:
-			scale = Vector2.ONE * 1.2
+			scale = BASE_SCALE * 1.2
 			rotation = 0
 			z_index = 10
 		State.DRAGGED: 
-			scale = Vector2.ONE * 1.2
+			scale = BASE_SCALE * 1.2
 			z_index = 100
 			card_holder.card_lay_area.mouse_exited.connect(_scale_to_camera_sized)
 			card_holder.card_lay_area.mouse_entered.connect(_unscale)
@@ -116,7 +117,7 @@ func _scale_to_camera_sized():
 
 func _unscale():
 	_scale_to_camera = false
-	target_scale = Vector2.ONE
+	target_scale = BASE_SCALE
 	_insta_scale = false
 
 # Virtual

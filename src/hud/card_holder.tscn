@@ -20,7 +20,7 @@ script = ExtResource("1_ln0p1")
 
 [node name="PlacerCenter" type="Node2D" parent="." unique_id=2107766212]
 unique_name_in_owner = true
-position = Vector2(0, 300)
+position = Vector2(0, 962)
 
 [node name="CardsContainer" type="Node2D" parent="PlacerCenter" unique_id=986296897]
 unique_name_in_owner = true
@@ -30,5 +30,4 @@ unique_name_in_owner = true
 script = ExtResource("3_ldsxu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardLayArea" unique_id=1811122695]
-visible = false
 shape = SubResource("RectangleShape2D_ln0p1")
