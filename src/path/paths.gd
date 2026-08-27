@@ -94,7 +94,7 @@ func _find_shortest_waypoints(start: FlowHex, end: FlowHex) -> Array[FlowHex]:
 
 func _flow_neighbors(hex: FlowHex) -> Array[FlowHex]:
 	var neighbors: Array[FlowHex] = []
-	for direction: HexVector.Direction in HexVector.Direction.values():
+	for direction: HexVector.Direction in hex.item_flow.outputs:
 		var position := hex.hex_position.add(HexVector.direction_vector(direction))
 		var neighbor: Hex = GameManager.hex_grid.get_hex_at(position)
 		if neighbor is FlowHex:
