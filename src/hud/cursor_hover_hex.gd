@@ -1,4 +1,11 @@
-extends Node2D
+class_name CursorHoverHex extends Node2D
+
+enum Mode {
+	HOVER = 0,
+	SELECTED = 1,
+	CARD_PLACE_HINT = 2,
+	CARD_USE_HINT = 3
+}
 
 @onready var sprite: Sprite2D = %HexSprite.background_sprite
 
@@ -10,18 +17,38 @@ func _ready() -> void:
 	SignalBus.hex_hovered.connect(_on_hovered)
 	hide()
 
+static var selected: Hex = null
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	var selected_hex_position := HexVector.position_to_hex(get_global_mouse_position())
+	var selected_hex := GameManager.hex_grid.get_hex_at(selected_hex_position)
+
+	_change_selected(selected_hex)
+
 	scale = get_viewport().get_camera_2d().scale
-	if not Hex.currently_hovered:
+
+
+func _change_selected(hex: Hex):
+	if selected == hex:
+		return
+
+	selected = hex
+
+	if hex != null:
+		SignalBus.hex_hovered.emit(selected)
+	else:
 		hide()
 
 func _on_hovered(hex: Hex):
+	if hex == null:
+		return
+
 	_modulate_accordingly(hex)
 
-	global_position = Hex.currently_hovered.global_position
+	global_position = hex.global_position
 
-	var player: AnimationPlayer = Hex.currently_hovered.animation_player
+	var player: AnimationPlayer = hex.animation_player
 	if player.is_playing() and player.current_animation != "spawn_above":
 		hide()
 		player.animation_finished.connect(func(_anim): show(), CONNECT_ONE_SHOT)

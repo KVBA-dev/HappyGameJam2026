@@ -27,14 +27,14 @@ func _can_use_card() -> bool:
 		_: return false
 
 func _can_use_placable() -> bool:
-	if not Hex.currently_hovered:
+	if not CursorHoverHex.selected:
 		return false
 
-	if Hex.currently_hovered.hex_data.type != HexData.Type.BLANK:
-		ErrorBus.hex_already_exist_on_position.emit(Hex.currently_hovered)
+	if CursorHoverHex.selected.hex_data.type != HexData.Type.BLANK:
+		ErrorBus.hex_already_exist_on_position.emit(CursorHoverHex.selected)
 		return false
 
-	var current := Hex.currently_hovered
+	var current := CursorHoverHex.selected
 	var can_place = GameManager.hex_grid.can_place_card(current.hex_position)
 	if not can_place:
 		ErrorBus.hex_too_far_from_existing.emit(current)

@@ -13,4 +13,4 @@ signal selected_hex(hex: FactoryHex, dir: HexVector.Direction)
 signal card_hovered(data: CardData)
 
 signal path_visibility_toggled(visible: bool)
-signal hex_hovered(hex: Hex)
+signal hex_hovered(hex: Hex) # hex can be equal to null
