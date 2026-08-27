@@ -137,25 +137,25 @@ _data = {
 [node name="Hex" type="Node2D" unique_id=1567981896]
 script = ExtResource("1_6ot4j")
 
+[node name="ItemDetectionArea" type="Area2D" parent="." unique_id=1733114518]
+unique_name_in_owner = true
+position = Vector2(0, 14)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="ItemDetectionArea" unique_id=1329292269]
+polygon = PackedVector2Array(80, -58, 80, 31, 0, 76, -79, 31, -80, -58, 0, -105)
+
+[node name="MouseDetectionArea" type="Area2D" parent="." unique_id=1134900119]
+unique_name_in_owner = true
+position = Vector2(0, 14)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="MouseDetectionArea" unique_id=588525081]
+polygon = PackedVector2Array(80, -58, 80, 31, 0, 76, -79, 31, -80, -58, 0, -105)
+
 [node name="Displacement" type="Node2D" parent="." unique_id=214523488]
 unique_name_in_owner = true
 
 [node name="HexSprite" parent="Displacement" unique_id=956441382 instance=ExtResource("2_l8m4e")]
 unique_name_in_owner = true
-
-[node name="ItemDetectionArea" type="Area2D" parent="Displacement" unique_id=1733114518]
-unique_name_in_owner = true
-position = Vector2(0, 14)
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Displacement/ItemDetectionArea" unique_id=1329292269]
-polygon = PackedVector2Array(80, -58, 80, 31, 0, 76, -79, 31, -80, -58, 0, -105)
-
-[node name="MouseDetectionArea" type="Area2D" parent="Displacement" unique_id=1134900119]
-unique_name_in_owner = true
-position = Vector2(0, 14)
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Displacement/MouseDetectionArea" unique_id=588525081]
-polygon = PackedVector2Array(80, -58, 80, 31, 0, 76, -79, 31, -80, -58, 0, -105)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1438449983]
 unique_name_in_owner = true

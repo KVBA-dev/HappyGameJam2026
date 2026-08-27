@@ -24,6 +24,7 @@ func _ready() -> void:
 		GameManager.card_holder.add_card(possible.pick_random())
 	)
 
+
 #	var batches: Array[ProgressBatch] = GameManager.progress_tree.get_batch()
 #
 #	for batch: ProgressBatch in batches:

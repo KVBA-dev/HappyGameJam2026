@@ -3,7 +3,7 @@ class_name Hex extends Node2D
 @onready var hex_sprite: HexSprite = %HexSprite
 @onready var item_detection_area: Area2D = %ItemDetectionArea
 @onready var mouse_detection_area: Area2D = %MouseDetectionArea
-@onready var mouse_detection_shape: CollisionPolygon2D = $Displacement/MouseDetectionArea/CollisionShape2D
+@onready var mouse_detection_shape: CollisionPolygon2D = %MouseDetectionArea/CollisionShape2D
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var displacement: Node2D = %Displacement
 @export var hex_data: HexData
@@ -42,15 +42,16 @@ func init_data(
 	position = _hex_position.to_pixel()
 	_appear_style = appear_style
 
-	item_flow = _hex_data.item_flow.duplicate_deep() if _hex_data.item_flow else null
-	type = _hex_data.type
-
 func _ready():
 	z_index = 2*hex_position.r # So we have some space in between to z-order things
 	hex_sprite.init(hex_data)
+	item_flow = hex_data.item_flow.duplicate_deep() if hex_data.item_flow else null
+	type = hex_data.type
+
 	item_detection_area.area_entered.connect(on_item_entered)
 	mouse_detection_area.mouse_entered.connect(_on_mouse_entered)
 	mouse_detection_area.mouse_exited.connect(_on_mouse_exited)
+
 
 	match _appear_style:
 		AppearStyle.Below:
@@ -60,6 +61,12 @@ func _ready():
 			displacement.position.y = -40
 			animation_player.play("spawn_above")
 
+	_handle_mouse_hovering_on_spawn()
+
+func _handle_mouse_hovering_on_spawn():
+	var mouse_pos := mouse_detection_shape.to_local(get_global_mouse_position())
+	if Geometry2D.is_point_in_polygon(mouse_pos, mouse_detection_shape.polygon):
+		_on_mouse_entered()
 
 func distance_to(other: HexData) -> int:
 	return hex_position.distance_to(other.hex_position)
@@ -83,6 +90,7 @@ func on_item_entered(area: Area2D) -> void:
 
 
 func _input(_event: InputEvent) -> void:
+	# TODO: It can fire on two hexes at once, watch out
 	if is_mouse_inside and Input.is_action_just_pressed("select_hex"):
 		var polygon_center := Vector2.ZERO
 		for point: Vector2 in mouse_detection_shape.polygon:
@@ -95,13 +103,16 @@ func _input(_event: InputEvent) -> void:
 
 func _on_mouse_entered():
 	is_mouse_inside = true
-	var tooltip := TextTooltip.new_instance(str(item_flow))
-	GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
-	currently_hovered = self
+	if GameManager.main:
+		var tooltip := TextTooltip.new_instance(str(item_flow))
+		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
+		currently_hovered = self
+	SignalBus.hex_hovered.emit(self)
 
 func _on_mouse_exited():
 	is_mouse_inside = false
-	GameManager.main.tooltip_canvas.hide_tooltip(self)
+	if GameManager.main:
+		GameManager.main.tooltip_canvas.hide_tooltip(self)
 	if currently_hovered == self:
 		currently_hovered = null
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dn31d13hx7ir" path="res://src/hex_grid/hex_grid.gd" id="1_1oygh"]
 [ext_resource type="PackedScene" uid="uid://c35v72ubhgdk6" path="res://src/hex/hex.tscn" id="2_j3bb5"]
-[ext_resource type="Resource" uid="uid://drdctsney1hcn" path="res://const_data/hexes/test_hex.tres" id="3_5boqe"]
+[ext_resource type="Resource" uid="uid://db08mmhcdxfl8" path="res://const_data/hexes/test_flow_hex.tres" id="3_5boqe"]
 
 [node name="HexGrid" type="Node2D" unique_id=1755103109]
 script = ExtResource("1_1oygh")

@@ -102,6 +102,15 @@ func distance_to(other: HexVector) -> int:
 	var ds: int = abs(s() - other.s())
 	return (dq + dr + ds) / 2
 
+static func position_to_hex(pos: Vector2) -> HexVector:
+	var q_frac: float = (sqrt(3.0) / 3.0 * pos.x - 1.0 / 3.0 * pos.y) / Consts.HEX_RADIUS
+	var r_frac: float = (2.0 / 3.0 * pos.y) / Consts.HEX_RADIUS
+
+	var q_round: float = round(q_frac)
+	var r_round: float = round(r_frac)
+
+	return HexVector.new(int(q_round), int(r_round))
+
 func rotated(n: int) -> HexVector:
 	n = posmod(n, 6)
 	match n:
