@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bsi8gob65x50v"]
 
 [ext_resource type="Script" uid="uid://woit68wbxbch" path="res://src/card/data/card_data.gd" id="1_card_data"]
-[ext_resource type="Resource" uid="uid://b6n1olwmbs2xo" path="res://const_data/hexes/flow3-0_3-4_hex.tres" id="2_hex_data"]
+[ext_resource type="Resource" uid="uid://dsputoaqykv3a" path="res://const_data/hexes/hex_flow_3-0_3-4.tres" id="1_lhc3y"]
 
 [resource]
 script = ExtResource("1_card_data")
-hex_data = ExtResource("2_hex_data")
+hex_data = ExtResource("1_lhc3y")

@@ -13,11 +13,12 @@ var remaining_time: float:
 		return _curr_timeout
 
 func _ready() -> void:
-	reset(tick_interval, timeout_interval)
+	SignalBus.game_reset.connect(reset)
+	reset()
 
-func reset(tick_inter: float, timeout_inter: float) -> void:
-	_curr_tick = tick_inter
-	_curr_timeout = timeout_inter
+func reset() -> void:
+	_curr_tick = tick_interval
+	_curr_timeout = timeout_interval
 	_timed_out = false
 
 func _process(delta: float) -> void:

@@ -1,6 +1,8 @@
 ## TODO: Add data about each hex
 class_name HexData extends Resource
 
+static var river_material: ShaderMaterial = preload("res://assets/shaders/river_material.tres")
+
 enum Type {
 	BLANK = 0,
 	FLOW = 1,

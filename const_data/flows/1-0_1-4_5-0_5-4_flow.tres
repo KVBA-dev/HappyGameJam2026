@@ -6,4 +6,3 @@
 script = ExtResource("1_flow")
 inputs = Array[int]([5])
 outputs = Array[int]([1, 2])
-metadata/_custom_type_script = "res://src/hex/data/flow/flow.gd"
