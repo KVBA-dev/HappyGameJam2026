@@ -1,8 +1,10 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://c81blbhjqejk1"]
 
 [ext_resource type="Script" uid="uid://jr6ykdp3ngmm" path="res://src/item/item_data.gd" id="1_23dvd"]
+[ext_resource type="Texture2D" uid="uid://b1xhuuyviw7h" path="res://assets/images/items/flour.png" id="2_l36wr"]
 
 [resource]
 script = ExtResource("1_23dvd")
 name = "Flour"
+texture = ExtResource("2_l36wr")
 metadata/_custom_type_script = "uid://jr6ykdp3ngmm"

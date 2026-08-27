@@ -9,6 +9,7 @@ static func new_instance(_item_data: ItemData, _path_follow: PathFollow2D) -> It
 	var item: Item = SCENE.instantiate()
 	item.item_data = _item_data
 	item.path_follow = _path_follow
+	item.set_texture(_item_data.texture)
 	return item
 
 func _process(delta: float) -> void:
@@ -19,3 +20,6 @@ func _process(delta: float) -> void:
 func get_consumed():
 	path_follow.queue_free()
 	print("got consumed")
+
+func set_texture(tex: Texture2D) -> void:
+	($Sprite2D as Sprite2D).texture = tex
