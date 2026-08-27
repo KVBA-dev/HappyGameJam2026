@@ -12,6 +12,8 @@ static func new_instance(_item_data: ItemData, _path_follow: PathFollow2D) -> It
 	return item
 
 func _process(delta: float) -> void:
+	if GameManager.main.paused:
+		return
 	path_follow.progress += delta * 100
 
 func get_consumed():

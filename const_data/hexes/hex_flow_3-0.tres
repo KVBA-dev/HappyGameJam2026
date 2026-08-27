@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://x3lliwgyv2no"]
+
+[ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="1_7mjhc"]
+[ext_resource type="Resource" uid="uid://b7ax88sccqcae" path="res://const_data/flows/3-0_flow.tres" id="2_7mjhc"]
+[ext_resource type="Texture2D" uid="uid://c1dgj1qkejl7q" path="res://assets/images/river_uvs/river-left.png" id="3_7mjhc"]
+[ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="4_3kvmp"]
+[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="5_od8aw"]
+
+[resource]
+script = ExtResource("4_3kvmp")
+hex_name = "Flow 3-0"
+texture = ExtResource("5_od8aw")
+on_surface_texture = ExtResource("3_7mjhc")
+below_texture = ExtResource("1_7mjhc")
+type = 1
+item_flow = ExtResource("2_7mjhc")
+metadata/_custom_type_script = "uid://dwkm1j5578jxo"

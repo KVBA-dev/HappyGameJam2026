@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bhseyc873xca1" path="res://src/hex/hex_sprite.gd" id="1_w04v4"]
 [ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="2_4pg3w"]
 [ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="3_w04v4"]
-[ext_resource type="Texture2D" uid="uid://c1aalb28b014d" path="res://assets/images/tiles/hex-path-straight.png" id="4_72ifu"]
+[ext_resource type="Texture2D" uid="uid://cnevn1vwgf5cg" path="res://assets/images/tiles_factories/Plantacja_Wanilli.png" id="4_72ifu"]
 
 [sub_resource type="Animation" id="Animation_72ifu"]
 length = 0.001
@@ -221,7 +221,7 @@ texture = ExtResource("2_4pg3w")
 
 [node name="OnHexSprite" type="Sprite2D" parent="BgDisplacement" unique_id=548650446]
 unique_name_in_owner = true
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.366, 0.366)
 texture = ExtResource("4_72ifu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1981581343]

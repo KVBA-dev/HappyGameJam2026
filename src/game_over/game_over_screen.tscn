@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://b26vloi0qd0dt"]
+
+[ext_resource type="Script" uid="uid://tiangdmkve25" path="res://src/game_over/game_over_screen.gd" id="1_dev16"]
+
+[node name="GameOverScreen" type="CanvasLayer" unique_id=1497554013]
+script = ExtResource("1_dev16")
+
+[node name="Layout" type="VBoxContainer" parent="." unique_id=93762785]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Layout" unique_id=431518263]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
+
+[node name="RetryButton" type="Button" parent="Layout" unique_id=2142031547]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Retry"

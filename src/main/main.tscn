@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://os0dp4imlkiq" path="res://src/hud/status_hud.tscn" id="9_2nke2"]
 [ext_resource type="PackedScene" uid="uid://c3kylm6wthi6k" path="res://src/hud/cursor_hover_hex.tscn" id="10_km7bn"]
 [ext_resource type="PackedScene" uid="uid://dfn8kds0gr7tk" path="res://src/hud/message_spawner.tscn" id="11_erw1m"]
+[ext_resource type="PackedScene" uid="uid://b26vloi0qd0dt" path="res://src/game_over/game_over_screen.tscn" id="12_w0wra"]
 
 [node name="Main" type="Node" unique_id=387200153]
 script = ExtResource("1_3eh75")
@@ -26,7 +27,8 @@ script = ExtResource("3_ab7mr")
 
 [node name="GameTimer" type="Node" parent="." unique_id=1910709566]
 script = ExtResource("5_jkpqq")
-timeout_interval = 181.0
+tick_interval = 0.1
+timeout_interval = 5.0
 
 [node name="HexGrid" parent="." unique_id=1755103109 instance=ExtResource("6_hfdnt")]
 
@@ -43,3 +45,5 @@ z_index = 100
 
 [node name="MessageSpawner" parent="." unique_id=511295811 instance=ExtResource("11_erw1m")]
 follow_viewport_enabled = true
+
+[node name="GameOverScreen" parent="." unique_id=1497554013 instance=ExtResource("12_w0wra")]

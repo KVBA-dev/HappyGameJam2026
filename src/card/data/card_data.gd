@@ -2,8 +2,8 @@
 class_name CardData extends Resource
 
 enum Type {
-    PLACABLE = 0,
-    USABLE = 1
+	PLACABLE = 0,
+	USABLE = 1
 }
 
 @export var type: Type

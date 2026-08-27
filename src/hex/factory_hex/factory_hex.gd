@@ -1,12 +1,12 @@
 class_name FactoryHex extends Hex
 
-@onready var production_timer: Timer = %ProductionTimer
 @onready var direction_indicator: Sprite2D = %DirectionIndicator
 
 var in_production := false
 var storage: Dictionary[ItemData, int]
 var recipe: Recipe
 var paths: Array[PathData] = []
+var ticks: int
 
 static func new_instance(
 	_hex_position: HexVector,
@@ -27,10 +27,10 @@ func _ready() -> void:
 		push_error("Flow has to be set for factory hex")
 
 	recipe = hex_data.recipe
+	ticks = recipe.processing_time_ticks
 	for item: ItemData in recipe.requirements.keys():
 		storage[item] = 0
-	production_timer.wait_time = recipe.processing_time
-	production_timer.timeout.connect(produce)
+	SignalBus.game_timer_tick.connect(tick)
 	GameManager.paths.path_created.connect(_on_path_created)
 	GameManager.paths.path_deleted.connect(_on_path_deleted)
 
@@ -81,8 +81,14 @@ func _start_production():
 	if in_production or not _is_enough_in_storage():
 		return
 	in_production = true
-	production_timer.start()
 
+func tick():
+	if not in_production:
+		return
+	ticks -= 1
+	if ticks == 0:
+		ticks = recipe.processing_time_ticks
+		produce()
 
 func produce():
 	in_production = false
@@ -96,3 +102,4 @@ func _spawn_product():
 		storage[requirement] -= recipe.requirements[requirement]
 	
 	GameManager.paths.spawn_item_on_path(recipe.produces, paths.pick_random())
+	SignalBus.item_produced.emit(recipe.produces)
