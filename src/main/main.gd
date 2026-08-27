@@ -14,6 +14,16 @@ func _ready() -> void:
 	SignalBus.main_loaded.emit()
 	GameManager.main = self
 	GameManager.hex_grid.surround_with_hexes(3)
+
+	# Infinite cards for fun
+	SignalBus.card_used.connect(func(_a, _b):
+		var possible = [
+			load("uid://b76kfa7ce51em"),
+			load("res://const_data/cards/flow_card.tres")
+		]
+		GameManager.card_holder.add_card(possible.pick_random())
+	)
+
 #	var batches: Array[ProgressBatch] = GameManager.progress_tree.get_batch()
 #
 #	for batch: ProgressBatch in batches:
