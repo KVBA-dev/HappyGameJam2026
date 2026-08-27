@@ -15,6 +15,7 @@ func should_surround_by_blanks() -> bool:
 @export var hex_name: String
 @export var texture: Texture2D
 @export var on_surface_texture: Texture2D
+@export var factory_icon_texture: Texture2D
 @export var below_texture: Texture2D
 @export var type: Type
 

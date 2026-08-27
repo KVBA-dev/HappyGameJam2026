@@ -41,8 +41,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_item_produced(item: ItemData) -> void:
 	if item not in items_produced:
-		# TODO: advance with factory hexes
-		print("Made for first time: %s" % item)
+		SignalBus.item_achieved.emit(item)
 	items_produced[item] = true
 
 func on_game_reset() -> void:

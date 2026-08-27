@@ -3,18 +3,16 @@ class_name HexSprite extends Node2D
 @onready var background_sprite: Sprite2D = %BackgroundSprite
 @onready var on_hex_sprite: Sprite2D = %OnHexSprite
 @onready var below_sprite: Sprite2D = %BelowSprite
+@onready var factory_icon_sprite: Sprite2D = %FactoryIconSprite
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
 func init(hex_data: HexData):
 	background_sprite.texture = hex_data.texture
 	on_hex_sprite.texture = hex_data.on_surface_texture
 	below_sprite.texture = hex_data.below_texture
-	if hex_data.type == HexData.Type.FLOW:
-		on_hex_sprite.material = HexData.river_material
-		on_hex_sprite.scale = Vector2(0.561, 0.561)
-	else:
-		on_hex_sprite.material = null
-		on_hex_sprite.scale = Vector2(0.366, 0.366)
+	if hex_data.factory_icon_texture:
+		factory_icon_sprite.texture = hex_data.factory_icon_texture
+		factory_icon_sprite.show()
 
 @onready var _rotate_timer: Timer = %RotateTimer
 @onready var _below_displacement: Node2D = %BelowDisplacement
