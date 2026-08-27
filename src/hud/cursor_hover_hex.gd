@@ -18,6 +18,8 @@ var mode: Mode:
 		_on_mode_changed()
 
 @onready var sprite: Sprite2D = %HexSprite.background_sprite
+@onready var cursor_hover: Node2D = %CursorHoverHex
+@onready var cursor_select: Node2D = %CursorSelect
 
 var MODULATE_NEUTRAL = Color.hex(0x00ffff32)
 var MODULATE_GOOD = Color.hex(0x00f51d32)
@@ -35,13 +37,13 @@ func _ready() -> void:
 
 	# SignalBus.hex_selected.connect(func(_a): print(_a))
 
-	hide()
+	cursor_hover.hide()
 
-static var selected: Hex = null
+static var cursor_hex: Hex = null
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("select_hex") and mode == Mode.HOVER:
-		SignalBus.hex_selected.emit(selected)
+		cursor_select.on_select(cursor_hex)
 
 func _process(_delta: float) -> void:
 	scale = get_viewport().get_camera_2d().scale
@@ -59,14 +61,14 @@ func _hover_process():
 	_change_selected(selected_hex)
 
 func _change_selected(hex: Hex):
-	if selected == hex: return
-	selected = hex
+	if cursor_hex == hex: return
+	cursor_hex = hex
 
 	if hex != null:
-		SignalBus.hex_hovered.emit(selected)
+		SignalBus.hex_hovered.emit(cursor_hex)
 		show_tooltip()
 	else:
-		hide()
+		cursor_hover.hide()
 		hide_tooltip()
 
 func _on_hovered(hex: Hex):
@@ -74,16 +76,16 @@ func _on_hovered(hex: Hex):
 		return
 
 	_modulate_accordingly(hex)
-	global_position = hex.global_position
+	cursor_hover.global_position = hex.global_position
 	_show(hex)
 
 func _show(hex: Hex):
 	var player: AnimationPlayer = hex.animation_player
 	if player.is_playing() and player.current_animation != "spawn_above":
-		hide()
-		player.animation_finished.connect(func(_anim): show(), CONNECT_ONE_SHOT)
+		cursor_hover.hide()
+		player.animation_finished.connect(func(_anim): cursor_hover.show(), CONNECT_ONE_SHOT)
 	else:
-		show()
+		cursor_hover.show()
 
 func _modulate_accordingly(hovered: Hex):
 	match mode:
@@ -99,12 +101,12 @@ func _modulate_accordingly(hovered: Hex):
 			sprite.modulate = MODULATE_NEUTRAL
 
 func _on_mode_changed():
-	if selected != null:
-		_modulate_accordingly(selected)
+	if cursor_hex != null:
+		_modulate_accordingly(cursor_hex)
 
 func show_tooltip():
 	if GameManager.main:
-		var tooltip := TextTooltip.new_instance(str(selected.item_flow))
+		var tooltip := TextTooltip.new_instance(str(cursor_hex.item_flow))
 		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
 
 func hide_tooltip():
