@@ -18,7 +18,7 @@ func _deselect():
 	start_hex = null
 
 func _on_hex_selected(hex: Hex):
-	if hex == start_hex:
+	if hex == start_hex or hex is not FactoryHex:
 		_deselect()
 
 func _on_hex_factory_clicked(hex: Hex, dir: HexVector.Direction):
@@ -75,26 +75,26 @@ func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: Factor
 	for path: PathData in paths:
 		var end_already_exists := path.end == end and path.end_input_dir == end_dir
 		if end_already_exists:
-			print("[Paths] Path creation failed: end input is already in use")
+			ErrorBus.log_cursor_error.emit("Path creation failed: end input is already in use")
 			return []
 
 	if not end.recipe.requirements.has(start.recipe.produces):
-		print("[Paths] Path creation failed: invalid production type")
+		ErrorBus.log_cursor_error.emit("Path creation failed: invalid production type")
 		return []
 
 	var flow_start := start.get_neighbor(_start_dir)
 	var flow_end := end.get_neighbor(end_dir)
 	if not (flow_start is FlowHex and flow_end is FlowHex):
-		print("[Paths] Path creation failed: start or end is not connected to a flow hex")
+		ErrorBus.log_cursor_error.emit("Path creation failed: start or end is not connected to a flow hex")
 		return []
 
 	var flow_start_input := HexVector.direction_rotate(_start_dir, 3)
 	var flow_end_output := HexVector.direction_rotate(end_dir, 3)
 	if not flow_start_input in flow_start.item_flow.inputs:
-		print("[Paths] Path creation failed: start flow hex has no matching input")
+		ErrorBus.log_cursor_error.emit("Path creation failed: start flow hex has no matching input")
 		return []
 	if not flow_end_output in flow_end.item_flow.outputs:
-		print("[Paths] Path creation failed: end flow hex has no matching output")
+		ErrorBus.log_cursor_error.emit("Path creation failed: end flow hex has no matching output")
 		return []
 
 	var waypoints := _find_shortest_waypoints(
@@ -102,7 +102,7 @@ func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: Factor
 		flow_end,
 	)
 	if waypoints.is_empty():
-		print("[Paths] Path creation failed: no route found between flow hexes")
+		ErrorBus.log_cursor_error.emit("Path creation failed: no route found between flow hexes")
 		return []
 	var path := PathData.new(start, _start_dir, end, end_dir, waypoints)
 	paths.append(path)
