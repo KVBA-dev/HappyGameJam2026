@@ -6,7 +6,9 @@
 [ext_resource type="AudioStream" uid="uid://755rhp411d4d" path="res://assets/sfx/cancel.wav" id="4_nei7e"]
 [ext_resource type="AudioStream" uid="uid://dt1sy2juqphpj" path="res://assets/sfx/build.wav" id="5_amhg0"]
 [ext_resource type="AudioStream" uid="uid://corctacxmvpsl" path="res://assets/music/happy game jam music 1.ogg" id="6_2mxqt"]
+[ext_resource type="AudioStream" uid="uid://dyg6dhelqvf2g" path="res://assets/sfx/rotate.wav" id="6_v66wk"]
 [ext_resource type="AudioStream" uid="uid://lflnpmsoroi1" path="res://assets/music/happy gamejam music 2.ogg" id="7_nei7e"]
+[ext_resource type="AudioStream" uid="uid://bsfc5o6vryb3e" path="res://assets/sfx/remove.wav" id="7_s7k3o"]
 
 [node name="AudioSystem" type="Node" unique_id=96883651]
 script = ExtResource("1_52tc4")
@@ -14,7 +16,9 @@ sfx_sounds = Dictionary[int, AudioStream]({
 0: ExtResource("2_j7tyn"),
 1: ExtResource("3_2mxqt"),
 2: ExtResource("4_nei7e"),
-3: ExtResource("5_amhg0")
+3: ExtResource("5_amhg0"),
+4: ExtResource("6_v66wk"),
+5: ExtResource("7_s7k3o")
 })
 music_streams = Array[AudioStream]([ExtResource("6_2mxqt"), ExtResource("7_nei7e")])
 
