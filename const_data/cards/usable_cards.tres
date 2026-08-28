@@ -3,10 +3,8 @@
 [ext_resource type="Script" uid="uid://woit68wbxbch" path="res://src/card/data/card_data.gd" id="1_1bnr3"]
 [ext_resource type="Resource" uid="uid://capo4j2w6qnxc" path="res://const_data/cards/special_cards/back_to_hand_card.tres" id="2_8yk36"]
 [ext_resource type="Script" uid="uid://hllrb13vm8ls" path="res://src/card/data/cards.gd" id="2_u0q3e"]
-[ext_resource type="Resource" uid="uid://s2v3i00amjd0" path="res://const_data/cards/special_cards/delete_hex_card.tres" id="3_52ion"]
-[ext_resource type="Resource" uid="uid://b4aa3c6l3nelh" path="res://const_data/cards/special_cards/rotate_hex_card.tres" id="4_dfwtt"]
 
 [resource]
 script = ExtResource("2_u0q3e")
-list = Array[ExtResource("1_1bnr3")]([ExtResource("2_8yk36"), ExtResource("3_52ion"), ExtResource("4_dfwtt")])
+list = Array[ExtResource("1_1bnr3")]([ExtResource("2_8yk36")])
 metadata/_custom_type_script = "uid://hllrb13vm8ls"

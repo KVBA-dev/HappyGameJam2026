@@ -153,11 +153,12 @@ func handle_card_placed(data: CardHudBase, pos: HexVector):
 					var returned_card := CardData.new()
 					returned_card.type = CardData.Type.PLACABLE
 					returned_card.hex_data = _hex.hex_data
-					if GameManager.card_holder.add_card(returned_card):
-						clear_hex_at(pos)
-						spawn_hex_at(pos, BLANK)
+					GameManager.card_holder.queue_add_card(returned_card)
+					clear_hex_at(pos)
+					spawn_hex_at(pos, BLANK)
 			UsableCardData.UsableType.DELETE:
 				clear_hex_at(pos)
+				spawn_hex_at(pos, BLANK)
 			UsableCardData.UsableType.ROTATE:
 				pass
 			_:

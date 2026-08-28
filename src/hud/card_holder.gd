@@ -77,6 +77,11 @@ func _count_usable_in_hand() -> int:
 			count += 1
 	return count
 
+var _card_add_queue: Array[CardData] = []
+func queue_add_card(card_data: CardData) -> void:
+	_card_add_queue.push_back(card_data)
+
+
 func add_card(card_data: CardData) -> bool:
 	var cards_num = len(cards)
 	if _is_currently(State.DRAGGED): cards_num += 1
@@ -113,6 +118,12 @@ func fill_hand():
 
 
 func _process(_delta: float) -> void:
+	while not _card_add_queue.is_empty():
+		var added := add_card(_card_add_queue.front())
+		if not added: break
+
+		_card_add_queue.pop_front()
+
 	if not _is_currently(State.DRAGGED):
 		var closest := find_closest_hovered()
 		_set_currently_focused(closest)
