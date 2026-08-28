@@ -17,7 +17,7 @@ var n_60degree_rotations: int:
 		return hex_sprite.n_60degree_rotations
 
 var target_pos: Vector2 = self.position
-var target_scale: Vector2 = Vector2.ONE
+var target_scale: Vector2 = BASE_SCALE
 var card_data: CardData
 
 var _scale_to_camera: bool = false
