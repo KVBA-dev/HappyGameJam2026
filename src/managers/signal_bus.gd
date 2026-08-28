@@ -23,6 +23,8 @@ signal hex_factory_clicked(hex: FactoryHex, dir: HexVector.Direction)
 signal item_produced(item: ItemData) # emitted every time an item is produced
 signal item_achieved(item: ItemData) # emitted when an item is produced for the first time
 
+signal card_binned(card: CardHudBase)
+
 signal game_reset
 
 signal factory_connected(factory: FactoryHex)

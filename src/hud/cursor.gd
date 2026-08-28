@@ -96,7 +96,7 @@ func _modulate_accordingly(hovered: Hex):
 		Mode.HOVER:
 			sprite.modulate = MODULATE_NEUTRAL
 		Mode.CARD_PLACE_HINT:
-			if GameManager.card_holder._can_use_placable(false) \
+			if GameManager.card_holder._can_use_card(false) \
 				and hovered.type == HexData.Type.BLANK:
 				sprite.modulate = MODULATE_GOOD
 			else:
