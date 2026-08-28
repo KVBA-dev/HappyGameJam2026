@@ -2,7 +2,6 @@ class_name Cards extends Resource
 
 @export var list: Array[CardData]
 
-
 func pick_random_weighted() -> CardData:
 	var grouped := _group_by_rarity()
 	var rarity := CardData.random_rarity()

@@ -1,6 +1,6 @@
 extends Node
 
-const CARD_GENERATION_TICKS := 30
+const CARD_GENERATION_TICKS := 40
 var ticks = CARD_GENERATION_TICKS
 
 func _ready() -> void:
