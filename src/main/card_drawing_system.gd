@@ -1,16 +1,20 @@
 extends Node
 
 const CARD_GENERATION_TICKS := 40
-var ticks = CARD_GENERATION_TICKS
+const SPECIAL_CARD_GENERATION := 20
+
+var cards_giver := TickHelper.new(CARD_GENERATION_TICKS)
+var special_cards_giver := TickHelper.new(SPECIAL_CARD_GENERATION)
 
 func _ready() -> void:
-	SignalBus.game_timer_tick.connect(tick)
+	cards_giver.timeout.connect(add_placable_card)
+	special_cards_giver.timeout.connect(add_usable_card)
 
-func tick():
-	ticks -= 1
-	if ticks <= 0:
-		var is_added = GameManager.card_holder.add_card(GameManager.cards.pick_random_weighted())
-		if is_added:
-			ticks = CARD_GENERATION_TICKS
-		else:
-			ticks = 0
+func add_placable_card():
+	var is_added = GameManager.card_holder.add_card(GameManager.cards.pick_random_weighted())
+	if not is_added: cards_giver.fire_next_tick()
+
+func add_usable_card():
+	if GameManager.card_holder.count_usable_in_hand() < 2:
+		var is_added = GameManager.card_holder.add_card(GameManager.usable_cards.pick_random_weighted())
+		if not is_added: special_cards_giver.fire_next_tick()

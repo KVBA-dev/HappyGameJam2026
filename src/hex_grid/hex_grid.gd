@@ -8,6 +8,8 @@ signal deleted_hex(position: HexVector)
 signal changed_hex(old_hex: Hex, new_hex: Hex)
 signal rotated_hex(hex: Hex, new_rotation: HexVector.Direction)
 
+const BLANK: HexData = preload("res://const_data/hexes/blank_hex.tres")
+
 func _ready():
 	GameManager.hex_grid = self
 
@@ -25,8 +27,6 @@ func reset_grid() -> void:
 	hex_map[HexVector.ZERO.vec] = root_hex
 
 func surround_with_hexes(radius: int, center: HexVector = HexVector.ZERO):
-	var blank = load("res://const_data/hexes/blank_hex.tres")
-
 	for direction: HexVector in HexVector.DIRECTION_MAP.values():
 		for i in range(radius):
 			var hex_vec = direction.mult(i+1)
@@ -38,7 +38,7 @@ func surround_with_hexes(radius: int, center: HexVector = HexVector.ZERO):
 				if get_hex_at(final) != null:
 					continue
 
-				spawn_hex_at(final, blank, Hex.AppearStyle.Below)
+				spawn_hex_at(final, BLANK, Hex.AppearStyle.Below)
 
 func get_hex_at(_position: HexVector) -> Hex:
 	return hex_map.get(_position.vec, null)
@@ -51,6 +51,9 @@ func get_random_blank_hex_in_spawn_range() -> Hex:
 		if hex.hex_data.type != HexData.Type.BLANK:
 			non_blank_hexes.append(hex)
 
+	if non_blank_hexes.is_empty():
+		non_blank_hexes.push_back(get_hex_at(HexVector.new(0, 0)))
+
 	for hex: Hex in hex_map.values():
 		if hex.hex_data.type != HexData.Type.BLANK:
 			continue
@@ -62,7 +65,7 @@ func get_random_blank_hex_in_spawn_range() -> Hex:
 				hex.hex_position.distance_to(non_blank_hex.hex_position),
 			)
 
-		if closest_distance >= 2 and closest_distance <= 3:
+		if closest_distance > 2 and closest_distance <= 3:
 			candidates.append(hex)
 
 	if candidates.is_empty():
@@ -150,17 +153,19 @@ func handle_card_placed(data: CardHudBase, pos: HexVector):
 					var returned_card := CardData.new()
 					returned_card.type = CardData.Type.PLACABLE
 					returned_card.hex_data = _hex.hex_data
-					if GameManager.card_holder.add_card(returned_card):
-						clear_hex_at(pos)
+					GameManager.card_holder.queue_add_card(returned_card)
+					clear_hex_at(pos)
+					spawn_hex_at(pos, BLANK)
 			UsableCardData.UsableType.DELETE:
 				clear_hex_at(pos)
+				spawn_hex_at(pos, BLANK)
 			UsableCardData.UsableType.ROTATE:
 				pass
 			_:
 				pass
-		var hex := get_hex_at(pos)
-		if hex is FlowHex:
-			hex.apply_card(data)
+		# var hex := get_hex_at(pos)
+		# if hex is FlowHex:
+		# 	hex.apply_card(data)
 
 func _on_hex_spawned(hex: Hex):
 	var data := hex.hex_data

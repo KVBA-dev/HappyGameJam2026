@@ -73,11 +73,15 @@ func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: Factor
 	])
 
 	for path: PathData in paths:
-		var start_already_exists := path.start == start and path.start_output_dir == _start_dir
 		var end_already_exists := path.end == end and path.end_input_dir == end_dir
-		if start_already_exists or end_already_exists:
-			print("[Paths] Path creation failed: start output or end input is already in use")
+		if end_already_exists:
+			print("[Paths] Path creation failed: end input is already in use")
 			return []
+
+	if not end.recipe.requirements.has(start.recipe.produces):
+		print("[Paths] Path creation failed: invalid production type")
+		return []
+
 	var flow_start := start.get_neighbor(_start_dir)
 	var flow_end := end.get_neighbor(end_dir)
 	if not (flow_start is FlowHex and flow_end is FlowHex):

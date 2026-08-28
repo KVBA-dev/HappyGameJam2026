@@ -10,15 +10,13 @@ enum Rarity {
 	COMMON = 0,
 	UNCOMMON = 1,
 	RARE = 2,
-	EPIC = 3
 }
 
 static func rarity_percentage(r: Rarity) -> float:
 	match r:
-		Rarity.COMMON: return 0.40
-		Rarity.UNCOMMON: return 0.25
-		Rarity.RARE: return 0.20
-		Rarity.EPIC: return 0.15
+		Rarity.COMMON: return 0.60
+		Rarity.UNCOMMON: return 0.30
+		Rarity.RARE: return 0.10
 	return 0.0
 
 static func _get_rarity_sum() -> Array[float]:

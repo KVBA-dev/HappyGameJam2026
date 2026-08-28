@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://km877nju3tii" path="res://assets/images/hex_bland.png" id="2_4m2bd"]
 
 [node name="CursorSelect" type="Node2D" unique_id=1973028755]
+visible = false
 script = ExtResource("1_4m2bd")
 
 [node name="PathConnectionManager" type="Node2D" parent="." unique_id=92646619]
@@ -19,7 +20,7 @@ texture = null
 modulate = Color(0.95686275, 1, 0, 0.19607843)
 texture = ExtResource("2_4m2bd")
 
-[node name="OnHexSprite" parent="HexSprite/BgDisplacement" parent_id_path=PackedInt32Array(956441382, 144048622) index="1" unique_id=548650446]
+[node name="OnHexSprite" parent="HexSprite/BgDisplacement/SpriteScaler" parent_id_path=PackedInt32Array(956441382, 144301563) index="0" unique_id=548650446]
 scale = Vector2(0.9, 0.9)
 texture = null
 

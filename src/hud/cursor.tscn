@@ -22,7 +22,7 @@ texture = null
 modulate = Color(0.95598, 0, 0.008262702, 0.19607843)
 texture = ExtResource("3_0hges")
 
-[node name="OnHexSprite" parent="CursorHoverHex/HexSprite/BgDisplacement" parent_id_path=PackedInt32Array(956441382, 144048622) index="1" unique_id=548650446]
+[node name="OnHexSprite" parent="CursorHoverHex/HexSprite/BgDisplacement/SpriteScaler" parent_id_path=PackedInt32Array(956441382, 144301563) index="0" unique_id=548650446]
 texture = null
 
 [node name="CursorSelect" parent="." unique_id=1973028755 instance=ExtResource("4_8e1gn")]
