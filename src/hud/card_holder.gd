@@ -6,6 +6,7 @@ const State = CardHudBase.State
 @onready var cards_container: Node2D = %CardsContainer
 @onready var placer_center: Node2D = %PlacerCenter
 @onready var card_lay_area: HoverableArea = %CardLayArea
+@onready var trash_can = %TrashCan
 
 var _card_num_limit: int = 5
 
@@ -18,17 +19,20 @@ signal card_returned_to_hand(card: CardHudBase)
 signal card_dragged(card: CardHudBase)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("card_select") and _can_use_card():
-		var card := take_currently_dragged()
-		card.start_use_animation()
+	if event.is_action_pressed("card_select"):
+		if trash_can.bin_area.hover:
+			_trash_card()
+		elif _can_use_card():
+			var card := take_currently_dragged()
+			card.start_use_animation()
 
-func _can_use_card() -> bool:
+func _can_use_card(log_errors: bool = true) -> bool:
 	if not _is_currently(State.DRAGGED) or card_lay_area.hover:
 		return false
 
 	match currently_focused.card_data.type:
-		CardData.Type.PLACABLE: return _can_use_placable()
-		CardData.Type.USABLE: return _can_use_usable()
+		CardData.Type.PLACABLE: return _can_use_placable(log_errors)
+		CardData.Type.USABLE: return _can_use_usable(log_errors)
 		_: return false
 
 func _can_use_placable(log_errors: bool = true) -> bool:
@@ -67,7 +71,10 @@ func take_currently_dragged() -> CardHudBase:
 	return card
 
 func add_card(card_data: CardData) -> bool:
-	if len(cards) + 1 > _card_num_limit:
+	var cards_num = len(cards)
+	if _is_currently(State.DRAGGED): cards_num += 1
+
+	if cards_num + 1 > _card_num_limit:
 		return false
 
 	var visual_scene: CardHudBase = preload("res://src/hud/hud_cards/card_hud_placable.tscn").instantiate()
@@ -83,12 +90,12 @@ func _ready():
 	for child in cards_container.get_children():
 		child.free()
 
-	_test_init()
+	fill_hand()
 	reorder_cards()
 
-func _test_init():
-	for i in range(5):
-		var card_data: CardData = GameManager.cards.pick_random()
+func fill_hand():
+	for i in range(_card_num_limit):
+		var card_data: CardData = GameManager.cards.pick_random_weighted()
 		add_card(card_data)
 
 func _process(_delta: float) -> void:
@@ -108,6 +115,11 @@ func _input_handle_rotations():
 			currently_focused.rotate_left()
 		if Input.is_action_pressed("card_rotate_right"):
 			currently_focused.rotate_right()
+
+func _trash_card():
+	var card := take_currently_dragged()
+	SignalBus.card_binned.emit(card)
+	card.queue_free()
 
 func _input_handle_card_laydown():
 	if (Input.is_action_just_pressed("card_select") \

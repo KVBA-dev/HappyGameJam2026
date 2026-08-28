@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://c0lvfgmj38wfm"]
 
 [ext_resource type="Script" uid="uid://4q2bd60huelj" path="res://src/hud/card_holder.gd" id="1_ln0p1"]
+[ext_resource type="Texture2D" uid="uid://bwaek0o0u7tuv" path="res://assets/trash.png" id="3_c00na"]
 [ext_resource type="Script" uid="uid://dfy8e15ewhav" path="res://src/utils/hoverable_area.gd" id="3_ldsxu"]
+[ext_resource type="Script" uid="uid://d3v8lcmdyeb0r" path="res://src/hud/trash_can.gd" id="4_c00na"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ln0p1"]
 size = Vector2(1000, 250)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldsxu"]
+size = Vector2(320, 376)
 
 [node name="CardHolder" type="Control" unique_id=1118155161 groups=["card_holder"]]
 layout_mode = 3
@@ -31,3 +36,19 @@ script = ExtResource("3_ldsxu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardLayArea" unique_id=1811122695]
 shape = SubResource("RectangleShape2D_ln0p1")
+
+[node name="TrashCan" type="Sprite2D" parent="." unique_id=1689508328]
+unique_name_in_owner = true
+position = Vector2(852.9999, -7.000005)
+rotation = -0.2617994
+texture = ExtResource("3_c00na")
+script = ExtResource("4_c00na")
+
+[node name="BinArea" type="Area2D" parent="TrashCan" unique_id=364950105]
+unique_name_in_owner = true
+position = Vector2(-3, 21)
+script = ExtResource("3_ldsxu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrashCan/BinArea" unique_id=1258303303]
+position = Vector2(0, -21)
+shape = SubResource("RectangleShape2D_ldsxu")
