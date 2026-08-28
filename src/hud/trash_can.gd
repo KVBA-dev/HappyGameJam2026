@@ -4,7 +4,7 @@ class_name TrashCan extends Sprite2D
 
 func _process(delta: float) -> void:
 	var target_scale = Vector2.ONE
-	if bin_area.hover:
+	if bin_area.hover and GameManager.card_holder._is_currently(CardHudBase.State.DRAGGED):
 		target_scale *= 1.1
 
 	const SCALE_SPEED = 10.0

@@ -38,6 +38,7 @@ script = ExtResource("3_ldsxu")
 shape = SubResource("RectangleShape2D_ln0p1")
 
 [node name="TrashCan" type="Sprite2D" parent="." unique_id=1689508328]
+unique_name_in_owner = true
 position = Vector2(852.9999, -7.000005)
 rotation = -0.2617994
 texture = ExtResource("3_c00na")
