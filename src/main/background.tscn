@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://b81fbvm4symeu" path="res://assets/images/bg/clouds_fog_002.png" id="11_7f0ob"]
 
 [node name="Background" type="Node2D" unique_id=1168253911]
+modulate = Color(0.728822, 0.728822, 0.728822, 1)
 z_index = -100
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1682054119]

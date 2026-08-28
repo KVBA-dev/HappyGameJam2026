@@ -4,6 +4,9 @@ class_name Main extends Node
 @onready var tooltip_canvas: TooltipCanvas = %TooltipCanvas
 @onready var cursor: Cursor = %Cursor
 
+var cursor_normal: Texture2D = preload("res://assets/images/cursors/resized/happy_cursor_base.png")
+var cursor_pointer: Texture2D = preload("res://assets/images/cursors/resized/happy_pointer_base.png")
+
 var paused: bool = false
 var paths_visible: bool = true
 # NOTE: treat it as a set
@@ -15,6 +18,9 @@ static func new_instance() -> Main:
 	return main
 
 func _ready() -> void:
+	Input.set_custom_mouse_cursor(cursor_normal, Input.CursorShape.CURSOR_ARROW, Vector2(16, 0))
+	Input.set_custom_mouse_cursor(cursor_pointer, Input.CursorShape.CURSOR_POINTING_HAND, Vector2(11, 0))
+	
 	SignalBus.main_loaded.emit()
 	SignalBus.item_produced.connect(_on_item_produced)
 	SignalBus.game_reset.connect(on_game_reset)
