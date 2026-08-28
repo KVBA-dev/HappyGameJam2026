@@ -1,7 +1,7 @@
 class_name UsableCardData extends CardData
 
 enum UsableType {
-    ROTATE = 0,
+    DUPLICATE = 0,
     DELETE = 1,
     BACK_TO_HAND = 2,
 }
