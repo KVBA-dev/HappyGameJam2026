@@ -6,6 +6,7 @@ const State = CardHudBase.State
 @onready var cards_container: Node2D = %CardsContainer
 @onready var placer_center: Node2D = %PlacerCenter
 @onready var card_lay_area: HoverableArea = %CardLayArea
+@onready var trash_can = %TrashCan
 
 var _card_num_limit: int = 5
 
