@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="2_4pg3w"]
 [ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="3_w04v4"]
 [ext_resource type="Material" uid="uid://8neoayb01l4" path="res://assets/shaders/river_material.tres" id="4_2r5be"]
-[ext_resource type="Texture2D" uid="uid://c1dgj1qkejl7q" path="res://assets/images/river_uvs/river-left.png" id="4_72ifu"]
+[ext_resource type="Texture2D" uid="uid://d243ny51x5qi0" path="res://assets/images/river_uvs/river-cross-wide.png" id="5_2r5be"]
 [ext_resource type="Texture2D" uid="uid://cnevn1vwgf5cg" path="res://assets/images/tiles_factories/Plantacja_Wanilli.png" id="5_t4x5y"]
+[ext_resource type="Texture2D" uid="uid://bnk8mi18rt6xc" path="res://assets/images/icons/arrow-full.svg" id="7_sk1rf"]
 
 [sub_resource type="Animation" id="Animation_72ifu"]
 length = 0.001
@@ -228,7 +229,7 @@ scale = Vector2(1, 0.97)
 unique_name_in_owner = true
 material = ExtResource("4_2r5be")
 scale = Vector2(0.491, 0.491)
-texture = ExtResource("4_72ifu")
+texture = ExtResource("5_2r5be")
 
 [node name="FactoryIconSprite" type="Sprite2D" parent="BgDisplacement" unique_id=647968737]
 unique_name_in_owner = true
@@ -236,6 +237,57 @@ visible = false
 z_index = 100
 scale = Vector2(0.371, 0.371)
 texture = ExtResource("5_t4x5y")
+
+[node name="DirectionArrows" type="Node2D" parent="BgDisplacement" unique_id=1593450264]
+unique_name_in_owner = true
+
+[node name="ArrowUpRight" type="Sprite2D" parent="BgDisplacement/DirectionArrows" unique_id=499934495]
+unique_name_in_owner = true
+visible = false
+position = Vector2(27.000002, -47)
+rotation = 0.5235988
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("7_sk1rf")
+
+[node name="ArrowUpLeft" type="Sprite2D" parent="BgDisplacement/DirectionArrows" unique_id=1911780643]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-27.999998, -46.999996)
+rotation = -0.5235988
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("7_sk1rf")
+
+[node name="ArrowCenterRight" type="Sprite2D" parent="BgDisplacement/DirectionArrows" unique_id=1188464291]
+unique_name_in_owner = true
+visible = false
+position = Vector2(54.999992, 1.9539925e-13)
+rotation = 1.5707964
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("7_sk1rf")
+
+[node name="ArrowCenterLeft" type="Sprite2D" parent="BgDisplacement/DirectionArrows" unique_id=1690635003]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-55, 1)
+rotation = -1.5707964
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("7_sk1rf")
+
+[node name="ArrowDownRight" type="Sprite2D" parent="BgDisplacement/DirectionArrows" unique_id=49365337]
+unique_name_in_owner = true
+visible = false
+position = Vector2(28, 48)
+rotation = 2.6179938
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("7_sk1rf")
+
+[node name="ArrowDownLeft" type="Sprite2D" parent="BgDisplacement/DirectionArrows" unique_id=1430907658]
+unique_name_in_owner = true
+visible = false
+position = Vector2(-26, 48)
+rotation = -2.6179938
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("7_sk1rf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1981581343]
 unique_name_in_owner = true
