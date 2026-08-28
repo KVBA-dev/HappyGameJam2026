@@ -110,10 +110,9 @@ func _on_mode_changed():
 		_modulate_accordingly(hover_hex)
 
 func show_tooltip():
-	if GameManager.main:
-		var tooltip := TextTooltip.new_instance(str(hover_hex.item_flow) + " " + str(hover_hex.hex_position))
+	if hover_hex:
+		var tooltip := TextTooltip.new_instance(str(hover_hex.hex_data.hex_name))
 		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
 
 func hide_tooltip():
-	if GameManager.main:
-		GameManager.main.tooltip_canvas.hide_tooltip(self)
+	GameManager.main.tooltip_canvas.hide_tooltip(self)

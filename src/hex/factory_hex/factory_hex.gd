@@ -5,6 +5,7 @@ class_name FactoryHex extends Hex
 
 var MODULATE_INPUT := Color.hex(0x0044ff64)
 var MODULATE_OUTPUT := Color.hex(0xff000032)
+var _is_hinting := false
 
 var recipe: Recipe
 var paths: Array[PathData] = []
@@ -40,11 +41,24 @@ func _ready() -> void:
 	GameManager.paths.path_created.connect(_on_path_created)
 	GameManager.paths.path_deleted.connect(_on_path_deleted)
 
+func indicator_container_show_only_inputs():
+	for child: FlowIndicator in indicator_container.get_children():
+		child.visible = child.is_input
+	indicator_container.show()
+
+func indicator_container_show_all():
+	for child: FlowIndicator in indicator_container.get_children():
+		child.visible = true
+	indicator_container.show()
+
 func _process(_delta: float) -> void:
-	if CursorSelect.selected == self:
-		indicator_container.show()
-	elif GameManager.paths.start_hex == self:
-		indicator_container.show()
+	if _is_hinting and GameManager.paths.start_hex:
+		indicator_container_show_only_inputs()
+	elif (
+		CursorSelect.selected == self \
+		or GameManager.paths.start_hex == self
+	):
+		indicator_container_show_all()
 	else:
 		indicator_container.hide()
 
@@ -58,12 +72,14 @@ func _show_input_output_hint(hex: Hex):
 	elif recipe.requirements.has(hex.recipe.produces):
 		in_out_hint.show()
 		in_out_hint.modulate = MODULATE_OUTPUT
+		_is_hinting = true
 
 func _hide_input_output_hint(hex: Hex):
 	if hex is not FactoryHex:
 		return
 
 	in_out_hint.hide()
+	_is_hinting = false
 
 func _on_path_created(path_data: PathData):
 	if path_data.start == self:
@@ -125,4 +141,4 @@ func _generate_indicators():
 
 # Override
 func select():
-	indicator_container.show()
+	indicator_container_show_all()

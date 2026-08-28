@@ -13,7 +13,7 @@ func _tick():
 	_ticks = max(_ticks-1, 0)
 
 func can_give_special_card() -> bool:
-	return _ticks <= 0 and GameManager.card_holder.count_usable_in_hand() < 2
+	return _ticks <= 0 and GameManager.card_holder.count_usable_in_hand() < 1
 
 func _try_to_give_card(..._a):
 	var is_special := can_give_special_card()
