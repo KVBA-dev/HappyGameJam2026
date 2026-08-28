@@ -13,10 +13,8 @@
 [ext_resource type="Resource" uid="uid://c4ywmgp2ixkdj" path="res://const_data/cards/flow_cards/flow_card_3-2_5-2.tres" id="10_7mnw8"]
 [ext_resource type="Resource" uid="uid://mkxvad0g0k4t" path="res://const_data/cards/flow_cards/flow_card_3-4.tres" id="11_jfjjx"]
 [ext_resource type="Resource" uid="uid://b64g21dljxtq8" path="res://const_data/cards/flow_cards/flow_card_3-5.tres" id="12_4kqnd"]
-[ext_resource type="Resource" uid="uid://capo4j2w6qnxc" path="res://const_data/cards/special_cards/back_to_hand_card.tres" id="13_va4sl"]
-[ext_resource type="Resource" uid="uid://s2v3i00amjd0" path="res://const_data/cards/special_cards/delete_hex_card.tres" id="14_umu3e"]
 
 [resource]
 script = ExtResource("2_trfca")
-list = Array[ExtResource("1_1sjqp")]([ExtResource("5_chgm1"), ExtResource("3_puw0i"), ExtResource("2_pi2bg"), ExtResource("3_chgm1"), ExtResource("6_v0u7i"), ExtResource("7_va4sl"), ExtResource("8_umu3e"), ExtResource("4_pi2bg"), ExtResource("10_7mnw8"), ExtResource("11_jfjjx"), ExtResource("12_4kqnd"), ExtResource("13_va4sl"), ExtResource("14_umu3e")])
+list = Array[ExtResource("1_1sjqp")]([ExtResource("5_chgm1"), ExtResource("3_puw0i"), ExtResource("2_pi2bg"), ExtResource("3_chgm1"), ExtResource("6_v0u7i"), ExtResource("7_va4sl"), ExtResource("8_umu3e"), ExtResource("4_pi2bg"), ExtResource("10_7mnw8"), ExtResource("11_jfjjx"), ExtResource("12_4kqnd")])
 metadata/_custom_type_script = "uid://hllrb13vm8ls"

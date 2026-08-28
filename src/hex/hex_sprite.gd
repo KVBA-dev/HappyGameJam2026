@@ -14,6 +14,7 @@ func init(hex_data: HexData):
 		factory_icon_sprite.texture = hex_data.factory_icon_texture
 		factory_icon_sprite.show()
 
+
 @onready var _rotate_timer: Timer = %RotateTimer
 @onready var _below_displacement: Node2D = %BelowDisplacement
 @onready var _bg_displacement: Node2D = %BgDisplacement
