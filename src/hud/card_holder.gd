@@ -64,7 +64,10 @@ func take_currently_dragged() -> CardHudBase:
 	return card
 
 func add_card(card_data: CardData) -> bool:
-	if len(cards) + 1 > _card_num_limit:
+	var cards_num = len(cards)
+	if _is_currently(State.DRAGGED): cards_num += 1
+
+	if cards_num + 1 > _card_num_limit:
 		return false
 
 	var visual_scene: CardHudBase = preload("res://src/hud/hud_cards/card_hud_placable.tscn").instantiate()
@@ -80,12 +83,12 @@ func _ready():
 	for child in cards_container.get_children():
 		child.free()
 
-	_test_init()
+	fill_hand()
 	reorder_cards()
 
-func _test_init():
-	for i in range(5):
-		var card_data: CardData = GameManager.cards.pick_random()
+func fill_hand():
+	for i in range(_card_num_limit):
+		var card_data: CardData = GameManager.cards.pick_random_weighted()
 		add_card(card_data)
 
 func _process(_delta: float) -> void:

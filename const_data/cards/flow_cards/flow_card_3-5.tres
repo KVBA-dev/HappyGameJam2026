@@ -6,4 +6,5 @@
 [resource]
 script = ExtResource("2_l00fg")
 hex_data = ExtResource("1_24y8c")
+rarity = 1
 metadata/_custom_type_script = "uid://woit68wbxbch"
