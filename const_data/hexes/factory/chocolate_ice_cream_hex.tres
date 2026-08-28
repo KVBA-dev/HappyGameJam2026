@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="HexData" format=3 uid="uid://d1mf33g7yp00o"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
+[ext_resource type="Texture2D" uid="uid://dxlb0in4wekyl" path="res://assets/images/tiles_factories/chocolate_factory.png" id="2_7skib"]
 [ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
 [ext_resource type="Resource" uid="uid://sf7rbevgli76" path="res://src/recipe/resources/chocolate_ice_cream_factory.tres" id="3_recipe"]
 [ext_resource type="Texture2D" uid="uid://883imcs48351" path="res://assets/images/river_uvs/river-from-left-right-2.png" id="4_7skib"]
 [ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="4_texture"]
-[ext_resource type="Texture2D" uid="uid://cnevn1vwgf5cg" path="res://assets/images/tiles_factories/Plantacja_Wanilli.png" id="5_surface"]
 [ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="6_below"]
 
 [sub_resource type="Resource" id="Flow_chocolate_ice_cream"]
@@ -19,7 +19,7 @@ script = ExtResource("1_hex_data")
 hex_name = "Chocolate Ice Cream Hex"
 texture = ExtResource("4_texture")
 on_surface_texture = ExtResource("4_7skib")
-factory_icon_texture = ExtResource("5_surface")
+factory_icon_texture = ExtResource("2_7skib")
 below_texture = ExtResource("6_below")
 type = 2
 recipe = ExtResource("3_recipe")
