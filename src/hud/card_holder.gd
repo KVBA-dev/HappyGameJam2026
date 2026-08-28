@@ -47,7 +47,7 @@ func _can_use_placable(log_errors: bool = true) -> bool:
 	var can_place = GameManager.hex_grid.can_place_card(currently_focused, hovered.hex_position, log_errors)
 	return can_place
 
-func _can_use_usable() -> bool:
+func _can_use_usable(log_errors: bool = true) -> bool:
 	var hovered = Cursor.hover_hex
 	if not hovered:
 		return false
