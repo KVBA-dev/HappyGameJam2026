@@ -1,6 +1,10 @@
 class_name FactoryHex extends Hex
 
 @onready var indicator_container: Node2D = %IndicatorContainer
+@onready var in_out_hint: Sprite2D = %InOutHint
+
+var MODULATE_INPUT := Color.hex(0x0044ff64)
+var MODULATE_OUTPUT := Color.hex(0xff000032)
 
 var recipe: Recipe
 var paths: Array[PathData] = []
@@ -27,11 +31,15 @@ func _ready() -> void:
 	GameManager.main.factories.append(self)
 	_generate_indicators()
 
+	SignalBus.hex_selected.connect(_show_input_output_hint)
+	SignalBus.hex_deselected.connect(_hide_input_output_hint)
+
 	recipe = hex_data.recipe
 	ticks = recipe.processing_time_ticks
 	SignalBus.game_timer_tick.connect(tick)
 	GameManager.paths.path_created.connect(_on_path_created)
 	GameManager.paths.path_deleted.connect(_on_path_deleted)
+
 func _process(_delta: float) -> void:
 	if CursorSelect.selected == self:
 		indicator_container.show()
@@ -39,6 +47,23 @@ func _process(_delta: float) -> void:
 		indicator_container.show()
 	else:
 		indicator_container.hide()
+
+func _show_input_output_hint(hex: Hex):
+	if hex is not FactoryHex:
+		return
+
+	if (hex as FactoryHex).recipe.requirements.has(recipe.produces):
+		in_out_hint.show()
+		in_out_hint.modulate = MODULATE_INPUT
+	elif recipe.requirements.has(hex.recipe.produces):
+		in_out_hint.show()
+		in_out_hint.modulate = MODULATE_OUTPUT
+
+func _hide_input_output_hint(hex: Hex):
+	if hex is not FactoryHex:
+		return
+
+	in_out_hint.hide()
 
 func _on_path_created(path_data: PathData):
 	if path_data.start == self:

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c35v72ubhgdk6" path="res://src/hex/hex.tscn" id="1_hab8q"]
 [ext_resource type="Script" uid="uid://cnm4v2dyyt4mh" path="res://src/hex/factory_hex/factory_hex.gd" id="2_odha3"]
+[ext_resource type="Texture2D" uid="uid://km877nju3tii" path="res://assets/images/hex_bland.png" id="3_70sl0"]
 
 [node name="FactoryHex" unique_id=1567981896 instance=ExtResource("1_hab8q")]
 script = ExtResource("2_odha3")
@@ -13,3 +14,9 @@ one_shot = true
 [node name="IndicatorContainer" type="Node2D" parent="." index="4" unique_id=562494991]
 unique_name_in_owner = true
 visible = false
+
+[node name="InOutHint" type="Sprite2D" parent="." index="5" unique_id=1267926497]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0.26666668, 1, 0.39215687)
+texture = ExtResource("3_70sl0")
