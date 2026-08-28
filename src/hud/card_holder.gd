@@ -112,7 +112,7 @@ func fill_hand():
 	add_card(load("res://const_data/cards/special_cards/back_to_hand_card.tres"))
 	add_card(load("res://const_data/cards/special_cards/back_to_hand_card.tres"))
 
-	for i in range(_card_num_limit + 4):
+	for i in range(_card_num_limit):
 		var card_data: CardData = GameManager.cards.pick_random_weighted()
 		add_card(card_data)
 

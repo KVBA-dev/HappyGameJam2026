@@ -1,7 +1,7 @@
 extends Node
 
 const CARD_GENERATION_TICKS := 40
-const SPECIAL_CARD_GENERATION := 120
+const SPECIAL_CARD_GENERATION := 20
 
 var cards_giver := TickHelper.new(CARD_GENERATION_TICKS)
 var special_cards_giver := TickHelper.new(SPECIAL_CARD_GENERATION)
