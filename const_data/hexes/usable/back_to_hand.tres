@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="HexData" format=3 uid="uid://cw2iq2gs3a4bj"]
+
+[ext_resource type="Texture2D" uid="uid://ck7u2tisu4uqq" path="res://assets/images/tile-tops/kafelek_bottom.png" id="1_mul23"]
+[ext_resource type="Texture2D" uid="uid://ccr08jwa2hpck" path="res://assets/arrow.png" id="2_estyo"]
+[ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="3_ida45"]
+[ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="4_u2lff"]
+
+[resource]
+script = ExtResource("3_ida45")
+hex_name = "Back To Hand"
+texture = ExtResource("4_u2lff")
+on_surface_texture = ExtResource("2_estyo")
+below_texture = ExtResource("1_mul23")
+metadata/_custom_type_script = "uid://dwkm1j5578jxo"

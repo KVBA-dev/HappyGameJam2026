@@ -44,8 +44,15 @@ func _can_use_placable(log_errors: bool = true) -> bool:
 	return can_place
 
 func _can_use_usable() -> bool:
-	# TODO: Implement usable cards
-	return false
+	var hovered = Cursor.hover_hex
+	if not hovered:
+		return false
+	if hovered.hex_data.type != HexData.Type.FLOW:
+		## TODO: Error no card here
+		return false
+
+	return true
+
 
 func is_interacted_with() -> bool:
 	if currently_focused == null:
