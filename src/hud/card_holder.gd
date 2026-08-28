@@ -19,9 +19,16 @@ signal card_returned_to_hand(card: CardHudBase)
 signal card_dragged(card: CardHudBase)
 
 func _input(event: InputEvent) -> void:
+	if (
+		event.is_action_pressed("card_remove") \
+		and _is_currently(State.PREVIEWED)
+		):
+		cards.erase(currently_focused)
+		_trash_card(currently_focused)
+		currently_focused = null
 	if event.is_action_pressed("card_select"):
 		if _is_currently(State.DRAGGED) and trash_can.bin_area.hover:
-			_trash_card()
+			_trash_card(take_currently_dragged())
 		elif _can_use_card():
 			var card := take_currently_dragged()
 			card.start_use_animation()
@@ -141,8 +148,7 @@ func _input_handle_rotations():
 		if Input.is_action_pressed("card_rotate_right"):
 			currently_focused.rotate_right()
 
-func _trash_card():
-	var card := take_currently_dragged()
+func _trash_card(card: CardHudBase):
 	SignalBus.card_binned.emit(card)
 	card.queue_free()
 
