@@ -1,6 +1,6 @@
 class_name CursorSelect extends Node2D
 
-var MODULATE_SELECT = Color.hex(0xf4ff0096)
+var MODULATE_SELECT = Color.hex(0xf4ff0064)
 
 static var selected: Hex 
 
