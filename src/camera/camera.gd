@@ -7,7 +7,7 @@ var target_position := Vector2.ZERO
 var target_zoom := 0.0
 
 const SMOOTHING: float = 8.5
-const CAMERA_SPEED: float = 10.0
+const CAMERA_SPEED: float = 8.0
 const ZOOM_SPEED: float = 0.3
 
 func _ready() -> void:

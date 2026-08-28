@@ -24,6 +24,7 @@ signal item_produced(item: ItemData) # emitted every time an item is produced
 signal item_achieved(item: ItemData) # emitted when an item is produced for the first time
 
 signal card_binned(card: CardHudBase)
+signal card_rotated(card: CardHudBase)
 
 signal game_reset
 

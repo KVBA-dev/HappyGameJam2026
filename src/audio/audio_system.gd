@@ -12,6 +12,8 @@ enum SFXType {
 	CLICK,
 	CANCEL,
 	BUILD,
+	ROTATE,
+	REMOVE,
 }
 
 @export var sfx_sounds: Dictionary[SFXType, AudioStream]
@@ -29,6 +31,8 @@ func _ready() -> void:
 	SignalBus.card_used.connect(func(..._a): play_sfx(SFXType.BUILD))
 	SignalBus.hex_factory_clicked.connect(func(..._a): play_sfx(SFXType.CLICK))
 	SignalBus.card_hovered.connect(func(..._a): play_sfx(SFXType.HOVER))
+	SignalBus.card_binned.connect(func(..._a): play_sfx(SFXType.REMOVE))
+	SignalBus.card_rotated.connect(func(..._a): play_sfx(SFXType.ROTATE))
 	load_and_play_music()
 
 func load_and_play_music() -> void:

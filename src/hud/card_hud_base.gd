@@ -133,7 +133,9 @@ func _reparent_node_for_animation() -> void:
 	scale = Vector2.ONE
 
 func rotate_left():
+	SignalBus.card_rotated.emit(self)
 	hex_sprite.rotate_left()
 
 func rotate_right():
+	SignalBus.card_rotated.emit(self)
 	hex_sprite.rotate_right()

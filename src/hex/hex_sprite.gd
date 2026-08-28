@@ -6,6 +6,13 @@ class_name HexSprite extends Node2D
 @onready var factory_icon_sprite: Sprite2D = %FactoryIconSprite
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 
+@onready var arrow_up_left: Sprite2D = %ArrowUpLeft
+@onready var arrow_up_right: Sprite2D = %ArrowUpRight
+@onready var arrow_center_left: Sprite2D = %ArrowCenterLeft
+@onready var arrow_center_right: Sprite2D = %ArrowCenterRight
+@onready var arrow_down_left: Sprite2D = %ArrowDownLeft
+@onready var arrow_down_right: Sprite2D = %ArrowDownRight
+
 func init(hex_data: HexData):
 	background_sprite.texture = hex_data.texture
 	on_hex_sprite.texture = hex_data.on_surface_texture
@@ -13,11 +20,26 @@ func init(hex_data: HexData):
 	if hex_data.factory_icon_texture:
 		factory_icon_sprite.texture = hex_data.factory_icon_texture
 		factory_icon_sprite.show()
+	var dir_arrows: Dictionary[HexVector.Direction, Sprite2D] = {
+		HexVector.Direction.UP_RIGHT: arrow_up_right,
+		HexVector.Direction.UP_LEFT: arrow_up_left,
+		HexVector.Direction.CENTER_RIGHT: arrow_center_right,
+		HexVector.Direction.CENTER_LEFT: arrow_center_left,
+		HexVector.Direction.DOWN_RIGHT: arrow_down_right,
+		HexVector.Direction.DOWN_LEFT: arrow_down_left,
+	}
+	if hex_data.item_flow:
+		for dir: HexVector.Direction in hex_data.item_flow.inputs:
+			dir_arrows[dir].show()
+		for dir: HexVector.Direction in hex_data.item_flow.outputs:
+			dir_arrows[dir].show()
+			dir_arrows[dir].rotation_degrees += 180
 
 
 @onready var _rotate_timer: Timer = %RotateTimer
 @onready var _below_displacement: Node2D = %BelowDisplacement
 @onready var _bg_displacement: Node2D = %BgDisplacement
+@onready var _direction_arrows: Node2D = %DirectionArrows
 var _is_rotating: bool = false
 var _displace_tween: Tween
 var _rotation_tween: Tween
