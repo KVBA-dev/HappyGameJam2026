@@ -65,7 +65,7 @@ func get_random_blank_hex_in_spawn_range() -> Hex:
 				hex.hex_position.distance_to(non_blank_hex.hex_position),
 			)
 
-		if closest_distance >= 2 and closest_distance <= 3:
+		if closest_distance > 2 and closest_distance <= 3:
 			candidates.append(hex)
 
 	if candidates.is_empty():

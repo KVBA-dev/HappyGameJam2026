@@ -82,9 +82,11 @@ func produce():
 
 	_spawn_product()
 
+var carousel_selection: int = 0
 func _spawn_product():
 	if not paths.is_empty():
-		GameManager.paths.spawn_item_on_path(recipe.produces, paths.pick_random())
+		GameManager.paths.spawn_item_on_path(recipe.produces, paths[carousel_selection % len(paths)])
+		carousel_selection += 1
 	SignalBus.item_produced.emit(recipe.produces)
 
 func _generate_indicators():
