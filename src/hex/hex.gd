@@ -17,7 +17,7 @@ enum AppearStyle {
 	Above = 1,
 	Instant = 2
 }
-var _appear_style: AppearStyle = AppearStyle.Instant
+@export var _appear_style: AppearStyle = AppearStyle.Instant
 
 static func new_instance(
 		_hex_position: HexVector, 

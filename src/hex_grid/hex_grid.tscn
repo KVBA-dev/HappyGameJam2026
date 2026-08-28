@@ -13,3 +13,4 @@ unique_name_in_owner = true
 [node name="RootHex" parent="HexesNode" unique_id=1567981896 instance=ExtResource("2_5boqe")]
 unique_name_in_owner = true
 hex_data = ExtResource("3_5boqe")
+_appear_style = 0

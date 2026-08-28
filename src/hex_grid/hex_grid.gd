@@ -8,6 +8,8 @@ signal deleted_hex(position: HexVector)
 signal changed_hex(old_hex: Hex, new_hex: Hex)
 signal rotated_hex(hex: Hex, new_rotation: HexVector.Direction)
 
+const BLANK: HexData = preload("res://const_data/hexes/blank_hex.tres")
+
 func _ready():
 	GameManager.hex_grid = self
 
@@ -25,8 +27,6 @@ func reset_grid() -> void:
 	hex_map[HexVector.ZERO.vec] = root_hex
 
 func surround_with_hexes(radius: int, center: HexVector = HexVector.ZERO):
-	var blank = load("res://const_data/hexes/blank_hex.tres")
-
 	for direction: HexVector in HexVector.DIRECTION_MAP.values():
 		for i in range(radius):
 			var hex_vec = direction.mult(i+1)
@@ -38,7 +38,7 @@ func surround_with_hexes(radius: int, center: HexVector = HexVector.ZERO):
 				if get_hex_at(final) != null:
 					continue
 
-				spawn_hex_at(final, blank, Hex.AppearStyle.Below)
+				spawn_hex_at(final, BLANK, Hex.AppearStyle.Below)
 
 func get_hex_at(_position: HexVector) -> Hex:
 	return hex_map.get(_position.vec, null)
@@ -155,15 +155,16 @@ func handle_card_placed(data: CardHudBase, pos: HexVector):
 					returned_card.hex_data = _hex.hex_data
 					if GameManager.card_holder.add_card(returned_card):
 						clear_hex_at(pos)
+						spawn_hex_at(pos, BLANK)
 			UsableCardData.UsableType.DELETE:
 				clear_hex_at(pos)
 			UsableCardData.UsableType.ROTATE:
 				pass
 			_:
 				pass
-		var hex := get_hex_at(pos)
-		if hex is FlowHex:
-			hex.apply_card(data)
+		# var hex := get_hex_at(pos)
+		# if hex is FlowHex:
+		# 	hex.apply_card(data)
 
 func _on_hex_spawned(hex: Hex):
 	var data := hex.hex_data
