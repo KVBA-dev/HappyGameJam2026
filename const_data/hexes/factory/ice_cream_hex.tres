@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
 [ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
+[ext_resource type="Texture2D" uid="uid://da68niccuicpr" path="res://assets/images/tiles_factories/Lodziarnia.png" id="2_ykv1m"]
 [ext_resource type="Resource" uid="uid://d0cpqrnp63lu4" path="res://src/recipe/resources/ice_cream_shop.tres" id="3_recipe"]
 [ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="4_texture"]
 [ext_resource type="Texture2D" uid="uid://c6550ldyb6i5o" path="res://assets/images/river_uvs/river-from-all-left-and-up-right.png" id="4_ykv1m"]
-[ext_resource type="Texture2D" uid="uid://cnevn1vwgf5cg" path="res://assets/images/tiles_factories/Plantacja_Wanilli.png" id="5_surface"]
 [ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="6_below"]
 
 [sub_resource type="Resource" id="Flow_ice_cream"]
@@ -19,7 +19,7 @@ script = ExtResource("1_hex_data")
 hex_name = "Ice Cream Hex"
 texture = ExtResource("4_texture")
 on_surface_texture = ExtResource("4_ykv1m")
-factory_icon_texture = ExtResource("5_surface")
+factory_icon_texture = ExtResource("2_ykv1m")
 below_texture = ExtResource("6_below")
 type = 2
 recipe = ExtResource("3_recipe")
