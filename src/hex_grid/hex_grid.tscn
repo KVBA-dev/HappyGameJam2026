@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://e5ebce6mmo6q"]
 
 [ext_resource type="Script" uid="uid://dn31d13hx7ir" path="res://src/hex_grid/hex_grid.gd" id="1_1oygh"]
-[ext_resource type="PackedScene" uid="uid://3rxyinjdp8bm" path="res://src/hex/flox_hex/flow_hex.tscn" id="2_5boqe"]
-[ext_resource type="Resource" uid="uid://db08mmhcdxfl8" path="res://const_data/hexes/test_flow_hex.tres" id="3_5boqe"]
+[ext_resource type="PackedScene" uid="uid://c35v72ubhgdk6" path="res://src/hex/hex.tscn" id="2_5boqe"]
+[ext_resource type="Resource" uid="uid://cqrheki0nydwv" path="res://const_data/hexes/blank_hex.tres" id="3_5boqe"]
 
 [node name="HexGrid" type="Node2D" unique_id=1755103109]
 script = ExtResource("1_1oygh")

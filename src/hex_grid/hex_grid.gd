@@ -51,6 +51,9 @@ func get_random_blank_hex_in_spawn_range() -> Hex:
 		if hex.hex_data.type != HexData.Type.BLANK:
 			non_blank_hexes.append(hex)
 
+	if non_blank_hexes.is_empty():
+		non_blank_hexes.push_back(get_hex_at(HexVector.new(0, 0)))
+
 	for hex: Hex in hex_map.values():
 		if hex.hex_data.type != HexData.Type.BLANK:
 			continue
