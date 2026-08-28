@@ -153,7 +153,8 @@ func handle_card_placed(data: CardHudBase, pos: HexVector):
 					var returned_card := CardData.new()
 					returned_card.type = CardData.Type.PLACABLE
 					returned_card.hex_data = _hex.hex_data
-					GameManager.card_holder.queue_add_card(returned_card)
+					var is_added := GameManager.card_holder.add_card(returned_card)
+					if not is_added: GameManager.card_holder.queue_add_card(returned_card)
 					clear_hex_at(pos)
 					spawn_hex_at(pos, BLANK)
 			UsableCardData.UsableType.DELETE:
@@ -165,7 +166,8 @@ func handle_card_placed(data: CardHudBase, pos: HexVector):
 					var returned_card := CardData.new()
 					returned_card.type = CardData.Type.PLACABLE
 					returned_card.hex_data = _hex.hex_data
-					GameManager.card_holder.queue_add_card(returned_card)
+					var is_added := GameManager.card_holder.add_card(returned_card)
+					if not is_added: GameManager.card_holder.queue_add_card(returned_card)
 
 func _on_hex_spawned(hex: Hex):
 	var data := hex.hex_data

@@ -7,7 +7,9 @@ func pick_random_weighted() -> CardData:
 	var rarity := CardData.random_rarity()
 
 	if grouped[rarity as int].is_empty():
-		rarity = CardData.Rarity.COMMON
+		for non_empty: CardData.Rarity in CardData.Rarity.values():
+			if not grouped[non_empty as int].is_empty():
+				rarity = non_empty
 
 	return grouped[rarity as int].pick_random()
 
