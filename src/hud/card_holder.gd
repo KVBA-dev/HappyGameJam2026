@@ -8,9 +8,7 @@ const State = CardHudBase.State
 @onready var card_lay_area: HoverableArea = %CardLayArea
 @onready var trash_can = %TrashCan
 
-var _usable_card_limit: int = 2
-var _placable_card_limit: int = 4
-var _card_num_limit: int = _usable_card_limit + _placable_card_limit
+var _card_num_limit: int = 6
 
 var currently_focused: CardHudBase = null
 var cards: Array[CardHudBase] = []
@@ -79,26 +77,11 @@ func _count_usable_in_hand() -> int:
 			count += 1
 	return count
 
-func _can_add_card(card_data: CardData) -> bool:
-	var limit = _card_num_limit
-	var cards_num = len(cards)
-
-	var usable_in_hand = _count_usable_in_hand()
-
-	match card_data.type:
-		CardData.Type.USABLE:
-			limit = _usable_card_limit
-			cards_num = usable_in_hand
-		CardData.Type.PLACABLE:
-			limit = _placable_card_limit
-			cards_num = cards_num - usable_in_hand
-	
-	if _is_currently(State.DRAGGED) and currently_focused.card_data.type == card_data.type: cards_num += 1
-	return cards_num + 1 <= limit
-
-
 func add_card(card_data: CardData) -> bool:
-	if not _can_add_card(card_data):
+	var cards_num = len(cards)
+	if _is_currently(State.DRAGGED): cards_num += 1
+
+	if cards_num + 1 > _card_num_limit:
 		return false
 
 	var visual_scene: CardHudBase 
