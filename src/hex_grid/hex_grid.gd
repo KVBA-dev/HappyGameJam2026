@@ -138,8 +138,29 @@ func instantiate_hex(
 			return
 
 func handle_card_placed(data: CardHudBase, pos: HexVector):
-	clear_hex_at(pos)
-	spawn_hex_from_card(pos, data, Hex.AppearStyle.Above)
+	if data.card_data.type == CardData.Type.PLACABLE:
+		clear_hex_at(pos)
+		spawn_hex_from_card(pos, data, Hex.AppearStyle.Above)
+	elif data.card_data.type == CardData.Type.USABLE:
+		var usable_card: UsableCardData = data.card_data
+		match usable_card.usable_type:
+			UsableCardData.UsableType.BACK_TO_HAND:
+				var _hex: Hex = get_hex_at(pos)
+				if _hex:
+					var returned_card := CardData.new()
+					returned_card.type = CardData.Type.PLACABLE
+					returned_card.hex_data = _hex.hex_data
+					if GameManager.card_holder.add_card(returned_card):
+						clear_hex_at(pos)
+			UsableCardData.UsableType.DELETE:
+				clear_hex_at(pos)
+			UsableCardData.UsableType.ROTATE:
+				pass
+			_:
+				pass
+		var hex := get_hex_at(pos)
+		if hex is FlowHex:
+			hex.apply_card(data)
 
 func _on_hex_spawned(hex: Hex):
 	var data := hex.hex_data
