@@ -64,6 +64,9 @@ func _can_use_usable(log_errors: bool = true) -> bool:
 
 	return true
 
+func can_show_tooltip():
+	return _is_currently(State.PREVIEWED)
+
 
 func is_interacted_with() -> bool:
 	if currently_focused == null:
@@ -176,6 +179,7 @@ func _input_handle_card_pickup():
 func _set_currently_focused(node: CardHudBase):
 	if currently_focused:
 		currently_focused.state = CardHudBase.State.IN_HAND
+		SignalBus.card_unhovered.emit()
 
 	if node:
 		node.state = State.PREVIEWED

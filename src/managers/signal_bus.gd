@@ -12,6 +12,7 @@ signal card_used_animation_started(card: CardHudBase)
 
 signal selected_hex(hex: FactoryHex, dir: HexVector.Direction)
 signal card_hovered(data: CardData)
+signal card_unhovered(data: CardData)
 
 signal path_visibility_toggled(visible: bool)
 signal hex_hovered(hex: Hex) # hex can be equal to null

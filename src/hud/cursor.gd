@@ -31,6 +31,9 @@ func _ready() -> void:
 	SignalBus.hex_hovered.connect(_on_hovered)
 	SignalBus.card_used_animation_started.connect(func(_u1): mode = Mode.HOVER)
 	SignalBus.card_binned.connect(func(..._a): mode = Mode.HOVER)
+	SignalBus.card_hovered.connect(func(..._a): show_tooltip())
+	SignalBus.card_unhovered.connect(func(..._a): hide_tooltip())
+
 	GameManager.card_holder.card_returned_to_hand.connect(func(_card): mode = Mode.HOVER)
 	GameManager.card_holder.card_dragged.connect(func(card: CardHudBase):
 		match card.card_data.type:
@@ -110,8 +113,14 @@ func _on_mode_changed():
 		_modulate_accordingly(hover_hex)
 
 func show_tooltip():
-	if hover_hex:
+	if hover_hex and not GameManager.card_holder.card_lay_area.hover:
 		var tooltip := TextTooltip.new_instance(str(hover_hex.hex_data.hex_name))
+		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
+
+	if GameManager.card_holder.can_show_tooltip():
+		var tooltip := TextTooltip.new_instance(
+			str(GameManager.card_holder.currently_focused.card_data.hex_data.hex_name)
+		)
 		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
 
 func hide_tooltip():
