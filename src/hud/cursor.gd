@@ -30,6 +30,7 @@ var MODULATE_BAD = Color.hex(0xf4000264)
 func _ready() -> void:
 	SignalBus.hex_hovered.connect(_on_hovered)
 	SignalBus.card_used_animation_started.connect(func(_u1): mode = Mode.HOVER)
+	SignalBus.card_binned.connect(func(..._a): mode = Mode.HOVER)
 	GameManager.card_holder.card_returned_to_hand.connect(func(_card): mode = Mode.HOVER)
 	GameManager.card_holder.card_dragged.connect(func(card: CardHudBase):
 		match card.card_data.type:
