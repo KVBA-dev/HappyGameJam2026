@@ -165,7 +165,6 @@ func _build_waypoints(
 	return waypoints
 
 func spawn_item_on_path(item_data: ItemData, path_data: PathData) -> Item:
-	print(path_data)
 	if not PATH_LINE_MAP.has(path_data):
 		push_error("Cannot spawn item: path has no PathLine")
 		return null
