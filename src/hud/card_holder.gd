@@ -8,7 +8,9 @@ const State = CardHudBase.State
 @onready var card_lay_area: HoverableArea = %CardLayArea
 @onready var trash_can = %TrashCan
 
-var _card_num_limit: int = 5
+var _usable_card_limit: int = 2
+var _placable_card_limit: int = 4
+var _card_num_limit: int = _usable_card_limit + _placable_card_limit
 
 var currently_focused: CardHudBase = null
 var cards: Array[CardHudBase] = []
@@ -70,14 +72,39 @@ func take_currently_dragged() -> CardHudBase:
 	currently_focused = null
 	return card
 
-func add_card(card_data: CardData) -> bool:
-	var cards_num = len(cards)
-	if _is_currently(State.DRAGGED): cards_num += 1
+func _count_usable_in_hand() -> int:
+	var count := 0
+	for card in cards:
+		if card.card_data.type == CardData.Type.USABLE:
+			count += 1
+	return count
 
-	if cards_num + 1 > _card_num_limit:
+func _can_add_card(card_data: CardData) -> bool:
+	var limit = _card_num_limit
+	var cards_num = len(cards)
+
+	var usable_in_hand = _count_usable_in_hand()
+
+	match card_data.type:
+		CardData.Type.USABLE:
+			limit = _usable_card_limit
+			cards_num = usable_in_hand
+		CardData.Type.PLACABLE:
+			limit = _placable_card_limit
+			cards_num = cards_num - usable_in_hand
+	
+	if _is_currently(State.DRAGGED) and currently_focused.card_data.type == card_data.type: cards_num += 1
+	return cards_num + 1 <= limit
+
+
+func add_card(card_data: CardData) -> bool:
+	if not _can_add_card(card_data):
 		return false
 
-	var visual_scene: CardHudBase = preload("res://src/hud/hud_cards/card_hud_placable.tscn").instantiate()
+	var visual_scene: CardHudBase 
+	match card_data.type:
+		CardData.Type.USABLE: visual_scene = preload("uid://iqggdr0ewk2r").instantiate()
+		CardData.Type.PLACABLE: visual_scene = preload("uid://xsqqqiydweyl").instantiate()
 	cards_container.add_child(visual_scene)
 	visual_scene.hex_sprite.init(card_data.hex_data)
 	visual_scene.card_data = card_data
@@ -94,9 +121,13 @@ func _ready():
 	reorder_cards()
 
 func fill_hand():
-	for i in range(_card_num_limit):
+	add_card(load("res://const_data/cards/special_cards/back_to_hand_card.tres"))
+	add_card(load("res://const_data/cards/special_cards/back_to_hand_card.tres"))
+
+	for i in range(_card_num_limit + 4):
 		var card_data: CardData = GameManager.cards.pick_random_weighted()
 		add_card(card_data)
+
 
 func _process(_delta: float) -> void:
 	if not _is_currently(State.DRAGGED):
@@ -176,8 +207,20 @@ func find_first_rightside_card_idx(pos: Vector2) -> int:
 
 	return first_card_right_idx
 
+func _sort_usable():
+	var placable: Array[CardHudBase] = []
+	var usable: Array[CardHudBase] = []
+
+	for card in cards:
+		match card.card_data.type:
+			CardData.Type.USABLE: usable.append(card)
+			CardData.Type.PLACABLE: placable.append(card)
+
+	placable.append_array(usable)
+	cards = placable
+
 func reorder_cards() -> void:
-	var cards_position_data := get_position_data_for_cards()
+	var cards_position_data := get_position_data_for_cards()	
 
 	var left_spread = 0.0
 	var right_spread = 0.0
@@ -212,6 +255,8 @@ func _is_currently(state: CardHudBase.State):
 func get_position_data_for_cards() -> Array[Dictionary]:
 	const angle_card_distance = 0.15
 	const angle_hover_distance = 0.1
+
+	_sort_usable()
 
 	@warning_ignore("integer_division")
 	var angle_offset: float = -int(len(cards) / 2) * angle_card_distance
