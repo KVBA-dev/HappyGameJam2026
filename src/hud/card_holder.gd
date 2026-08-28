@@ -70,7 +70,7 @@ func take_currently_dragged() -> CardHudBase:
 	currently_focused = null
 	return card
 
-func _count_usable_in_hand() -> int:
+func count_usable_in_hand() -> int:
 	var count := 0
 	for card in cards:
 		if card.card_data.type == CardData.Type.USABLE:
