@@ -21,10 +21,6 @@ func _ready() -> void:
 	GameManager.main = self
 	GameManager.hex_grid.surround_with_hexes(3)
 
-	# Infinite cards for fun
-	SignalBus.card_used.connect(func(_a, _b):
-		GameManager.card_holder.add_card(GameManager.cards.pick_random())
-	)
 	SignalBus.factory_connected.connect(_on_factory_connected)
 	spawn_available_factory_hexes()
 

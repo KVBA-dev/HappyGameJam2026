@@ -6,3 +6,4 @@
 [resource]
 script = ExtResource("1_card_data")
 hex_data = ExtResource("1_woqr2")
+rarity = 3
