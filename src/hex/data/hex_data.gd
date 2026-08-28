@@ -25,3 +25,9 @@ func should_surround_by_blanks() -> bool:
 
 func _to_string() -> String:
 	return hex_name
+
+func get_production_texture() -> Texture2D:
+	return recipe.produces.texture
+
+func get_requirements() -> Array[ItemData]:
+	return recipe.requirements.keys()

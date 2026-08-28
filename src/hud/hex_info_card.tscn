@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bxskiasaoc27g"]
 
 [ext_resource type="Texture2D" uid="uid://c6dtcjdc7ohsp" path="res://assets/images/items/wheat.png" id="1_7uf86"]
+[ext_resource type="Script" uid="uid://bk6so7fp1axnd" path="res://src/hud/hex_info_card.gd" id="1_d4yo7"]
 [ext_resource type="FontFile" uid="uid://baq332w5v6eiy" path="res://assets/fonts/Gorditas-Bold.ttf" id="2_d4yo7"]
-[ext_resource type="Texture2D" uid="uid://bojak4wadsf3m" path="res://assets/images/items/cocoa_fruit.png" id="3_d7v0l"]
+[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="2_d7v0l"]
 [ext_resource type="Texture2D" uid="uid://b1xhuuyviw7h" path="res://assets/images/items/flour.png" id="4_sd3s4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs14m"]
@@ -31,6 +32,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_cs14m")
+script = ExtResource("1_d4yo7")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1758444798]
 layout_mode = 2
@@ -43,57 +45,85 @@ theme_override_constants/margin_bottom = 24
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 0
 
-[node name="PanelContainer" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=466724995]
-custom_minimum_size = Vector2(64, 64)
+[node name="HexBackgroundTile" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=808071371]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_d7v0l")
+expand_mode = 1
+
+[node name="HexIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HexBackgroundTile" unique_id=466724995]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 texture = ExtResource("1_7uf86")
 expand_mode = 1
 
+[node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer" unique_id=944171191]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
 [node name="HexTitle" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1907564842]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_d4yo7")
 theme_override_font_sizes/font_size = 40
 text = "Pole Pszenicy"
 horizontal_alignment = 1
 
-[node name="Needs" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1539643870]
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1206462275]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="NeedsCol" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1823055545]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Needs" type="Label" parent="MarginContainer/VBoxContainer/NeedsCol" unique_id=1539643870]
 layout_mode = 2
 text = "Needs"
 horizontal_alignment = 1
 
-[node name="NeededRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1162314505]
+[node name="NeededRow" type="HBoxContainer" parent="MarginContainer/VBoxContainer/NeedsCol" unique_id=1162314505]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="NeededIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/NeededRow" unique_id=1197871321]
-custom_minimum_size = Vector2(64, 64)
+[node name="NeededIcon" parent="MarginContainer/VBoxContainer/NeedsCol/NeededRow" unique_id=162114363 instance_placeholder="res://src/hud/needed_icon.tscn"]
 layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("3_d7v0l")
-expand_mode = 1
 
-[node name="NeededIcon2" type="TextureRect" parent="MarginContainer/VBoxContainer/NeededRow" unique_id=1657436893]
-custom_minimum_size = Vector2(64, 64)
+[node name="NeededIcon2" parent="MarginContainer/VBoxContainer/NeedsCol/NeededRow" unique_id=88367253 instance_placeholder="res://src/hud/needed_icon.tscn"]
 layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("3_d7v0l")
-expand_mode = 1
 
-[node name="NeededIcon3" type="TextureRect" parent="MarginContainer/VBoxContainer/NeededRow" unique_id=1502558383]
-custom_minimum_size = Vector2(64, 64)
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1690622678]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
-size_flags_horizontal = 4
-texture = ExtResource("3_d7v0l")
-expand_mode = 1
 
-[node name="Produces" type="Label" parent="MarginContainer/VBoxContainer" unique_id=354208487]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1959235222]
+layout_mode = 2
+
+[node name="Produces" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=354208487]
 layout_mode = 2
 text = "Produces"
 horizontal_alignment = 1
 
-[node name="ProducesIcon" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=198148170]
+[node name="ProducesIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=198148170]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4

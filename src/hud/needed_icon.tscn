@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c8koodfc4m8gq"]
+
+[ext_resource type="Texture2D" uid="uid://bojak4wadsf3m" path="res://assets/images/items/cocoa_fruit.png" id="1_yun1g"]
+[ext_resource type="Script" uid="uid://1sr4u5n27i6m" path="res://src/hud/needed_icon.gd" id="2_b16mq"]
+
+[node name="NeededIcon" type="TextureRect" unique_id=162114363]
+custom_minimum_size = Vector2(64, 64)
+size_flags_horizontal = 4
+texture = ExtResource("1_yun1g")
+expand_mode = 1
+script = ExtResource("2_b16mq")
