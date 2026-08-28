@@ -15,6 +15,7 @@ func _ready() -> void:
 
 	var waypoints_positions := waypoints.map(func(hex: Hex) -> Vector2: return hex.hex_position.to_pixel())
 	visual_line.points = PackedVector2Array(waypoints_positions)
+	visual_line.default_color = Color.from_rgba8(randi_range(0, 255), randi_range(0, 255), randi_range(0, 255), 255)
 	for point: Vector2 in waypoints_positions:
 		curve.add_point(point)
 	SignalBus.path_visibility_toggled.connect(on_path_visibility_toggled)
