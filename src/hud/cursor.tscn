@@ -10,7 +10,7 @@ script = ExtResource("1_jo326")
 
 [node name="CursorHoverHex" type="Node2D" parent="." unique_id=648798318]
 unique_name_in_owner = true
-z_index = 1000
+z_index = 500
 
 [node name="HexSprite" parent="CursorHoverHex" unique_id=956441382 instance=ExtResource("2_iew8k")]
 unique_name_in_owner = true
@@ -27,6 +27,6 @@ texture = null
 
 [node name="CursorSelect" parent="." unique_id=1973028755 instance=ExtResource("4_8e1gn")]
 unique_name_in_owner = true
-z_index = 1000
+z_index = 500
 
 [editable path="CursorHoverHex/HexSprite"]
