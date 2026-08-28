@@ -20,7 +20,7 @@ signal card_dragged(card: CardHudBase)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("card_select"):
-		if trash_can.bin_area.hover:
+		if _is_currently(State.DRAGGED) and trash_can.bin_area.hover:
 			_trash_card()
 		elif _can_use_card():
 			var card := take_currently_dragged()
