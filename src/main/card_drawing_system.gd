@@ -15,6 +15,6 @@ func add_placable_card():
 	if not is_added: cards_giver.fire_next_tick()
 
 func add_usable_card():
-	if GameManager.card_holder.count_usable_in_hand() <= 2:
+	if GameManager.card_holder.count_usable_in_hand() < 2:
 		var is_added = GameManager.card_holder.add_card(GameManager.usable_cards.pick_random_weighted())
 		if not is_added: special_cards_giver.fire_next_tick()

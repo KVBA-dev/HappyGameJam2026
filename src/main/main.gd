@@ -58,3 +58,5 @@ func spawn_available_factory_hexes() -> void:
 			var hex_position := blank_hex.hex_position
 			GameManager.hex_grid.clear_hex_at(hex_position)
 			GameManager.hex_grid.spawn_hex_at(hex_position, hex_data)
+
+	GameManager.progress_tree.confirm_batches_spawned(batches)

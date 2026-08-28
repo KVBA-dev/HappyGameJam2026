@@ -23,9 +23,9 @@ var block_selection: bool = false
 @onready var cursor_hover: Node2D = %CursorHoverHex
 @onready var cursor_select: CursorSelect = %CursorSelect
 
-var MODULATE_NEUTRAL = Color.hex(0x00ffff32)
-var MODULATE_GOOD = Color.hex(0x00f51d32)
-var MODULATE_BAD = Color.hex(0xf4000232)
+var MODULATE_NEUTRAL = Color.hex(0x00ffff64)
+var MODULATE_GOOD = Color.hex(0x00f51d64)
+var MODULATE_BAD = Color.hex(0xf4000264)
 
 func _ready() -> void:
 	SignalBus.hex_hovered.connect(_on_hovered)
