@@ -25,6 +25,7 @@ signal item_achieved(item: ItemData) # emitted when an item is produced for the 
 
 signal card_binned(card: CardHudBase)
 signal card_rotated(card: CardHudBase)
+signal card_picked(card: CardHudBase)
 
 signal game_reset
 
