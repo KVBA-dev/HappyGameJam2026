@@ -3,6 +3,16 @@ class_name HexGrid extends Node2D
 @onready var hexes_node: Node2D = %HexesNode
 @onready var root_hex: Hex = %RootHex
 var hex_map: Dictionary[Vector2i, Hex] = {}
+var blank_hexes: Array[Hex]:
+	get():
+		return hex_map.values().filter(func(hex: Hex) -> bool:
+			return hex.hex_data.type != HexData.Type.BLANK
+		)
+
+var last_unconnected_index: int = 0
+var unconnected_factories: Array[FactoryHex] = []
+		
+
 signal spawned_hex(hex: Hex)
 signal deleted_hex(position: HexVector)
 signal changed_hex(old_hex: Hex, new_hex: Hex)
@@ -14,9 +24,33 @@ func _ready():
 	GameManager.hex_grid = self
 
 	SignalBus.card_used.connect(handle_card_placed)
+	SignalBus.factory_connected.connect(_on_factory_connected)
+	SignalBus.factory_disconnected.connect(_on_factory_connected)
 	spawned_hex.connect(_on_hex_spawned)
-	
 	reset_grid()
+	_update_unconnected_factories()
+
+func _on_factory_connected(factory: FactoryHex):
+	_update_unconnected_factories()
+
+func _update_unconnected_factories() -> void:
+	var _unconnected_factories := hex_map.values().filter((func(hex: Hex) -> bool:
+		return hex is FactoryHex and not hex.connected.value
+	))
+	var factories: Array[FactoryHex] = []
+	for hex in _unconnected_factories:
+		factories.append(hex as FactoryHex)
+
+	unconnected_factories = factories
+	last_unconnected_index = 0
+
+func get_next_unconnected_factory() -> FactoryHex:
+	if unconnected_factories.is_empty():
+		return null
+
+	var factory := unconnected_factories[last_unconnected_index]
+	last_unconnected_index = (last_unconnected_index + 1) % unconnected_factories.size()
+	return factory
 
 func reset_grid() -> void:
 	for hex: Hex in hex_map.values():
@@ -104,6 +138,8 @@ func spawn_hex_at(_position: HexVector, hex_type: HexData, appear_style: Hex.App
 	hexes_node.add_child(new_hex)
 	hex_map[_position.vec] = new_hex
 	spawned_hex.emit(new_hex)
+	if hex_type.type == HexData.Type.FACTORY:
+		_update_unconnected_factories()
 	return new_hex
 
 func spawn_hex_from_card(

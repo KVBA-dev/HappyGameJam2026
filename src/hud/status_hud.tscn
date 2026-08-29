@@ -16,6 +16,17 @@ border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6gy6"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.36078432, 0.74509805, 0.8509804, 1)
+border_width_left = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+corner_radius_bottom_left = 16
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbguq"]
 content_margin_left = 32.0
 content_margin_top = 16.0
@@ -74,17 +85,6 @@ shadow_offset = Vector2(0, 2)
 [node name="StatusHud" type="CanvasLayer" unique_id=1515205727]
 script = ExtResource("1_dbguq")
 
-[node name="PausedLabel" type="Label" parent="." unique_id=1146052822]
-visible = false
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -57.0
-offset_bottom = 23.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 32
-text = "Paused"
-
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=2121405336]
 anchors_preset = 3
 anchor_left = 1.0
@@ -111,7 +111,36 @@ theme_override_fonts/font = ExtResource("2_pov1x")
 theme_override_font_sizes/font_size = 56
 text = "0/5"
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2132781110]
+[node name="GamePauseContainer" type="PanelContainer" parent="." unique_id=243682288]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -410.0
+offset_bottom = 96.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y6gy6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GamePauseContainer" unique_id=1282931962]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="PausedLabel2" type="Label" parent="GamePauseContainer/VBoxContainer" unique_id=1458256988]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_pov1x")
+theme_override_font_sizes/font_size = 48
+text = "GAME PAUSED"
+horizontal_alignment = 1
+
+[node name="PausedLabel" type="Label" parent="GamePauseContainer/VBoxContainer" unique_id=1146052822]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "[PRESS ESC TO UNPASE]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1482550513]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -119,24 +148,70 @@ offset_left = -109.5
 offset_right = 109.5
 offset_bottom = 117.0
 grow_horizontal = 2
+theme_override_constants/separation = 8
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer" unique_id=532574560]
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_dbguq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=266858953]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer2" unique_id=950431687]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TimeLeftLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=445770218]
+[node name="PlayedCardsTitle" type="Label" parent="HBoxContainer/PanelContainer2/VBoxContainer" unique_id=1743420974]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pov1x")
+theme_override_font_sizes/font_size = 28
+text = "PLAYED CARDS"
+
+[node name="PlayedCardsLabel" type="Label" parent="HBoxContainer/PanelContainer2/VBoxContainer" unique_id=1942448561]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=2132781110]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dbguq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer" unique_id=266858953]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TimeLeftLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=445770218]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_pov1x")
 theme_override_font_sizes/font_size = 28
 text = "PLAY TIME"
 
-[node name="TimerLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=594733741]
+[node name="TimerLabel" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer" unique_id=594733741]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 40
 text = "00:00"
+
+[node name="PanelContainer3" type="PanelContainer" parent="HBoxContainer" unique_id=1890494111]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dbguq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer3" unique_id=1947100109]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TotalHexesTitle" type="Label" parent="HBoxContainer/PanelContainer3/VBoxContainer" unique_id=413080630]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pov1x")
+theme_override_font_sizes/font_size = 28
+text = "TOTAL HEXES"
+
+[node name="TotalHexesLabel" type="Label" parent="HBoxContainer/PanelContainer3/VBoxContainer" unique_id=566704705]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "0"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2088477536]
 offset_right = 40.0
@@ -144,7 +219,11 @@ offset_bottom = 40.0
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 
-[node name="HidePathsBtn" type="Button" parent="MarginContainer" unique_id=1886612193]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2038201699]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HidePathsBtn" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1886612193]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
@@ -157,3 +236,17 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_pov1x")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_376bd")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ss772")
 text = "Hide paths"
+
+[node name="GoToUnconnectedFactoryButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=224091323]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_pov1x")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_376bd")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ss772")
+text = "Go unconnected"

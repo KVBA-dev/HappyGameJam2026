@@ -1,15 +1,18 @@
 extends CanvasLayer
 
-@onready var paused_label: Label = $PausedLabel
+@onready var game_pause_container: Container = %GamePauseContainer
 @onready var timer_label: Label = %TimerLabel
 @onready var cards_on_hand: Label = %CardsOnHandLabel
 @onready var hide_paths_btn: Button = %HidePathsBtn
+@onready var played_cards_label: Label = %PlayedCardsLabel
+@onready var total_hexes_label: Label = %TotalHexesLabel
+@onready var go_unconnected_factory_label: Button = %GoToUnconnectedFactoryButton
 
 @export var game_timer: GameTimer
 
 func _ready() -> void:
 	SignalBus.pause_toggled.connect(func(is_paused: bool): 
-		paused_label.visible = is_paused
+		game_pause_container.visible = is_paused
 	)
 	hide_paths_btn.pressed.connect(func():
 		GameManager.main.paths_visible = not GameManager.main.paths_visible
@@ -19,6 +22,9 @@ func _ready() -> void:
 		else:
 			hide_paths_btn.text = "Show paths"
 	)
+	go_unconnected_factory_label.pressed.connect(func():
+		SignalBus.go_unconnected.emit()
+	)
 
 func _process(_delta: float) -> void:
 	var time := game_timer.current_time
@@ -26,3 +32,5 @@ func _process(_delta: float) -> void:
 	var seconds: int = (floor(time) as int) % 60
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
 	cards_on_hand.text =  str(len(GameManager.card_holder.cards) - 1) + "/5"
+	played_cards_label.text = str(len(GameManager.main.stats.cards_used))
+	total_hexes_label.text = str(len(GameManager.hex_grid.blank_hexes))
