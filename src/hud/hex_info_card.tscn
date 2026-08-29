@@ -6,18 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://b1xhuuyviw7h" path="res://assets/images/items/flour.png" id="4_sd3s4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs14m"]
-bg_color = Color(0.55718637, 0.7847594, 0.8813282, 1)
+bg_color = Color(0.36078432, 0.74509805, 0.8509804, 1)
 border_width_left = 8
 border_width_top = 8
-border_width_right = 8
 border_width_bottom = 8
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [node name="PanelContainer" type="PanelContainer" unique_id=1800096999]
+custom_minimum_size = Vector2(400, 440)
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -36,9 +34,9 @@ script = ExtResource("1_d4yo7")
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1758444798]
 layout_mode = 2
 theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 24
+theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1732631766]
 layout_mode = 2
@@ -76,9 +74,11 @@ layout_mode = 2
 [node name="NeedsCol" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1823055545]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Needs" type="Label" parent="MarginContainer/VBoxContainer/NeedsCol" unique_id=1539643870]
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "Needs"
 horizontal_alignment = 1
 
@@ -99,9 +99,11 @@ layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1959235222]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Produces" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=354208487]
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "Produces"
 horizontal_alignment = 1
 
