@@ -30,6 +30,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("card_select"):
 		if _is_currently(State.DRAGGED) and trash_can.bin_area.hover:
 			_trash_card(take_currently_dragged())
+		elif not _is_currently(State.DRAGGED) and trash_can.bin_area.hover:
+			currently_focused = _generate_card(preload("uid://s2v3i00amjd0")) # Bin card
+			currently_focused.state = CardHudBase.State.DRAGGED
+			card_dragged.emit(currently_focused)
 		elif _can_use_card():
 			var card := take_currently_dragged()
 			card.start_use_animation()
@@ -95,13 +99,7 @@ func queue_add_card(card_data: CardData) -> void:
 
 var next_card_add_position = null
 func _add_card(card_data: CardData) -> CardHudBase:
-	var visual_scene: CardHudBase 
-	match card_data.type:
-		CardData.Type.USABLE: visual_scene = preload("uid://iqggdr0ewk2r").instantiate()
-		CardData.Type.PLACABLE: visual_scene = preload("uid://xsqqqiydweyl").instantiate()
-	cards_container.add_child(visual_scene)
-	visual_scene.hex_sprite.init(card_data.hex_data)
-	visual_scene.card_data = card_data
+	var visual_scene: CardHudBase = _generate_card(card_data)
 
 	if next_card_add_position:
 		var world_position: Vector2 = next_card_add_position as Vector2
@@ -109,6 +107,16 @@ func _add_card(card_data: CardData) -> CardHudBase:
 		next_card_add_position = null
 
 	cards.push_front(visual_scene)
+	return visual_scene
+
+func _generate_card(card_data: CardData):
+	var visual_scene: CardHudBase 
+	match card_data.type:
+		CardData.Type.USABLE: visual_scene = preload("uid://iqggdr0ewk2r").instantiate()
+		CardData.Type.PLACABLE: visual_scene = preload("uid://xsqqqiydweyl").instantiate()
+	cards_container.add_child(visual_scene)
+	visual_scene.hex_sprite.init(card_data.hex_data)
+	visual_scene.card_data = card_data
 	return visual_scene
 
 func add_card(card_data: CardData) -> CardHudBase:
@@ -166,6 +174,12 @@ func _input_handle_card_laydown():
 		or (Input.is_action_just_released("card_select") and can_be_laid_down)) \
 		and _is_currently(State.DRAGGED):
 		if card_lay_area.hover:
+			if (
+				currently_focused.card_data.type == CardData.Type.USABLE \
+				and (currently_focused.card_data as UsableCardData).usable_type == UsableCardData.UsableType.DELETE
+			):
+				_trash_card(take_currently_dragged())
+				return 
 			var idx = find_first_rightside_card_idx(get_global_mouse_position())
 			cards.insert(idx, currently_focused)
 			card_returned_to_hand.emit(currently_focused)
