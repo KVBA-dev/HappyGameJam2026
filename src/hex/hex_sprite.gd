@@ -29,6 +29,20 @@ func init(hex_data: HexData):
 		HexVector.Direction.DOWN_RIGHT: arrow_down_right,
 		HexVector.Direction.DOWN_LEFT: arrow_down_left,
 	}
+
+	const rotations: Dictionary[HexVector.Direction, float] = {
+		HexVector.Direction.UP_RIGHT: 30.0,
+		HexVector.Direction.UP_LEFT: -30.0,
+		HexVector.Direction.CENTER_RIGHT: 90.0,
+		HexVector.Direction.CENTER_LEFT: -90.0,
+		HexVector.Direction.DOWN_RIGHT: 150.0,
+		HexVector.Direction.DOWN_LEFT: -150.0
+	}
+
+	for dir in dir_arrows:
+		dir_arrows[dir].rotation_degrees = rotations[dir]
+		dir_arrows[dir].hide()
+
 	if hex_data.item_flow:
 		for dir: HexVector.Direction in hex_data.item_flow.inputs:
 			dir_arrows[dir].show()
@@ -93,6 +107,17 @@ func _on_animation_started(_anim_name: String) -> void:
 				saved_rot, 
 				_n_60degree_rotations * PI/3, weight),
 			0.0, 1.0, ROTATION_UNBLOCK_TIME
+		)
+	elif _anim_name == "remove":
+		rainbow_border_sprite.hide()
+		_direction_arrows.hide()
+		var tween = get_tree().create_tween()
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.tween_method(func(t: float): 
+			background_sprite.set_instance_shader_parameter("dissolve_value", 1.0 - t),
+			0.0,
+			1.0,
+			0.5
 		)
 
 func _on_rotate_timer_timeout() -> void:

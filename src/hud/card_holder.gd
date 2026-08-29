@@ -28,10 +28,12 @@ func _input(event: InputEvent) -> void:
 		_trash_card(currently_focused)
 		currently_focused = null
 	if event.is_action_pressed("card_select"):
-		if _is_currently(State.DRAGGED) and trash_can.bin_area.hover:
+		if _is_currently(State.DRAGGED) and trash_can.bin_area.hover \
+			and not currently_focused.infinite_card.value:
 			_trash_card(take_currently_dragged())
 		elif not _is_currently(State.DRAGGED) and trash_can.bin_area.hover:
 			currently_focused = _generate_card(preload("uid://s2v3i00amjd0")) # Bin card
+			currently_focused.global_position = trash_can.global_position
 			currently_focused.state = CardHudBase.State.DRAGGED
 			card_dragged.emit(currently_focused)
 		elif _can_use_card():
