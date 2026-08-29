@@ -30,4 +30,5 @@ signal card_picked(card: CardHudBase)
 signal game_reset
 
 signal factory_connected(factory: FactoryHex)
+signal factory_unlocked
 signal game_win

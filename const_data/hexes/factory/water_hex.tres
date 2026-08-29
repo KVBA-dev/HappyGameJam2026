@@ -2,17 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
 [ext_resource type="Resource" uid="uid://dgqoohc0rk5n5" path="res://const_data/hexes/outlooks/grass_outlook.tres" id="1_ly64r"]
+[ext_resource type="Texture2D" uid="uid://dhi2iflucuw7i" path="res://assets/images/tiles_factories/Źródło_wody.png" id="2_ly64r"]
 [ext_resource type="Resource" uid="uid://cf4mprg4trfes" path="res://const_data/flows/out_2_flow.tres" id="3_ly64r"]
 [ext_resource type="Resource" uid="uid://b6wh1ubk6s805" path="res://src/recipe/resources/water_source.tres" id="3_recipe"]
 [ext_resource type="Texture2D" uid="uid://u3cnfwmukb6g" path="res://assets/images/river_uvs/river-only-right.png" id="4_1e71j"]
-[ext_resource type="Texture2D" uid="uid://wle6yvl76ibk" path="res://assets/images/tiles_factories/Krówka.png" id="5_surface"]
 
 [resource]
 script = ExtResource("1_hex_data")
 hex_name = "Water Hex"
 base_hex_outlook = ExtResource("1_ly64r")
 on_surface_texture = ExtResource("4_1e71j")
-factory_icon_texture = ExtResource("5_surface")
+factory_icon_texture = ExtResource("2_ly64r")
 type = 2
 recipe = ExtResource("3_recipe")
 item_flow = ExtResource("3_ly64r")

@@ -2,10 +2,10 @@
 
 [ext_resource type="Resource" uid="uid://dgqoohc0rk5n5" path="res://const_data/hexes/outlooks/grass_outlook.tres" id="1_c4q73"]
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
+[ext_resource type="Texture2D" uid="uid://bwjshtwhcwh5j" path="res://assets/images/tiles_factories/Plantacja_buraków.png" id="2_c4q73"]
 [ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
 [ext_resource type="Resource" uid="uid://j4chkbut544a" path="res://src/recipe/resources/sugar_beet_field.tres" id="3_recipe"]
 [ext_resource type="Texture2D" uid="uid://u3cnfwmukb6g" path="res://assets/images/river_uvs/river-only-right.png" id="4_oiru3"]
-[ext_resource type="Texture2D" uid="uid://cnevn1vwgf5cg" path="res://assets/images/tiles_factories/Plantacja_Wanilli.png" id="5_surface"]
 
 [sub_resource type="Resource" id="Flow_sugar_beet"]
 script = ExtResource("2_flow")
@@ -17,7 +17,7 @@ script = ExtResource("1_hex_data")
 hex_name = "Sugar Beet Hex"
 base_hex_outlook = ExtResource("1_c4q73")
 on_surface_texture = ExtResource("4_oiru3")
-factory_icon_texture = ExtResource("5_surface")
+factory_icon_texture = ExtResource("2_c4q73")
 type = 2
 recipe = ExtResource("3_recipe")
 item_flow = SubResource("Flow_sugar_beet")

@@ -28,7 +28,7 @@ func _ready() -> void:
 	GameManager.hex_grid.surround_with_hexes(3)
 
 	SignalBus.factory_connected.connect(_on_factory_connected)
-	spawn_available_factory_hexes()
+	spawn_available_factory_hexes(false)
 	
 	paused = true
 	SignalBus.pause_toggled.emit(paused)
@@ -49,14 +49,16 @@ func _on_item_produced(item: ItemData) -> void:
 		SignalBus.item_achieved.emit(item)
 	items_produced[item] = true
 
+var main_scene: PackedScene = preload("res://src/main/main.tscn")
+
 func on_game_reset() -> void:
-	GameManager.hex_grid.reset_grid()
-	GameManager.hex_grid.surround_with_hexes(3)
-	spawn_available_factory_hexes()
+	get_tree().root.add_child(main_scene.instantiate())
+	queue_free()
 
-func spawn_available_factory_hexes() -> void:
+func spawn_available_factory_hexes(emit_signals: bool = true) -> void:
 	var batches: Array[ProgressBatch] = GameManager.progress_tree.get_batch()
-
+	if len(batches) > 0 and emit_signals:
+		SignalBus.factory_unlocked.emit()
 	for batch: ProgressBatch in batches:
 		for hex_data: HexData in batch.buildings:
 			var blank_hex: Hex = GameManager.hex_grid.get_random_blank_hex_in_spawn_range()
