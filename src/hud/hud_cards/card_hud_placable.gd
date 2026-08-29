@@ -12,11 +12,17 @@ func start_use_animation():
 	SignalBus.card_used_animation_started.emit(self)
 	_reparent_node_for_animation()
 
+	var saved_pos := position
+	var anim_target_pos := grid_pos.to_pixel() + Vector2.UP*40
+
 	var tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_method(func(vec: Vector2): position = vec,
-		position,
-		grid_pos.to_pixel() + Vector2.UP*40,
+	tween.tween_method(func(t: float): 
+		if infinite_card.value:
+			hex_sprite.rainbow_border_sprite.set_instance_shader_parameter("alpha", 1.0 - t)
+		position = lerp(saved_pos, anim_target_pos, t),
+		0.0,
+		1.0,
 		0.3
 	)
 
