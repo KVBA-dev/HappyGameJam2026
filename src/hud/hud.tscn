@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://2ytil7ae8hwe"]
 
 [ext_resource type="PackedScene" uid="uid://c0lvfgmj38wfm" path="res://src/hud/card_holder.tscn" id="1_t0re6"]
-[ext_resource type="PackedScene" path="res://src/hud/hex_info_card.tscn" id="2_3phq6"]
+[ext_resource type="PackedScene" uid="uid://bxskiasaoc27g" path="res://src/hud/hex_info_card.tscn" id="2_3phq6"]
 
 [node name="Hud" type="CanvasLayer" unique_id=170203212]
 
