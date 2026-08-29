@@ -52,6 +52,8 @@ func indicator_container_show_all():
 	indicator_container.show()
 
 func _process(_delta: float) -> void:
+	# if not connected.value: print(hex_position)
+
 	if _is_hinting and GameManager.paths.start_hex:
 		indicator_container_show_only_inputs()
 	elif (
@@ -103,6 +105,13 @@ func _update_connected() -> void:
 			SignalBus.factory_connected.emit(self)
 			return
 	connected.value = false
+
+func get_needed_requirments() -> Array[ItemData]:
+	var requirements := recipe.requirements.keys()
+	for path_data: PathData in GameManager.paths.paths:
+		if path_data.end == self:
+			requirements.erase(path_data.start.recipe.produces)
+	return requirements
 
 func on_item_input(item: Item):
 	if item.item_data in recipe.requirements:
