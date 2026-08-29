@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://ck7u2tisu4uqq" path="res://assets/images/tile-tops/kafelek_bottom.png" id="2_sk1rf"]
 [ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="3_sk1rf"]
 [ext_resource type="Material" uid="uid://8neoayb01l4" path="res://assets/shaders/river_material.tres" id="4_2r5be"]
+[ext_resource type="Material" uid="uid://cmeq2otw28f4f" path="res://assets/shaders/rainbow_border_material.tres" id="4_hvbd8"]
 [ext_resource type="Texture2D" uid="uid://d243ny51x5qi0" path="res://assets/images/river_uvs/river-cross-wide.png" id="5_2r5be"]
+[ext_resource type="Texture2D" uid="uid://basf32wsaudfc" path="res://assets/images/tile-tops/infinite_outline_mask.png" id="5_16f1v"]
 [ext_resource type="Texture2D" uid="uid://cnevn1vwgf5cg" path="res://assets/images/tiles_factories/Plantacja_Wanilli.png" id="5_t4x5y"]
 [ext_resource type="Texture2D" uid="uid://bnk8mi18rt6xc" path="res://assets/images/icons/arrow-full.svg" id="7_sk1rf"]
 
@@ -221,6 +223,11 @@ unique_name_in_owner = true
 [node name="BackgroundSprite" type="Sprite2D" parent="BgDisplacement" unique_id=439762020]
 unique_name_in_owner = true
 texture = ExtResource("3_sk1rf")
+
+[node name="RainbowBorderSprite" type="Sprite2D" parent="BgDisplacement" unique_id=1290461889]
+unique_name_in_owner = true
+material = ExtResource("4_hvbd8")
+texture = ExtResource("5_16f1v")
 
 [node name="SpriteScaler" type="Node2D" parent="BgDisplacement" unique_id=144301563]
 scale = Vector2(1, 0.97)
