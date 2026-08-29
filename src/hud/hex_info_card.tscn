@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://bxskiasaoc27g"]
 
-[ext_resource type="Texture2D" uid="uid://c6dtcjdc7ohsp" path="res://assets/images/items/wheat.png" id="1_7uf86"]
 [ext_resource type="Script" uid="uid://bk6so7fp1axnd" path="res://src/hud/hex_info_card.gd" id="1_d4yo7"]
+[ext_resource type="PackedScene" uid="uid://cdilrnqed1pcs" path="res://src/hex/hex_sprite.tscn" id="2_7uf86"]
 [ext_resource type="FontFile" uid="uid://baq332w5v6eiy" path="res://assets/fonts/Gorditas-Bold.ttf" id="2_d4yo7"]
-[ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="2_d7v0l"]
 [ext_resource type="Texture2D" uid="uid://b1xhuuyviw7h" path="res://assets/images/items/flour.png" id="4_sd3s4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs14m"]
@@ -47,32 +46,16 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 0
 
-[node name="HexBackgroundTile" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=808071371]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(96, 96)
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1256983661]
+custom_minimum_size = Vector2(0, 130)
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("2_d7v0l")
-expand_mode = 1
+size_flags_vertical = 4
 
-[node name="HexIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/HexBackgroundTile" unique_id=466724995]
+[node name="HexSprite" parent="MarginContainer/VBoxContainer/Control" unique_id=956441382 instance=ExtResource("2_7uf86")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -32.0
-offset_right = 32.0
-offset_bottom = 32.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-texture = ExtResource("1_7uf86")
-expand_mode = 1
+position = Vector2(0, 55)
+scale = Vector2(0.8, 0.8)
 
 [node name="Spacer3" type="Control" parent="MarginContainer/VBoxContainer" unique_id=944171191]
 custom_minimum_size = Vector2(0, 16)

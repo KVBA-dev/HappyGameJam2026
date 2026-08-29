@@ -1,8 +1,7 @@
 class_name HexInfoCard extends PanelContainer
 
-@onready var hex_icon: TextureRect = %HexIcon
 @onready var hex_title: Label = %HexTitle
-@onready var hex_background_tile: TextureRect = %HexBackgroundTile
+@onready var hex_sprite: HexSprite = %HexSprite
 @onready var produces_icon: TextureRect = %ProducesIcon
 @onready var needs_col: BoxContainer = %NeedsCol
 @onready var needed_row: BoxContainer = %NeededRow
@@ -27,8 +26,7 @@ func _on_hex_deselected(_hex: Hex):
 
 func _set_data():
 	hex_title.text = hex_data.hex_name
-	hex_icon.texture = hex_data.factory_icon_texture
-	hex_background_tile.texture = hex_data.texture
+	hex_sprite.init(hex_data)
 	produces_icon.texture = hex_data.get_production_texture()
 	var requirements := hex_data.get_requirements()
 	if requirements.is_empty():
