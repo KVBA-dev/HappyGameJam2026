@@ -226,6 +226,7 @@ texture = ExtResource("3_sk1rf")
 
 [node name="RainbowBorderSprite" type="Sprite2D" parent="BgDisplacement" unique_id=1290461889]
 unique_name_in_owner = true
+visible = false
 material = ExtResource("4_hvbd8")
 texture = ExtResource("5_16f1v")
 
