@@ -50,7 +50,7 @@ func _ready() -> void:
 			var sprite: Sprite2D = Sprite2D.new()
 			sprite.hide()
 			sprite.texture = item
-			var r_scale = 0.5
+			var r_scale = 0.35
 			sprite.scale = Vector2(r_scale, r_scale)
 			add_child(sprite)
 			items[sprite] = 0.0
@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 	for sprite in items.keys():
 		var time: float = items[sprite]
 		time += delta
-		sprite.position.y = size.y * 0.5 - sprite.texture.get_size().y * 0.5 + sin(time * 4.0) * 20.0
+		sprite.global_position.y = global_position.y + size.y * 0.5 + sin(time * 4.0) * 20.0
 		sprite.position.x = (size.x + 600) * time / TRAVEL_TIME - sprite.texture.get_size().x * 0.5 - 200
 		sprite.rotation = sin(time * 2.0) * 0.1
 		if time > TRAVEL_TIME:
