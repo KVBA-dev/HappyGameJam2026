@@ -1,7 +1,7 @@
 extends Node
 
-const SPECIAL_CARD_GENERATION := 80
-const NORMAL_CARD_GENERATION := 40
+const SPECIAL_CARD_GENERATION := 120
+const NORMAL_CARD_GENERATION := 80
 
 var normal_card_generation = TickHelper.new(NORMAL_CARD_GENERATION)
 var special_card_generation = TickHelper.new(SPECIAL_CARD_GENERATION)
@@ -15,6 +15,7 @@ func can_give_special_card() -> bool:
 
 func _try_to_give_special():
 	if not can_give_special_card():
+		special_card_generation.fire_next_tick()
 		return
 
 	var to_be_added := GameManager.usable_cards.pick_random_weighted()

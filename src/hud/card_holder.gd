@@ -91,14 +91,9 @@ var _card_add_queue: Array[CardData] = []
 func queue_add_card(card_data: CardData) -> void:
 	_card_add_queue.push_back(card_data)
 
+
 var next_card_add_position = null
-func add_card(card_data: CardData) -> CardHudBase:
-	var cards_num = len(cards)
-	if _is_currently(State.DRAGGED): cards_num += 1
-
-	if cards_num + 1 > _card_num_limit:
-		return null
-
+func _add_card(card_data: CardData) -> CardHudBase:
 	var visual_scene: CardHudBase 
 	match card_data.type:
 		CardData.Type.USABLE: visual_scene = preload("uid://iqggdr0ewk2r").instantiate()
@@ -114,6 +109,16 @@ func add_card(card_data: CardData) -> CardHudBase:
 
 	cards.push_front(visual_scene)
 	return visual_scene
+
+func add_card(card_data: CardData) -> CardHudBase:
+	var cards_num = len(cards)
+	if _is_currently(State.DRAGGED): cards_num += 1
+
+	if cards_num + 1 > _card_num_limit:
+		return null
+
+	return _add_card(card_data)
+	
 
 func _ready():
 	GameManager.card_holder = self

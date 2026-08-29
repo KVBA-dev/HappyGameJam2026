@@ -70,17 +70,7 @@ func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: Factor
 		_start_dir,
 		end.hex_position,
 		end_dir,
-	])
-
-	var requirements := end.get_needed_requirments()
-	if not requirements.has(start.recipe.produces):
-		if end.recipe.requirements.has(start.recipe.produces):
-			ErrorBus.log_cursor_error.emit("%s is already connected to this factory" % start.recipe.produces.name)
-		else:
-			ErrorBus.log_cursor_error.emit("Path creation failed: invalid production type")
-
-		return []
-	
+	])	
 
 	for path: PathData in paths:
 		var end_already_exists := path.end == end and path.end_input_dir == end_dir
@@ -91,6 +81,15 @@ func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: Factor
 		if end_already_exists:
 			ErrorBus.log_cursor_error.emit("Path creation failed: end input is already in use")
 			return []
+
+	var requirements := end.get_needed_requirments()
+	if not requirements.has(start.recipe.produces):
+		if end.recipe.requirements.has(start.recipe.produces):
+			ErrorBus.log_cursor_error.emit("%s is already connected to this factory" % start.recipe.produces.name)
+		else:
+			ErrorBus.log_cursor_error.emit("Path creation failed: invalid production type")
+
+		return []
 
 	var flow_start := start.get_neighbor(_start_dir)
 	var flow_end := end.get_neighbor(end_dir)

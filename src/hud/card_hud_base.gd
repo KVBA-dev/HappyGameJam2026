@@ -147,7 +147,7 @@ func rotate_right():
 	hex_sprite.rotate_right()
 
 func _copy_to_hand_holder():
-	var added := card_holder.add_card(card_data)
+	var added := card_holder._add_card(card_data) # Force add card
 	added.infinite_card.value = infinite_card.value
 	added.position = Vector2(0, 0)
 	added.match_rotations(self)
