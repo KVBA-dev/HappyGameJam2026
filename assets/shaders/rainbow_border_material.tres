@@ -4,3 +4,6 @@
 
 [resource]
 shader = ExtResource("1_jewl5")
+shader_parameter/uv_size = 1.0
+shader_parameter/sin_frequency = 0.5
+shader_parameter/light_offset = 0.5
