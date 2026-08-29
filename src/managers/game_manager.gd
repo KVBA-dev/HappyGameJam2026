@@ -9,6 +9,6 @@ var paths: Paths
 var progress_tree: ProgressTree = preload("res://const_data/progress/progress_tree.tres")
 
 
-const cards: Cards = preload("res://const_data/cards/flow_cards.tres")
+const cards: Cards = preload("res://const_data/cards/flow_cards.tres") # cards and infinites should be exclusive
 const usable_cards: Cards = preload("res://const_data/cards/usable_cards.tres")
 const infinites: Cards = preload("res://const_data/cards/infinite_cards.tres")

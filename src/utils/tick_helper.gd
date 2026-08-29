@@ -12,7 +12,6 @@ func _init(timeout_ticks_: int) -> void:
 
 func fire_next_tick():
 	ticks = 0
-	
 
 func _tick():
 	_ticks -= 1

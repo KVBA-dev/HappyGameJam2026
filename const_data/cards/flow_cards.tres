@@ -4,19 +4,16 @@
 [ext_resource type="Resource" uid="uid://bsi8gob65x50v" path="res://const_data/cards/flow_cards/flow_card_3-0_3-4.tres" id="2_pi2bg"]
 [ext_resource type="Script" uid="uid://hllrb13vm8ls" path="res://src/card/data/cards.gd" id="2_trfca"]
 [ext_resource type="Resource" uid="uid://b76kfa7ce51em" path="res://const_data/cards/flow_cards/flow_card_3-1.tres" id="3_chgm1"]
-[ext_resource type="Resource" uid="uid://c7oasby774tvx" path="res://const_data/cards/flow_cards/flow_card_3-0.tres" id="3_puw0i"]
 [ext_resource type="Resource" uid="uid://dcttyake8ubcx" path="res://const_data/cards/flow_cards/flow_card_3-2_3-4.tres" id="4_pi2bg"]
 [ext_resource type="Resource" uid="uid://51g11woh8al8" path="res://const_data/cards/flow_cards/flow_card_0-4_3-4.tres" id="5_chgm1"]
-[ext_resource type="Resource" uid="uid://ctrcry3a3ppeu" path="res://const_data/cards/flow_cards/flow_card_3-2.tres" id="6_v0u7i"]
 [ext_resource type="Resource" uid="uid://dgswhecffqpeu" path="res://const_data/cards/flow_cards/flow_card_3-2_1-2.tres" id="7_va4sl"]
 [ext_resource type="Resource" uid="uid://rl6ahr0kaxc0" path="res://const_data/cards/flow_cards/flow_card_3-2_3-0.tres" id="8_umu3e"]
 [ext_resource type="Resource" uid="uid://c4ywmgp2ixkdj" path="res://const_data/cards/flow_cards/flow_card_3-2_5-2.tres" id="10_7mnw8"]
-[ext_resource type="Resource" uid="uid://mkxvad0g0k4t" path="res://const_data/cards/flow_cards/flow_card_3-4.tres" id="11_jfjjx"]
 [ext_resource type="Resource" uid="uid://b64g21dljxtq8" path="res://const_data/cards/flow_cards/flow_card_3-5.tres" id="12_4kqnd"]
 [ext_resource type="Resource" uid="uid://cwdsu5ogggtfv" path="res://const_data/cards/flow_cards/flow_card_3-2_3-4_1-2_1-4.tres" id="15_7mnw8"]
 [ext_resource type="Resource" uid="uid://b6air7v6dknt1" path="res://const_data/cards/flow_cards/flow_card_3-2_3-5_0-2_0-5.tres" id="16_jfjjx"]
 
 [resource]
 script = ExtResource("2_trfca")
-list = Array[ExtResource("1_1sjqp")]([ExtResource("5_chgm1"), ExtResource("3_puw0i"), ExtResource("2_pi2bg"), ExtResource("3_chgm1"), ExtResource("6_v0u7i"), ExtResource("7_va4sl"), ExtResource("8_umu3e"), ExtResource("4_pi2bg"), ExtResource("10_7mnw8"), ExtResource("11_jfjjx"), ExtResource("12_4kqnd"), ExtResource("15_7mnw8"), ExtResource("16_jfjjx")])
+list = Array[ExtResource("1_1sjqp")]([ExtResource("5_chgm1"), ExtResource("2_pi2bg"), ExtResource("3_chgm1"), ExtResource("7_va4sl"), ExtResource("8_umu3e"), ExtResource("4_pi2bg"), ExtResource("10_7mnw8"), ExtResource("12_4kqnd"), ExtResource("15_7mnw8"), ExtResource("16_jfjjx")])
 metadata/_custom_type_script = "uid://hllrb13vm8ls"

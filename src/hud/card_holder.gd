@@ -124,14 +124,8 @@ func _ready():
 	reorder_cards()
 
 func fill_hand():
-	add_card(GameManager.usable_cards.pick_random_weighted())
-	add_card(GameManager.cards.pick_random_weighted())
-	cards.front().infinite_card.value = true
-
-	for i in range(_card_num_limit):
-		var card_data: CardData = GameManager.cards.pick_random_weighted()
-		add_card(card_data)
-
+	var card_inf := add_card(GameManager.infinites.carousel_pick())
+	card_inf.infinite_card.value = true
 
 func _process(_delta: float) -> void:
 	while not _card_add_queue.is_empty():
