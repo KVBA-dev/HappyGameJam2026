@@ -1,11 +1,17 @@
 class_name FactoryHex extends Hex
 
+enum Hint {
+	NONE = 0,
+	INPUTS = 1,
+	OUTPUTS = 2
+}
+
 @onready var indicator_container: Node2D = %IndicatorContainer
 @onready var in_out_hint: Sprite2D = %InOutHint
 
 var MODULATE_INPUT := Color.hex(0x0044ff64)
 var MODULATE_OUTPUT := Color.hex(0xff000032)
-var _is_hinting := false
+var _is_hinting: Hint = Hint.NONE
 
 var recipe: Recipe
 var paths: Array[PathData] = []
@@ -46,6 +52,11 @@ func indicator_container_show_only_inputs():
 		child.visible = child.is_input
 	indicator_container.show()
 
+func indicator_container_show_only_outputs():
+	for child: FlowIndicator in indicator_container.get_children():
+		child.visible = not child.is_input
+	indicator_container.show()
+
 func indicator_container_show_all():
 	for child: FlowIndicator in indicator_container.get_children():
 		child.visible = true
@@ -54,13 +65,15 @@ func indicator_container_show_all():
 func _process(_delta: float) -> void:
 	# if not connected.value: print(hex_position)
 
-	if _is_hinting and GameManager.paths.start_hex:
-		indicator_container_show_only_inputs()
-	elif (
+	if (
 		CursorSelect.selected == self \
 		or GameManager.paths.start_hex == self
 	):
 		indicator_container_show_all()
+	elif _is_hinting == Hint.OUTPUTS:
+		indicator_container_show_only_outputs()
+	elif _is_hinting == Hint.INPUTS and GameManager.paths.start_hex:
+		indicator_container_show_only_inputs()
 	else:
 		indicator_container.hide()
 
@@ -71,17 +84,18 @@ func _show_input_output_hint(hex: Hex):
 	if (hex as FactoryHex).recipe.requirements.has(recipe.produces):
 		in_out_hint.show()
 		in_out_hint.modulate = MODULATE_INPUT
+		_is_hinting = Hint.OUTPUTS
 	elif recipe.requirements.has(hex.recipe.produces):
 		in_out_hint.show()
 		in_out_hint.modulate = MODULATE_OUTPUT
-		_is_hinting = true
+		_is_hinting = Hint.INPUTS
 
 func _hide_input_output_hint(hex: Hex):
 	if hex is not FactoryHex:
 		return
 
 	in_out_hint.hide()
-	_is_hinting = false
+	_is_hinting = Hint.NONE
 
 func _on_path_created(path_data: PathData):
 	if path_data.start == self:
