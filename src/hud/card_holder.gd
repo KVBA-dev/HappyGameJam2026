@@ -91,7 +91,7 @@ var _card_add_queue: Array[CardData] = []
 func queue_add_card(card_data: CardData) -> void:
 	_card_add_queue.push_back(card_data)
 
-
+var next_card_add_position = null
 func add_card(card_data: CardData) -> bool:
 	var cards_num = len(cards)
 	if _is_currently(State.DRAGGED): cards_num += 1
@@ -106,6 +106,11 @@ func add_card(card_data: CardData) -> bool:
 	cards_container.add_child(visual_scene)
 	visual_scene.hex_sprite.init(card_data.hex_data)
 	visual_scene.card_data = card_data
+
+	if next_card_add_position:
+		var world_position: Vector2 = next_card_add_position as Vector2
+		visual_scene.global_position = GameManager.hex_grid.get_viewport().get_canvas_transform() * world_position
+		next_card_add_position = null
 
 	cards.push_front(visual_scene)
 	return true
