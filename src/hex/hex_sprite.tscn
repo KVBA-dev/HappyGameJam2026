@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bhseyc873xca1" path="res://src/hex/hex_sprite.gd" id="1_w04v4"]
 [ext_resource type="Texture2D" uid="uid://ck7u2tisu4uqq" path="res://assets/images/tile-tops/kafelek_bottom.png" id="2_sk1rf"]
+[ext_resource type="Material" uid="uid://drae4pomg43vw" path="res://assets/shaders/dissolve_material.tres" id="3_ktpt5"]
 [ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="3_sk1rf"]
 [ext_resource type="Material" uid="uid://8neoayb01l4" path="res://assets/shaders/river_material.tres" id="4_2r5be"]
 [ext_resource type="Material" uid="uid://cmeq2otw28f4f" path="res://assets/shaders/rainbow_border_material.tres" id="4_hvbd8"]
@@ -59,6 +60,82 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BelowDisplacement/BelowSprite:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BgDisplacement/SpriteScaler/OnHexSprite:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BgDisplacement/FactoryIconSprite:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ktpt5"]
+resource_name = "remove"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BelowDisplacement/BelowSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BgDisplacement/SpriteScaler/OnHexSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BgDisplacement/FactoryIconSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_t4x5y"]
@@ -144,6 +221,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_72ifu"]
 _data = {
 &"RESET": SubResource("Animation_72ifu"),
+&"remove": SubResource("Animation_ktpt5"),
 &"rotate": SubResource("Animation_t4x5y"),
 &"rotate_continue": SubResource("Animation_2r5be")
 }
@@ -164,6 +242,7 @@ unique_name_in_owner = true
 
 [node name="BackgroundSprite" type="Sprite2D" parent="BgDisplacement" unique_id=439762020]
 unique_name_in_owner = true
+material = ExtResource("3_ktpt5")
 texture = ExtResource("3_sk1rf")
 
 [node name="RainbowBorderSprite" type="Sprite2D" parent="BgDisplacement" unique_id=1290461889]
@@ -184,8 +263,7 @@ texture = ExtResource("5_2r5be")
 [node name="FactoryIconSprite" type="Sprite2D" parent="BgDisplacement" unique_id=647968737]
 unique_name_in_owner = true
 visible = false
-z_index = 99
-z_as_relative = false
+z_index = 1
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_t4x5y")
 

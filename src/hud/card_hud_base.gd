@@ -161,13 +161,20 @@ func _copy_to_hand_holder(is_binned: bool = false):
 	added.global_position = card_holder.infinite_card_pos.global_position
 	added.match_rotations(self)
 	if not is_binned: added.animation_player.play("spawn_infinite")
-	else: added.animation_player.play("spawn_infinite_bin")
+	#else: added.animation_player.play("spawn_infinite_bin")
+
+func _animated_delete():
+	hex_sprite.animation_player.play("remove")
+	hex_sprite.animation_player.animation_finished.connect(func(s: String):
+		if s == "remove":
+			queue_free()
+	)
 
 func on_trash():
 	if not infinite_card.value:
-		queue_free()
+		_animated_delete()
 		return
 
 	card_data = GameManager.infinites.carousel_pick()
-	_copy_to_hand_holder(true)
-	queue_free()
+	hex_sprite.init(card_data.hex_data)
+	card_holder.cards.push_front(self)
