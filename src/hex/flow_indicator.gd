@@ -3,7 +3,7 @@ class_name FlowIndicator extends Sprite2D
 @onready var mouse_area = %MouseArea
 
 static var MODULATE_INPUT = Color.hex(0x008cffff)
-static var MODULATE_OUTPUT = Color.hex(0x59ff00ff)
+static var MODULATE_OUTPUT = Color.hex(0xe55400ff)
 static var MODULATE_SELECTED = Color.hex(0xf9e9adff)
 
 var direction: HexVector.Direction
@@ -40,8 +40,18 @@ func _modulate():
 	else:
 		modulate = MODULATE_INPUT if is_input else MODULATE_OUTPUT
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	_modulate()
+	var target_scale = Vector2.ONE
+	if mouse_area.hover:
+		target_scale *= 1.2
+
+	const SCALE_SPEED = 10.0
+	scale = Vector2(
+		Utils.smooth_exp(scale.x, target_scale.x, SCALE_SPEED, delta),
+		Utils.smooth_exp(scale.y, target_scale.y, SCALE_SPEED, delta)
+	)
+
 	if Input.is_action_just_pressed("select_hex") \
 		and mouse_area.hover:
 		SignalBus.hex_factory_clicked.emit(hex, direction)

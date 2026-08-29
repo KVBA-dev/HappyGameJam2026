@@ -1,6 +1,17 @@
 class_name FactoryHex extends Hex
 
+enum Hint {
+	NONE = 0,
+	INPUTS = 1,
+	OUTPUTS = 2
+}
+
 @onready var indicator_container: Node2D = %IndicatorContainer
+@onready var in_out_hint: Sprite2D = %InOutHint
+
+var MODULATE_INPUT := Color.hex(0x0044ff64)
+var MODULATE_OUTPUT := Color.hex(0xff000032)
+var _is_hinting: Hint = Hint.NONE
 
 var recipe: Recipe
 var paths: Array[PathData] = []
@@ -27,18 +38,64 @@ func _ready() -> void:
 	GameManager.main.factories.append(self)
 	_generate_indicators()
 
+	SignalBus.hex_selected.connect(_show_input_output_hint)
+	SignalBus.hex_deselected.connect(_hide_input_output_hint)
+
 	recipe = hex_data.recipe
 	ticks = recipe.processing_time_ticks
 	SignalBus.game_timer_tick.connect(tick)
 	GameManager.paths.path_created.connect(_on_path_created)
 	GameManager.paths.path_deleted.connect(_on_path_deleted)
+
+func indicator_container_show_only_inputs():
+	for child: FlowIndicator in indicator_container.get_children():
+		child.visible = child.is_input
+	indicator_container.show()
+
+func indicator_container_show_only_outputs():
+	for child: FlowIndicator in indicator_container.get_children():
+		child.visible = not child.is_input
+	indicator_container.show()
+
+func indicator_container_show_all():
+	for child: FlowIndicator in indicator_container.get_children():
+		child.visible = true
+	indicator_container.show()
+
 func _process(_delta: float) -> void:
-	if CursorSelect.selected == self:
-		indicator_container.show()
-	elif GameManager.paths.start_hex == self:
-		indicator_container.show()
+	# if not connected.value: print(hex_position)
+
+	if (
+		CursorSelect.selected == self \
+		or GameManager.paths.start_hex == self
+	):
+		indicator_container_show_all()
+	elif _is_hinting == Hint.OUTPUTS:
+		indicator_container_show_only_outputs()
+	elif _is_hinting == Hint.INPUTS and GameManager.paths.start_hex:
+		indicator_container_show_only_inputs()
 	else:
 		indicator_container.hide()
+
+func _show_input_output_hint(hex: Hex):
+	if hex is not FactoryHex:
+		return
+
+	if (hex as FactoryHex).recipe.requirements.has(recipe.produces):
+		in_out_hint.show()
+		in_out_hint.modulate = MODULATE_INPUT
+		_is_hinting = Hint.OUTPUTS
+	elif recipe.requirements.has(hex.recipe.produces):
+		in_out_hint.show()
+		in_out_hint.modulate = MODULATE_OUTPUT
+		_is_hinting = Hint.INPUTS
+
+func _hide_input_output_hint(hex: Hex):
+	if hex is not FactoryHex:
+		return
+
+	in_out_hint.hide()
+	_is_hinting = Hint.NONE
 
 func _on_path_created(path_data: PathData):
 	if path_data.start == self:
@@ -62,6 +119,13 @@ func _update_connected() -> void:
 			SignalBus.factory_connected.emit(self)
 			return
 	connected.value = false
+
+func get_needed_requirments() -> Array[ItemData]:
+	var requirements := recipe.requirements.keys()
+	for path_data: PathData in GameManager.paths.paths:
+		if path_data.end == self:
+			requirements.erase(path_data.start.recipe.produces)
+	return requirements
 
 func on_item_input(item: Item):
 	if item.item_data in recipe.requirements:
@@ -100,4 +164,4 @@ func _generate_indicators():
 
 # Override
 func select():
-	indicator_container.show()
+	indicator_container_show_all()

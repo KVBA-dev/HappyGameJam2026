@@ -18,6 +18,11 @@ func start_use_animation():
 	)
 
 	tween.finished.connect(func(): 
-		SignalBus.card_used.emit(self, grid_pos)
-		queue_free()
+		z_index = grid_pos.r*2
+		print(animation_player.get_animation_list())
+		animation_player.play("use_duplicate")
+		animation_player.animation_finished.connect(func(_anim_name):
+			SignalBus.card_used.emit(self, grid_pos)
+			queue_free()
+		)
 	)

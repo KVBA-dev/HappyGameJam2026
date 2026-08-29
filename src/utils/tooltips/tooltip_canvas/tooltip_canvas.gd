@@ -22,4 +22,4 @@ func _process(_delta: float) -> void:
 
 
 func _tooltip_pos() -> Vector2:
-	return get_viewport().get_mouse_position() + Vector2(8, 8)
+	return get_viewport().get_mouse_position() + Vector2(8, -24)

@@ -19,9 +19,16 @@ signal card_returned_to_hand(card: CardHudBase)
 signal card_dragged(card: CardHudBase)
 
 func _input(event: InputEvent) -> void:
+	if (
+		event.is_action_pressed("card_remove") \
+		and _is_currently(State.PREVIEWED)
+		):
+		cards.erase(currently_focused)
+		_trash_card(currently_focused)
+		currently_focused = null
 	if event.is_action_pressed("card_select"):
 		if _is_currently(State.DRAGGED) and trash_can.bin_area.hover:
-			_trash_card()
+			_trash_card(take_currently_dragged())
 		elif _can_use_card():
 			var card := take_currently_dragged()
 			card.start_use_animation()
@@ -57,6 +64,9 @@ func _can_use_usable(log_errors: bool = true) -> bool:
 
 	return true
 
+func can_show_tooltip():
+	return _is_currently(State.PREVIEWED)
+
 
 func is_interacted_with() -> bool:
 	if currently_focused == null:
@@ -81,7 +91,7 @@ var _card_add_queue: Array[CardData] = []
 func queue_add_card(card_data: CardData) -> void:
 	_card_add_queue.push_back(card_data)
 
-
+var next_card_add_position = null
 func add_card(card_data: CardData) -> bool:
 	var cards_num = len(cards)
 	if _is_currently(State.DRAGGED): cards_num += 1
@@ -97,6 +107,11 @@ func add_card(card_data: CardData) -> bool:
 	visual_scene.hex_sprite.init(card_data.hex_data)
 	visual_scene.card_data = card_data
 
+	if next_card_add_position:
+		var world_position: Vector2 = next_card_add_position as Vector2
+		visual_scene.global_position = GameManager.hex_grid.get_viewport().get_canvas_transform() * world_position
+		next_card_add_position = null
+
 	cards.push_front(visual_scene)
 	return true
 
@@ -109,8 +124,7 @@ func _ready():
 	reorder_cards()
 
 func fill_hand():
-	add_card(load("res://const_data/cards/special_cards/back_to_hand_card.tres"))
-	add_card(load("res://const_data/cards/special_cards/back_to_hand_card.tres"))
+	add_card(GameManager.usable_cards.pick_random_weighted())
 
 	for i in range(_card_num_limit):
 		var card_data: CardData = GameManager.cards.pick_random_weighted()
@@ -141,8 +155,7 @@ func _input_handle_rotations():
 		if Input.is_action_pressed("card_rotate_right"):
 			currently_focused.rotate_right()
 
-func _trash_card():
-	var card := take_currently_dragged()
+func _trash_card(card: CardHudBase):
 	SignalBus.card_binned.emit(card)
 	card.queue_free()
 
@@ -171,6 +184,7 @@ func _input_handle_card_pickup():
 func _set_currently_focused(node: CardHudBase):
 	if currently_focused:
 		currently_focused.state = CardHudBase.State.IN_HAND
+		SignalBus.card_unhovered.emit()
 
 	if node:
 		node.state = State.PREVIEWED

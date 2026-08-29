@@ -17,7 +17,7 @@ unique_name_in_owner = true
 texture = null
 
 [node name="BackgroundSprite" parent="HexSprite/BgDisplacement" parent_id_path=PackedInt32Array(956441382, 144048622) index="0" unique_id=439762020]
-modulate = Color(0.95686275, 1, 0, 0.19607843)
+modulate = Color(0.95686275, 1, 0, 0.28235295)
 texture = ExtResource("2_4m2bd")
 
 [node name="OnHexSprite" parent="HexSprite/BgDisplacement/SpriteScaler" parent_id_path=PackedInt32Array(956441382, 144301563) index="0" unique_id=548650446]

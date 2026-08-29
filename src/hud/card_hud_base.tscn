@@ -30,6 +30,54 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Displacement/HexSprite/BgDisplacement/BackgroundSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Displacement/HexSprite/BgDisplacement/FactoryIconSprite:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Displacement/HexSprite/BelowDisplacement:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_j2tbl"]
 resource_name = "place"
@@ -59,10 +107,75 @@ tracks/1/keys = {
 "values": [Vector2(0, 0), Vector2(0, 40)]
 }
 
+[sub_resource type="Animation" id="Animation_ftfg4"]
+resource_name = "use_duplicate"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Displacement:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1.5157168, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 40)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Displacement/HexSprite/BgDisplacement/BackgroundSprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [0.0, 4.1887902047863905]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Displacement/HexSprite/BgDisplacement/FactoryIconSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2.5, 1),
+"update": 0,
+"values": [0.0, 4.1887902047863905]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Displacement/HexSprite/BelowDisplacement:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f8wkc"]
 _data = {
 &"RESET": SubResource("Animation_f8wkc"),
-&"place": SubResource("Animation_j2tbl")
+&"place": SubResource("Animation_j2tbl"),
+&"use_duplicate": SubResource("Animation_ftfg4")
 }
 
 [node name="CardHudHighlight" type="Node2D" unique_id=1981452838]
@@ -70,6 +183,7 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("1_awcme")
 
 [node name="Displacement" type="Node2D" parent="." unique_id=123048379]
+rotation = 6.2831855
 
 [node name="ShadowSprite" type="Sprite2D" parent="Displacement" unique_id=972835771]
 unique_name_in_owner = true
@@ -94,3 +208,5 @@ libraries/ = SubResource("AnimationLibrary_f8wkc")
 
 [connection signal="mouse_entered" from="Displacement/Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Displacement/Area2D" to="." method="_on_area_2d_mouse_exited"]
+
+[editable path="Displacement/HexSprite"]
