@@ -20,13 +20,21 @@ func _get_axis(pos: String, neg: String, proc: Callable = Input.is_action_presse
 	axis -= 1 if proc.call(neg) else 0
 	return axis
 
+var last_mouse_pos: Vector2 = Vector2.ZERO
+
 func _process(_delta: float) -> void:
 	var axis_horizontal := _get_axis("camera_right", "camera_left")
 	var axis_vertical := _get_axis("camera_down", "camera_up")
 	var axis_zoom := _get_axis("camera_zoom_in", "camera_zoom_out", Input.is_action_just_released)
 	
-	target_position += CAMERA_SPEED * Vector2(axis_horizontal, axis_vertical)
-	target_zoom = clamp(target_zoom + axis_zoom * ZOOM_SPEED, 0.5, 6)
+	var mouse_pos := get_viewport().get_mouse_position()
+	var mouse_vel = mouse_pos - last_mouse_pos
+	last_mouse_pos = mouse_pos
+	if Input.is_action_pressed("camera_drag"):
+		target_position -= mouse_vel / zoom_level
+	else:
+		target_position += CAMERA_SPEED * Vector2(axis_horizontal, axis_vertical)
+	target_zoom = clamp(target_zoom + axis_zoom * ZOOM_SPEED, 0.25, 2)
 	
 	position = lerp(position, target_position, SMOOTHING * _delta)
 	zoom_level = lerpf(zoom_level, target_zoom, SMOOTHING * _delta)
