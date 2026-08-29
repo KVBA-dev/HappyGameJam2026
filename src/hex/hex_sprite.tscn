@@ -263,8 +263,7 @@ texture = ExtResource("5_2r5be")
 [node name="FactoryIconSprite" type="Sprite2D" parent="BgDisplacement" unique_id=647968737]
 unique_name_in_owner = true
 visible = false
-z_index = 99
-z_as_relative = false
+z_index = 1
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("5_t4x5y")
 
