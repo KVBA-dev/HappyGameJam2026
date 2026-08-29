@@ -74,6 +74,10 @@ func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: Factor
 
 	for path: PathData in paths:
 		var end_already_exists := path.end == end and path.end_input_dir == end_dir
+		var is_same_path := path.start == start and path.start_output_dir == _start_dir
+		if end_already_exists and is_same_path:
+			_clear_path(path)
+			return []
 		if end_already_exists:
 			ErrorBus.log_cursor_error.emit("Path creation failed: end input is already in use")
 			return []
