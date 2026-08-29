@@ -8,7 +8,7 @@ const State = CardHudBase.State
 @onready var card_lay_area: HoverableArea = %CardLayArea
 @onready var trash_can = %TrashCan
 
-var _card_num_limit: int = 7
+var _card_num_limit: int = 6
 
 var currently_focused: CardHudBase = null
 var cards: Array[CardHudBase] = []
