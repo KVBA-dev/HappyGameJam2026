@@ -38,7 +38,7 @@ func init_data(
 	_appear_style = appear_style
 
 func _ready():
-	z_index = 2*hex_position.r # So we have some space in between to z-order things
+	z_index = 2*hex_position.r # So we have some space in between to z-order thing
 	hex_sprite.init(hex_data)
 	item_flow = hex_data.item_flow.duplicate_deep() if hex_data.item_flow else null
 	type = hex_data.type

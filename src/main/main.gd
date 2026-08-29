@@ -12,6 +12,7 @@ var paths_visible: bool = true
 # NOTE: treat it as a set
 var items_produced: Dictionary[ItemData, bool]
 var factories: Array[FactoryHex]
+var stats: Stats = Stats.new()
 
 static func new_instance() -> Main:
 	var main: Main = GameManager.scenes.MAIN_SCENE.instantiate()
@@ -28,6 +29,10 @@ func _ready() -> void:
 	GameManager.hex_grid.surround_with_hexes(3)
 
 	SignalBus.factory_connected.connect(_on_factory_connected)
+	SignalBus.card_used.connect(_on_card_used)
+	GameManager.hex_grid.deleted_hex.connect(_on_hex_grid_deleted_hex)
+	GameManager.hex_grid.spawned_hex.connect(_on_hex_grid_spawned_hex)
+
 	spawn_available_factory_hexes()
 
 func _on_factory_connected(_factory: FactoryHex):
@@ -66,3 +71,13 @@ func spawn_available_factory_hexes() -> void:
 			GameManager.hex_grid.spawn_hex_at(hex_position, hex_data, Hex.AppearStyle.Below)
 
 	GameManager.progress_tree.confirm_batches_spawned(batches)
+
+
+func _on_card_used(card: CardHudBase, pos: HexVector):
+	print(stats.cards_used)
+	stats.add_card(card.card_data, pos)
+
+func _on_hex_grid_deleted_hex(position: HexVector):
+	pass
+func _on_hex_grid_spawned_hex(hex: Hex):
+	pass

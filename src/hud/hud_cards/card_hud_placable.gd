@@ -26,9 +26,10 @@ func start_use_animation():
 		0.3
 	)
 
-	tween.finished.connect(func(): 
-		SignalBus.card_used.emit(self, grid_pos)
-		if infinite_card.value:
-			_copy_to_hand_holder()
-		queue_free()
-	)
+	tween.finished.connect(_on_anim_finished.bind(grid_pos))
+
+func _on_anim_finished(grid_pos: HexVector):
+	SignalBus.card_used.emit(self, grid_pos)
+	if infinite_card.value:
+		_copy_to_hand_holder()
+	queue_free()

@@ -7,7 +7,7 @@ signal main_loaded
 signal game_timer_tick
 signal pause_toggled(is_paused: bool)
 
-signal card_used(data: CardData, pos: HexVector)
+signal card_used(data: CardHudBase, pos: HexVector)
 signal card_used_animation_started(card: CardHudBase)
 
 signal selected_hex(hex: FactoryHex, dir: HexVector.Direction)

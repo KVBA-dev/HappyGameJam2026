@@ -7,6 +7,14 @@ const BASE_SCALE = 1.5 * Vector2.ONE
 
 var infinite_card: BoolSF = BoolSF.new()
 
+const hex_backgrounds: Array[Texture2D] = [
+	preload("res://assets/images/tile-tops/new_top_1_smaller.png"),
+	preload("res://assets/images/tile-tops/new_top_2_smaller.png"),
+	preload("res://assets/images/tile-tops/new_top_3_smaller.png"),
+	preload("res://assets/images/tile-tops/new_top_4_smaller.png")
+]
+
+
 enum State {
 	IN_HAND = 0,
 	PREVIEWED = 1,
@@ -46,6 +54,17 @@ func _ready() -> void:
 	infinite_card.changed.connect(func(val: bool):
 		hex_sprite.rainbow_border_sprite.visible = val
 	)
+
+func initialize(data: CardData) -> void:
+	card_data = data
+
+	if data.hex_data.type == HexData.Type.FLOW:
+		card_data = data.duplicate()
+		card_data.hex_data = data.hex_data.duplicate()
+		card_data.hex_data.base_hex_outlook = data.hex_data.base_hex_outlook.duplicate()
+		card_data.hex_data.base_hex_outlook.background_texture = hex_backgrounds.pick_random()
+
+	hex_sprite.init(card_data.hex_data)
 
 func _process(delta: float) -> void:
 	match _state:
