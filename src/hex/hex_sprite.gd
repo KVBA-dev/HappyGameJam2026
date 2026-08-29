@@ -61,18 +61,22 @@ func rotate_left() -> void:
 	if animation_player.is_playing():
 		_rotate_timer.stop()
 		animation_player.stop()
-		animation_player.play("rotate_left_continue")
+		animation_player.play("rotate_continue")
 	else:
-		animation_player.play("rotate_left")
+		animation_player.play("rotate")
 
 func rotate_right() -> void:
 	_n_60degree_rotations += 1
 	if animation_player.is_playing():
 		_rotate_timer.stop()
 		animation_player.stop()
-		animation_player.play("rotate_right_continue")
+		animation_player.play("rotate_continue")
 	else:
-		animation_player.play("rotate_right")
+		animation_player.play("rotate")
+
+const ROTATION_UNBLOCK_TIME = 0.15
+func _ready() -> void:
+	_rotate_timer.wait_time = ROTATION_UNBLOCK_TIME
 
 func _on_animation_started(_anim_name: String) -> void:
 	if _anim_name.contains("rotate"):
@@ -88,7 +92,7 @@ func _on_animation_started(_anim_name: String) -> void:
 			_bg_displacement.rotation = lerp_angle(
 				saved_rot, 
 				_n_60degree_rotations * PI/3, weight),
-			0.0, 1.0, 0.24
+			0.0, 1.0, ROTATION_UNBLOCK_TIME
 		)
 
 func _on_rotate_timer_timeout() -> void:
@@ -104,5 +108,5 @@ func _on_rotate_timer_timeout() -> void:
 		_displace_tween.set_ease(Tween.EASE_OUT)
 		_displace_tween.tween_method(func(pos_y: float):
 			_below_displacement.position.y = pos_y,
-			-80.0, 0.0, 0.24
+			-40.0, 0.0, ROTATION_UNBLOCK_TIME*2
 		)

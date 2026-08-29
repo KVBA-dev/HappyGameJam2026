@@ -181,7 +181,7 @@ func _input_handle_card_pickup():
 		reorder_cards()
 
 		can_be_laid_down = false
-		get_tree().create_timer(0.1).timeout.connect(func(): can_be_laid_down = true)
+		get_tree().create_timer(0.25).timeout.connect(func(): can_be_laid_down = true)
 
 func _set_currently_focused(node: CardHudBase):
 	if currently_focused:
