@@ -42,6 +42,11 @@ var hover: bool:
 	get:
 		return _hover
 
+func _ready() -> void:
+	infinite_card.changed.connect(func(val: bool):
+		hex_sprite.rainbow_border_sprite.visible = val
+	)
+
 func _process(delta: float) -> void:
 	match _state:
 		State.IN_HAND: _in_hand_processed(delta)
