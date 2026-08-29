@@ -10,4 +10,5 @@ script = ExtResource("1_orn0d")
 
 [node name="VisualLine" type="Line2D" parent="." unique_id=1926653061]
 unique_name_in_owner = true
-z_index = 99
+z_index = 98
+z_as_relative = false

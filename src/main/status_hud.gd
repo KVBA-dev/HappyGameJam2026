@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var paused_label: Label = $PausedLabel
-@onready var timer_label: Label = $TimerLabel
+@onready var timer_label: Label = %TimerLabel
 @onready var hide_paths_btn: Button = $HidePathsBtn
 
 @export var game_timer: GameTimer

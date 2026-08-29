@@ -242,6 +242,10 @@ texture = ExtResource("2_ftfg4")
 [node name="HexSprite" parent="Displacement" unique_id=956441382 instance=ExtResource("3_ftfg4")]
 unique_name_in_owner = true
 
+[node name="DirectionArrows" parent="Displacement/HexSprite/BgDisplacement" parent_id_path=PackedInt32Array(956441382, 144048622) index="4" unique_id=1593450264]
+z_index = 0
+z_as_relative = true
+
 [node name="Area2D" type="Area2D" parent="Displacement" unique_id=1435104358]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Displacement/Area2D" unique_id=646041063]
