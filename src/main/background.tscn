@@ -30,6 +30,7 @@ scroll_offset = Vector2(887, 565)
 
 [node name="Bg" type="Sprite2D" parent="Parallax2D" unique_id=1936069088]
 rotation = 1.5707964
+scale = Vector2(2, 2)
 texture = SubResource("GradientTexture2D_fpgwy")
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=992983175]
