@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BaseHexOutlook" format=3 uid="uid://dhe6bftrxwy8i"]
+
+[ext_resource type="Texture2D" uid="uid://gr8o0cbr05pq" path="res://assets/images/hexoutline.png" id="1_kjdcf"]
+[ext_resource type="Script" uid="uid://buvwl4ihsdwwy" path="res://src/hex/base_hex_outlook.gd" id="1_oisbx"]
+
+[resource]
+script = ExtResource("1_oisbx")
+background_texture = ExtResource("1_kjdcf")
+metadata/_custom_type_script = "uid://buvwl4ihsdwwy"

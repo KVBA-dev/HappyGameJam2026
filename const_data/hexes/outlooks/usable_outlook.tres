@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseHexOutlook" format=3 uid="uid://dba3avxd0cs71"]
+
+[ext_resource type="Texture2D" uid="uid://b3mj4mhdvrijy" path="res://assets/images/tile-tops/grey_top.png" id="1_4snl2"]
+[ext_resource type="Script" uid="uid://buvwl4ihsdwwy" path="res://src/hex/base_hex_outlook.gd" id="1_74kbu"]
+[ext_resource type="Texture2D" uid="uid://bu1pd6qtngx6t" path="res://assets/images/tile-tops/grey_bottom.png" id="2_rf8q4"]
+
+[resource]
+script = ExtResource("1_74kbu")
+background_texture = ExtResource("1_4snl2")
+below_texture = ExtResource("2_rf8q4")
+metadata/_custom_type_script = "uid://buvwl4ihsdwwy"

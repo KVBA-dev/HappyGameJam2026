@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dygn2ff7qhjyx"]
 
 [ext_resource type="Script" uid="uid://de3d5kujb6pum" path="res://src/hud/card_hud_base.gd" id="1_awcme"]
-[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="2_awcme"]
+[ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="2_ftfg4"]
 [ext_resource type="PackedScene" uid="uid://cdilrnqed1pcs" path="res://src/hex/hex_sprite.tscn" id="3_ftfg4"]
 
 [sub_resource type="Animation" id="Animation_f8wkc"]
@@ -191,7 +191,7 @@ modulate = Color(0, 0, 0, 0.19607843)
 z_index = -10
 position = Vector2(0, 43)
 scale = Vector2(1.1, 1.1)
-texture = ExtResource("2_awcme")
+texture = ExtResource("2_ftfg4")
 
 [node name="HexSprite" parent="Displacement" unique_id=956441382 instance=ExtResource("3_ftfg4")]
 unique_name_in_owner = true

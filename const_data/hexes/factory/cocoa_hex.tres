@@ -1,12 +1,11 @@
 [gd_resource type="Resource" script_class="HexData" format=3 uid="uid://1vqexa71w001"]
 
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
+[ext_resource type="Resource" uid="uid://dgqoohc0rk5n5" path="res://const_data/hexes/outlooks/grass_outlook.tres" id="1_iuu2i"]
 [ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
 [ext_resource type="Resource" uid="uid://ciplsqilm682q" path="res://src/recipe/resources/cocoa_processor.tres" id="3_recipe"]
 [ext_resource type="Texture2D" uid="uid://csfoao5q01xhw" path="res://assets/images/river_uvs/river-straight.png" id="4_arx8j"]
-[ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="4_texture"]
 [ext_resource type="Texture2D" uid="uid://d2hwikmaipxcr" path="res://assets/images/tiles_factories/Mleczarnia.png" id="5_surface"]
-[ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="6_below"]
 
 [sub_resource type="Resource" id="Flow_cocoa"]
 script = ExtResource("2_flow")
@@ -17,10 +16,9 @@ metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 [resource]
 script = ExtResource("1_hex_data")
 hex_name = "Cocoa Hex"
-texture = ExtResource("4_texture")
+base_hex_outlook = ExtResource("1_iuu2i")
 on_surface_texture = ExtResource("4_arx8j")
 factory_icon_texture = ExtResource("5_surface")
-below_texture = ExtResource("6_below")
 type = 2
 recipe = ExtResource("3_recipe")
 item_flow = SubResource("Flow_cocoa")

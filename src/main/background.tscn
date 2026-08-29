@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://bjw6c0hq500ip"]
 
-[ext_resource type="Texture2D" uid="uid://rsikjrfhqwrq" path="res://assets/images/bg/bg.png" id="1_nwp0a"]
 [ext_resource type="Texture2D" uid="uid://d0t6krur0s31j" path="res://assets/images/bg/clouds_000_n.png" id="2_a52ah"]
 [ext_resource type="Texture2D" uid="uid://da1xuasusbjm6" path="res://assets/images/bg/clouds_001_n.png" id="3_fpgwy"]
 [ext_resource type="Script" uid="uid://fomjq21xyc6c" path="res://src/main/rotate2d.gd" id="3_ybu0a"]
@@ -13,8 +12,16 @@
 [ext_resource type="Texture2D" uid="uid://cygl1okqqbj1p" path="res://assets/images/bg/clouds_fog_001.png" id="10_7658h"]
 [ext_resource type="Texture2D" uid="uid://b81fbvm4symeu" path="res://assets/images/bg/clouds_fog_002.png" id="11_7f0ob"]
 
+[sub_resource type="Gradient" id="Gradient_a52ah"]
+offsets = PackedFloat32Array(0, 0.49789914, 1)
+colors = PackedColorArray(0.4117647, 0.6, 1, 1, 0.5529412, 0.85882354, 0.972549, 1, 0.47843137, 0.92941177, 0.89411765, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fpgwy"]
+gradient = SubResource("Gradient_a52ah")
+width = 4096
+height = 4096
+
 [node name="Background" type="Node2D" unique_id=1168253911]
-modulate = Color(0.728822, 0.728822, 0.728822, 1)
 z_index = -100
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1682054119]
@@ -22,9 +29,11 @@ scroll_scale = Vector2(0.01, 0.01)
 scroll_offset = Vector2(887, 565)
 
 [node name="Bg" type="Sprite2D" parent="Parallax2D" unique_id=1936069088]
-texture = ExtResource("1_nwp0a")
+rotation = 1.5707964
+texture = SubResource("GradientTexture2D_fpgwy")
 
 [node name="Parallax2D2" type="Parallax2D" parent="." unique_id=992983175]
+visible = false
 scroll_scale = Vector2(0.1, 0.1)
 scroll_offset = Vector2(928, 437)
 

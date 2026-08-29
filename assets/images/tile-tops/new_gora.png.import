@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctn8khhvtgqes"
-path="res://.godot/imported/hex-path-left-right-inward.png-63711d340dd94b42cbb7d7a8b37b4287.ctex"
+uid="uid://dq71oibjofbre"
+path="res://.godot/imported/new_gora.png-079bb4a74c7acb11a003d06e9b4c4579.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tiles/hex-path-left-right-inward.png"
-dest_files=["res://.godot/imported/hex-path-left-right-inward.png-63711d340dd94b42cbb7d7a8b37b4287.ctex"]
+source_file="res://assets/images/tile-tops/new_gora.png"
+dest_files=["res://.godot/imported/new_gora.png-079bb4a74c7acb11a003d06e9b4c4579.ctex"]
 
 [params]
 

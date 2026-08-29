@@ -14,9 +14,9 @@ class_name HexSprite extends Node2D
 @onready var arrow_down_right: Sprite2D = %ArrowDownRight
 
 func init(hex_data: HexData):
-	background_sprite.texture = hex_data.texture
+	background_sprite.texture = hex_data.base_hex_outlook.background_texture
 	on_hex_sprite.texture = hex_data.on_surface_texture
-	below_sprite.texture = hex_data.below_texture
+	below_sprite.texture = hex_data.base_hex_outlook.below_texture
 	if hex_data.factory_icon_texture:
 		factory_icon_sprite.texture = hex_data.factory_icon_texture
 		factory_icon_sprite.show()

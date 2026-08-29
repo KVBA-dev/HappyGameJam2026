@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cdilrnqed1pcs"]
 
 [ext_resource type="Script" uid="uid://bhseyc873xca1" path="res://src/hex/hex_sprite.gd" id="1_w04v4"]
-[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="2_4pg3w"]
-[ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="3_w04v4"]
+[ext_resource type="Texture2D" uid="uid://ck7u2tisu4uqq" path="res://assets/images/tile-tops/kafelek_bottom.png" id="2_sk1rf"]
+[ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="3_sk1rf"]
 [ext_resource type="Material" uid="uid://8neoayb01l4" path="res://assets/shaders/river_material.tres" id="4_2r5be"]
 [ext_resource type="Texture2D" uid="uid://d243ny51x5qi0" path="res://assets/images/river_uvs/river-cross-wide.png" id="5_2r5be"]
 [ext_resource type="Texture2D" uid="uid://cnevn1vwgf5cg" path="res://assets/images/tiles_factories/Plantacja_Wanilli.png" id="5_t4x5y"]
@@ -213,14 +213,14 @@ unique_name_in_owner = true
 [node name="BelowSprite" type="Sprite2D" parent="BelowDisplacement" unique_id=260944473]
 unique_name_in_owner = true
 position = Vector2(0, 10)
-texture = ExtResource("3_w04v4")
+texture = ExtResource("2_sk1rf")
 
 [node name="BgDisplacement" type="Node2D" parent="." unique_id=144048622]
 unique_name_in_owner = true
 
 [node name="BackgroundSprite" type="Sprite2D" parent="BgDisplacement" unique_id=439762020]
 unique_name_in_owner = true
-texture = ExtResource("2_4pg3w")
+texture = ExtResource("3_sk1rf")
 
 [node name="SpriteScaler" type="Node2D" parent="BgDisplacement" unique_id=144301563]
 scale = Vector2(1, 0.97)

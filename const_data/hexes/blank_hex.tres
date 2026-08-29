@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="HexData" format=3 uid="uid://cqrheki0nydwv"]
 
+[ext_resource type="Resource" uid="uid://dhe6bftrxwy8i" path="res://const_data/hexes/outlooks/blank_outlook.tres" id="1_44eym"]
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_qk0t1"]
-[ext_resource type="Texture2D" uid="uid://gr8o0cbr05pq" path="res://assets/images/hexoutline.png" id="2_44eym"]
 
 [resource]
 script = ExtResource("1_qk0t1")
 hex_name = "Blank"
-texture = ExtResource("2_44eym")
+base_hex_outlook = ExtResource("1_44eym")
 metadata/_custom_type_script = "uid://dwkm1j5578jxo"

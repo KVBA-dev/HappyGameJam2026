@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c6dtcjdc7ohsp" path="res://assets/images/items/wheat.png" id="1_7uf86"]
 [ext_resource type="Script" uid="uid://bk6so7fp1axnd" path="res://src/hud/hex_info_card.gd" id="1_d4yo7"]
 [ext_resource type="FontFile" uid="uid://baq332w5v6eiy" path="res://assets/fonts/Gorditas-Bold.ttf" id="2_d4yo7"]
-[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="2_d7v0l"]
+[ext_resource type="Texture2D" uid="uid://cfc7xweyyxv1c" path="res://assets/images/tile-tops/kafelek_top.png" id="2_d7v0l"]
 [ext_resource type="Texture2D" uid="uid://b1xhuuyviw7h" path="res://assets/images/items/flour.png" id="4_sd3s4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs14m"]

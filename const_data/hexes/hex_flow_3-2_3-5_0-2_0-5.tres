@@ -1,16 +1,14 @@
 [gd_resource type="Resource" script_class="HexData" format=3 uid="uid://csottpokuo6cc"]
 
-[ext_resource type="Texture2D" uid="uid://kwe1wxodkqfu" path="res://assets/images/grass_bottom.png" id="1_61otb"]
+[ext_resource type="Resource" uid="uid://dgqoohc0rk5n5" path="res://const_data/hexes/outlooks/grass_outlook.tres" id="1_q8flg"]
 [ext_resource type="Resource" uid="uid://clp4dkhr8vxs5" path="res://const_data/flows/3-2_3-5_0-2_0-5.tres" id="2_61otb"]
 [ext_resource type="Texture2D" uid="uid://d243ny51x5qi0" path="res://assets/images/river_uvs/river-cross-wide.png" id="3_61otb"]
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="4_aokpr"]
-[ext_resource type="Texture2D" uid="uid://beomp1ngx6qvr" path="res://assets/images/grass_top.png" id="5_3sovn"]
 
 [resource]
 script = ExtResource("4_aokpr")
 hex_name = "0/3-2/5 Flow"
-texture = ExtResource("5_3sovn")
+base_hex_outlook = ExtResource("1_q8flg")
 on_surface_texture = ExtResource("3_61otb")
-below_texture = ExtResource("1_61otb")
 type = 1
 item_flow = ExtResource("2_61otb")
