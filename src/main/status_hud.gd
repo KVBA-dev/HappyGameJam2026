@@ -25,4 +25,4 @@ func _process(_delta: float) -> void:
 	var minutes: int = floor(time / 60.0) as int
 	var seconds: int = (floor(time) as int) % 60
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
-	cards_on_hand.text =  str(len(GameManager.card_holder.cards)) + "/6"
+	cards_on_hand.text =  str(len(GameManager.card_holder.cards) - 1) + "/5"
