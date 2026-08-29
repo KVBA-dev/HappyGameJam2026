@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cmeq2otw28f4f"]
+
+[ext_resource type="Shader" uid="uid://blxt1iogvj263" path="res://src/hud/rainbow_border.gdshader" id="1_jewl5"]
+
+[resource]
+shader = ExtResource("1_jewl5")
+shader_parameter/border_px = 2.0
+shader_parameter/speed = 0.9
+shader_parameter/glow_intensity = 2.0
+shader_parameter/node_size = Vector2(64, 64)

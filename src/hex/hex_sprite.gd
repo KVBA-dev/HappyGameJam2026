@@ -47,6 +47,10 @@ var _n_60degree_rotations: int = 0
 var n_60degree_rotations: int:
 	get: return _n_60degree_rotations
 
+func reset_rotation() -> void:
+	_n_60degree_rotations = 0
+	_bg_displacement.rotation = 0.0
+
 func insta_rotate(n_60degree: int) -> void:
 	_n_60degree_rotations += n_60degree
 	_bg_displacement.rotation = _n_60degree_rotations * PI / 3.0

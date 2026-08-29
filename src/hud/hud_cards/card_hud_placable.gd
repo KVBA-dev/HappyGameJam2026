@@ -22,5 +22,7 @@ func start_use_animation():
 
 	tween.finished.connect(func(): 
 		SignalBus.card_used.emit(self, grid_pos)
+		if infinite_card.value:
+			_copy_to_hand_holder()
 		queue_free()
 	)

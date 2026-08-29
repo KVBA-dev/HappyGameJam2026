@@ -32,3 +32,9 @@ func rarity_test():
 		grouped[CardData.random_rarity()] += 1
 
 	print(grouped)
+
+var _carousel_idx := 0
+func carousel_pick():
+	var card := list[_carousel_idx]
+	_carousel_idx = (_carousel_idx + 1) % len(list)
+	return card

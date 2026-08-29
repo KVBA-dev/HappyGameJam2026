@@ -92,12 +92,12 @@ func queue_add_card(card_data: CardData) -> void:
 	_card_add_queue.push_back(card_data)
 
 var next_card_add_position = null
-func add_card(card_data: CardData) -> bool:
+func add_card(card_data: CardData) -> CardHudBase:
 	var cards_num = len(cards)
 	if _is_currently(State.DRAGGED): cards_num += 1
 
 	if cards_num + 1 > _card_num_limit:
-		return false
+		return null
 
 	var visual_scene: CardHudBase 
 	match card_data.type:
@@ -113,7 +113,7 @@ func add_card(card_data: CardData) -> bool:
 		next_card_add_position = null
 
 	cards.push_front(visual_scene)
-	return true
+	return visual_scene
 
 func _ready():
 	GameManager.card_holder = self
@@ -125,6 +125,8 @@ func _ready():
 
 func fill_hand():
 	add_card(GameManager.usable_cards.pick_random_weighted())
+	add_card(GameManager.cards.pick_random_weighted())
+	cards.front().infinite_card.value = true
 
 	for i in range(_card_num_limit):
 		var card_data: CardData = GameManager.cards.pick_random_weighted()
@@ -156,8 +158,8 @@ func _input_handle_rotations():
 			currently_focused.rotate_right()
 
 func _trash_card(card: CardHudBase):
+	card.on_trash()
 	SignalBus.card_binned.emit(card)
-	card.queue_free()
 
 func _input_handle_card_laydown():
 	if (Input.is_action_just_pressed("card_select") \
@@ -218,12 +220,16 @@ func find_first_rightside_card_idx(pos: Vector2) -> int:
 func _sort_usable():
 	var placable: Array[CardHudBase] = []
 	var usable: Array[CardHudBase] = []
+	var infinites: Array[CardHudBase] = []
 
 	for card in cards:
 		match card.card_data.type:
-			CardData.Type.USABLE: usable.append(card)
-			CardData.Type.PLACABLE: placable.append(card)
+			CardData.Type.USABLE:  usable.append(card)
+			CardData.Type.PLACABLE:
+				if card.infinite_card.value: infinites.append(card)
+				else: placable.append(card)
 
+	placable.append_array(infinites)
 	placable.append_array(usable)
 	cards = placable
 

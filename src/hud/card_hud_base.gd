@@ -5,6 +5,8 @@ class_name CardHudBase extends Node2D
 const MIN_Z_INDEX = 0
 const BASE_SCALE = 1.5 * Vector2.ONE
 
+var infinite_card: BoolSF = BoolSF.new()
+
 enum State {
 	IN_HAND = 0,
 	PREVIEWED = 1,
@@ -132,6 +134,10 @@ func _reparent_node_for_animation() -> void:
 	position = GameManager.hex_grid.get_viewport().get_canvas_transform().affine_inverse() * screen_pos
 	scale = Vector2.ONE
 
+func match_rotations(other: CardHudBase) -> void:
+	hex_sprite.reset_rotation()
+	hex_sprite.insta_rotate(other.n_60degree_rotations)
+
 func rotate_left():
 	SignalBus.card_rotated.emit(self)
 	hex_sprite.rotate_left()
@@ -139,3 +145,18 @@ func rotate_left():
 func rotate_right():
 	SignalBus.card_rotated.emit(self)
 	hex_sprite.rotate_right()
+
+func _copy_to_hand_holder():
+	var added := card_holder.add_card(card_data)
+	added.infinite_card.value = infinite_card.value
+	added.position = Vector2(0, 0)
+	added.match_rotations(self)
+
+func on_trash():
+	if not infinite_card.value:
+		queue_free()
+		return
+
+	card_data = GameManager.infinites.carousel_pick()
+	_copy_to_hand_holder()
+	queue_free()
