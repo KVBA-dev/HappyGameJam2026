@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b26vloi0qd0dt" path="res://src/game_over/game_over_screen.tscn" id="12_w0wra"]
 [ext_resource type="PackedScene" uid="uid://bjw6c0hq500ip" path="res://src/main/background.tscn" id="13_ibsor"]
 [ext_resource type="PackedScene" uid="uid://dwhwld4qwknlr" path="res://src/main/card_drawing_system.tscn" id="14_hc2u7"]
+[ext_resource type="PackedScene" uid="uid://bu47uvelykpfy" path="res://src/tutorial/tutorial_screen.tscn" id="15_4tqcc"]
 
 [node name="Main" type="Node" unique_id=387200153]
 script = ExtResource("1_3eh75")
@@ -51,3 +52,5 @@ unique_name_in_owner = true
 [node name="Background" parent="." unique_id=1168253911 instance=ExtResource("13_ibsor")]
 
 [node name="CardDrawingSystem" parent="." unique_id=74602156 instance=ExtResource("14_hc2u7")]
+
+[node name="TutorialScreen" parent="." unique_id=1149518438 instance=ExtResource("15_4tqcc")]

@@ -5,7 +5,7 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dev16"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6np1m"]
-bg_color = Color(0, 0, 0, 0.3254902)
+bg_color = Color(0, 0, 0, 0.47058824)
 corner_radius_top_left = 74
 corner_radius_top_right = 74
 corner_radius_bottom_right = 74
@@ -47,10 +47,126 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="Panel/Layout" unique_id=431518263]
 layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 70
+text = "THANK YOU FOR PLAYING!"
+
+[node name="Label2" type="Label" parent="Panel/Layout" unique_id=1042281030]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 30
+text = "We sincerely hope you enjoyed our game!
+
+Made for Hello Game Jam 2026 by:
+"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Panel/Layout" unique_id=288258060]
+layout_mode = 2
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Layout/GridContainer" unique_id=1252679454]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/Layout/GridContainer/VBoxContainer" unique_id=241911901]
+layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 50
-text = "GAME OVER"
+text = "Grzan"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/Layout/GridContainer/VBoxContainer" unique_id=836460169]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "Team lead, developer"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/Layout/GridContainer" unique_id=899853225]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/Layout/GridContainer/VBoxContainer2" unique_id=1761496836]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "Truyka"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/Layout/GridContainer/VBoxContainer2" unique_id=285763066]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "Developer"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Panel/Layout/GridContainer" unique_id=2108394111]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/Layout/GridContainer/VBoxContainer3" unique_id=1256030670]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "KVBA"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/Layout/GridContainer/VBoxContainer3" unique_id=1181878534]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "Developer, audio"
+horizontal_alignment = 1
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Panel/Layout/GridContainer" unique_id=2137223633]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/Layout/GridContainer/VBoxContainer4" unique_id=1402167907]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "Pat"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/Layout/GridContainer/VBoxContainer4" unique_id=1249511409]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "Artist"
+horizontal_alignment = 1
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Panel/Layout/GridContainer" unique_id=747500140]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/Layout/GridContainer/VBoxContainer5" unique_id=864355498]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 50
+text = "PralkaHere"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/Layout/GridContainer/VBoxContainer5" unique_id=1727188180]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+text = "Artist"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="Panel/Layout" unique_id=91946671]
+custom_minimum_size = Vector2(0, 20.015)
+layout_mode = 2
 
 [node name="RetryButton" type="Button" parent="Panel/Layout" unique_id=2142031547]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Retry"
+
+[node name="QuitButton" type="Button" parent="Panel/Layout" unique_id=1901652132]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"

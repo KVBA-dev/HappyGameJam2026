@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0lvfgmj38wfm"]
 
 [ext_resource type="Script" uid="uid://4q2bd60huelj" path="res://src/hud/card_holder.gd" id="1_ln0p1"]
-[ext_resource type="Texture2D" uid="uid://bwaek0o0u7tuv" path="res://assets/trash.png" id="3_c00na"]
+[ext_resource type="Texture2D" uid="uid://i5y5gglagvla" path="res://assets/images/bin.png" id="3_c00na"]
 [ext_resource type="Script" uid="uid://dfy8e15ewhav" path="res://src/utils/hoverable_area.gd" id="3_ldsxu"]
 [ext_resource type="Script" uid="uid://d3v8lcmdyeb0r" path="res://src/hud/trash_can.gd" id="4_c00na"]
 

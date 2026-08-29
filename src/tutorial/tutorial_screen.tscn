@@ -1,0 +1,785 @@
+[gd_scene format=3 uid="uid://bu47uvelykpfy"]
+
+[ext_resource type="Script" uid="uid://qmlay85asedk" path="res://src/tutorial/tutorial_screen.gd" id="1_xwh8e"]
+[ext_resource type="Texture2D" uid="uid://bkmgm1klqhwre" path="res://assets/images/tutorial/hand.png" id="2_synmm"]
+[ext_resource type="Texture2D" uid="uid://dk6jg3gjunnih" path="res://assets/images/icons/icon_bin.png" id="3_dgqmc"]
+[ext_resource type="Texture2D" uid="uid://dxwm3qo6lqkiy" path="res://assets/images/tutorial/placing.png" id="3_xg37m"]
+[ext_resource type="Texture2D" uid="uid://d1f43v868nsq4" path="res://assets/images/icons/icon_duplicate.png" id="4_xg37m"]
+[ext_resource type="Texture2D" uid="uid://gbc24gqflmqi" path="res://assets/images/icons/icon_recycle.png" id="5_75rwa"]
+[ext_resource type="Texture2D" uid="uid://dioopfocqx5op" path="res://assets/images/tutorial/connect-1.png" id="7_mxkwx"]
+[ext_resource type="Texture2D" uid="uid://ddy3li3sfqo78" path="res://assets/images/tutorial/connect-2.png" id="8_1xxxe"]
+[ext_resource type="Texture2D" uid="uid://d3ukxkb7alsgu" path="res://assets/images/tutorial/factory-info.png" id="9_1xxxe"]
+[ext_resource type="Texture2D" uid="uid://bxjbty7ofb78b" path="res://assets/images/items/icecream_tricolor.png" id="10_ftx70"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwh8e"]
+bg_color = Color(0, 0, 0, 0.7372549)
+corner_radius_top_left = 80
+corner_radius_top_right = 80
+corner_radius_bottom_right = 80
+corner_radius_bottom_left = 80
+
+[node name="TutorialScreen" type="CanvasLayer" unique_id=1149518438 node_paths=PackedStringArray("screens")]
+script = ExtResource("1_xwh8e")
+screens = [NodePath("Intro"), NodePath("Camera"), NodePath("Hexes"), NodePath("Hexes3"), NodePath("Hexes2"), NodePath("Connections"), NodePath("Connections2"), NodePath("Goal")]
+
+[node name="Intro" type="MarginContainer" parent="." unique_id=919354415]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="BG" type="Panel" parent="Intro" unique_id=11933885]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwh8e")
+
+[node name="Label" type="Label" parent="Intro/BG" unique_id=1754874534]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -472.0
+offset_top = 384.0
+offset_right = 472.0
+offset_bottom = 463.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 80
+text = "Welcome to [insert title here]!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Intro/BG" unique_id=2100391601]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -472.0
+offset_top = 502.0
+offset_right = 472.0
+offset_bottom = 627.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 50
+text = "This tutorial will explain and clarify
+the gameplay. "
+horizontal_alignment = 1
+
+[node name="EnterToAdvance" type="Label" parent="Intro/BG" unique_id=457582122]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -81.0
+offset_right = 118.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "Press ENTER to advance
+Press ESC to skip"
+horizontal_alignment = 1
+
+[node name="Camera" type="MarginContainer" parent="." unique_id=493353768]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="BG" type="Panel" parent="Camera" unique_id=1907328333]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwh8e")
+
+[node name="Label" type="Label" parent="Camera/BG" unique_id=1014910438]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -589.5
+offset_top = 54.0
+offset_right = 589.5
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 80
+text = "Camera movement"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Camera/BG" unique_id=1563974159]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -690.0
+offset_top = 406.0
+offset_right = 690.0
+offset_bottom = 659.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 50
+text = "Press WASD or Hold+drag mouse wheel to move around.
+
+Scroll the mouse wheel to zoom in/out.
+"
+horizontal_alignment = 1
+
+[node name="EnterToAdvance" type="Label" parent="Camera/BG" unique_id=2024105201]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -81.0
+offset_right = 118.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "Press ENTER to advance"
+horizontal_alignment = 1
+
+[node name="Hexes" type="MarginContainer" parent="." unique_id=74971567]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="BG" type="Panel" parent="Hexes" unique_id=1180839651]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwh8e")
+
+[node name="Label" type="Label" parent="Hexes/BG" unique_id=1605474631]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -589.5
+offset_top = 54.0
+offset_right = 589.5
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 80
+text = "Cards"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Hexes/BG" unique_id=1684090643]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -776.5
+offset_top = 179.0
+offset_right = 776.5
+offset_bottom = 624.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "This is your hand. It contains tiles with rivers connecting
+all of the factories on the map.
+
+Left-click to select it. Press Q/E to rotate it.
+RIght-click  to discard it. The cards replenish after some time.
+You may have up to 5 cards in your hand at a time.
+
+The rainbow tile is infinite. After discarding you will
+get a new tile immediately, but you will only get a basic one.
+"
+horizontal_alignment = 1
+
+[node name="EnterToAdvance" type="Label" parent="Hexes/BG" unique_id=412153356]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -81.0
+offset_right = 118.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "Press ENTER to advance"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Hexes/BG" unique_id=863424190]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -549.33185
+offset_top = -378.0
+offset_right = 549.3318
+offset_bottom = -111.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_synmm")
+expand_mode = 1
+
+[node name="Hexes3" type="MarginContainer" parent="." unique_id=768962719]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="BG" type="Panel" parent="Hexes3" unique_id=1030552428]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwh8e")
+
+[node name="Label" type="Label" parent="Hexes3/BG" unique_id=1959048875]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -589.5
+offset_top = 54.0
+offset_right = 589.5
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 80
+text = "Cards"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Hexes3/BG" unique_id=1125702574]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -776.5
+offset_top = 179.0
+offset_right = 776.5
+offset_bottom = 223.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "You may only place a card such that the arrows on them
+match directions in at least 1 connection."
+horizontal_alignment = 1
+
+[node name="EnterToAdvance" type="Label" parent="Hexes3/BG" unique_id=1405825678]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -81.0
+offset_right = 118.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "Press ENTER to advance"
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Hexes3/BG" unique_id=66434506]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -549.0
+offset_top = -712.18164
+offset_right = 549.6636
+offset_bottom = -238.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_xg37m")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label3" type="Label" parent="Hexes3/BG" unique_id=628902851]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -776.5
+offset_top = 829.0
+offset_right = 776.5
+offset_bottom = 873.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "When holding a card, you may also discard it by placing it on a bin on the right."
+horizontal_alignment = 1
+
+[node name="Hexes2" type="MarginContainer" parent="." unique_id=1275960910]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="BG" type="Panel" parent="Hexes2" unique_id=1295377676]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwh8e")
+
+[node name="Label" type="Label" parent="Hexes2/BG" unique_id=1412840947]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -589.5
+offset_top = 54.0
+offset_right = 589.5
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 80
+text = "Cards"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Hexes2/BG" unique_id=1138859841]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -776.5
+offset_top = 211.0
+offset_right = 776.5
+offset_bottom = 255.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "There are 3 special cards that you can use on tiles already placed on the map:"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="Hexes2/BG" unique_id=2067321040]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -776.5
+offset_top = 724.0
+offset_right = 776.5
+offset_bottom = 768.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "These cards do NOT work on factory tiles."
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Hexes2/BG" unique_id=2142683146]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -410.0
+offset_top = 320.0
+offset_right = 174.0
+offset_bottom = 364.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "Deletes the tile from the map"
+
+[node name="Label5" type="Label" parent="Hexes2/BG" unique_id=1867989153]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -413.0
+offset_top = 450.0
+offset_right = 280.0
+offset_bottom = 494.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "Adds a copy of a target tile to your hand"
+
+[node name="Label6" type="Label" parent="Hexes2/BG" unique_id=864683030]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -409.0
+offset_top = 583.0
+offset_right = 533.0
+offset_bottom = 627.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "Deletes the tile from the map and adds it to your hand"
+
+[node name="EnterToAdvance" type="Label" parent="Hexes2/BG" unique_id=367242934]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -81.0
+offset_right = 118.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "Press ENTER to advance"
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Hexes2/BG" unique_id=1669308376]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -549.33185
+offset_top = -716.0
+offset_right = -449.33185
+offset_bottom = -616.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_dgqmc")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Hexes2/BG" unique_id=148253092]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -549.33185
+offset_top = -578.0
+offset_right = -449.33185
+offset_bottom = -478.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_xg37m")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="Hexes2/BG" unique_id=642646451]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -549.33185
+offset_top = -444.0
+offset_right = -449.33185
+offset_bottom = -344.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_75rwa")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Connections" type="MarginContainer" parent="." unique_id=984292479]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="BG" type="Panel" parent="Connections" unique_id=349522767]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwh8e")
+
+[node name="Label" type="Label" parent="Connections/BG" unique_id=1984392146]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -589.5
+offset_top = 54.0
+offset_right = 589.5
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 80
+text = "Connecting Factories"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Connections/BG" unique_id=2079277665]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -776.5
+offset_top = 164.0
+offset_right = 776.5
+offset_bottom = 490.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "Factories are special tiles that spawn automatically and randomly
+on the map. Your goal is to create connections between them.
+
+Left-click a factory tile to see its inputs (blue arrows) and outputs (orange arrows).
+Other factories will also highlight in respective colours if they accept the item
+produced by the selected one.
+
+Click an orange arrow of one factory and a blue one of another to create a connection."
+horizontal_alignment = 1
+
+[node name="EnterToAdvance" type="Label" parent="Connections/BG" unique_id=626887698]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -81.0
+offset_right = 118.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "Press ENTER to advance"
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Connections/BG" unique_id=188309005]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -590.0
+offset_top = -417.0
+offset_right = -40.03235
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("7_mxkwx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Connections/BG" unique_id=1690701925]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = -435.0
+offset_right = 637.0
+offset_bottom = -124.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("8_1xxxe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Connections2" type="MarginContainer" parent="." unique_id=1927222211]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="BG" type="Panel" parent="Connections2" unique_id=1530164395]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwh8e")
+
+[node name="Label" type="Label" parent="Connections2/BG" unique_id=130231558]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -589.5
+offset_top = 54.0
+offset_right = 589.5
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 80
+text = "Connecting Factories"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Connections2/BG" unique_id=10082078]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -776.5
+offset_top = 164.0
+offset_right = 776.5
+offset_bottom = 490.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "When selecting a factory, you may also look on the right to find 
+an info card that lists items it needs and produces."
+horizontal_alignment = 1
+
+[node name="EnterToAdvance" type="Label" parent="Connections2/BG" unique_id=928695978]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -81.0
+offset_right = 118.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "Press ENTER to advance"
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Connections2/BG" unique_id=776145595]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -271.0
+offset_top = -698.0
+offset_right = 278.96765
+offset_bottom = -142.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("9_1xxxe")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Goal" type="MarginContainer" parent="." unique_id=842991139]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="BG" type="Panel" parent="Goal" unique_id=111281546]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwh8e")
+
+[node name="Label" type="Label" parent="Goal/BG" unique_id=203595722]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -589.5
+offset_top = 54.0
+offset_right = 589.5
+offset_bottom = 152.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 80
+text = "Goal"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Goal/BG" unique_id=1196954116]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -776.5
+offset_top = 164.0
+offset_right = 776.5
+offset_bottom = 490.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 35
+text = "Your goal of the game is to create ice cream!
+
+Combine all 3 flavours with a waffle cone to complete the game!
+
+Have fun!"
+horizontal_alignment = 1
+
+[node name="EnterToAdvance" type="Label" parent="Goal/BG" unique_id=1054834362]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.0
+offset_top = -81.0
+offset_right = 118.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 24
+text = "Press ENTER to exit tutorial"
+horizontal_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Goal/BG" unique_id=1553233624]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -172.03235
+offset_top = -522.0
+offset_right = 180.0
+offset_bottom = -166.10632
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("10_ftx70")
+expand_mode = 1
+stretch_mode = 5

@@ -41,6 +41,7 @@ func rebuild() -> void:
 
 func get_batch() -> Array[ProgressBatch]:
 	if currently_available_batches.is_empty():
+		SignalBus.game_win.emit()
 		return []
 
 	var candidates: Array[ProgressBatch] = []
