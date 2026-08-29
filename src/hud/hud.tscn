@@ -26,4 +26,6 @@ offset_bottom = -130.0
 grow_vertical = 0
 
 [node name="HexInfoCard" parent="." unique_id=1800096999 instance=ExtResource("2_3phq6")]
-visible = false
+offset_left = -400.0
+offset_top = -420.0
+offset_bottom = 100.0
