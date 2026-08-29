@@ -1,10 +1,13 @@
 class_name AudioSystem
 extends Node
 
-@onready var music_player: AudioStreamPlayer = $Music
-@onready var ambience_player: AudioStreamPlayer = $Ambience
+@onready var music_player: AudioStreamPlayer = %Music
+@onready var ambience_player: AudioStreamPlayer = %Ambience
+@onready var win_player: AudioStreamPlayer = %Win
 
 static var instance: AudioSystem
+
+var wind_volume: float = 0.0
 
 enum SFXType {
 	HOVER,
@@ -13,6 +16,9 @@ enum SFXType {
 	BUILD,
 	ROTATE,
 	REMOVE,
+	WIN,
+	UNLOCK,
+	CARD,
 }
 
 @export var sfx_sounds: Dictionary[SFXType, AudioStream]
@@ -21,6 +27,8 @@ enum SFXType {
 var sfx_streams: Array[AudioStreamPlayer]
 var music_index: int = 0
 var sfx_index: int = 0
+
+var unlock_timeout: float = 0.0
 
 func _ready() -> void:
 	instance = self
@@ -40,6 +48,9 @@ func _ready() -> void:
 	SignalBus.card_hovered.connect(func(..._a): play_sfx(SFXType.HOVER))
 	SignalBus.card_binned.connect(func(..._a): play_sfx(SFXType.REMOVE))
 	SignalBus.card_rotated.connect(func(..._a): play_sfx(SFXType.ROTATE))
+	GameManager.card_holder.card_dragged.connect(func(..._a): play_sfx(SFXType.CARD))
+	SignalBus.game_win.connect(func(): play_sfx(SFXType.WIN))
+	SignalBus.factory_unlocked.connect(func(..._a): play_sfx(SFXType.UNLOCK))
 	load_and_play_music()
 
 func load_and_play_music() -> void:
@@ -47,7 +58,16 @@ func load_and_play_music() -> void:
 	music_player.play()
 
 func play_sfx(type: SFXType) -> void:
+	if type == SFXType.WIN:
+		win_player.play()
+		return
 	var sfx_player := sfx_streams[sfx_index]
 	sfx_index = (sfx_index + 1) % len(sfx_streams)
 	sfx_player.stream = sfx_sounds[type]
 	sfx_player.play()
+
+func _process(delta: float) -> void:
+	ambience_player.volume_linear = clamp(abs(wind_volume), 0.0, 0.7)
+	unlock_timeout -= delta
+	if unlock_timeout < 0.0:
+		unlock_timeout = 0.0

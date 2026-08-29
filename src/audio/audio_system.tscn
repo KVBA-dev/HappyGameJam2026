@@ -9,6 +9,10 @@
 [ext_resource type="AudioStream" uid="uid://dyg6dhelqvf2g" path="res://assets/sfx/rotate.wav" id="6_v66wk"]
 [ext_resource type="AudioStream" uid="uid://lflnpmsoroi1" path="res://assets/music/happy gamejam music 2.ogg" id="7_nei7e"]
 [ext_resource type="AudioStream" uid="uid://bsfc5o6vryb3e" path="res://assets/sfx/remove.wav" id="7_s7k3o"]
+[ext_resource type="AudioStream" uid="uid://q3w3wojm0y27" path="res://assets/sfx/win-fanfare.wav" id="8_mrjs2"]
+[ext_resource type="AudioStream" uid="uid://bp7l8t5hhsk4g" path="res://assets/sfx/unlock.wav" id="9_wy3d5"]
+[ext_resource type="AudioStream" uid="uid://bajkprkm8voj6" path="res://assets/sfx/card.wav" id="10_os0m5"]
+[ext_resource type="AudioStream" uid="uid://dmlg4ry5ui4un" path="res://assets/sfx/wind-loop.wav" id="10_s7k3o"]
 
 [node name="AudioSystem" type="Node" unique_id=96883651]
 script = ExtResource("1_52tc4")
@@ -18,12 +22,24 @@ sfx_sounds = Dictionary[int, AudioStream]({
 2: ExtResource("4_nei7e"),
 3: ExtResource("5_amhg0"),
 4: ExtResource("6_v66wk"),
-5: ExtResource("7_s7k3o")
+5: ExtResource("7_s7k3o"),
+6: ExtResource("8_mrjs2"),
+7: ExtResource("9_wy3d5"),
+8: ExtResource("10_os0m5")
 })
 music_streams = Array[AudioStream]([ExtResource("6_2mxqt"), ExtResource("7_nei7e")])
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1088612347]
+unique_name_in_owner = true
 volume_db = -3.0
 
 [node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=1895670563]
+unique_name_in_owner = true
+stream = ExtResource("10_s7k3o")
+volume_db = -80.0
+autoplay = true
+
+[node name="Win" type="AudioStreamPlayer" parent="." unique_id=1167197695]
+unique_name_in_owner = true
+stream = ExtResource("8_mrjs2")
 volume_db = -3.0
