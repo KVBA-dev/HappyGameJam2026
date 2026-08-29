@@ -1,6 +1,19 @@
 [gd_scene format=3 uid="uid://os0dp4imlkiq"]
 
 [ext_resource type="Script" uid="uid://b04jjlosbhtjf" path="res://src/main/status_hud.gd" id="1_dbguq"]
+[ext_resource type="FontFile" uid="uid://baq332w5v6eiy" path="res://assets/fonts/Gorditas-Bold.ttf" id="2_pov1x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbguq"]
+content_margin_left = 32.0
+content_margin_top = 16.0
+content_margin_right = 32.0
+content_margin_bottom = 16.0
+bg_color = Color(0.35889402, 0.74326056, 0.8492116, 1)
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.21960784)
+shadow_size = 6
+shadow_offset = Vector2(0, 2)
 
 [node name="StatusHud" type="CanvasLayer" unique_id=1515205727]
 script = ExtResource("1_dbguq")
@@ -16,15 +29,30 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 32
 text = "Paused"
 
-[node name="TimerLabel" type="Label" parent="." unique_id=594733741]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2132781110]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
+offset_left = -80.0
+offset_right = 80.0
+offset_bottom = 61.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
+theme_override_styles/panel = SubResource("StyleBoxFlat_dbguq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=266858953]
+layout_mode = 2
+
+[node name="TimeLeftLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=445770218]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_pov1x")
+theme_override_font_sizes/font_size = 28
+text = "PLAY TIME"
+
+[node name="TimerLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=594733741]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
 text = "00:00"
 
 [node name="HidePathsBtn" type="Button" parent="." unique_id=1886612193]
