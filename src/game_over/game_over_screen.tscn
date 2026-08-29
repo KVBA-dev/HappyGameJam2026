@@ -11,6 +11,10 @@ corner_radius_top_right = 74
 corner_radius_bottom_right = 74
 corner_radius_bottom_left = 74
 
+[sub_resource type="Gradient" id="Gradient_dev16"]
+offsets = PackedFloat32Array(0, 0.18110237, 0.31889763, 0.48818898, 0.6653543, 0.8503937, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0.14509805, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0.24705882, 0, 0.7529412, 1, 1, 0, 1, 1, 1, 0, 0, 1)
+
 [node name="GameOverScreen" type="CanvasLayer" unique_id=1497554013]
 layer = 10
 script = ExtResource("1_dev16")
@@ -170,3 +174,42 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
+
+[node name="Particles1" type="CPUParticles2D" parent="." unique_id=1149095204]
+unique_name_in_owner = true
+position = Vector2(105, 222)
+emitting = false
+amount = 300
+lifetime = 2.0
+one_shot = true
+randomness = 1.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 306.12
+initial_velocity_max = 306.12
+radial_accel_min = -14.97
+radial_accel_max = 24.49
+angle_max = 720.0
+scale_amount_max = 14.6
+color_initial_ramp = SubResource("Gradient_dev16")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="Particles2" type="CPUParticles2D" parent="." unique_id=1903018338]
+unique_name_in_owner = true
+position = Vector2(1804, 222)
+rotation = 3.1415927
+emitting = false
+amount = 300
+lifetime = 2.0
+one_shot = true
+randomness = 1.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 306.12
+initial_velocity_max = 306.12
+radial_accel_min = -14.97
+radial_accel_max = 24.49
+angle_max = 720.0
+scale_amount_max = 14.6
+color_initial_ramp = SubResource("Gradient_dev16")
+hue_variation_min = -1.0
+hue_variation_max = 1.0
