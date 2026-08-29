@@ -7,30 +7,25 @@ Check that there is sufficient transparent background space for the outline!
 CC0 License (but citation is welcome <3)
 */
 
+#define PI 3.14159265
+
 shader_type canvas_item;
 
-uniform float line_thickness : hint_range(0, 20) = 2.0;    // thickness of the line
+uniform float uv_size = 1.0;
 uniform float sin_frequency : hint_range(0.1, 2.0) = 0.5;  // frequency of the rainbow
 uniform float light_offset : hint_range(0.0, 1.0) = 0.5;   // this offsets all color channels; if set to 0 only red green and blue colors will be shown.
 
 void fragment() {
-	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	vec2 uv = UV * uv_size - vec2((uv_size - 1.0) / 2.0);
+	float outline = texture(TEXTURE, uv).a * (1.0 - texture(TEXTURE, uv).r);
 	
-	float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
-	outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
-	outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
-	outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
-	outline += texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
-	outline += texture(TEXTURE, UV + vec2(size.x, size.y)).a;
-	outline += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
-	outline += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
-	outline = min(outline, 1.0);
+	float pulse_r = sin(2.0 * PI * TIME * sin_frequency + uv.x + uv.y);
+	float pulse_g = sin(2.0 * PI * TIME * sin_frequency + uv.x + uv.y + radians(120.0));
+	float pulse_b = sin(2.0 * PI * TIME * sin_frequency + uv.x + uv.y + radians(240.0));
 	
-	vec4 animated_line_color = vec4(light_offset + sin(2.0*3.14*sin_frequency*TIME),
-							   light_offset + sin(2.0*3.14*sin_frequency*TIME + radians(120.0)),
-							   light_offset + sin(2.0*3.14*sin_frequency*TIME + radians(240.0)),
-							   1.0);
+	vec4 color = vec4(pulse_r, pulse_g, pulse_b, 1.0);
+	color += vec4(0.5);
+	color.a = outline;
 	
-	vec4 color = texture(TEXTURE, UV);
-	COLOR = mix(color, animated_line_color, outline - color.a);
+	COLOR = color;
 }

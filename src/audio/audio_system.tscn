@@ -27,5 +27,3 @@ volume_db = -3.0
 
 [node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=1895670563]
 volume_db = -3.0
-
-[node name="SFX" type="AudioStreamPlayer" parent="." unique_id=1272808899]

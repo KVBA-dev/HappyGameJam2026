@@ -1,6 +1,7 @@
 class_name HexSprite extends Node2D
 
 @onready var background_sprite: Sprite2D = %BackgroundSprite
+@onready var rainbow_border_sprite: Sprite2D = %RainbowBorderSprite
 @onready var on_hex_sprite: Sprite2D = %OnHexSprite
 @onready var below_sprite: Sprite2D = %BelowSprite
 @onready var factory_icon_sprite: Sprite2D = %FactoryIconSprite
