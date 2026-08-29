@@ -7,7 +7,7 @@ class_name Main extends Node
 var cursor_normal: Texture2D = preload("res://assets/images/cursors/resized/happy_cursor_base.png")
 var cursor_pointer: Texture2D = preload("res://assets/images/cursors/resized/happy_pointer_base.png")
 
-var paused: bool = false
+var paused: bool = true
 var paths_visible: bool = true
 # NOTE: treat it as a set
 var items_produced: Dictionary[ItemData, bool]
@@ -29,6 +29,9 @@ func _ready() -> void:
 
 	SignalBus.factory_connected.connect(_on_factory_connected)
 	spawn_available_factory_hexes()
+	
+	paused = true
+	SignalBus.pause_toggled.emit(paused)
 
 func _on_factory_connected(_factory: FactoryHex):
 	for factory: FactoryHex in factories:
