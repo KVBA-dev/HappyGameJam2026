@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://d3v8lcmdyeb0r" path="res://src/hud/trash_can.gd" id="4_c00na"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ln0p1"]
-size = Vector2(1000, 250)
+size = Vector2(1305, 276)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ldsxu"]
 size = Vector2(320, 376)
@@ -35,6 +35,7 @@ unique_name_in_owner = true
 script = ExtResource("3_ldsxu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardLayArea" unique_id=1811122695]
+position = Vector2(-152.5, -13)
 shape = SubResource("RectangleShape2D_ln0p1")
 
 [node name="TrashCan" type="Sprite2D" parent="." unique_id=1689508328]
@@ -52,3 +53,7 @@ script = ExtResource("3_ldsxu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrashCan/BinArea" unique_id=1258303303]
 position = Vector2(0, -21)
 shape = SubResource("RectangleShape2D_ldsxu")
+
+[node name="InfiniteCardPos" type="Node2D" parent="." unique_id=1814245669]
+unique_name_in_owner = true
+position = Vector2(-621, -39)

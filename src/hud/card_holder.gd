@@ -7,6 +7,7 @@ const State = CardHudBase.State
 @onready var placer_center: Node2D = %PlacerCenter
 @onready var card_lay_area: HoverableArea = %CardLayArea
 @onready var trash_can = %TrashCan
+@onready var infinite_card_pos: Node2D = %InfiniteCardPos
 
 var _card_num_limit: int = 6
 
@@ -228,9 +229,15 @@ func _sort_usable():
 				if card.infinite_card.value: infinites.append(card)
 				else: placable.append(card)
 
-	placable.append_array(infinites)
-	placable.append_array(usable)
-	cards = placable
+	infinites.append_array(placable)
+	infinites.append_array(usable)
+	cards = infinites
+
+func get_first_infinite() -> CardHudBase:
+	for card in cards:
+		if card.infinite_card.value:
+			return card
+	return null
 
 func reorder_cards() -> void:
 	var cards_position_data := get_position_data_for_cards()	
@@ -240,6 +247,9 @@ func reorder_cards() -> void:
 	var first_card_right_idx: int = -1
 	if _is_currently(State.DRAGGED):
 		for idx in range(len(cards)):
+			if cards[idx].infinite_card.value:
+				continue
+
 			var card_global_calc = cards[idx].get_parent().to_global(cards_position_data[idx].position)
 			var distance_to_dragged = currently_focused.global_position.distance_to(card_global_calc)
 			var weight = clamp(distance_to_dragged / 200.0, 0.0, 1.0)
@@ -253,8 +263,12 @@ func reorder_cards() -> void:
 			left_spread = -local_spread_distance
 			
 	for idx in range(len(cards)):
+		if cards[idx].infinite_card.value:
+			cards[idx].target_pos = cards_container.to_local(infinite_card_pos.global_position)
+			continue
+
 		var movement_angle = cards_position_data[idx].rotation
-		if first_card_right_idx > 0:
+		if first_card_right_idx > 1:
 			movement_angle += left_spread if idx < first_card_right_idx else right_spread
 
 		cards[idx].target_pos = _calculate_card_position(movement_angle)
@@ -271,18 +285,30 @@ func get_position_data_for_cards() -> Array[Dictionary]:
 
 	_sort_usable()
 
+	var cards_len = len(cards)
+	if get_first_infinite() != null: cards_len -= 1
+
+	var is_currently_previewed = _is_currently(State.PREVIEWED) and not currently_focused.infinite_card.value
+
 	@warning_ignore("integer_division")
-	var angle_offset: float = -int(len(cards) / 2) * angle_card_distance
-	if len(cards) % 2 == 0:
+	var angle_offset: float = -int(cards_len / 2) * angle_card_distance
+	if cards_len % 2 == 0:
 		angle_offset += angle_card_distance / 2.0
-	if _is_currently(State.PREVIEWED):
+	if is_currently_previewed:
 		angle_offset -= angle_hover_distance / 2.0
 
 	var calculated_card_data: Array[Dictionary] = []
 	for card: CardHudBase in cards:
 		var spread_distance = 0.0
-		if card == currently_focused and _is_currently(State.PREVIEWED):
+		if (
+			card == currently_focused \
+			and is_currently_previewed \
+			and not currently_focused.infinite_card.value
+		):
 			spread_distance = angle_hover_distance / 2.0
+
+		if card.infinite_card.value:
+			spread_distance = 0.0
 
 		angle_offset += spread_distance
 		var data_dict = {
@@ -292,7 +318,8 @@ func get_position_data_for_cards() -> Array[Dictionary]:
 		angle_offset += spread_distance
 
 		calculated_card_data.push_back(data_dict)
-		angle_offset += angle_card_distance
+		if not card.infinite_card.value:
+			angle_offset += angle_card_distance
 
 	return calculated_card_data
 

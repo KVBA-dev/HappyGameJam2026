@@ -78,6 +78,18 @@ tracks/5/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Displacement:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_j2tbl"]
 resource_name = "place"
@@ -105,6 +117,38 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(2, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_aqe8g"]
+resource_name = "spawn_infinite"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Displacement:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o742x"]
+resource_name = "spawn_infinite_bin"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Displacement:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ftfg4"]
@@ -175,6 +219,8 @@ tracks/4/keys = {
 _data = {
 &"RESET": SubResource("Animation_f8wkc"),
 &"place": SubResource("Animation_j2tbl"),
+&"spawn_infinite": SubResource("Animation_aqe8g"),
+&"spawn_infinite_bin": SubResource("Animation_o742x"),
 &"use_duplicate": SubResource("Animation_ftfg4")
 }
 
@@ -199,7 +245,7 @@ unique_name_in_owner = true
 [node name="Area2D" type="Area2D" parent="Displacement" unique_id=1435104358]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Displacement/Area2D" unique_id=646041063]
-visible = false
+position = Vector2(2.5644013e-06, 14.666667)
 polygon = PackedVector2Array(80, -58, 80, 31, 0, 76, -79, 31, -80, -58, 0, -105)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=313570768]

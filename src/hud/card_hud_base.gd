@@ -49,10 +49,14 @@ func _process(delta: float) -> void:
 		State.DRAGGED: _dragged_process(delta)
 
 func _in_hand_processed(delta: float):
+	var offset := Vector2.ZERO
+	if infinite_card.value:
+		offset.y = sin(Time.get_ticks_msec() / 1000.0) * 20.0
+
 	const MOVE_SPEED = 5.0
 	position = Vector2(
-		Utils.smooth_exp(position.x, target_pos.x, MOVE_SPEED, delta),
-		Utils.smooth_exp(position.y, target_pos.y, MOVE_SPEED, delta)
+		Utils.smooth_exp(position.x, target_pos.x + offset.x, MOVE_SPEED, delta),
+		Utils.smooth_exp(position.y, target_pos.y + offset.y, MOVE_SPEED, delta)
 	)
 
 func _previewed_process(delta: float):
@@ -146,11 +150,13 @@ func rotate_right():
 	SignalBus.card_rotated.emit(self)
 	hex_sprite.rotate_right()
 
-func _copy_to_hand_holder():
+func _copy_to_hand_holder(is_binned: bool = false):
 	var added := card_holder._add_card(card_data) # Force add card
 	added.infinite_card.value = infinite_card.value
-	added.position = Vector2(0, 0)
+	added.global_position = card_holder.infinite_card_pos.global_position
 	added.match_rotations(self)
+	if not is_binned: added.animation_player.play("spawn_infinite")
+	else: added.animation_player.play("spawn_infinite_bin")
 
 func on_trash():
 	if not infinite_card.value:
@@ -158,5 +164,5 @@ func on_trash():
 		return
 
 	card_data = GameManager.infinites.carousel_pick()
-	_copy_to_hand_holder()
+	_copy_to_hand_holder(true)
 	queue_free()
