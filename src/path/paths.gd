@@ -52,10 +52,16 @@ func _input(_event: InputEvent) -> void:
 		start_hex = null
 
 func _on_hex_deleted(_position: HexVector):
+	var paths_to_clear: Array[PathData] = []
+
 	for path_data: PathData in paths:
-		var position_on_path := path_data.waypoints.any(func(value: Hex): return value.hex_position.eq(_position))
-		if position_on_path:
-			_clear_path(path_data)
+		for waypoint in path_data.waypoints:
+			if not is_instance_valid(waypoint) or waypoint.hex_position.eq(_position):
+				paths_to_clear.append(path_data)
+				break
+
+	for path_data: PathData in paths_to_clear:
+		_clear_path(path_data)
 
 func _clear_path(path_data: PathData):
 	var path_line := PATH_LINE_MAP[path_data]
@@ -65,7 +71,7 @@ func _clear_path(path_data: PathData):
 	path_deleted.emit(path_data)
 
 func clear_all_paths() -> void:
-	for path: PathData in paths:
+	for path: PathData in paths.duplicate():
 		_clear_path(path)
 
 func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: FactoryHex, end_dir: HexVector.Direction) -> Array[FlowHex]:
