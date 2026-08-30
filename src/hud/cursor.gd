@@ -114,9 +114,10 @@ func _on_mode_changed():
 		_modulate_accordingly(hover_hex)
 
 func show_tooltip():
-	if hover_hex and not GameManager.card_holder.card_lay_area.hover:
-		var tooltip := TextTooltip.new_instance(str(hover_hex.hex_data.hex_name))
-		GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
+	pass
+	# if hover_hex and not GameManager.card_holder.card_lay_area.hover:
+	# 	var tooltip := TextTooltip.new_instance(str(hover_hex.hex_data.hex_name))
+	# 	GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
 
 	#if GameManager.card_holder.can_show_tooltip():
 	#	var tooltip := TextTooltip.new_instance(
@@ -125,4 +126,5 @@ func show_tooltip():
 	#	GameManager.main.tooltip_canvas.show_tooltip(self, tooltip)
 
 func hide_tooltip():
-	GameManager.main.tooltip_canvas.hide_tooltip(self)
+	pass
+	# GameManager.main.tooltip_canvas.hide_tooltip(self)

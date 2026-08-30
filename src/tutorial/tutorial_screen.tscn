@@ -12,7 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://bxjbty7ofb78b" path="res://assets/images/items/icecream_tricolor.png" id="10_ftx70"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwh8e"]
-bg_color = Color(0, 0, 0, 0.7372549)
+bg_color = Color(0.12983727, 0.10589541, 0.025848765, 0.47058824)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 80
 corner_radius_top_right = 80
 corner_radius_bottom_right = 80

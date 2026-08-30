@@ -13,6 +13,17 @@ border_color = Color(1, 1, 1, 1)
 expand_margin_top = 32.0
 expand_margin_bottom = 32.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uadw2"]
+content_margin_left = 24.0
+content_margin_top = 24.0
+content_margin_right = 24.0
+content_margin_bottom = 24.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6np1m"]
 content_margin_top = 120.0
 content_margin_bottom = 120.0
@@ -49,14 +60,96 @@ theme_override_font_sizes/font_size = 70
 text = "THANK YOU FOR PLAYING!"
 horizontal_alignment = 1
 
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Layout" unique_id=1395768422]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Layout/MarginContainer" unique_id=1079857537]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="PanelContainer3" type="PanelContainer" parent="Panel/Layout/MarginContainer/HBoxContainer" unique_id=995849754]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_uadw2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer3" unique_id=898414090]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BuiltHexes" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer3/VBoxContainer" unique_id=2051241779]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 32
+text = "PLAYED CARDS"
+horizontal_alignment = 1
+
+[node name="PlayedCards" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer3/VBoxContainer" unique_id=1107068998]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 48
+text = "367"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="Panel/Layout/MarginContainer/HBoxContainer" unique_id=1363636925]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_uadw2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer2" unique_id=534865293]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BuiltHexes" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=1696923459]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 32
+text = "PLAY TIME"
+horizontal_alignment = 1
+
+[node name="PlayTime" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=1492534045]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 48
+text = "13:07"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/Layout/MarginContainer/HBoxContainer" unique_id=1653536242]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_uadw2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer" unique_id=1251663769]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BuiltHexes" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=2015635696]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 32
+text = "TOTAL HEXES"
+horizontal_alignment = 1
+
+[node name="TotalHexes" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1694955400]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 48
+text = "521"
+horizontal_alignment = 1
+
 [node name="Label2" type="Label" parent="Panel/Layout" unique_id=1042281030]
 layout_mode = 2
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 30
-text = "We sincerely hope you enjoyed our game!
-
-Made for Hello Game Jam 2026 by:
-"
+text = "Made for Hello Game Jam 2026 by:"
 horizontal_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="Panel/Layout" unique_id=288258060]
@@ -80,7 +173,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 30
-text = "Team lead, developer"
+text = "Lead, developer"
 horizontal_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/Layout/GridContainer" unique_id=899853225]
