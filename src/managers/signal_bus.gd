@@ -31,6 +31,7 @@ signal game_reset
 
 signal factory_connected(factory: FactoryHex)
 signal factory_disconnected(factory: FactoryHex)
+signal factory_unlocked
 signal game_win
 
 

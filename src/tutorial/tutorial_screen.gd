@@ -15,6 +15,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("tutorial_next"):
 		screen_idx += 1
 		if screen_idx == len(screens):
+			GameManager.main.paused = false
+			SignalBus.pause_toggled.emit(false)
 			hide()
 		refresh()
 

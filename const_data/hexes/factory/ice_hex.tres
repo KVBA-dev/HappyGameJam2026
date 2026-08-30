@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dwkm1j5578jxo" path="res://src/hex/data/hex_data.gd" id="1_hex_data"]
 [ext_resource type="Resource" uid="uid://dgqoohc0rk5n5" path="res://const_data/hexes/outlooks/grass_outlook.tres" id="1_n4u0q"]
 [ext_resource type="Script" uid="uid://c5sy2n01dfxna" path="res://src/hex/data/flow/flow.gd" id="2_flow"]
+[ext_resource type="Texture2D" uid="uid://dss173uv674ok" path="res://assets/images/tiles_factories/Stacja_mrożenia.png" id="2_n4u0q"]
 [ext_resource type="Resource" uid="uid://6xmmjj76qki2" path="res://src/recipe/resources/freezing_plant.tres" id="3_recipe"]
 [ext_resource type="Texture2D" uid="uid://csfoao5q01xhw" path="res://assets/images/river_uvs/river-straight.png" id="4_g7ef5"]
-[ext_resource type="Texture2D" uid="uid://cnevn1vwgf5cg" path="res://assets/images/tiles_factories/Plantacja_Wanilli.png" id="5_surface"]
 
 [sub_resource type="Resource" id="Flow_ice"]
 script = ExtResource("2_flow")
@@ -18,7 +18,7 @@ script = ExtResource("1_hex_data")
 hex_name = "Ice Hex"
 base_hex_outlook = ExtResource("1_n4u0q")
 on_surface_texture = ExtResource("4_g7ef5")
-factory_icon_texture = ExtResource("5_surface")
+factory_icon_texture = ExtResource("2_n4u0q")
 type = 2
 recipe = ExtResource("3_recipe")
 item_flow = SubResource("Flow_ice")
