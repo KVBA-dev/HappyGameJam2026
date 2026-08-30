@@ -35,6 +35,7 @@ func _input(event: InputEvent) -> void:
 			currently_focused = _generate_card(preload("uid://s2v3i00amjd0")) # Bin card
 			currently_focused.global_position = trash_can.global_position
 			currently_focused.state = CardHudBase.State.DRAGGED
+			currently_focused._scale_to_camera = true
 			card_dragged.emit(currently_focused)
 		elif _can_use_card():
 			var card := take_currently_dragged()
