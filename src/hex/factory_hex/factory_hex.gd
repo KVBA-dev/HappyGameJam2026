@@ -119,6 +119,7 @@ func _update_connected() -> void:
 			SignalBus.factory_connected.emit(self)
 			return
 	connected.value = false
+	SignalBus.factory_disconnected.emit(self)
 
 func get_needed_requirments() -> Array[ItemData]:
 	var requirements := recipe.requirements.keys()

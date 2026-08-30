@@ -1,15 +1,32 @@
 [gd_scene format=3 uid="uid://b26vloi0qd0dt"]
 
 [ext_resource type="Script" uid="uid://tiangdmkve25" path="res://src/game_over/game_over_screen.gd" id="1_dev16"]
+[ext_resource type="PackedScene" uid="uid://bbt372k2lkxm" path="res://src/dancing_items/dancing_items.tscn" id="2_6np1m"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dev16"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6np1m"]
-bg_color = Color(0, 0, 0, 0.47058824)
-corner_radius_top_left = 74
-corner_radius_top_right = 74
-corner_radius_bottom_right = 74
-corner_radius_bottom_left = 74
+bg_color = Color(0.36078432, 0.74509805, 0.8509804, 0.7490196)
+border_width_top = 8
+border_width_bottom = 8
+border_color = Color(1, 1, 1, 1)
+expand_margin_top = 32.0
+expand_margin_bottom = 32.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uadw2"]
+content_margin_left = 24.0
+content_margin_top = 24.0
+content_margin_right = 24.0
+content_margin_bottom = 24.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6np1m"]
+content_margin_top = 120.0
+content_margin_bottom = 120.0
 
 [sub_resource type="Gradient" id="Gradient_dev16"]
 offsets = PackedFloat32Array(0, 0.18110237, 0.31889763, 0.48818898, 0.6653543, 0.8503937, 1)
@@ -19,54 +36,126 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0.14509805, 1, 0, 1, 0, 1, 0, 1, 1, 
 layer = 10
 script = ExtResource("1_dev16")
 
-[node name="Panel" type="Panel" parent="." unique_id=829980382]
+[node name="Panel" type="PanelContainer" parent="." unique_id=1178694021]
 material = SubResource("CanvasItemMaterial_dev16")
 custom_minimum_size = Vector2(0.82, 0.71)
-anchors_preset = -1
-anchor_left = 0.035
-anchor_top = 0.061000004
-anchor_right = 0.961
-anchor_bottom = 0.93500006
-offset_left = -0.19999695
-offset_top = -0.8800049
-offset_right = 0.8800049
-offset_bottom = 0.19995117
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -343.5
+offset_bottom = 343.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_6np1m")
 
 [node name="Layout" type="VBoxContainer" parent="Panel" unique_id=93762785]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -145.0
-offset_top = -69.0
-offset_right = 141.0
-offset_bottom = 57.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="Panel/Layout" unique_id=431518263]
 layout_mode = 2
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 70
 text = "THANK YOU FOR PLAYING!"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Layout" unique_id=1395768422]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Layout/MarginContainer" unique_id=1079857537]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="PanelContainer3" type="PanelContainer" parent="Panel/Layout/MarginContainer/HBoxContainer" unique_id=995849754]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_uadw2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer3" unique_id=898414090]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BuiltHexes" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer3/VBoxContainer" unique_id=2051241779]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 32
+text = "PLAYED CARDS"
+horizontal_alignment = 1
+
+[node name="PlayedCards" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer3/VBoxContainer" unique_id=1107068998]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 48
+text = "367"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="Panel/Layout/MarginContainer/HBoxContainer" unique_id=1363636925]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_uadw2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer2" unique_id=534865293]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BuiltHexes" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=1696923459]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 32
+text = "PLAY TIME"
+horizontal_alignment = 1
+
+[node name="PlayTime" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer2/VBoxContainer" unique_id=1492534045]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 48
+text = "13:07"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/Layout/MarginContainer/HBoxContainer" unique_id=1653536242]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_uadw2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer" unique_id=1251663769]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BuiltHexes" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=2015635696]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 32
+text = "TOTAL HEXES"
+horizontal_alignment = 1
+
+[node name="TotalHexes" type="Label" parent="Panel/Layout/MarginContainer/HBoxContainer/PanelContainer/VBoxContainer" unique_id=1694955400]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 48
+text = "521"
+horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Panel/Layout" unique_id=1042281030]
 layout_mode = 2
 theme_override_constants/outline_size = 15
 theme_override_font_sizes/font_size = 30
-text = "We sincerely hope you enjoyed our game!
-
-Made for Hello Game Jam 2026 by:
-"
+text = "Made for Hello Game Jam 2026 by:"
 horizontal_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="Panel/Layout" unique_id=288258060]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 columns = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Layout/GridContainer" unique_id=1252679454]
@@ -84,7 +173,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 30
-text = "Team lead, developer"
+text = "Lead, developer"
 horizontal_alignment = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/Layout/GridContainer" unique_id=899853225]
@@ -163,15 +252,23 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(0, 20.015)
 layout_mode = 2
 
+[node name="DancingItems" parent="Panel/Layout" unique_id=191906439 instance=ExtResource("2_6np1m")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_6np1m")
+
 [node name="RetryButton" type="Button" parent="Panel/Layout" unique_id=2142031547]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Retry"
 
 [node name="QuitButton" type="Button" parent="Panel/Layout" unique_id=1901652132]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bbt372k2lkxm"]
+
+[ext_resource type="Script" uid="uid://dmwd41rm8jbt0" path="res://src/dancing_items/dancing_items.gd" id="1_3pe5y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3pe5y"]
+
+[node name="DancingItems" type="PanelContainer" unique_id=191906439]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -40.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3pe5y")
+script = ExtResource("1_3pe5y")
+
+[node name="DancingItem" parent="." unique_id=1198694885 instance_placeholder="res://src/dancing_items/dancing_item.tscn"]
+layout_mode = 2

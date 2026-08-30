@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cy08svyi6tn7e"]
+
+[ext_resource type="Texture2D" uid="uid://bojak4wadsf3m" path="res://assets/images/items/cocoa_fruit.png" id="1_1qex4"]
+
+[node name="TextureRect" type="TextureRect" unique_id=1198694885]
+custom_minimum_size = Vector2(80, 80)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_1qex4")
+expand_mode = 1

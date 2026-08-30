@@ -117,8 +117,7 @@ func _generate_card(card_data: CardData):
 		CardData.Type.USABLE: visual_scene = preload("uid://iqggdr0ewk2r").instantiate()
 		CardData.Type.PLACABLE: visual_scene = preload("uid://xsqqqiydweyl").instantiate()
 	cards_container.add_child(visual_scene)
-	visual_scene.hex_sprite.init(card_data.hex_data)
-	visual_scene.card_data = card_data
+	visual_scene.initialize(card_data)
 	return visual_scene
 
 func add_card(card_data: CardData) -> CardHudBase:

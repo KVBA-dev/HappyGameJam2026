@@ -13,6 +13,7 @@ const ZOOM_SPEED: float = 0.3
 func _ready() -> void:
 	target_position = position
 	target_zoom = zoom_level
+	SignalBus.go_unconnected.connect(go_unconnected)
 
 func _get_axis(pos: String, neg: String, proc: Callable = Input.is_action_pressed) -> float:
 	var axis: float = 0
@@ -39,3 +40,7 @@ func _process(_delta: float) -> void:
 	position = lerp(position, target_position, SMOOTHING * _delta)
 	zoom_level = lerpf(zoom_level, target_zoom, SMOOTHING * _delta)
 	zoom = Vector2(zoom_level, zoom_level)
+
+
+func go_unconnected():
+	target_position = GameManager.hex_grid.get_next_unconnected_factory().global_position
