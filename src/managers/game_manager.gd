@@ -2,14 +2,19 @@
 @warning_ignore_start("unused_signal")
 extends Node
 
-var hex_grid: HexGrid
-var card_holder: CardHolder
-var main: Main
-var paths: Paths
-var progress_tree: ProgressTree = preload("res://const_data/progress/progress_tree.tres")
+var hex_grid
+var card_holder
+var main
+var paths
+var progress_tree
 
+var cards
+var usable_cards
+var infinites
 
-const cards: Cards = preload("res://const_data/cards/flow_cards.tres") # cards and infinites should be exclusive
-const usable_cards: Cards = preload("res://const_data/cards/usable_cards.tres")
-const infinites: Cards = preload("res://const_data/cards/infinite_cards.tres")
+func _ready() -> void:
+	progress_tree = load("res://const_data/progress/progress_tree.tres")
+	cards = load("res://const_data/cards/flow_cards.tres")
+	usable_cards = load("res://const_data/cards/usable_cards.tres")
+	infinites = load("res://const_data/cards/infinite_cards.tres")
 

@@ -32,5 +32,6 @@ func _process(_delta: float) -> void:
 	var seconds: int = (floor(time) as int) % 60
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
 	cards_on_hand.text =  str(len(GameManager.card_holder.cards) - 1) + "/5"
-	played_cards_label.text = str(len(GameManager.main.stats.cards_used))
+	if GameManager.main.stats:
+		played_cards_label.text = str(len(GameManager.main.stats.cards_used))
 	total_hexes_label.text = str(len(GameManager.hex_grid.blank_hexes))

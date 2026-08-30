@@ -18,11 +18,11 @@ func _try_to_give_special():
 		special_card_generation.fire_next_tick()
 		return
 
-	var to_be_added := GameManager.usable_cards.pick_random_weighted()
+	var to_be_added: CardData = GameManager.usable_cards.pick_random_weighted()
 	var is_added = GameManager.card_holder.add_card(to_be_added) != null
 	if not is_added: special_card_generation.fire_next_tick()
 
 func _try_to_give_card(..._a):
-	var to_be_added := GameManager.cards.pick_random_weighted()
+	var to_be_added: CardData = GameManager.cards.pick_random_weighted()
 	var is_added = GameManager.card_holder.add_card(to_be_added) != null
 	if not is_added: normal_card_generation.fire_next_tick()
