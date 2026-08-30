@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c8tblcve0no6e"]
 
 [ext_resource type="Theme" uid="uid://cyc4r8tglx12t" path="res://assets/error_theme.tres" id="1_86b5q"]
-[ext_resource type="Texture2D" uid="uid://bwq4b4y2h2uci" path="res://assets/images/icons/cross.png" id="2_c0mel"]
 [ext_resource type="Script" uid="uid://dwjmrks1jaqhq" path="res://src/hud/hud_message.gd" id="2_pkt1m"]
+[ext_resource type="Texture2D" uid="uid://d3j1nkp2qmss5" path="res://assets/images/icons/ERROR MESSAGE.png" id="3_c0mel"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0mel"]
 bg_color = Color(1, 1, 1, 1)
@@ -70,7 +70,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-texture = ExtResource("2_c0mel")
+texture = ExtResource("3_c0mel")
 expand_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="ClipContainer/Panel/Content/MainContent" unique_id=894398437]
