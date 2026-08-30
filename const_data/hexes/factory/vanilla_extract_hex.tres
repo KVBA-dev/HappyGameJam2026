@@ -15,7 +15,8 @@ metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Vanilla Extract Hex"
+hex_name = "Vanilla Extract
+Factory"
 base_hex_outlook = ExtResource("1_es0nq")
 on_surface_texture = ExtResource("4_cw47c")
 factory_icon_texture = ExtResource("5_surface")

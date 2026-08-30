@@ -15,7 +15,8 @@ metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Strawberry Ice Cream Hex"
+hex_name = "Strawberry Ice Cream
+Factory"
 base_hex_outlook = ExtResource("1_nqeq3")
 on_surface_texture = ExtResource("4_gkits")
 factory_icon_texture = ExtResource("2_gkits")

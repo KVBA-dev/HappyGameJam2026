@@ -17,4 +17,3 @@ func _ready() -> void:
 	cards = load("res://const_data/cards/flow_cards.tres")
 	usable_cards = load("res://const_data/cards/usable_cards.tres")
 	infinites = load("res://const_data/cards/infinite_cards.tres")
-

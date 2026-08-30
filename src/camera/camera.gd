@@ -34,11 +34,13 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("camera_drag"):
 		target_position -= mouse_vel / zoom_level
 	else:
-		target_position += CAMERA_SPEED * Vector2(axis_horizontal, axis_vertical)
+		target_position += CAMERA_SPEED / min(target_zoom, 1.0) * Vector2(axis_horizontal, axis_vertical)
 	target_zoom = clamp(target_zoom + axis_zoom * ZOOM_SPEED, 0.25, 2)
 	
 	position = lerp(position, target_position, SMOOTHING * _delta)
+	var prev_zoom_level = zoom_level
 	zoom_level = lerpf(zoom_level, target_zoom, SMOOTHING * _delta)
+	AudioSystem.instance.wind_volume = abs(zoom_level - prev_zoom_level)
 	zoom = Vector2(zoom_level, zoom_level)
 
 

@@ -28,7 +28,7 @@ var sfx_streams: Array[AudioStreamPlayer]
 var music_index: int = 0
 var sfx_index: int = 0
 
-var unlock_timeout: float = 0.0
+var unlock_timeout: float = 1.0
 
 func _ready() -> void:
 	instance = self
@@ -67,7 +67,7 @@ func play_sfx(type: SFXType) -> void:
 	sfx_player.play()
 
 func _process(delta: float) -> void:
-	ambience_player.volume_linear = clamp(abs(wind_volume), 0.0, 0.7)
+	ambience_player.volume_linear = pow(clamp(abs(wind_volume), 0.0, 1.0), 0.5)
 	unlock_timeout -= delta
 	if unlock_timeout < 0.0:
 		unlock_timeout = 0.0

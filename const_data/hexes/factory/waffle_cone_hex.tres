@@ -9,7 +9,7 @@
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Waffle Cone Hex"
+hex_name = "Bakery"
 base_hex_outlook = ExtResource("1_qjkdw")
 on_surface_texture = ExtResource("4_v7q4g")
 factory_icon_texture = ExtResource("2_v7q4g")

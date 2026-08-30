@@ -54,7 +54,7 @@ offset_bottom = 463.0
 grow_horizontal = 2
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/font_size = 80
-text = "Welcome to [insert title here]!"
+text = "Welcome to Hexcream Line!"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Intro/BG" unique_id=2100391601]
@@ -330,21 +330,6 @@ texture = ExtResource("3_xg37m")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Label3" type="Label" parent="Hexes3/BG" unique_id=628902851]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -776.5
-offset_top = 829.0
-offset_right = 776.5
-offset_bottom = 873.0
-grow_horizontal = 2
-theme_override_constants/outline_size = 9
-theme_override_font_sizes/font_size = 35
-text = "When holding a card, you may also discard it by placing it on a bin on the right."
-horizontal_alignment = 1
-
 [node name="Hexes2" type="MarginContainer" parent="." unique_id=1275960910]
 visible = false
 anchors_preset = 15
@@ -403,7 +388,8 @@ offset_bottom = 768.0
 grow_horizontal = 2
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/font_size = 35
-text = "These cards do NOT work on factory tiles."
+text = "These cards do NOT work on factory tiles.
+Left-clicking on a bin will get you a         card."
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="Hexes2/BG" unique_id=2142683146]
@@ -473,10 +459,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -549.33185
-offset_top = -716.0
-offset_right = -449.33185
-offset_bottom = -616.0
+offset_left = 244.0
+offset_top = -229.0
+offset_right = 286.0
+offset_bottom = -185.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("3_dgqmc")
@@ -497,6 +483,23 @@ offset_bottom = -478.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("4_xg37m")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="Hexes2/BG" unique_id=1157405889]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -549.33185
+offset_top = -710.0
+offset_right = -449.33185
+offset_bottom = -610.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_dgqmc")
 expand_mode = 1
 stretch_mode = 5
 

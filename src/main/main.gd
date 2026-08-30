@@ -33,7 +33,7 @@ func _ready() -> void:
 	GameManager.hex_grid.deleted_hex.connect(_on_hex_grid_deleted_hex)
 	GameManager.hex_grid.spawned_hex.connect(_on_hex_grid_spawned_hex)
 
-	spawn_available_factory_hexes(true)
+	spawn_available_factory_hexes(false)
 	
 	paused = true
 	SignalBus.pause_toggled.emit(paused)
@@ -43,6 +43,10 @@ func _on_factory_connected(_factory: FactoryHex):
 		if not factory.connected.value:
 			return
 	spawn_available_factory_hexes(true)
+
+func _process(_delta: float) -> void:
+	if Input.is_key_pressed(Key.KEY_R):
+		SignalBus.game_reset.emit()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
@@ -54,11 +58,15 @@ func _on_item_produced(item: ItemData) -> void:
 		SignalBus.item_achieved.emit(item)
 	items_produced[item] = true
 
-var main_scene: PackedScene = preload("res://src/main/main.tscn")
-
 func on_game_reset() -> void:
-	get_tree().root.add_child(main_scene.instantiate())
-	queue_free()
+	stats = Stats.new()
+	factories = []
+	items_produced = {}
+	GameManager.paths.clear_all_paths()
+	GameManager.progress_tree.rebuild()
+	GameManager.hex_grid.reset_grid()
+	GameManager.hex_grid.surround_with_hexes(3)
+	spawn_available_factory_hexes(false)
 
 func spawn_available_factory_hexes(emit_signals: bool = true) -> void:
 	var batches: Array[ProgressBatch] = GameManager.progress_tree.get_batch()

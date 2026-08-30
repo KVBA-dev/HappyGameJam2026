@@ -5,9 +5,12 @@ class_name HexGrid extends Node2D
 var hex_map: Dictionary[Vector2i, Hex] = {}
 var blank_hexes: Array[Hex]:
 	get():
-		return hex_map.values().filter(func(hex: Hex) -> bool:
+		var hexes := hex_map.values().filter(func(hex: Hex) -> bool:
 			return hex.hex_data.type != HexData.Type.BLANK
 		)
+		if len(hexes) == 0:
+			return []
+		return hexes as Array[Hex]
 
 var last_unconnected_index: int = 0
 var unconnected_factories: Array[FactoryHex] = []
@@ -28,7 +31,6 @@ func _ready():
 	SignalBus.factory_disconnected.connect(_on_factory_connected)
 	spawned_hex.connect(_on_hex_spawned)
 	reset_grid()
-	_update_unconnected_factories()
 
 func _on_factory_connected(factory: FactoryHex):
 	_update_unconnected_factories()
@@ -59,6 +61,7 @@ func reset_grid() -> void:
 		hex.queue_free()
 	hex_map.clear()
 	hex_map[HexVector.ZERO.vec] = root_hex
+	_update_unconnected_factories()
 
 func surround_with_hexes(radius: int, center: HexVector = HexVector.ZERO):
 	for direction: HexVector in HexVector.DIRECTION_MAP.values():
