@@ -44,10 +44,6 @@ func _on_factory_connected(_factory: FactoryHex):
 			return
 	spawn_available_factory_hexes(true)
 
-func _process(_delta: float) -> void:
-	if Input.is_key_pressed(Key.KEY_R):
-		SignalBus.game_reset.emit()
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		paused = not paused
