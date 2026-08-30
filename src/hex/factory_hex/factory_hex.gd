@@ -9,8 +9,10 @@ enum Hint {
 @onready var indicator_container: Node2D = %IndicatorContainer
 @onready var in_out_hint: Sprite2D = %InOutHint
 
-var MODULATE_INPUT := Color.hex(0x0044ff64)
-var MODULATE_OUTPUT := Color.hex(0xff000032)
+var MODULATE_INPUT := Color(0, 0.5, 1, 0.75)
+var MODULATE_OUTPUT := Color(1, 0.2, 0, 0.75)
+var modulate_hint_target := Color(1, 1, 1, 0)
+var modulate_hint_target_faded := Color(1, 1, 1, 0)
 var _is_hinting: Hint = Hint.NONE
 
 var recipe: Recipe
@@ -76,6 +78,8 @@ func _process(_delta: float) -> void:
 		indicator_container_show_only_inputs()
 	else:
 		indicator_container.hide()
+	var time := Time.get_ticks_msec() as float / 1000.0
+	in_out_hint.modulate = lerp(modulate_hint_target, modulate_hint_target_faded, sin(time * 3) * 0.5 + 0.5)
 
 func _show_input_output_hint(hex: Hex):
 	if hex is not FactoryHex:
@@ -83,11 +87,17 @@ func _show_input_output_hint(hex: Hex):
 
 	if (hex as FactoryHex).recipe.requirements.has(recipe.produces):
 		in_out_hint.show()
-		in_out_hint.modulate = MODULATE_INPUT
+		modulate_hint_target = MODULATE_INPUT
+		modulate_hint_target_faded = MODULATE_INPUT
+		modulate_hint_target_faded.a = 0.2
+		# in_out_hint.modulate = MODULATE_INPUT
 		_is_hinting = Hint.OUTPUTS
 	elif recipe.requirements.has(hex.recipe.produces):
 		in_out_hint.show()
-		in_out_hint.modulate = MODULATE_OUTPUT
+		modulate_hint_target = MODULATE_OUTPUT
+		modulate_hint_target_faded = MODULATE_OUTPUT
+		modulate_hint_target_faded.a = 0.2
+		# in_out_hint.modulate = MODULATE_OUTPUT
 		_is_hinting = Hint.INPUTS
 
 func _hide_input_output_hint(hex: Hex):

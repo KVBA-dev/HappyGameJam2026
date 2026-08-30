@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Sugar Hex"
+hex_name = "Sugar Factory"
 base_hex_outlook = ExtResource("1_w2ybd")
 on_surface_texture = ExtResource("4_k66gv")
 factory_icon_texture = ExtResource("2_w2ybd")

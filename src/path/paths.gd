@@ -64,6 +64,10 @@ func _clear_path(path_data: PathData):
 	paths.erase(path_data)
 	path_deleted.emit(path_data)
 
+func clear_all_paths() -> void:
+	for path: PathData in paths:
+		_clear_path(path)
+
 func create_path(start: FactoryHex, _start_dir: HexVector.Direction, end: FactoryHex, end_dir: HexVector.Direction) -> Array[FlowHex]:
 	print("[Paths] Creating path from %s (%s) to %s (%s)" % [
 		start.hex_position,

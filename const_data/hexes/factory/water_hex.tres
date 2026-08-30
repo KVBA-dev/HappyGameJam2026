@@ -9,7 +9,7 @@
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Water Hex"
+hex_name = "Water Spring"
 base_hex_outlook = ExtResource("1_ly64r")
 on_surface_texture = ExtResource("4_1e71j")
 factory_icon_texture = ExtResource("2_ly64r")

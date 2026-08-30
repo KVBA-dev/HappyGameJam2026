@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c0lvfgmj38wfm" path="res://src/hud/card_holder.tscn" id="1_t0re6"]
 [ext_resource type="PackedScene" uid="uid://bxskiasaoc27g" path="res://src/hud/hex_info_card.tscn" id="2_3phq6"]
+[ext_resource type="Texture2D" uid="uid://cg083j40f1v43" path="res://assets/images/bg/bottom_cloud.png" id="2_ony6l"]
 
 [node name="Hud" type="CanvasLayer" unique_id=170203212]
 
@@ -24,6 +25,20 @@ offset_top = -130.0
 offset_right = 0.0
 offset_bottom = -130.0
 grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Screen" unique_id=379178692]
+z_index = -10
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -435.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_ony6l")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="HexInfoCard" parent="." unique_id=1800096999 instance=ExtResource("2_3phq6")]
 visible = false

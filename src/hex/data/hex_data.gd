@@ -12,7 +12,7 @@ enum Type {
 func should_surround_by_blanks() -> bool:
 	return type != Type.BLANK
 
-@export var hex_name: String
+@export_multiline var hex_name: String
 @export var base_hex_outlook: BaseHexOutlook
 @export var on_surface_texture: Texture2D
 @export var factory_icon_texture: Texture2D

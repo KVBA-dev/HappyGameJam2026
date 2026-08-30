@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Cocoa Hex"
+hex_name = "Cocoa Factory"
 base_hex_outlook = ExtResource("1_iuu2i")
 on_surface_texture = ExtResource("4_arx8j")
 factory_icon_texture = ExtResource("2_iuu2i")

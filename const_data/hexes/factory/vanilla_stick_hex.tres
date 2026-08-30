@@ -14,7 +14,7 @@ metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Vanilla Stick Hex"
+hex_name = "Vanilla Farm"
 base_hex_outlook = ExtResource("1_ic0l4")
 on_surface_texture = ExtResource("4_6dit4")
 factory_icon_texture = ExtResource("5_surface")
