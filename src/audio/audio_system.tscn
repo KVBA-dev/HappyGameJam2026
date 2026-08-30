@@ -31,7 +31,7 @@ music_streams = Array[AudioStream]([ExtResource("6_2mxqt"), ExtResource("7_nei7e
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1088612347]
 unique_name_in_owner = true
-volume_db = -3.0
+volume_db = -4.5
 
 [node name="Ambience" type="AudioStreamPlayer" parent="." unique_id=1895670563]
 unique_name_in_owner = true

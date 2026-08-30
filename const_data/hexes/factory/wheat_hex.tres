@@ -9,7 +9,7 @@
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Wheat Hex"
+hex_name = "Wheat Farm"
 base_hex_outlook = ExtResource("1_5g05w")
 on_surface_texture = ExtResource("4_3nvt0")
 factory_icon_texture = ExtResource("2_3nvt0")

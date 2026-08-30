@@ -13,16 +13,18 @@ extends CanvasLayer
 
 func _ready() -> void:
 	SignalBus.game_reset.connect(func(): visible = false)
-	SignalBus.game_win.connect(func(): 
-		visible = true
-		particles1.emitting = true
-		particles2.emitting = true
-	)
+	SignalBus.game_win.connect(show_screen)
 	reset_button.pressed.connect(SignalBus.game_reset.emit)
 	quit_button.pressed.connect(get_tree().quit)
 	visible = false
 
-func _process(delta: float) -> void:
+func show_screen(): 
+	visible = true
+	particles1.emitting = true
+	particles2.emitting = true
+	var time: float = GameTimer.instance.current_time
+	var play_time_mins: int = floor(time / 60) as int
+	var play_time_secs: int = (floor(time) as int) % 60
+	play_time.text = "%02d:%02d" % [play_time_mins, play_time_secs]
 	played_cards.text = str(len(GameManager.main.stats.cards_used))
-	# play_time.text = GameManager.main. # TODO: Make show time
-	total_hexes.text = str(len(GameManager.hex_grid.hex_map))
+	total_hexes.text = str(len(GameManager.hex_grid.blank_hexes))

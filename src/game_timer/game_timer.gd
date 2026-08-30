@@ -1,6 +1,8 @@
 class_name GameTimer
 extends Node
 
+static var instance: GameTimer
+
 @export var tick_interval: float = 1.0
 
 var _curr_tick: float
@@ -11,6 +13,7 @@ var current_time: float:
 		return _curr_time
 
 func _ready() -> void:
+	instance = self
 	SignalBus.game_reset.connect(reset)
 	reset()
 

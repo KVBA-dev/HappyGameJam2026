@@ -9,7 +9,7 @@
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Cacao Fruit Hex"
+hex_name = "Cacao Farm"
 base_hex_outlook = ExtResource("1_a5xh0")
 on_surface_texture = ExtResource("4_xgtv7")
 factory_icon_texture = ExtResource("2_a5xh0")

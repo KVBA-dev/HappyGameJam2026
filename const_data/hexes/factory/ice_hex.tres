@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://c5sy2n01dfxna"
 
 [resource]
 script = ExtResource("1_hex_data")
-hex_name = "Ice Hex"
+hex_name = "Freezer"
 base_hex_outlook = ExtResource("1_n4u0q")
 on_surface_texture = ExtResource("4_g7ef5")
 factory_icon_texture = ExtResource("2_n4u0q")
